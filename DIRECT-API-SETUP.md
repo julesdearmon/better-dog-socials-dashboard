@@ -20,13 +20,28 @@ Repository -> Settings -> Secrets and variables -> Actions -> New repository sec
 
 ### Meta: Instagram + Facebook
 
-Required secrets:
+Recommended secrets:
 
 ```text
-META_ACCESS_TOKEN
+META_USER_ACCESS_TOKEN
+META_PAGE_ACCESS_TOKEN
 META_IG_ACCOUNT_ID
 META_PAGE_ID
 ```
+
+`META_USER_ACCESS_TOKEN` is used for Instagram Graph API calls.
+`META_PAGE_ACCESS_TOKEN` is used for Facebook Page post and insight calls.
+If you only add `META_USER_ACCESS_TOKEN`, the builder will try to derive the
+page access token from the page ID.
+
+Legacy fallback:
+
+```text
+META_ACCESS_TOKEN
+```
+
+The script still accepts `META_ACCESS_TOKEN` so we can test quickly with a
+single token, but the two-token setup is cleaner for the agency version.
 
 Better Dog defaults already built into the script:
 
@@ -35,11 +50,21 @@ META_IG_ACCOUNT_ID=17841475238822164
 META_PAGE_ID=674626722402999
 ```
 
-If those IDs stay the same, only `META_ACCESS_TOKEN` is strictly required.
+If those IDs stay the same, the ID secrets are optional.
 
 The Meta app needs access to the Better Dog Facebook Page and connected
 Instagram Business/Creator account. For production-like access, expect to need
 Meta app review for page and Instagram insight permissions.
+
+Minimum Meta permissions to request for the fast internal dashboard:
+
+```text
+pages_show_list
+pages_read_engagement
+read_insights
+instagram_basic
+instagram_manage_insights
+```
 
 Useful docs:
 
@@ -141,4 +166,3 @@ Set the needed environment variables first.
   advertising excluded. Per-video top-content stats come from video statistics.
 - TikTok: direct Display API does not expose reach. We should revisit TikTok
   Business/Marketing API access if TikTok reach is a hard requirement.
-

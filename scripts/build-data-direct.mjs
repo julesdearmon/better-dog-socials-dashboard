@@ -182,9 +182,30 @@ async function postJson(url, token, body) {
   return json;
 }
 
-async function metaGet(path, params = {}) {
-  const token = process.env.META_ACCESS_TOKEN;
-  if (!token) throw new Error('META_ACCESS_TOKEN is missing');
+function metaBaseToken() {
+  return process.env.META_USER_ACCESS_TOKEN || process.env.META_ACCESS_TOKEN || process.env.META_PAGE_ACCESS_TOKEN;
+}
+
+let cachedPageToken = null;
+async function metaPageToken() {
+  if (process.env.META_PAGE_ACCESS_TOKEN) return process.env.META_PAGE_ACCESS_TOKEN;
+  if (cachedPageToken) return cachedPageToken;
+  const base = metaBaseToken();
+  if (!base) throw new Error('META_USER_ACCESS_TOKEN, META_PAGE_ACCESS_TOKEN, or META_ACCESS_TOKEN is required');
+  try {
+    const page = await metaGet(`/${ACCT.facebook.id}`, { fields: 'access_token' }, base);
+    if (page.access_token) {
+      cachedPageToken = page.access_token;
+      return cachedPageToken;
+    }
+  } catch (err) {
+    console.warn(`Could not derive page access token, using base Meta token: ${err.message}`);
+  }
+  return base;
+}
+
+async function metaGet(path, params = {}, token = metaBaseToken()) {
+  if (!token) throw new Error('META_USER_ACCESS_TOKEN, META_PAGE_ACCESS_TOKEN, or META_ACCESS_TOKEN is required');
   const url = new URL(`https://graph.facebook.com/${META_GRAPH_VERSION}/${path.replace(/^\//, '')}`);
   for (const [key, value] of Object.entries(params)) {
     if (value != null && value !== '') url.searchParams.set(key, value);
@@ -193,11 +214,11 @@ async function metaGet(path, params = {}) {
   return getJson(url.toString());
 }
 
-async function metaPaged(path, params, stopWhen) {
+async function metaPaged(path, params, stopWhen, token = metaBaseToken()) {
   const out = [];
   let next = null;
   do {
-    const json = next ? await getJson(next) : await metaGet(path, params);
+    const json = next ? await getJson(next) : await metaGet(path, params, token);
     for (const item of json.data || []) {
       if (stopWhen && stopWhen(item)) return out;
       out.push(item);
@@ -216,11 +237,11 @@ function insightValue(json, names) {
   return 0;
 }
 
-async function metaInsights(path, metricSets) {
+async function metaInsights(path, metricSets, token = metaBaseToken()) {
   let lastError = null;
   for (const metrics of metricSets) {
     try {
-      return await metaGet(path, { metric: metrics.join(',') });
+      return await metaGet(path, { metric: metrics.join(',') }, token);
     } catch (err) {
       lastError = err;
     }
@@ -229,7 +250,8 @@ async function metaInsights(path, metricSets) {
 }
 
 async function pullInstagram() {
-  if (!process.env.META_ACCESS_TOKEN) throw new Error('META_ACCESS_TOKEN is missing');
+  const token = metaBaseToken();
+  if (!token) throw new Error('META_USER_ACCESS_TOKEN, META_PAGE_ACCESS_TOKEN, or META_ACCESS_TOKEN is required');
   const { id, handle } = ACCT.instagram;
   const daily = emptyDaily();
   const content = [];
@@ -248,7 +270,7 @@ async function pullInstagram() {
       ['reach', 'views', 'total_interactions'],
       ['reach', 'plays', 'total_interactions'],
       ['reach', 'impressions', 'total_interactions'],
-    ]);
+    ], token);
     const views = insightValue(insights, ['views', 'plays', 'impressions']);
     const reach = insightValue(insights, ['reach']);
     const engagement = num(item.like_count) + num(item.comments_count) || insightValue(insights, ['total_interactions']);
@@ -275,7 +297,7 @@ async function pullInstagram() {
 }
 
 async function pullFacebook() {
-  if (!process.env.META_ACCESS_TOKEN) throw new Error('META_ACCESS_TOKEN is missing');
+  const token = await metaPageToken();
   const { id, handle } = ACCT.facebook;
   const daily = emptyDaily();
   const content = [];
@@ -293,7 +315,8 @@ async function pullFacebook() {
   const posts = await metaPaged(
     `/${id}/published_posts`,
     { fields, limit: 100 },
-    (item) => dateOnly(item.created_time) < START
+    (item) => dateOnly(item.created_time) < START,
+    token
   );
 
   const typeOf = (post) => {
@@ -310,7 +333,7 @@ async function pullFacebook() {
     const insights = await metaInsights(`/${post.id}/insights`, [
       ['post_impressions', 'post_impressions_unique', 'post_video_views'],
       ['post_impressions', 'post_impressions_unique'],
-    ]);
+    ], token);
     const impressions = insightValue(insights, ['post_impressions']);
     const videoViews = insightValue(insights, ['post_video_views']);
     const views = videoViews || impressions;
@@ -564,8 +587,8 @@ async function main() {
   const results = {};
   const errors = [];
   for (const [name, fn, configured] of [
-    ['instagram', pullInstagram, !!process.env.META_ACCESS_TOKEN],
-    ['facebook', pullFacebook, !!process.env.META_ACCESS_TOKEN],
+    ['instagram', pullInstagram, !!metaBaseToken()],
+    ['facebook', pullFacebook, !!metaBaseToken()],
     ['youtube', pullYouTube, !!(process.env.YOUTUBE_CLIENT_ID && process.env.YOUTUBE_CLIENT_SECRET && process.env.YOUTUBE_REFRESH_TOKEN)],
     ['tiktok', pullTikTok, !!(process.env.TIKTOK_CLIENT_KEY && process.env.TIKTOK_CLIENT_SECRET && process.env.TIKTOK_REFRESH_TOKEN)],
   ]) {
