@@ -1,0 +1,16 @@
+{
+  "_comment": "Each client = one brand. 'id' inside an account is the platform's account identifier the live connector needs (IG Business Account ID, FB Page ID, YouTube channel UC... id). Leave 'id' blank to keep that account on demo data. Add more clients to the array to report on more brands.",
+  "clients": [
+    {
+      "id": "better-dog-supplements",
+      "name": "Better Dog Supplements",
+      "color": "#88cc33",
+      "accounts": {
+        "instagram": { "handle": "@betterdogsupplements", "id": "", "url": "https://www.instagram.com/betterdogsupplements/" },
+        "facebook":  { "handle": "Better Dog Supplements", "id": "", "url": "https://www.facebook.com/betterdogsupplements" },
+        "tiktok":    { "handle": "@betterdogsupplements", "id": "", "url": "https://www.tiktok.com/@betterdogsupplements" },
+        "youtube":   { "handle": "Better Dog Supplements", "id": "", "url": "https://www.youtube.com/@betterdogsupplements" }
+      }
+    }
+  ]
+}

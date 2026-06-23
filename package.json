@@ -1,0 +1,20 @@
+{
+  "name": "agm-social-dashboard",
+  "version": "0.1.0",
+  "description": "Better Dog Supplements social media metrics dashboard (Agorapulse-style). Weekly reporting across Instagram, Facebook, TikTok, and YouTube.",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "build": "node scripts/build-data.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}

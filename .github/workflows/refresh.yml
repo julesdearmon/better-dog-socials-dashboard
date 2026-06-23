@@ -1,0 +1,61 @@
+name: Refresh & deploy dashboard
+
+# Rebuilds public/data.json from the Supermetrics API and publishes the static
+# site to GitHub Pages. Runs every morning, on manual trigger, and on push to main.
+on:
+  schedule:
+    - cron: '5 10 * * *'   # 10:05 UTC ≈ 6:05 AM US-Eastern. Adjust for your timezone.
+  workflow_dispatch: {}     # adds a manual "Run workflow" button in the Actions tab
+  push:
+    branches: [main]
+
+# Permissions required to deploy to GitHub Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never run two deploys at once; let the newest win.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Pull fresh data from Supermetrics
+        # If the API key secret isn't set yet, skip the pull and deploy the
+        # committed data.json as a seed so the site still goes live.
+        env:
+          SUPERMETRICS_API_KEY: ${{ secrets.SUPERMETRICS_API_KEY }}
+          DISPLAY_TZ: America/New_York
+        run: |
+          if [ -z "$SUPERMETRICS_API_KEY" ]; then
+            echo "::warning::SUPERMETRICS_API_KEY not set — deploying committed data.json as a seed. Add the secret to enable daily refresh."
+          else
+            node scripts/build-data.mjs
+          fi
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
