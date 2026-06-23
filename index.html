@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Better Dog Supplements — Social Dashboard</title>
+  <meta name="description" content="Better Dog Supplements social media metrics dashboard" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="logo.png" alt="Better Dog Supplements" class="brand-logo" />
+      <div class="brand-sub" id="reportWeek"></div>
+    </div>
+    <div class="controls">
+      <div class="control">
+        <span>View</span>
+        <div class="seg" id="granToggle">
+          <button type="button" data-g="daily">Daily</button>
+          <button type="button" data-g="weekly" class="active">Weekly</button>
+          <button type="button" data-g="monthly">Monthly</button>
+        </div>
+      </div>
+      <div class="control">
+        <span>Dates</span>
+        <div class="cal-wrap">
+          <button type="button" id="calBtn" class="cal-btn"></button>
+          <div id="calPop" class="cal-pop" hidden>
+            <div class="cal-head">
+              <button type="button" class="cal-nav" data-nav="-1" aria-label="Previous month">‹</button>
+              <span id="calTitle"></span>
+              <button type="button" class="cal-nav" data-nav="1" aria-label="Next month">›</button>
+            </div>
+            <div class="cal-dow"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+            <div class="cal-grid" id="calGrid"></div>
+            <div class="cal-foot" id="calFoot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="control">
+        <span>Quick</span>
+        <div class="seg" id="rangePresets">
+          <button type="button" data-preset="last-week">Last week</button>
+          <button type="button" data-preset="last-4-weeks">Last 4 weeks</button>
+          <button type="button" data-preset="last-month">Last month</button>
+          <button type="button" data-preset="last-3-months">Last 3 months</button>
+        </div>
+      </div>
+      <button id="exportBtn" class="btn">Export CSV</button>
+      <span id="modeBadge" class="badge"></span>
+    </div>
+  </header>
+
+  <main id="dashboard" class="dashboard">
+    <h1 class="page-title">Social Media Metrics</h1>
+    <div id="demoBanner" class="demo-banner" hidden>
+      <strong>⚠ Sample data shown.</strong>
+      The live Better Dog data didn't load in this view, so these are placeholder numbers — <strong>not</strong> real metrics. Reopen the dashboard, or ask to re-pull the latest data from Supermetrics.
+    </div>
+    <div id="liveNote" class="live-note" hidden></div>
+    <p class="weekly-note" id="periodNote"></p>
+
+    <div class="platform-filter" id="platformFilter"></div>
+
+    <h2 class="section-title" id="kpisTitle">Metric Totals</h2>
+    <section class="kpis" id="kpis"></section>
+
+    <p class="chart-hint" id="chartHint">💡 Tip: <strong>click any point</strong> on a chart to see what drove that period — top posts, how it compares to the average, and what worked.</p>
+
+    <section class="grid">
+      <div class="card chart-card">
+        <div class="card-head"><h2 id="viewsTitle">Views</h2><span class="card-sub">by platform + total</span></div>
+        <div class="chart-box"><canvas id="viewsChart"></canvas></div>
+      </div>
+      <div class="card chart-card">
+        <div class="card-head"><h2 id="reachTitle">Reach</h2><span class="card-sub">by platform + total</span></div>
+        <div class="chart-box"><canvas id="reachChart"></canvas></div>
+        <p class="chart-note">Reach reflects <strong>Instagram &amp; Facebook</strong>. YouTube has no “reach” metric and its unique-viewer data isn’t available through Supermetrics, so YouTube is excluded from Reach (its Views and Watch time are shown).</p>
+      </div>
+      <div class="card chart-card">
+        <div class="card-head"><h2>YouTube watch time</h2><span class="card-sub" id="watchSub">hours</span></div>
+        <div class="chart-box"><canvas id="watchChart"></canvas></div>
+      </div>
+      <div class="card chart-card">
+        <div class="card-head"><h2 id="postsTitle">Posts</h2><span class="card-sub">by platform + total</span></div>
+        <div class="chart-box"><canvas id="postsChart"></canvas></div>
+      </div>
+    </section>
+
+    <section class="card insight-card" id="insightPanel" hidden>
+      <div class="card-head">
+        <h2 id="insightTitle">Data insights</h2>
+        <button type="button" class="btn insight-close" id="insightClose">Close</button>
+      </div>
+      <div id="insightBody"></div>
+    </section>
+
+    <section class="card overview-card" id="overviewCard">
+      <div class="card-head"><h2 id="overviewTitle">Overall analysis</h2></div>
+      <div id="overview"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2 id="tableTitle">By platform</h2>
+        <span class="card-sub" id="tableWeekLabel"></span>
+      </div>
+      <div class="table-wrap">
+        <table class="posts-table" id="weekTable">
+          <thead>
+            <tr>
+              <th>Platform</th>
+              <th class="num">Views</th>
+              <th class="num">Reach</th>
+              <th class="num">Watch time</th>
+              <th class="num">Posts</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <tfoot></tfoot>
+        </table>
+      </div>
+    </section>
+    <section class="card">
+      <div class="card-head">
+        <h2>Top Performing Content</h2>
+        <div class="content-controls">
+          <select id="contentSort" title="Rank by">
+            <option value="views">By views</option>
+            <option value="reach">By reach</option>
+            <option value="eng">By engagement</option>
+          </select>
+        </div>
+      </div>
+      <div id="contentGroups"></div>
+    </section>
+  </main>
+
+  <div id="loading" class="loading">Loading…</div>
+
+  <script src="realdata.js"></script>
+  <script src="demo.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
