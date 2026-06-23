@@ -1,21 +1,20 @@
 name: Refresh & deploy dashboard
 
-# Rebuilds public/data.json from the Supermetrics API and publishes the static
-# site to GitHub Pages. Runs every morning, on manual trigger, and on push to main.
+# Rebuilds public/data.json and publishes the static site to GitHub Pages.
+# Preferred source is direct platform APIs. Supermetrics remains a fallback
+# while the direct credentials are being connected.
 on:
   schedule:
-    - cron: '5 10 * * *'   # 10:05 UTC ≈ 6:05 AM US-Eastern. Adjust for your timezone.
-  workflow_dispatch: {}     # adds a manual "Run workflow" button in the Actions tab
+    - cron: '5 10 * * *'   # 10:05 UTC is about 6:05 AM US-Eastern.
+  workflow_dispatch: {}
   push:
     branches: [main]
 
-# Permissions required to deploy to GitHub Pages.
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Never run two deploys at once; let the newest win.
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -35,17 +34,31 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Pull fresh data from Supermetrics
-        # If the API key secret isn't set yet, skip the pull and deploy the
-        # committed data.json as a seed so the site still goes live.
+      - name: Pull fresh data
         env:
           SUPERMETRICS_API_KEY: ${{ secrets.SUPERMETRICS_API_KEY }}
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          META_IG_ACCOUNT_ID: ${{ secrets.META_IG_ACCOUNT_ID }}
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+          YOUTUBE_CHANNEL_ID: ${{ secrets.YOUTUBE_CHANNEL_ID }}
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_REFRESH_TOKEN }}
           DISPLAY_TZ: America/New_York
         run: |
-          if [ -z "$SUPERMETRICS_API_KEY" ]; then
-            echo "::warning::SUPERMETRICS_API_KEY not set — deploying committed data.json as a seed. Add the secret to enable daily refresh."
-          else
+          if [ -n "$META_ACCESS_TOKEN" ] || \
+             { [ -n "$YOUTUBE_CLIENT_ID" ] && [ -n "$YOUTUBE_CLIENT_SECRET" ] && [ -n "$YOUTUBE_REFRESH_TOKEN" ]; } || \
+             { [ -n "$TIKTOK_CLIENT_KEY" ] && [ -n "$TIKTOK_CLIENT_SECRET" ] && [ -n "$TIKTOK_REFRESH_TOKEN" ]; }; then
+            echo "Using direct platform APIs."
+            node scripts/build-data-direct.mjs
+          elif [ -n "$SUPERMETRICS_API_KEY" ]; then
+            echo "Using Supermetrics API fallback."
             node scripts/build-data.mjs
+          else
+            echo "::warning::No API credentials set - deploying committed data.json as a seed. Add direct API secrets to enable daily refresh."
           fi
 
       - name: Configure Pages
