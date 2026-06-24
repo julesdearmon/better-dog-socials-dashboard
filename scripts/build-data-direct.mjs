@@ -249,6 +249,16 @@ async function metaInsights(path, metricSets, token = metaBaseToken()) {
   throw lastError || new Error(`No insight metric set worked for ${path}`);
 }
 
+async function optionalMetaInsightValue(path, metricName, token = metaBaseToken()) {
+  try {
+    const insights = await metaGet(path, { metric: metricName }, token);
+    return insightValue(insights, [metricName]);
+  } catch (err) {
+    console.warn(`  - skipping unavailable Meta insight metric ${metricName} for ${path}: ${err.message}`);
+    return 0;
+  }
+}
+
 async function pullInstagram() {
   const token = metaBaseToken();
   if (!token) throw new Error('META_USER_ACCESS_TOKEN, META_PAGE_ACCESS_TOKEN, or META_ACCESS_TOKEN is required');
@@ -330,14 +340,11 @@ async function pullFacebook() {
   for (const post of posts) {
     const date = dateOnly(post.created_time);
     if (!inAxis(date)) continue;
-    const insights = await metaInsights(`/${post.id}/insights`, [
-      ['post_impressions', 'post_impressions_unique', 'post_video_views'],
-      ['post_impressions', 'post_impressions_unique'],
-    ], token);
-    const impressions = insightValue(insights, ['post_impressions']);
-    const videoViews = insightValue(insights, ['post_video_views']);
+    const insightsPath = `/${post.id}/insights`;
+    const impressions = await optionalMetaInsightValue(insightsPath, 'post_impressions', token);
+    const videoViews = await optionalMetaInsightValue(insightsPath, 'post_video_views', token);
     const views = videoViews || impressions;
-    const reach = insightValue(insights, ['post_impressions_unique']);
+    const reach = await optionalMetaInsightValue(insightsPath, 'post_impressions_unique', token);
     const eng = num(post.reactions?.summary?.total_count) + num(post.comments?.summary?.total_count) + num(post.shares?.count);
     const b = daily.get(date);
     b.posts += 1;
