@@ -64,6 +64,9 @@ switches to **LIVE** once demo mode is off.
 > how Agorapulse, Sprout, and every other tool does it too. `API_SETUP.md` walks
 > through exactly what to request.
 
+For a plain-language, repeatable checklist for connecting future brands, use
+**[docs/BRAND-CONNECTION-SOP.md](docs/BRAND-CONNECTION-SOP.md)**.
+
 ---
 
 ## How it's built
