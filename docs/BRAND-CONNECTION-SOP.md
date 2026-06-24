@@ -6,6 +6,13 @@ Keep this document plain-language and update it whenever the process changes.
 Do not paste access tokens, client secrets, refresh tokens, passwords, or
 clipboard contents into this document.
 
+## Maintenance Rule
+
+Whenever the team connects a new brand, changes an API setup step, discovers a
+new platform error, or receives new app-review feedback, update this SOP in the
+same work session. Keep it as the single source of truth for future brand
+connections.
+
 ## What This Process Does
 
 The dashboard is a static website hosted on GitHub Pages. A GitHub Actions
