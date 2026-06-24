@@ -406,7 +406,7 @@ async function pullYouTube() {
   const daily = emptyDaily();
 
   const traffic = await youtubeAnalytics(token, {
-    ids: `channel==${id}`,
+    ids: 'channel==MINE',
     startDate: START,
     endDate: END,
     metrics: 'views,estimatedMinutesWatched',
@@ -422,9 +422,9 @@ async function pullYouTube() {
     b.watchTime += num(watchTime);
   }
 
-  const channel = await youtubeData(token, 'channels', { part: 'contentDetails', id });
+  const channel = await youtubeData(token, 'channels', { part: 'id,contentDetails', mine: 'true' });
   const uploads = channel.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
-  if (!uploads) throw new Error(`No uploads playlist found for channel ${id}`);
+  if (!uploads) throw new Error('No uploads playlist found for the authorized YouTube channel');
 
   const videos = [];
   let pageToken = '';
