@@ -71,6 +71,12 @@ function axisDates() {
 
 const AXIS = axisDates();
 const inAxis = (date) => date >= START && date <= END;
+const addDays = (dateIso, days) => {
+  const d = new Date(`${dateIso}T00:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + days);
+  return ymd(d);
+};
+const minIso = (a, b) => (a <= b ? a : b);
 
 function friendlyStamp() {
   return new Intl.DateTimeFormat('en-US', {
@@ -320,12 +326,17 @@ async function pullFacebook() {
     'attachments{media_type,type}',
     'shares',
   ].join(',');
-  const posts = await metaPaged(
-    `/${id}/published_posts`,
-    { fields, limit: 25, since: START, until: END },
-    (item) => dateOnly(item.created_time) < START,
-    token
-  );
+  const posts = [];
+  for (let chunkStart = START; chunkStart <= END; chunkStart = addDays(chunkStart, 30)) {
+    const chunkEnd = minIso(addDays(chunkStart, 29), END);
+    const chunk = await metaPaged(
+      `/${id}/published_posts`,
+      { fields, limit: 25, since: chunkStart, until: chunkEnd },
+      null,
+      token
+    );
+    posts.push(...chunk);
+  }
 
   const typeOf = (post) => {
     const s = `${post.status_type || ''} ${post.attachments?.data?.[0]?.media_type || ''} ${post.attachments?.data?.[0]?.type || ''}`.toLowerCase();
