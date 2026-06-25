@@ -303,6 +303,8 @@ Meta says "Please reduce the amount of data you're asking for":
 - Limit the Facebook Page posts request with a `since` and `until` date.
 - Split long history pulls into smaller chunks, such as 30-day windows.
 - Use a smaller page size, such as `limit: 25`.
+- Try the lighter Facebook Page `posts` edge if `published_posts` keeps
+  returning data-volume errors.
 - Keep nested summaries out of the main post list request; fetch reactions and
   comments separately per post if needed.
 - Retry the GitHub workflow after the request window is reduced.

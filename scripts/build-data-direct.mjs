@@ -330,7 +330,7 @@ async function pullFacebook() {
   for (let chunkStart = START; chunkStart <= END; chunkStart = addDays(chunkStart, 30)) {
     const chunkEnd = minIso(addDays(chunkStart, 29), END);
     const chunk = await metaPaged(
-      `/${id}/published_posts`,
+      `/${id}/posts`,
       { fields, limit: 25, since: chunkStart, until: chunkEnd },
       null,
       token
