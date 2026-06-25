@@ -324,7 +324,7 @@ async function pullFacebook() {
   ].join(',');
   const posts = await metaPaged(
     `/${id}/published_posts`,
-    { fields, limit: 100 },
+    { fields, limit: 25, since: START, until: END },
     (item) => dateOnly(item.created_time) < START,
     token
   );

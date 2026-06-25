@@ -298,6 +298,12 @@ Meta shows "No permissions available":
 - Confirm the app is assigned to the system user.
 - Confirm the app is connected to the correct business.
 
+Meta says "Please reduce the amount of data you're asking for":
+
+- Limit the Facebook Page posts request with a `since` and `until` date.
+- Use a smaller page size, such as `limit: 25`.
+- Retry the GitHub workflow after the request window is reduced.
+
 Google says "Access blocked: org_internal":
 
 - Change the OAuth audience to External or add the user to the correct Google
