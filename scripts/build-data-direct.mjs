@@ -319,8 +319,6 @@ async function pullFacebook() {
     'status_type',
     'attachments{media_type,type}',
     'shares',
-    'comments.summary(true)',
-    'reactions.summary(true)',
   ].join(',');
   const posts = await metaPaged(
     `/${id}/published_posts`,
@@ -345,7 +343,16 @@ async function pullFacebook() {
     const videoViews = await optionalMetaInsightValue(insightsPath, 'post_video_views', token);
     const views = videoViews || impressions;
     const reach = await optionalMetaInsightValue(insightsPath, 'post_impressions_unique', token);
-    const eng = num(post.reactions?.summary?.total_count) + num(post.comments?.summary?.total_count) + num(post.shares?.count);
+    let reactions = 0;
+    let comments = 0;
+    try {
+      const engagement = await metaGet(`/${post.id}`, { fields: 'reactions.summary(true),comments.summary(true)' }, token);
+      reactions = num(engagement.reactions?.summary?.total_count);
+      comments = num(engagement.comments?.summary?.total_count);
+    } catch (err) {
+      console.warn(`  - skipping Facebook engagement summary for ${post.id}: ${err.message}`);
+    }
+    const eng = reactions + comments + num(post.shares?.count);
     const b = daily.get(date);
     b.posts += 1;
     b.views += views;
