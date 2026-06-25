@@ -14,6 +14,24 @@
       <img src="logo.png" alt="Better Dog Supplements" class="brand-logo" />
       <div class="brand-sub" id="reportWeek"></div>
     </div>
+    <div class="range-readout" aria-live="polite">
+      <div class="range-item">
+        <span>Selected range</span>
+        <strong id="selectedRangeLabel">Loading...</strong>
+      </div>
+      <div class="range-item">
+        <span>Compare to</span>
+        <strong id="compareRangeLabel">Loading...</strong>
+      </div>
+      <div class="range-item">
+        <span>Chart grouping</span>
+        <strong id="groupingLabel">Weekly</strong>
+      </div>
+      <div class="range-item source-item">
+        <span>Data status</span>
+        <strong id="freshnessLabel">Checking...</strong>
+      </div>
+    </div>
     <div class="controls">
       <div class="control">
         <span>View</span>
@@ -42,7 +60,7 @@
       <div class="control">
         <span>Quick</span>
         <div class="seg" id="rangePresets">
-          <button type="button" data-preset="last-week">Last week</button>
+          <button type="button" data-preset="last-week">Last complete week</button>
           <button type="button" data-preset="last-4-weeks">Last 4 weeks</button>
           <button type="button" data-preset="last-month">Last month</button>
           <button type="button" data-preset="last-3-months">Last 3 months</button>
@@ -61,6 +79,7 @@
       The live Better Dog data didn't load in this view, so these are placeholder numbers — <strong>not</strong> real metrics. Reopen the dashboard, or ask to re-pull the latest data from Supermetrics.
     </div>
     <div id="liveNote" class="live-note" hidden></div>
+    <div id="dataQualityNote" class="data-quality-note" hidden></div>
     <p class="weekly-note" id="periodNote"></p>
 
     <div class="platform-filter" id="platformFilter"></div>
@@ -117,6 +136,7 @@
               <th class="num">Reach</th>
               <th class="num">Watch time</th>
               <th class="num">Posts</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody></tbody>
