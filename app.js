@@ -12,6 +12,7 @@ const nameOf = (p) => DISPLAY_NAMES[p] || capWord(p);
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const GRAN_NOUN = { daily: 'day', weekly: 'week', monthly: 'month' };
+const GRAN_LABEL = { daily: 'Daily', weekly: 'Weekly', monthly: 'Monthly' };
 
 const state = {
   clients: [], clientId: null,
@@ -141,6 +142,26 @@ function rangeLabel(startIso, endIso) {
   const s = new Date(startIso + 'T00:00:00Z'), e = new Date(endIso + 'T00:00:00Z');
   const f = (d) => `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}`;
   return `${f(s)} – ${f(e)}, ${e.getUTCFullYear()}`;
+}
+
+const sourceDate = (m) => m?.asOf ? niceDate(m.asOf) : 'prior refresh';
+function isCarriedForward(p) {
+  return !!state.data?.metrics?.[p]?.carriedForward;
+}
+function sourceStatus(p) {
+  const m = state.data?.metrics?.[p] || {};
+  if (m.carriedForward) return { label: `Carried forward from ${sourceDate(m)}`, cls: 'stale' };
+  if (m.provider) return { label: `Fresh API data (${m.provider})`, cls: 'fresh' };
+  return { label: m.source === 'live' ? 'Live data' : 'Demo or imported data', cls: m.source === 'live' ? 'fresh' : 'stale' };
+}
+function freshnessSummary() {
+  const fresh = [];
+  const stale = [];
+  for (const p of allPlatforms()) {
+    if (isCarriedForward(p)) stale.push(`${nameOf(p)} from ${sourceDate(state.data.metrics[p])}`);
+    else fresh.push(nameOf(p));
+  }
+  return { fresh, stale };
 }
 
 // ---------------------------------------------------------------------------
@@ -389,6 +410,18 @@ function niceDate(iso) {
   return isNaN(d) ? iso : `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
 }
 
+function renderDataQuality() {
+  const quality = $('#dataQualityNote');
+  const { fresh, stale } = freshnessSummary();
+  if (stale.length) {
+    quality.innerHTML = `<strong>Check platform status:</strong> Fresh API data: ${escapeHtml(fresh.join(', ') || 'none')}. ` +
+      `Carried forward: ${escapeHtml(stale.join(', '))}. Totals that include carried-forward platforms may not match those platforms' current native dashboards.`;
+    quality.hidden = false;
+  } else {
+    quality.hidden = true;
+  }
+}
+
 function setGranularity(g) {
   if (!GRAN_NOUN[g]) return;
   state.granularity = g;
@@ -461,6 +494,7 @@ function buildSeries() {
 function render() {
   buildSeries();
   updateMode();
+  renderDataQuality();
   $('#insightPanel').hidden = true; state.insightKey = null; // stale once the view changes; re-click to refresh
   const noun = GRAN_NOUN[state.granularity];
 
@@ -480,6 +514,21 @@ function render() {
     monthly: 'Top metrics total over your <strong>selected dates</strong>, vs the equal stretch just before. The charts plot each complete <strong>calendar month</strong> in the range.'
   }[state.granularity];
   $('#periodNote').innerHTML += ' <strong>Organic only:</strong> YouTube excludes ad-driven (“Advertising”) views and watch time; Instagram and Facebook run ads as separate creatives, so they don’t affect these numbers.';
+
+  const compareLabel = rangeLabel(state.priorRange.start, state.priorRange.end);
+  $('#reportWeek').textContent = state.data.updatedAt ? `Updated ${state.data.updatedAt}` : '';
+  $('#selectedRangeLabel').textContent = rLabel;
+  $('#compareRangeLabel').textContent = compareLabel;
+  $('#groupingLabel').textContent = GRAN_LABEL[state.granularity] || capWord(state.granularity);
+  const { fresh, stale } = freshnessSummary();
+  $('#freshnessLabel').textContent = stale.length
+    ? `Fresh: ${fresh.join(', ') || 'none'} | Carried forward: ${stale.map((x) => x.split(' from ')[0]).join(', ')}`
+    : `Fresh: ${fresh.join(', ')}`;
+  $('#periodNote').innerHTML = {
+    daily: `Totals are for <strong>${rLabel}</strong>, compared with <strong>${compareLabel}</strong>. The charts plot each <strong>day</strong> in the selected range.`,
+    weekly: `Totals are for <strong>${rLabel}</strong>, compared with <strong>${compareLabel}</strong>. The charts plot each complete <strong>Friday-to-Thursday week</strong> in the selected range. "Last complete week" means the most recent complete Friday-to-Thursday week, not the last seven calendar days.`,
+    monthly: `Totals are for <strong>${rLabel}</strong>, compared with <strong>${compareLabel}</strong>. The charts plot each complete <strong>calendar month</strong> in the selected range.`
+  }[state.granularity] + ' <strong>Organic only:</strong> YouTube excludes ad-driven ("Advertising") views and watch time; Instagram and Facebook run ads as separate creatives, so they do not affect these numbers.';
 
   $('#postsTitle').textContent = `Posts per ${noun}`;
   $('#viewsTitle').textContent = `Views per ${noun}`;
@@ -749,6 +798,11 @@ function renderPlatformFilter() {
   $('#platformFilter').innerHTML = '<span class="pf-label">Show:</span>' +
     chip('all', 'Total (All Platforms)', null) +
     all.map((p) => chip(p, nameOf(p), PLATFORM_COLORS[p] || '#888')).join('');
+  for (const p of all) {
+    if (!isCarriedForward(p)) continue;
+    const btn = $(`#platformFilter [data-focus="${p}"]`);
+    if (btn) btn.insertAdjacentHTML('beforeend', ' <span class="pf-stale">carried</span>');
+  }
 }
 
 function renderKpis() {
@@ -864,7 +918,8 @@ function renderTable() {
       if (!supports(p, m.key)) return `<td class="num muted">—</td>`;
       return `<td class="num">${m.fmt(curr)} ${miniDelta(curr, prev)}</td>`;
     }).join('');
-    return `<tr><td><span class="pill ${p}">${nameOf(p)}</span></td>${cells}</tr>`;
+    const status = sourceStatus(p);
+    return `<tr class="${status.cls === 'stale' ? 'stale-row' : ''}"><td><span class="pill ${p}">${nameOf(p)}</span></td>${cells}<td><span class="source-badge ${status.cls}">${escapeHtml(status.label)}</span></td></tr>`;
   }).join('');
 
   const totalCells = METRICS.map((m) => {
@@ -873,7 +928,7 @@ function renderTable() {
     const val = m.key === 'watchTime' && curr === 0 ? null : curr;
     return `<td class="num">${m.fmt(val)} ${miniDelta(curr, prev)}</td>`;
   }).join('');
-  $('#weekTable tfoot').innerHTML = `<tr class="total-row"><td>Total</td>${totalCells}</tr>`;
+  $('#weekTable tfoot').innerHTML = `<tr class="total-row"><td>Total</td>${totalCells}<td>${ps.some(isCarriedForward) ? '<span class="source-badge stale">Includes carried-forward data</span>' : '<span class="source-badge fresh">Fresh API data</span>'}</td></tr>`;
 }
 
 // ---------------------------------------------------------------------------
