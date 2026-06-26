@@ -433,6 +433,7 @@ async function pullFacebook() {
     ['page_video_views'],
   ], token);
   const pageInsightSummary = applyFacebookPageInsights(daily, pageInsights);
+  const pageViewsOnly = pageInsightSummary.viewsMetric === 'page_views_total';
 
   const fields = [
     'id',
@@ -505,6 +506,8 @@ async function pullFacebook() {
       handle,
       source: 'live',
       provider: pageInsightSummary.viewsMetric ? `meta-page-insights-api:${pageInsightSummary.viewsMetric}` : 'meta-page-insights-api',
+      hasViews: !pageViewsOnly,
+      viewsUnavailableReason: pageViewsOnly ? 'Meta only exposed Page/profile views for Facebook, not content views for the selected date range. Page views are excluded from the main content-view totals.' : '',
       hasWatchTime: false,
       hasReach: pageInsightSummary.hasReach,
       reachUnavailableReason: pageInsightSummary.hasReach ? '' : 'Current Meta Page Insights fallback did not provide a matching reach metric.',
