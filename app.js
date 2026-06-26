@@ -322,6 +322,7 @@ function platforms() {
 // only YouTube has watch time).
 function supports(p, key) {
   const m = state.data.metrics[p];
+  if (key === 'views') return m.hasViews !== false;
   if (key === 'watchTime') return !!m.hasWatchTime;
   if (key === 'reach') return m.hasReach !== false;
   return true;
@@ -451,13 +452,21 @@ function niceDate(iso) {
 function renderDataQuality() {
   const quality = $('#dataQualityNote');
   const { pending } = freshnessSummary();
+  const notes = [];
   if (pending.length) {
-    quality.innerHTML = `<strong>Heads up:</strong> ${escapeHtml(pending.map((x) => x.split(' from ')[0]).join(', '))} is not connected yet, so it is using the last saved data until that setup is finished.`;
-    quality.hidden = false;
+    notes.push(`${escapeHtml(pending.map((x) => x.split(' from ')[0]).join(', '))} is not connected yet, so it is using the last saved data until that setup is finished.`);
+  }
+  for (const p of allPlatforms()) {
+    const m = state.data.metrics[p] || {};
+    if (m.hasViews === false && m.viewsUnavailableReason) notes.push(`${escapeHtml(nameOf(p))}: ${escapeHtml(m.viewsUnavailableReason)}`);
+    if (m.provider === 'meta-media-insights-api') notes.push(`${escapeHtml(nameOf(p))}: Meta account-level date-range views were not available, so this uses media-level post insights for content published in the selected range.`);
+  }
+  if (!notes.length) {
+    quality.hidden = true;
     return;
   }
-  quality.hidden = true;
-  return;
+  quality.innerHTML = `<strong>Heads up:</strong> ${notes.join(' ')}`;
+  quality.hidden = false;
 }
 
 function setGranularity(g) {
@@ -708,7 +717,7 @@ function renderOverview() {
   // Per-platform rollup — straight from the API totals and content list.
   const rows = ps.map((p) => {
     const cur = state.curTotals[p] || {}, prv = state.priorTotals[p] || {};
-    const v = cur.views || 0;
+    const v = supports(p, 'views') ? (cur.views || 0) : null;
     const r = supports(p, 'reach') ? (cur.reach || 0) : null;
     const watch = supports(p, 'watchTime') ? (cur.watchTime || 0) : null;
     const top = (state.data.content || [])
@@ -716,13 +725,13 @@ function renderOverview() {
       .sort((a, b) => (b.views || 0) - (a.views || 0))[0] || null;
     return {
       p, v, r, watch, top,
-      dViews: v - (prv.views || 0),
-      dvViews: deltaPct(v, prv.views || 0),
+      dViews: v == null ? null : v - (prv.views || 0),
+      dvViews: v == null ? null : deltaPct(v, prv.views || 0),
       dvReach: r != null ? deltaPct(r, prv.reach || 0) : null,
       dvWatch: watch != null ? deltaPct(watch, prv.watchTime || 0) : null,
     };
   });
-  const active = rows.filter((x) => x.v > 0 || (x.r || 0) > 0 || (x.watch || 0) > 0);
+  const active = rows.filter((x) => (x.v || 0) > 0 || (x.r || 0) > 0 || (x.watch || 0) > 0);
   const inactive = rows.filter((x) => !active.includes(x));
   const scopeLabel = ps.length === allPlatforms().length ? 'all platforms' : ps.map(nameOf).join(', ');
 
@@ -752,7 +761,10 @@ function renderOverview() {
   // One plain line per active platform (TikTok included whenever it has data).
   html += '<ul class="ov-list">';
   for (const x of active) {
-    let s = `${fmt(x.v)} views${wordDelta(x.dvViews)}${tv > 0 ? ` (${Math.round(x.v / tv * 100)}% of total)` : ''}`;
+    const parts = [];
+    if (x.v != null) parts.push(`${fmt(x.v)} views${wordDelta(x.dvViews)}${tv > 0 ? ` (${Math.round(x.v / tv * 100)}% of total)` : ''}`);
+    else parts.push('content views unavailable');
+    let s = parts.join(', ');
     if (x.r != null) s += `, ${fmt(x.r)} reach${wordDelta(x.dvReach)}`;
     if (x.watch != null) s += `, ${fmt(x.watch / 60)} hrs watch time${wordDelta(x.dvWatch)}`;
     const top = x.top ? ` Top post: ${linkedTop(x.top)} (${fmt(x.top.views)} views).` : '';
