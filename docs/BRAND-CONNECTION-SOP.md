@@ -93,6 +93,10 @@ Notes:
 
 - If Meta says no permissions are available, refresh the page and confirm the
   app role/system user assignment.
+- For dashboard totals, use account/page-level daily insights for the selected
+  date range where available. Do not use media/post-level lifetime metrics as
+  the primary total, because that only counts posts published inside the range
+  and will not match Meta's native date-range reports.
 - If Facebook post reporting fails with "Please reduce the amount of data
   you're asking for," use daily Page Insights for top-level totals and keep
   post-level details as best-effort only.

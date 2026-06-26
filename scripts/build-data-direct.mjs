@@ -300,8 +300,30 @@ async function metaDailyInsights(path, metricSets, token = metaBaseToken()) {
 
 function applyFacebookPageInsights(daily, insights) {
   const byName = new Map((insights.data || []).map((item) => [item.name, item]));
-  const views = byName.get('page_posts_impressions') || byName.get('page_views_total') || byName.get('page_video_views');
-  const reach = byName.get('page_posts_impressions_unique');
+  const views = byName.get('page_total_media_view') || byName.get('page_posts_impressions') || byName.get('page_impressions') || byName.get('page_views_total') || byName.get('page_video_views');
+  const reach = byName.get('page_total_media_view_unique') || byName.get('page_posts_impressions_unique') || byName.get('page_impressions_unique');
+  applyMetaDailyValues(daily, views, 'views');
+  applyMetaDailyValues(daily, reach, 'reach');
+  return {
+    hasReach: Boolean(reach),
+    viewsMetric: views?.name || '',
+    reachMetric: reach?.name || '',
+  };
+}
+
+function applyMetaDailyValues(daily, insight, field) {
+  for (const value of insight?.values || []) {
+    const date = metaInsightDay(value.end_time);
+    if (!inAxis(date)) continue;
+    const b = daily.get(date);
+    if (b) b[field] += num(value.value);
+  }
+}
+
+function applyInstagramAccountInsights(daily, insights) {
+  const byName = new Map((insights.data || []).map((item) => [item.name, item]));
+  const views = byName.get('views') || byName.get('impressions');
+  const reach = byName.get('reach');
   for (const value of views?.values || []) {
     const date = metaInsightDay(value.end_time);
     if (!inAxis(date)) continue;
@@ -327,6 +349,24 @@ async function pullInstagram() {
   const { id, handle } = ACCT.instagram;
   const daily = emptyDaily();
   const content = [];
+  let accountInsightSummary = null;
+  try {
+    const accountInsights = await metaDailyInsights(`/${id}/insights`, [
+      ['views', 'reach'],
+      ['impressions', 'reach'],
+    ], token);
+    accountInsightSummary = applyInstagramAccountInsights(daily, accountInsights);
+    if (!accountInsightSummary.viewsMetric) {
+      console.warn('  - Instagram account-level daily views metric unavailable, falling back to media-level totals');
+      accountInsightSummary = null;
+      for (const row of daily.values()) {
+        row.views = 0;
+        row.reach = 0;
+      }
+    }
+  } catch (err) {
+    console.warn(`  - Instagram account-level daily insights unavailable, falling back to media-level totals: ${err.message}`);
+  }
   const fields = 'id,timestamp,permalink,media_type,caption,like_count,comments_count';
   const media = await metaPaged(
     `/${id}/media`,
@@ -348,8 +388,10 @@ async function pullInstagram() {
     const engagement = num(item.like_count) + num(item.comments_count) || insightValue(insights, ['total_interactions']);
     const b = daily.get(date);
     b.posts += 1;
-    b.views += views;
-    b.reach += reach;
+    if (!accountInsightSummary) {
+      b.views += views;
+      b.reach += reach;
+    }
     content.push({
       platform: 'instagram',
       date,
@@ -363,7 +405,17 @@ async function pullInstagram() {
   }
 
   return {
-    metric: { platform: 'instagram', handle, source: 'live', provider: 'meta-graph-api', hasWatchTime: false, asOf: ASOF, daily: toArr(daily) },
+    metric: {
+      platform: 'instagram',
+      handle,
+      source: 'live',
+      provider: accountInsightSummary?.viewsMetric ? `meta-ig-user-insights-api:${accountInsightSummary.viewsMetric}` : 'meta-media-insights-api',
+      hasWatchTime: false,
+      hasReach: accountInsightSummary ? accountInsightSummary.hasReach : true,
+      reachUnavailableReason: accountInsightSummary && !accountInsightSummary.hasReach ? 'Current Instagram account insight fallback did not provide reach.' : '',
+      asOf: ASOF,
+      daily: toArr(daily),
+    },
     content,
   };
 }
@@ -374,7 +426,9 @@ async function pullFacebook() {
   const daily = emptyDaily();
   const content = [];
   const pageInsights = await metaDailyInsights(`/${id}/insights`, [
+    ['page_total_media_view', 'page_total_media_view_unique'],
     ['page_posts_impressions', 'page_posts_impressions_unique'],
+    ['page_impressions', 'page_impressions_unique'],
     ['page_views_total'],
     ['page_video_views'],
   ], token);
