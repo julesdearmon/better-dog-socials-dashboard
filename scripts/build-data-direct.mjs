@@ -78,6 +78,12 @@ const addDays = (dateIso, days) => {
 };
 const minIso = (a, b) => (a <= b ? a : b);
 const unixDay = (dateIso, endOfDay = false) => Math.floor(Date.parse(`${dateIso}T${endOfDay ? '23:59:59' : '00:00:00'}Z`) / 1000);
+const metaInsightDay = (endTime) => {
+  const d = new Date(endTime);
+  if (Number.isNaN(d.getTime())) return dateOnly(endTime);
+  d.setUTCDate(d.getUTCDate() - 1);
+  return ymd(d);
+};
 
 function friendlyStamp() {
   return new Intl.DateTimeFormat('en-US', {
@@ -269,13 +275,22 @@ async function optionalMetaInsightValue(path, metricName, token = metaBaseToken(
 async function metaDailyInsights(path, metricSets, token = metaBaseToken()) {
   let lastError = null;
   for (const metrics of metricSets) {
+    const byName = new Map();
     try {
-      return await metaGet(path, {
-        metric: metrics.join(','),
-        period: 'day',
-        since: unixDay(START),
-        until: unixDay(END, true),
-      }, token);
+      for (let chunkStart = START; chunkStart <= END; chunkStart = addDays(chunkStart, 90)) {
+        const chunkEnd = minIso(addDays(chunkStart, 89), END);
+        const json = await metaGet(path, {
+          metric: metrics.join(','),
+          period: 'day',
+          since: chunkStart,
+          until: addDays(chunkEnd, 1),
+        }, token);
+        for (const item of json.data || []) {
+          if (!byName.has(item.name)) byName.set(item.name, { ...item, values: [] });
+          byName.get(item.name).values.push(...(item.values || []));
+        }
+      }
+      return { data: Array.from(byName.values()) };
     } catch (err) {
       lastError = err;
     }
@@ -285,20 +300,25 @@ async function metaDailyInsights(path, metricSets, token = metaBaseToken()) {
 
 function applyFacebookPageInsights(daily, insights) {
   const byName = new Map((insights.data || []).map((item) => [item.name, item]));
-  const views = byName.get('page_views_total') || byName.get('page_video_views');
-  const reach = byName.get('page_impressions_unique') || byName.get('page_post_impressions_unique');
+  const views = byName.get('page_posts_impressions') || byName.get('page_views_total') || byName.get('page_video_views');
+  const reach = byName.get('page_posts_impressions_unique');
   for (const value of views?.values || []) {
-    const date = dateOnly(value.end_time);
+    const date = metaInsightDay(value.end_time);
     if (!inAxis(date)) continue;
     const b = daily.get(date);
     if (b) b.views += num(value.value);
   }
   for (const value of reach?.values || []) {
-    const date = dateOnly(value.end_time);
+    const date = metaInsightDay(value.end_time);
     if (!inAxis(date)) continue;
     const b = daily.get(date);
     if (b) b.reach += num(value.value);
   }
+  return {
+    hasReach: Boolean(reach),
+    viewsMetric: views?.name || '',
+    reachMetric: reach?.name || '',
+  };
 }
 
 async function pullInstagram() {
@@ -354,10 +374,11 @@ async function pullFacebook() {
   const daily = emptyDaily();
   const content = [];
   const pageInsights = await metaDailyInsights(`/${id}/insights`, [
+    ['page_posts_impressions', 'page_posts_impressions_unique'],
     ['page_views_total'],
     ['page_video_views'],
   ], token);
-  applyFacebookPageInsights(daily, pageInsights);
+  const pageInsightSummary = applyFacebookPageInsights(daily, pageInsights);
 
   const fields = [
     'id',
@@ -425,7 +446,17 @@ async function pullFacebook() {
   }
 
   return {
-    metric: { platform: 'facebook', handle, source: 'live', provider: 'meta-page-insights-api', hasWatchTime: false, hasReach: false, reachUnavailableReason: 'Current Meta Page Insights views endpoint does not provide a matching reach metric.', asOf: ASOF, daily: toArr(daily) },
+    metric: {
+      platform: 'facebook',
+      handle,
+      source: 'live',
+      provider: pageInsightSummary.viewsMetric ? `meta-page-insights-api:${pageInsightSummary.viewsMetric}` : 'meta-page-insights-api',
+      hasWatchTime: false,
+      hasReach: pageInsightSummary.hasReach,
+      reachUnavailableReason: pageInsightSummary.hasReach ? '' : 'Current Meta Page Insights fallback did not provide a matching reach metric.',
+      asOf: ASOF,
+      daily: toArr(daily),
+    },
     content,
   };
 }

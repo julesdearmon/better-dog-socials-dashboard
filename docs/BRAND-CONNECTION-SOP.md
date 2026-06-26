@@ -97,10 +97,11 @@ Notes:
   you're asking for," use daily Page Insights for top-level totals and keep
   post-level details as best-effort only.
 - Some older Facebook insight metrics may return "The value must be a valid
-  insights metric." For the current dashboard fallback, use daily
-  `page_views_total` first, then `page_video_views` if needed. Reach may be
-  unavailable from this fallback and should be labeled that way in the
-  dashboard.
+  insights metric." For the current dashboard fallback, request daily Page
+  Insights in smaller date chunks and try `page_posts_impressions` with
+  `page_posts_impressions_unique` first. Use `page_views_total` or
+  `page_video_views` only as later fallbacks. If the fallback does not include
+  reach, label reach as unavailable in the dashboard.
 - Do not share or screenshot token values.
 
 ## YouTube
