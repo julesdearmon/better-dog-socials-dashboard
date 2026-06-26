@@ -77,6 +77,7 @@ const addDays = (dateIso, days) => {
   return ymd(d);
 };
 const minIso = (a, b) => (a <= b ? a : b);
+const unixDay = (dateIso, endOfDay = false) => Math.floor(Date.parse(`${dateIso}T${endOfDay ? '23:59:59' : '00:00:00'}Z`) / 1000);
 
 function friendlyStamp() {
   return new Intl.DateTimeFormat('en-US', {
@@ -331,7 +332,7 @@ async function pullFacebook() {
     const chunkEnd = minIso(addDays(chunkStart, 29), END);
     const chunk = await metaPaged(
       `/${id}/posts`,
-      { fields, limit: 25, since: chunkStart, until: chunkEnd },
+      { fields, limit: 25, since: unixDay(chunkStart), until: unixDay(chunkEnd, true) },
       null,
       token
     );
