@@ -97,6 +97,10 @@ Notes:
   date range where available. Do not use media/post-level lifetime metrics as
   the primary total, because that only counts posts published inside the range
   and will not match Meta's native date-range reports.
+- For Meta Business Suite content overview matching, target Instagram
+  `views` and `reach`. For Facebook, target `page_total_media_view` for Views
+  and `page_total_media_view_unique` for Viewers; show Facebook Viewers as the
+  dashboard reach metric.
 - If Facebook post reporting fails with "Please reduce the amount of data
   you're asking for," use daily Page Insights for top-level totals and keep
   post-level details as best-effort only.

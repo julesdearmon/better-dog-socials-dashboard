@@ -274,7 +274,9 @@ async function optionalMetaInsightValue(path, metricName, token = metaBaseToken(
 
 async function metaDailyInsights(path, metricSets, token = metaBaseToken()) {
   let lastError = null;
-  for (const metrics of metricSets) {
+  for (const metricSet of metricSets) {
+    const metrics = Array.isArray(metricSet) ? metricSet : metricSet.metrics;
+    const extraParams = Array.isArray(metricSet) ? {} : (metricSet.params || {});
     const byName = new Map();
     try {
       for (let chunkStart = START; chunkStart <= END; chunkStart = addDays(chunkStart, 90)) {
@@ -284,6 +286,7 @@ async function metaDailyInsights(path, metricSets, token = metaBaseToken()) {
           period: 'day',
           since: chunkStart,
           until: addDays(chunkEnd, 1),
+          ...extraParams,
         }, token);
         for (const item of json.data || []) {
           if (!byName.has(item.name)) byName.set(item.name, { ...item, values: [] });
@@ -352,7 +355,9 @@ async function pullInstagram() {
   let accountInsightSummary = null;
   try {
     const accountInsights = await metaDailyInsights(`/${id}/insights`, [
+      { metrics: ['views', 'reach'], params: { metric_type: 'total_value' } },
       ['views', 'reach'],
+      { metrics: ['impressions', 'reach'], params: { metric_type: 'total_value' } },
       ['impressions', 'reach'],
     ], token);
     accountInsightSummary = applyInstagramAccountInsights(daily, accountInsights);
@@ -426,6 +431,7 @@ async function pullFacebook() {
   const daily = emptyDaily();
   const content = [];
   const pageInsights = await metaDailyInsights(`/${id}/insights`, [
+    { metrics: ['page_total_media_view', 'page_total_media_view_unique'], params: { metric_type: 'total_value' } },
     ['page_total_media_view', 'page_total_media_view_unique'],
     ['page_posts_impressions', 'page_posts_impressions_unique'],
     ['page_impressions', 'page_impressions_unique'],
@@ -510,6 +516,8 @@ async function pullFacebook() {
       viewsUnavailableReason: pageViewsOnly ? 'Meta only exposed Page/profile views for Facebook, not content views for the selected date range. Page views are excluded from the main content-view totals.' : '',
       hasWatchTime: false,
       hasReach: pageInsightSummary.hasReach,
+      reachLabel: pageInsightSummary.reachMetric === 'page_total_media_view_unique' ? 'Viewers' : 'Reach',
+      reachNote: pageInsightSummary.reachMetric === 'page_total_media_view_unique' ? 'Facebook uses Business Suite Viewers as its reach metric.' : '',
       reachUnavailableReason: pageInsightSummary.hasReach ? '' : 'Current Meta Page Insights fallback did not provide a matching reach metric.',
       asOf: ASOF,
       daily: toArr(daily),
