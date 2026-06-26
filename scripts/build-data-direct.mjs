@@ -285,9 +285,9 @@ async function metaDailyInsights(path, metricSets, token = metaBaseToken()) {
 
 function applyFacebookPageInsights(daily, insights) {
   const byName = new Map((insights.data || []).map((item) => [item.name, item]));
-  const impressions = byName.get('page_impressions') || byName.get('page_post_impressions');
+  const views = byName.get('page_views_total') || byName.get('page_video_views');
   const reach = byName.get('page_impressions_unique') || byName.get('page_post_impressions_unique');
-  for (const value of impressions?.values || []) {
+  for (const value of views?.values || []) {
     const date = dateOnly(value.end_time);
     if (!inAxis(date)) continue;
     const b = daily.get(date);
@@ -354,8 +354,8 @@ async function pullFacebook() {
   const daily = emptyDaily();
   const content = [];
   const pageInsights = await metaDailyInsights(`/${id}/insights`, [
-    ['page_impressions', 'page_impressions_unique'],
-    ['page_post_impressions', 'page_post_impressions_unique'],
+    ['page_views_total'],
+    ['page_video_views'],
   ], token);
   applyFacebookPageInsights(daily, pageInsights);
 
@@ -425,7 +425,7 @@ async function pullFacebook() {
   }
 
   return {
-    metric: { platform: 'facebook', handle, source: 'live', provider: 'meta-page-insights-api', hasWatchTime: false, asOf: ASOF, daily: toArr(daily) },
+    metric: { platform: 'facebook', handle, source: 'live', provider: 'meta-page-insights-api', hasWatchTime: false, hasReach: false, reachUnavailableReason: 'Current Meta Page Insights views endpoint does not provide a matching reach metric.', asOf: ASOF, daily: toArr(daily) },
     content,
   };
 }

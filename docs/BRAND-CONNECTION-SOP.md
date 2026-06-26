@@ -93,6 +93,14 @@ Notes:
 
 - If Meta says no permissions are available, refresh the page and confirm the
   app role/system user assignment.
+- If Facebook post reporting fails with "Please reduce the amount of data
+  you're asking for," use daily Page Insights for top-level totals and keep
+  post-level details as best-effort only.
+- Some older Facebook insight metrics may return "The value must be a valid
+  insights metric." For the current dashboard fallback, use daily
+  `page_views_total` first, then `page_video_views` if needed. Reach may be
+  unavailable from this fallback and should be labeled that way in the
+  dashboard.
 - Do not share or screenshot token values.
 
 ## YouTube
