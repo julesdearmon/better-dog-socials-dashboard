@@ -300,6 +300,9 @@ Meta shows "No permissions available":
 
 Meta says "Please reduce the amount of data you're asking for":
 
+- Use Page Insights daily metrics for Facebook totals where possible.
+- Treat Facebook post-level content as best-effort so the platform totals can
+  still refresh even if the post list endpoint is limited.
 - Limit the Facebook Page posts request with a `since` and `until` date.
 - Send Meta date filters as Unix timestamps instead of plain date strings.
 - Split long history pulls into smaller chunks, such as 30-day windows.

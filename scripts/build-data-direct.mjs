@@ -266,6 +266,41 @@ async function optionalMetaInsightValue(path, metricName, token = metaBaseToken(
   }
 }
 
+async function metaDailyInsights(path, metricSets, token = metaBaseToken()) {
+  let lastError = null;
+  for (const metrics of metricSets) {
+    try {
+      return await metaGet(path, {
+        metric: metrics.join(','),
+        period: 'day',
+        since: unixDay(START),
+        until: unixDay(END, true),
+      }, token);
+    } catch (err) {
+      lastError = err;
+    }
+  }
+  throw lastError || new Error(`No Meta daily insight metric set worked for ${path}`);
+}
+
+function applyFacebookPageInsights(daily, insights) {
+  const byName = new Map((insights.data || []).map((item) => [item.name, item]));
+  const impressions = byName.get('page_impressions') || byName.get('page_post_impressions');
+  const reach = byName.get('page_impressions_unique') || byName.get('page_post_impressions_unique');
+  for (const value of impressions?.values || []) {
+    const date = dateOnly(value.end_time);
+    if (!inAxis(date)) continue;
+    const b = daily.get(date);
+    if (b) b.views += num(value.value);
+  }
+  for (const value of reach?.values || []) {
+    const date = dateOnly(value.end_time);
+    if (!inAxis(date)) continue;
+    const b = daily.get(date);
+    if (b) b.reach += num(value.value);
+  }
+}
+
 async function pullInstagram() {
   const token = metaBaseToken();
   if (!token) throw new Error('META_USER_ACCESS_TOKEN, META_PAGE_ACCESS_TOKEN, or META_ACCESS_TOKEN is required');
@@ -318,6 +353,12 @@ async function pullFacebook() {
   const { id, handle } = ACCT.facebook;
   const daily = emptyDaily();
   const content = [];
+  const pageInsights = await metaDailyInsights(`/${id}/insights`, [
+    ['page_impressions', 'page_impressions_unique'],
+    ['page_post_impressions', 'page_post_impressions_unique'],
+  ], token);
+  applyFacebookPageInsights(daily, pageInsights);
+
   const fields = [
     'id',
     'created_time',
@@ -328,15 +369,19 @@ async function pullFacebook() {
     'shares',
   ].join(',');
   const posts = [];
-  for (let chunkStart = START; chunkStart <= END; chunkStart = addDays(chunkStart, 30)) {
-    const chunkEnd = minIso(addDays(chunkStart, 29), END);
-    const chunk = await metaPaged(
-      `/${id}/posts`,
-      { fields, limit: 25, since: unixDay(chunkStart), until: unixDay(chunkEnd, true) },
-      null,
-      token
-    );
-    posts.push(...chunk);
+  try {
+    for (let chunkStart = START; chunkStart <= END; chunkStart = addDays(chunkStart, 30)) {
+      const chunkEnd = minIso(addDays(chunkStart, 29), END);
+      const chunk = await metaPaged(
+        `/${id}/posts`,
+        { fields, limit: 25, since: unixDay(chunkStart), until: unixDay(chunkEnd, true) },
+        null,
+        token
+      );
+      posts.push(...chunk);
+    }
+  } catch (err) {
+    console.warn(`  - Facebook post list unavailable, using page-level daily insights only: ${err.message}`);
   }
 
   const typeOf = (post) => {
@@ -367,8 +412,6 @@ async function pullFacebook() {
     const eng = reactions + comments + num(post.shares?.count);
     const b = daily.get(date);
     b.posts += 1;
-    b.views += views;
-    b.reach += reach;
     content.push({
       platform: 'facebook',
       date,
@@ -382,7 +425,7 @@ async function pullFacebook() {
   }
 
   return {
-    metric: { platform: 'facebook', handle, source: 'live', provider: 'meta-graph-api', hasWatchTime: false, asOf: ASOF, daily: toArr(daily) },
+    metric: { platform: 'facebook', handle, source: 'live', provider: 'meta-page-insights-api', hasWatchTime: false, asOf: ASOF, daily: toArr(daily) },
     content,
   };
 }
