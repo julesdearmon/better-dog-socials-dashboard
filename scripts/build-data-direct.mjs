@@ -272,7 +272,7 @@ async function optionalMetaInsightValue(path, metricName, token = metaBaseToken(
   }
 }
 
-async function metaDailyInsights(path, metricSets, token = metaBaseToken()) {
+async function metaDailyInsights(path, metricSets, token = metaBaseToken(), label = path) {
   let lastError = null;
   for (const metricSet of metricSets) {
     const metrics = Array.isArray(metricSet) ? metricSet : metricSet.metrics;
@@ -296,6 +296,7 @@ async function metaDailyInsights(path, metricSets, token = metaBaseToken()) {
       return { data: Array.from(byName.values()) };
     } catch (err) {
       lastError = err;
+      console.warn(`  - ${label}: metrics [${metrics.join(', ')}] failed: ${err.message}`);
     }
   }
   throw lastError || new Error(`No Meta daily insight metric set worked for ${path}`);
@@ -325,7 +326,7 @@ function applyMetaDailyValues(daily, insight, field) {
 
 function applyInstagramAccountInsights(daily, insights) {
   const byName = new Map((insights.data || []).map((item) => [item.name, item]));
-  const views = byName.get('views') || byName.get('impressions');
+  const views = byName.get('content_views') || byName.get('views') || byName.get('impressions');
   const reach = byName.get('reach');
   for (const value of views?.values || []) {
     const date = metaInsightDay(value.end_time);
@@ -355,11 +356,16 @@ async function pullInstagram() {
   let accountInsightSummary = null;
   try {
     const accountInsights = await metaDailyInsights(`/${id}/insights`, [
-      { metrics: ['views', 'reach'], params: { metric_type: 'total_value' } },
+      { metrics: ['content_views'], params: { metric_type: 'total_value' } },
+      ['content_views', 'reach'],
+      ['content_views'],
+      { metrics: ['views'], params: { metric_type: 'total_value' } },
       ['views', 'reach'],
+      ['views'],
+      ['reach'],
       { metrics: ['impressions', 'reach'], params: { metric_type: 'total_value' } },
       ['impressions', 'reach'],
-    ], token);
+    ], token, 'Instagram account insights');
     accountInsightSummary = applyInstagramAccountInsights(daily, accountInsights);
     if (!accountInsightSummary.viewsMetric) {
       console.warn('  - Instagram account-level daily views metric unavailable, falling back to media-level totals');
@@ -432,12 +438,15 @@ async function pullFacebook() {
   const content = [];
   const pageInsights = await metaDailyInsights(`/${id}/insights`, [
     { metrics: ['page_total_media_view', 'page_total_media_view_unique'], params: { metric_type: 'total_value' } },
+    { metrics: ['page_total_media_view'], params: { metric_type: 'total_value' } },
     ['page_total_media_view', 'page_total_media_view_unique'],
+    ['page_total_media_view'],
+    ['page_total_media_view_unique'],
     ['page_posts_impressions', 'page_posts_impressions_unique'],
     ['page_impressions', 'page_impressions_unique'],
     ['page_views_total'],
     ['page_video_views'],
-  ], token);
+  ], token, 'Facebook page insights');
   const pageInsightSummary = applyFacebookPageInsights(daily, pageInsights);
   const pageViewsOnly = pageInsightSummary.viewsMetric === 'page_views_total';
 
