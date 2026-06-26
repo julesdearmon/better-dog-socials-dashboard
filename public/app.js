@@ -42,6 +42,15 @@ function chartGranularity() {
   if (state.granularity === 'monthly' && days < 45) return 'daily';
   return state.granularity;
 }
+function suggestedGranularity(startIso, endIso) {
+  const days = Math.round((Date.parse(endIso + 'T00:00:00Z') - Date.parse(startIso + 'T00:00:00Z')) / DAY) + 1;
+  if (days <= 31) return 'daily';
+  if (days <= 120) return 'weekly';
+  return 'monthly';
+}
+function setGranButton(g) {
+  [...$('#granToggle').children].forEach((b) => b.classList.toggle('active', b.dataset.g === g));
+}
 
 function fmt(n) {
   if (n == null) return '—';
@@ -182,7 +191,12 @@ function calBounds() {
   const dl = state.data.metrics.instagram.daily;
   return { min: dl[0].date, max: dl[dl.length - 1].date };
 }
-function renderCalBtn() { $('#calBtn').textContent = '📅  ' + rangeLabel(state.rangeStart, state.rangeEnd); }
+function renderCalBtn() {
+  const btn = $('#calBtn');
+  btn.textContent = 'Custom dates';
+  btn.title = `Selected range: ${rangeLabel(state.rangeStart, state.rangeEnd)}`;
+  btn.setAttribute('aria-label', `Choose custom dates. Selected range: ${rangeLabel(state.rangeStart, state.rangeEnd)}`);
+}
 // Build the month grid once (on open / month change). Day buttons are NOT
 // rebuilt on hover — only their highlight classes update — so a click is never
 // interrupted by the element being replaced mid-press.
@@ -245,6 +259,8 @@ function setupCalendar() {
       const a = state.calPick;
       state.rangeStart = a < iso ? a : iso;
       state.rangeEnd = a < iso ? iso : a;
+      state.granularity = suggestedGranularity(state.rangeStart, state.rangeEnd);
+      setGranButton(state.granularity);
       state.calPick = null;
       closeCal();
       render();
@@ -375,7 +391,7 @@ async function init() {
     const r = presetRange(btn.dataset.preset, Date.parse(state.data.asOf + 'T00:00:00Z'));
     if (!r) return;
     state.rangeStart = r.start; state.rangeEnd = r.end; state.granularity = r.gran;
-    [...$('#granToggle').children].forEach((b) => b.classList.toggle('active', b.dataset.g === r.gran));
+    setGranButton(state.granularity);
     render();
   });
   $('#exportBtn').addEventListener('click', exportCsv);
@@ -447,7 +463,8 @@ function renderDataQuality() {
 function setGranularity(g) {
   if (!GRAN_NOUN[g]) return;
   state.granularity = g;
-  [...$('#granToggle').children].forEach((b) => b.classList.toggle('active', b.dataset.g === g));
+  if (rangeDays() <= 13) state.granularity = 'daily';
+  setGranButton(state.granularity);
   render();
 }
 
@@ -542,13 +559,6 @@ function render() {
 
   const compareLabel = rangeLabel(state.priorRange.start, state.priorRange.end);
   $('#reportWeek').textContent = state.data.updatedAt ? `Updated ${state.data.updatedAt}` : '';
-  $('#selectedRangeLabel').textContent = rLabel;
-  $('#compareRangeLabel').textContent = compareLabel;
-  $('#groupingLabel').textContent = GRAN_LABEL[state.granularity] || capWord(state.granularity);
-  const { fresh, stale } = freshnessSummary();
-  $('#freshnessLabel').textContent = stale.length
-    ? `Fresh: ${fresh.join(', ') || 'none'} | Carried forward: ${stale.map((x) => x.split(' from ')[0]).join(', ')}`
-    : `Fresh: ${fresh.join(', ')}`;
   $('#periodNote').innerHTML = {
     daily: `Totals are for <strong>${rLabel}</strong>, compared with <strong>${compareLabel}</strong>. The charts plot each <strong>day</strong> in the selected range.`,
     weekly: `Totals are for <strong>${rLabel}</strong>, compared with <strong>${compareLabel}</strong>. The charts plot each complete <strong>Friday-to-Thursday week</strong> in the selected range. "Last complete week" means the most recent complete Friday-to-Thursday week, not the last seven calendar days.`,
