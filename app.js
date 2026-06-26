@@ -32,6 +32,17 @@ let offline = false;
 const $ = (s) => document.querySelector(s);
 const DAY = 86400000;
 
+function rangeDays() {
+  if (!state.rangeStart || !state.rangeEnd) return 0;
+  return Math.round((Date.parse(state.rangeEnd + 'T00:00:00Z') - Date.parse(state.rangeStart + 'T00:00:00Z')) / DAY) + 1;
+}
+function chartGranularity() {
+  const days = rangeDays();
+  if (days > 0 && days <= 13) return 'daily';
+  if (state.granularity === 'monthly' && days < 45) return 'daily';
+  return state.granularity;
+}
+
 function fmt(n) {
   if (n == null) return '—';
   if (Math.abs(n) >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M';
@@ -150,18 +161,18 @@ function isCarriedForward(p) {
 }
 function sourceStatus(p) {
   const m = state.data?.metrics?.[p] || {};
-  if (m.carriedForward) return { label: `Carried forward from ${sourceDate(m)}`, cls: 'stale' };
+  if (m.carriedForward) return { label: `Using last saved data from ${sourceDate(m)}`, cls: 'stale' };
   if (m.provider) return { label: `Fresh API data (${m.provider})`, cls: 'fresh' };
   return { label: m.source === 'live' ? 'Live data' : 'Demo or imported data', cls: m.source === 'live' ? 'fresh' : 'stale' };
 }
 function freshnessSummary() {
   const fresh = [];
-  const stale = [];
+  const pending = [];
   for (const p of allPlatforms()) {
-    if (isCarriedForward(p)) stale.push(`${nameOf(p)} from ${sourceDate(state.data.metrics[p])}`);
+    if (isCarriedForward(p)) pending.push(`${nameOf(p)} from ${sourceDate(state.data.metrics[p])}`);
     else fresh.push(nameOf(p));
   }
-  return { fresh, stale };
+  return { fresh, pending, stale: pending };
 }
 
 // ---------------------------------------------------------------------------
@@ -394,6 +405,17 @@ function updateMode() {
   $('#demoBanner').hidden = live;
   const note = $('#liveNote');
   if (live) {
+    const dl = state.data.metrics.instagram ? state.data.metrics.instagram.daily : [];
+    const through = dl.length ? niceDate(dl[dl.length - 1].date) : niceDate(state.data.asOf);
+    const updated = state.data.updatedAt || 'unknown';
+    const { fresh, pending } = freshnessSummary();
+    const pendingText = pending.length ? ` Setup pending: ${pending.map((x) => x.split(' from ')[0]).join(', ')}.` : '';
+    const errors = (state.data.directApiErrors || []).length ? ` Errors: ${state.data.directApiErrors.join(' | ')}` : '';
+    note.textContent = `Updated ${updated}. Live data through ${through}. Refreshed: ${fresh.join(', ') || 'none'}.${pendingText}${errors}`;
+    note.hidden = false;
+    return;
+  }
+  if (live) {
     const src = state.data.generatedFrom ? ` · ${state.data.generatedFrom}` : '';
     // "Through" = the latest day actually in the data; "updated" = when it was last refreshed.
     const dl = state.data.metrics.instagram ? state.data.metrics.instagram.daily : [];
@@ -412,14 +434,14 @@ function niceDate(iso) {
 
 function renderDataQuality() {
   const quality = $('#dataQualityNote');
-  const { fresh, stale } = freshnessSummary();
-  if (stale.length) {
-    quality.innerHTML = `<strong>Check platform status:</strong> Fresh API data: ${escapeHtml(fresh.join(', ') || 'none')}. ` +
-      `Carried forward: ${escapeHtml(stale.join(', '))}. Totals that include carried-forward platforms may not match those platforms' current native dashboards.`;
+  const { pending } = freshnessSummary();
+  if (pending.length) {
+    quality.innerHTML = `<strong>Heads up:</strong> ${escapeHtml(pending.map((x) => x.split(' from ')[0]).join(', '))} is not connected yet, so it is using the last saved data until that setup is finished.`;
     quality.hidden = false;
-  } else {
-    quality.hidden = true;
+    return;
   }
+  quality.hidden = true;
+  return;
 }
 
 function setGranularity(g) {
@@ -475,8 +497,10 @@ async function load() {
 function buildSeries() {
   const startMs = Date.parse(state.rangeStart + 'T00:00:00Z');
   const endMs = Date.parse(state.rangeEnd + 'T00:00:00Z');
+  const chartGran = chartGranularity();
   // Chart buckets within the range.
-  state.periods = periodsInRange(state.granularity, startMs, endMs);
+  state.periods = periodsInRange(chartGran, startMs, endMs);
+  if (!state.periods.length && startMs <= endMs) state.periods = periodsInRange('daily', startMs, endMs);
   state.series = {};
   for (const p of platforms()) state.series[p] = bucket(state.data.metrics[p].daily, state.periods);
   // Headline totals: exact picked dates, vs the equal-length window right before.
@@ -496,7 +520,8 @@ function render() {
   updateMode();
   renderDataQuality();
   $('#insightPanel').hidden = true; state.insightKey = null; // stale once the view changes; re-click to refresh
-  const noun = GRAN_NOUN[state.granularity];
+  const chartGran = chartGranularity();
+  const noun = GRAN_NOUN[chartGran];
 
   // Reflect the selected range in the calendar button + header.
   renderCalBtn();
@@ -529,6 +554,12 @@ function render() {
     weekly: `Totals are for <strong>${rLabel}</strong>, compared with <strong>${compareLabel}</strong>. The charts plot each complete <strong>Friday-to-Thursday week</strong> in the selected range. "Last complete week" means the most recent complete Friday-to-Thursday week, not the last seven calendar days.`,
     monthly: `Totals are for <strong>${rLabel}</strong>, compared with <strong>${compareLabel}</strong>. The charts plot each complete <strong>calendar month</strong> in the selected range.`
   }[state.granularity] + ' <strong>Organic only:</strong> YouTube excludes ad-driven ("Advertising") views and watch time; Instagram and Facebook run ads as separate creatives, so they do not affect these numbers.';
+  $('#reportWeek').textContent = rLabel;
+  $('#periodNote').innerHTML = {
+    daily: `Totals are for <strong>${rLabel}</strong>. Charts show each <strong>day</strong>.`,
+    weekly: `Totals are for <strong>${rLabel}</strong>. Charts show each complete <strong>Friday-to-Thursday week</strong>.`,
+    monthly: `Totals are for <strong>${rLabel}</strong>. Charts show each complete <strong>calendar month</strong>.`
+  }[chartGran] + ` Comparison period: <strong>${compareLabel}</strong>.`;
 
   $('#postsTitle').textContent = `Posts per ${noun}`;
   $('#viewsTitle').textContent = `Views per ${noun}`;
@@ -801,7 +832,7 @@ function renderPlatformFilter() {
   for (const p of all) {
     if (!isCarriedForward(p)) continue;
     const btn = $(`#platformFilter [data-focus="${p}"]`);
-    if (btn) btn.insertAdjacentHTML('beforeend', ' <span class="pf-stale">carried</span>');
+    if (btn) btn.insertAdjacentHTML('beforeend', ' <span class="pf-stale">pending</span>');
   }
 }
 
@@ -928,7 +959,7 @@ function renderTable() {
     const val = m.key === 'watchTime' && curr === 0 ? null : curr;
     return `<td class="num">${m.fmt(val)} ${miniDelta(curr, prev)}</td>`;
   }).join('');
-  $('#weekTable tfoot').innerHTML = `<tr class="total-row"><td>Total</td>${totalCells}<td>${ps.some(isCarriedForward) ? '<span class="source-badge stale">Includes carried-forward data</span>' : '<span class="source-badge fresh">Fresh API data</span>'}</td></tr>`;
+  $('#weekTable tfoot').innerHTML = `<tr class="total-row"><td>Total</td>${totalCells}<td>${ps.some(isCarriedForward) ? '<span class="source-badge stale">Includes pending platform data</span>' : '<span class="source-badge fresh">Fresh API data</span>'}</td></tr>`;
 }
 
 // ---------------------------------------------------------------------------
