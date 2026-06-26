@@ -279,8 +279,8 @@ async function metaDailyInsights(path, metricSets, token = metaBaseToken(), labe
     const extraParams = Array.isArray(metricSet) ? {} : (metricSet.params || {});
     const byName = new Map();
     try {
-      for (let chunkStart = START; chunkStart <= END; chunkStart = addDays(chunkStart, 90)) {
-        const chunkEnd = minIso(addDays(chunkStart, 89), END);
+      for (let chunkStart = START; chunkStart <= END; chunkStart = addDays(chunkStart, 30)) {
+        const chunkEnd = minIso(addDays(chunkStart, 29), END);
         const json = await metaGet(path, {
           metric: metrics.join(','),
           period: 'day',
