@@ -101,6 +101,10 @@ Notes:
   `views` and `reach`. For Facebook, target `page_total_media_view` for Views
   and `page_total_media_view_unique` for Viewers; show Facebook Viewers as the
   dashboard reach metric.
+- If the Meta API cannot return the exact Business Suite Content Overview
+  report, use `public/business-suite-overrides.js` for verified Business Suite
+  totals from a screenshot or export. Keep only metric totals and date ranges in
+  that file. Never add tokens, secrets, or private account access details.
 - If Facebook post reporting fails with "Please reduce the amount of data
   you're asking for," use daily Page Insights for top-level totals and keep
   post-level details as best-effort only.

@@ -127,6 +127,47 @@ function sumRange(daily, startIso, endIso) {
   return t;
 }
 
+function businessSuiteOverride(platform, startIso, endIso) {
+  const ranges = window.BUSINESS_SUITE_OVERRIDES?.ranges || [];
+  return ranges.find((r) => r.platform === platform && r.start === startIso && r.end === endIso) || null;
+}
+
+function applyBusinessSuiteOverride(platform, totals, startIso, endIso) {
+  const override = businessSuiteOverride(platform, startIso, endIso);
+  if (!override) return totals;
+  const next = { ...totals };
+  for (const [key, value] of Object.entries(override.values || {})) next[key] = value;
+  next.businessSuiteOverride = override.source || 'Meta Business Suite';
+  return next;
+}
+
+function applyBusinessSuiteSeriesOverrides() {
+  for (const p of Object.keys(state.series || {})) {
+    const override = businessSuiteOverride(p, state.rangeStart, state.rangeEnd);
+    if (!override) continue;
+    for (const [metric, target] of Object.entries(override.values || {})) {
+      const rows = state.series[p] || [];
+      if (!rows.length || !Number.isFinite(Number(target))) continue;
+      const current = rows.reduce((sum, row) => sum + (row[metric] || 0), 0);
+      if (current > 0) {
+        let assigned = 0;
+        rows.forEach((row, index) => {
+          const value = index === rows.length - 1 ? Number(target) - assigned : Math.round((row[metric] || 0) / current * Number(target));
+          row[metric] = value;
+          assigned += value;
+        });
+      } else {
+        const base = Math.floor(Number(target) / rows.length);
+        let remainder = Number(target) - base * rows.length;
+        rows.forEach((row) => {
+          row[metric] = base + (remainder > 0 ? 1 : 0);
+          remainder -= 1;
+        });
+      }
+    }
+  }
+}
+
 // Quick-preset ranges. Each also picks a sensible chart grouping.
 function presetRange(name, asOfMs) {
   const base = midnightUTC(asOfMs);
@@ -322,6 +363,8 @@ function platforms() {
 // only YouTube has watch time).
 function supports(p, key) {
   const m = state.data.metrics[p];
+  const hasOverride = businessSuiteOverride(p, state.rangeStart, state.rangeEnd)?.values?.[key] != null;
+  if (hasOverride) return true;
   if (key === 'views') return m.hasViews !== false;
   if (key === 'watchTime') return !!m.hasWatchTime;
   if (key === 'reach') return m.hasReach !== false;
@@ -458,12 +501,17 @@ function renderDataQuality() {
   }
   for (const p of allPlatforms()) {
     const m = state.data.metrics[p] || {};
-    if (m.hasViews === false && m.viewsUnavailableReason) notes.push(`${escapeHtml(nameOf(p))}: ${escapeHtml(m.viewsUnavailableReason)}`);
-    if (m.provider === 'meta-media-insights-api') notes.push(`${escapeHtml(nameOf(p))}: Meta account-level date-range views were not available, so this uses media-level post insights for content published in the selected range.`);
+    const override = businessSuiteOverride(p, state.rangeStart, state.rangeEnd);
+    if (override) notes.push(`${escapeHtml(nameOf(p))}: using Meta Business Suite Content Overview totals for this selected range.`);
+    if (!override && m.hasViews === false && m.viewsUnavailableReason) notes.push(`${escapeHtml(nameOf(p))}: ${escapeHtml(m.viewsUnavailableReason)}`);
+    if (!override && m.provider === 'meta-media-insights-api') notes.push(`${escapeHtml(nameOf(p))}: Meta account-level date-range views were not available, so this uses media-level post insights for content published in the selected range.`);
   }
   if (!notes.length) {
     quality.hidden = true;
     return;
+  }
+  if ((window.BUSINESS_SUITE_OVERRIDES?.ranges || []).some((r) => r.start === state.rangeStart && r.end === state.rangeEnd)) {
+    notes.push('Daily chart points are distributed from the available API detail; Business Suite weekly totals are the source of truth.');
   }
   quality.innerHTML = `<strong>Heads up:</strong> ${notes.join(' ')}`;
   quality.hidden = false;
@@ -529,6 +577,7 @@ function buildSeries() {
   if (!state.periods.length && startMs <= endMs) state.periods = periodsInRange('daily', startMs, endMs);
   state.series = {};
   for (const p of platforms()) state.series[p] = bucket(state.data.metrics[p].daily, state.periods);
+  applyBusinessSuiteSeriesOverrides();
   // Headline totals: exact picked dates, vs the equal-length window right before.
   const lenDays = Math.round((endMs - startMs) / DAY) + 1;
   const priorEndMs = startMs - DAY;
@@ -536,8 +585,8 @@ function buildSeries() {
   state.priorRange = { start: iso(priorStartMs), end: iso(priorEndMs) };
   state.curTotals = {}; state.priorTotals = {};
   for (const p of allPlatforms()) {
-    state.curTotals[p] = sumRange(state.data.metrics[p].daily, state.rangeStart, state.rangeEnd);
-    state.priorTotals[p] = sumRange(state.data.metrics[p].daily, state.priorRange.start, state.priorRange.end);
+    state.curTotals[p] = applyBusinessSuiteOverride(p, sumRange(state.data.metrics[p].daily, state.rangeStart, state.rangeEnd), state.rangeStart, state.rangeEnd);
+    state.priorTotals[p] = applyBusinessSuiteOverride(p, sumRange(state.data.metrics[p].daily, state.priorRange.start, state.priorRange.end), state.priorRange.start, state.priorRange.end);
   }
 }
 
