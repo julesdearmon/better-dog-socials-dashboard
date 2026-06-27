@@ -116,6 +116,11 @@ Notes:
   Community activity, and Insights. If only Insights is enabled, the API may
   show the Page task as `ANALYZE` only and Facebook content metrics can fail or
   fall back to the wrong numbers.
+- If Meta disables the individual Insights switch after Content and Community
+  activity are selected, use the broader "Partial access (business tools and
+  Facebook)" bundle. That bundle includes Content, Messages, Community
+  activity, Ads, and Insights. If Meta then prompts to add ad account access,
+  skip it unless the dashboard specifically needs ad-account reporting.
 - If the Meta API cannot return the exact Business Suite Content Overview
   report, use `public/business-suite-overrides.js` for verified Business Suite
   totals from a screenshot or export. Keep only metric totals and date ranges in
