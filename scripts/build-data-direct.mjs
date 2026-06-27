@@ -227,6 +227,31 @@ async function metaGet(path, params = {}, token = metaBaseToken()) {
   return getJson(url.toString());
 }
 
+async function logMetaPermissionDiagnostics() {
+  const token = metaBaseToken();
+  if (!token) return;
+  try {
+    const permissions = await metaGet('/me/permissions', {}, token);
+    const granted = (permissions.data || []).filter((p) => p.status === 'granted').map((p) => p.permission).sort();
+    const declined = (permissions.data || []).filter((p) => p.status !== 'granted').map((p) => `${p.permission}:${p.status}`).sort();
+    console.log(`Meta token granted permissions: ${granted.join(', ') || 'none'}`);
+    if (declined.length) console.warn(`Meta token non-granted permissions: ${declined.join(', ')}`);
+  } catch (err) {
+    console.warn(`Meta permission diagnostic unavailable: ${err.message}`);
+  }
+  try {
+    const accounts = await metaGet('/me/accounts', { fields: 'id,name,tasks', limit: 100 }, token);
+    const account = (accounts.data || []).find((item) => item.id === ACCT.facebook.id);
+    if (account) {
+      console.log(`Meta Page access found for configured Facebook Page: tasks=${(account.tasks || []).join(', ') || 'none'}`);
+    } else {
+      console.warn(`Meta Page access did not list the configured Facebook Page ID.`);
+    }
+  } catch (err) {
+    console.warn(`Meta Page access diagnostic unavailable: ${err.message}`);
+  }
+}
+
 async function metaPaged(path, params, stopWhen, token = metaBaseToken()) {
   const out = [];
   let next = null;
@@ -866,6 +891,7 @@ function mergeWithPrevious(results, previous) {
 
 async function main() {
   console.log(`Pulling direct APIs ${START} to ${END} (asOf ${ASOF})`);
+  await logMetaPermissionDiagnostics();
   const previous = loadPreviousData();
   const results = {};
   const errors = [];

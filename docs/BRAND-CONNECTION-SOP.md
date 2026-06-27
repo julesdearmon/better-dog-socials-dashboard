@@ -105,6 +105,11 @@ Notes:
   Meta error message. Do not log tokens or secret values. Use these logs to
   confirm whether the workflow is using account/page-level Business Suite-style
   metrics or falling back to media/post/page-profile metrics.
+- The workflow logs the current Meta token's granted permission names and the
+  configured Facebook Page tasks. These logs are safe to read because they do
+  not include token values. Use them to confirm `pages_read_engagement`,
+  `pages_show_list`, `read_insights`, `instagram_basic`, and
+  `instagram_manage_insights` are granted before troubleshooting metrics.
 - If the Meta API cannot return the exact Business Suite Content Overview
   report, use `public/business-suite-overrides.js` for verified Business Suite
   totals from a screenshot or export. Keep only metric totals and date ranges in
