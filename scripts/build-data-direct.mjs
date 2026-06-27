@@ -566,6 +566,26 @@ async function pullFacebook() {
     };
   }
 
+  console.warn('  - Facebook top-line totals are coming from Page Insights; skipping slow post-detail probes until matching post-level metrics are confirmed.');
+  return {
+    metric: {
+      platform: 'facebook',
+      handle,
+      source: 'live',
+      provider: pageInsightSummary.viewsMetric ? `meta-page-insights-api:${pageInsightSummary.viewsMetric}` : 'meta-page-insights-api',
+      hasViews: !pageViewsOnly,
+      viewsUnavailableReason: pageViewsOnly ? 'Meta only exposed Page/profile views for Facebook, not content views for the selected date range. Page views are excluded from the main content-view totals.' : '',
+      hasWatchTime: false,
+      hasReach: pageInsightSummary.hasReach,
+      reachLabel: pageInsightSummary.reachMetric === 'page_total_media_view_unique' ? 'Viewers' : 'Reach',
+      reachNote: pageInsightSummary.reachMetric === 'page_total_media_view_unique' ? 'Facebook uses Business Suite Viewers as its reach metric.' : '',
+      reachUnavailableReason: pageInsightSummary.hasReach ? '' : 'Current Meta Page Insights fallback did not provide a matching reach metric.',
+      asOf: ASOF,
+      daily: toArr(daily),
+    },
+    content,
+  };
+
   const fields = [
     'id',
     'created_time',
