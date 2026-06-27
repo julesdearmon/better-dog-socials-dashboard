@@ -679,6 +679,7 @@ async function buildMetaRangeOverrides() {
   const token = metaBaseToken();
   if (!token) return [];
   const pageToken = await metaPageToken();
+  await logFacebookViewerDiagnostics(pageToken);
   const overrides = [];
   for (const range of completeFriThuWeeks(4)) {
     const igViews = await optionalMetaRangeTotal(`/${ACCT.instagram.id}/insights`, [
@@ -721,6 +722,35 @@ async function buildMetaRangeOverrides() {
     }
   }
   return overrides;
+}
+
+async function logFacebookViewerDiagnostics(pageToken) {
+  const startIso = '2026-06-19';
+  const endIso = '2026-06-25';
+  const candidates = [
+    { label: 'page media views', path: `/${ACCT.facebook.id}/insights`, metric: 'page_media_view', params: { metric_type: 'total_value' } },
+    { label: 'page media viewers', path: `/${ACCT.facebook.id}/insights`, metric: 'page_total_media_view_unique', params: { metric_type: 'total_value' } },
+    { label: 'page media viewers week', path: `/${ACCT.facebook.id}/insights`, metric: 'page_total_media_view_unique', params: { period: 'week' } },
+    { label: 'page total reach legacy', path: `/${ACCT.facebook.id}/insights`, metric: 'page_impressions_unique', params: {} },
+    { label: 'page post reach legacy', path: `/${ACCT.facebook.id}/insights`, metric: 'page_posts_impressions_unique', params: {} },
+    { label: 'page video viewers legacy', path: `/${ACCT.facebook.id}/insights`, metric: 'page_video_views_unique', params: {} },
+  ];
+  console.log(`Facebook viewer diagnostic for ${startIso} to ${endIso}:`);
+  for (const candidate of candidates) {
+    try {
+      const period = candidate.params.period || 'day';
+      const json = await metaGet(candidate.path, {
+        metric: candidate.metric,
+        period,
+        since: startIso,
+        until: addDays(endIso, 1),
+        ...candidate.params,
+      }, pageToken);
+      console.log(`  - ${candidate.label} (${candidate.metric}): ${insightTotalValue(json, [candidate.metric])}`);
+    } catch (err) {
+      console.warn(`  - ${candidate.label} (${candidate.metric}) failed: ${err.message}`);
+    }
+  }
 }
 
 async function googleAccessToken() {
