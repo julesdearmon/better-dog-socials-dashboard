@@ -751,7 +751,9 @@ async function logFacebookViewerDiagnostics(pageToken) {
   const diagnostics = { range: { start: startIso, end: endIso }, candidates: [] };
   const candidates = [
     { label: 'page media views', path: `/${ACCT.facebook.id}/insights`, metric: 'page_media_view', params: { metric_type: 'total_value' } },
+    { label: 'page media views by organic ads', path: `/${ACCT.facebook.id}/insights`, metric: 'page_media_view', params: { metric_type: 'total_value', breakdown: 'is_from_ads' } },
     { label: 'page media viewers', path: `/${ACCT.facebook.id}/insights`, metric: 'page_total_media_view_unique', params: { metric_type: 'total_value' } },
+    { label: 'page media viewers by organic ads', path: `/${ACCT.facebook.id}/insights`, metric: 'page_total_media_view_unique', params: { metric_type: 'total_value', breakdown: 'is_from_ads' } },
     { label: 'page media viewers week', path: `/${ACCT.facebook.id}/insights`, metric: 'page_total_media_view_unique', params: { period: 'week' } },
     { label: 'page total reach legacy', path: `/${ACCT.facebook.id}/insights`, metric: 'page_impressions_unique', params: {} },
     { label: 'page post reach legacy', path: `/${ACCT.facebook.id}/insights`, metric: 'page_posts_impressions_unique', params: {} },
@@ -769,7 +771,10 @@ async function logFacebookViewerDiagnostics(pageToken) {
         ...candidate.params,
       }, pageToken);
       const value = insightTotalValue(json, [candidate.metric]);
-      diagnostics.candidates.push({ label: candidate.label, metric: candidate.metric, period, value });
+      const item = (json.data || []).find((x) => x.name === candidate.metric);
+      const rawValue = item?.total_value?.value;
+      const breakdowns = item?.total_value?.breakdowns || item?.values?.[0]?.value || null;
+      diagnostics.candidates.push({ label: candidate.label, metric: candidate.metric, period, value, rawValue, breakdowns });
       console.log(`  - ${candidate.label} (${candidate.metric}): ${value}`);
     } catch (err) {
       diagnostics.candidates.push({ label: candidate.label, metric: candidate.metric, error: err.message });
