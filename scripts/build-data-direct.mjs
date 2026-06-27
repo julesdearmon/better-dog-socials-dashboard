@@ -627,7 +627,7 @@ async function buildMetaRangeOverrides() {
   if (!token) return [];
   const pageToken = await metaPageToken();
   const overrides = [];
-  for (const range of completeFriThuWeeks(12)) {
+  for (const range of completeFriThuWeeks(4)) {
     const igViews = await optionalMetaRangeTotal(`/${ACCT.instagram.id}/insights`, [
       { metrics: ['content_views'], params: { metric_type: 'total_value' } },
       { metrics: ['views'], params: { metric_type: 'total_value' } },

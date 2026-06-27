@@ -110,6 +110,12 @@ Notes:
   not include token values. Use them to confirm `pages_read_engagement`,
   `pages_show_list`, `read_insights`, `instagram_basic`, and
   `instagram_manage_insights` are granted before troubleshooting metrics.
+- Meta permission names alone are not enough. In Meta Business Settings, open
+  Users -> System users -> the dashboard system user -> Assigned assets ->
+  Facebook Page -> Manage. For the Facebook Page, turn on at least Content,
+  Community activity, and Insights. If only Insights is enabled, the API may
+  show the Page task as `ANALYZE` only and Facebook content metrics can fail or
+  fall back to the wrong numbers.
 - If the Meta API cannot return the exact Business Suite Content Overview
   report, use `public/business-suite-overrides.js` for verified Business Suite
   totals from a screenshot or export. Keep only metric totals and date ranges in
