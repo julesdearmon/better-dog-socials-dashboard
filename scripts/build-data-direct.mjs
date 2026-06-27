@@ -21,6 +21,7 @@ const DATA_PATH = resolve(PUBLIC_DIR, 'data.json');
 const DISPLAY_TZ = process.env.DISPLAY_TZ || 'America/New_York';
 const WINDOW_DAYS = Number(process.env.WINDOW_DAYS || 300);
 const META_GRAPH_VERSION = process.env.META_GRAPH_VERSION || 'v23.0';
+const FETCH_TIMEOUT_MS = 15000;
 
 const ACCT = {
   instagram: {
@@ -141,14 +142,37 @@ function loadPreviousData() {
   }
 }
 
+function safeUrl(url) {
+  try {
+    const parsed = new URL(url);
+    if (parsed.searchParams.has('access_token')) parsed.searchParams.set('access_token', '[redacted]');
+    return parsed.toString();
+  } catch {
+    return String(url).replace(/access_token=[^&\s]+/g, 'access_token=[redacted]');
+  }
+}
+
+async function fetchWithTimeout(url, options = {}) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } catch (err) {
+    if (err.name === 'AbortError') throw new Error(`Request timed out after ${FETCH_TIMEOUT_MS}ms for ${safeUrl(url)}`);
+    throw err;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function getJson(url, token) {
-  const res = await fetch(url, token ? { headers: { Authorization: `Bearer ${token}` } } : undefined);
+  const res = await fetchWithTimeout(url, token ? { headers: { Authorization: `Bearer ${token}` } } : undefined);
   const text = await res.text();
   let body;
   try {
     body = text ? JSON.parse(text) : {};
   } catch {
-    throw new Error(`Non-JSON response from ${url}: ${text.slice(0, 300)}`);
+    throw new Error(`Non-JSON response from ${safeUrl(url)}: ${text.slice(0, 300)}`);
   }
   if (!res.ok || body.error) {
     const msg = body.error?.message || body.error_description || JSON.stringify(body.error || body);
@@ -158,7 +182,7 @@ async function getJson(url, token) {
 }
 
 async function postForm(url, body) {
-  const res = await fetch(url, {
+  const res = await fetchWithTimeout(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams(body),
@@ -177,7 +201,7 @@ async function postForm(url, body) {
 }
 
 async function postJson(url, token, body) {
-  const res = await fetch(url, {
+  const res = await fetchWithTimeout(url, {
     method: 'POST',
     headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
@@ -511,6 +535,31 @@ async function pullFacebook() {
   ], token, 'Facebook page insights');
   const pageInsightSummary = applyFacebookPageInsights(daily, pageInsights);
   const pageViewsOnly = pageInsightSummary.viewsMetric === 'page_views_total';
+  const hasFacebookContentViews = pageInsightSummary.viewsMetric === 'page_total_media_view';
+
+  if (!hasFacebookContentViews) {
+    console.warn('  - Facebook Business Suite content views unavailable; skipping post-detail probes that do not match Content Overview totals.');
+    return {
+      metric: {
+        platform: 'facebook',
+        handle,
+        source: 'live',
+        provider: pageInsightSummary.viewsMetric ? `meta-page-insights-api:${pageInsightSummary.viewsMetric}` : 'meta-page-insights-api',
+        hasViews: false,
+        viewsUnavailableReason: pageViewsOnly
+          ? 'Meta only exposed Page/profile views for Facebook, not content views for the selected date range. Page views are excluded from the main content-view totals.'
+          : 'Meta did not expose Facebook Business Suite content views for the selected date range.',
+        hasWatchTime: false,
+        hasReach: pageInsightSummary.hasReach,
+        reachLabel: pageInsightSummary.reachMetric === 'page_total_media_view_unique' ? 'Viewers' : 'Reach',
+        reachNote: pageInsightSummary.reachMetric === 'page_total_media_view_unique' ? 'Facebook uses Business Suite Viewers as its reach metric.' : '',
+        reachUnavailableReason: pageInsightSummary.hasReach ? '' : 'Current Meta Page Insights fallback did not provide a matching reach metric.',
+        asOf: ASOF,
+        daily: toArr(daily),
+      },
+      content,
+    };
+  }
 
   const fields = [
     'id',
