@@ -390,7 +390,7 @@ async function metaRangeTotal(path, metricSets, startIso, endIso, token = metaBa
 
 function applyFacebookPageInsights(daily, insights) {
   const byName = new Map((insights.data || []).map((item) => [item.name, item]));
-  const views = byName.get('page_total_media_view') || byName.get('page_posts_impressions') || byName.get('page_impressions') || byName.get('page_views_total') || byName.get('page_video_views');
+  const views = byName.get('page_media_view') || byName.get('page_total_media_view') || byName.get('page_posts_impressions') || byName.get('page_impressions') || byName.get('page_views_total') || byName.get('page_video_views');
   const reach = byName.get('page_total_media_view_unique') || byName.get('page_posts_impressions_unique') || byName.get('page_impressions_unique');
   applyMetaDailyValues(daily, views, 'views');
   applyMetaDailyValues(daily, reach, 'reach');
@@ -523,8 +523,12 @@ async function pullFacebook() {
   const daily = emptyDaily();
   const content = [];
   const pageInsights = await metaDailyInsights(`/${id}/insights`, [
+    { metrics: ['page_media_view', 'page_total_media_view_unique'], params: { metric_type: 'total_value' } },
+    { metrics: ['page_media_view'], params: { metric_type: 'total_value' } },
     { metrics: ['page_total_media_view', 'page_total_media_view_unique'], params: { metric_type: 'total_value' } },
     { metrics: ['page_total_media_view'], params: { metric_type: 'total_value' } },
+    ['page_media_view', 'page_total_media_view_unique'],
+    ['page_media_view'],
     ['page_total_media_view', 'page_total_media_view_unique'],
     ['page_total_media_view'],
     ['page_total_media_view_unique'],
@@ -535,7 +539,7 @@ async function pullFacebook() {
   ], token, 'Facebook page insights');
   const pageInsightSummary = applyFacebookPageInsights(daily, pageInsights);
   const pageViewsOnly = pageInsightSummary.viewsMetric === 'page_views_total';
-  const hasFacebookContentViews = pageInsightSummary.viewsMetric === 'page_total_media_view';
+  const hasFacebookContentViews = ['page_media_view', 'page_total_media_view'].includes(pageInsightSummary.viewsMetric);
 
   if (!hasFacebookContentViews) {
     console.warn('  - Facebook Business Suite content views unavailable; skipping post-detail probes that do not match Content Overview totals.');
@@ -697,6 +701,7 @@ async function buildMetaRangeOverrides() {
     }
 
     const fbViews = await optionalMetaRangeTotal(`/${ACCT.facebook.id}/insights`, [
+      { metrics: ['page_media_view'], params: { metric_type: 'total_value' } },
       { metrics: ['page_total_media_view'], params: { metric_type: 'total_value' } },
     ], range.start, range.end, pageToken, 'Facebook Business Suite views');
     const fbReach = await optionalMetaRangeTotal(`/${ACCT.facebook.id}/insights`, [

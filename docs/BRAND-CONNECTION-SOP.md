@@ -99,8 +99,8 @@ Notes:
   and will not match Meta's native date-range reports.
 - For Meta Business Suite content overview matching, target Instagram
   `content_views`/`views` and `reach`. For Facebook, target
-  `page_total_media_view` for Views and `page_total_media_view_unique` for
-  Viewers; show Facebook Viewers as the dashboard reach metric.
+  `page_media_view` for Views and `page_total_media_view_unique` for Viewers;
+  show Facebook Viewers as the dashboard reach metric.
 - When a Meta metric request fails, log only the metric names and the sanitized
   Meta error message. Do not log tokens or secret values. Use these logs to
   confirm whether the workflow is using account/page-level Business Suite-style
