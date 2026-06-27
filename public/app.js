@@ -128,7 +128,10 @@ function sumRange(daily, startIso, endIso) {
 }
 
 function businessSuiteOverride(platform, startIso, endIso) {
-  const ranges = window.BUSINESS_SUITE_OVERRIDES?.ranges || [];
+  const ranges = [
+    ...(state.data?.rangeOverrides || []),
+    ...(window.BUSINESS_SUITE_OVERRIDES?.ranges || [])
+  ];
   return ranges.find((r) => r.platform === platform && r.start === startIso && r.end === endIso) || null;
 }
 

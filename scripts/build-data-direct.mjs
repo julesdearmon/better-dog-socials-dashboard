@@ -293,13 +293,50 @@ async function metaDailyInsights(path, metricSets, token = metaBaseToken(), labe
           byName.get(item.name).values.push(...(item.values || []));
         }
       }
-      return { data: Array.from(byName.values()) };
+      const data = Array.from(byName.values());
+      const hasDailyValues = data.some((item) => metrics.includes(item.name) && (item.values || []).length);
+      if (!hasDailyValues) throw new Error(`No daily values returned for metrics [${metrics.join(', ')}]`);
+      return { data };
     } catch (err) {
       lastError = err;
       console.warn(`  - ${label}: metrics [${metrics.join(', ')}] failed: ${err.message}`);
     }
   }
   throw lastError || new Error(`No Meta daily insight metric set worked for ${path}`);
+}
+
+function insightTotalValue(json, names) {
+  for (const name of names) {
+    const item = (json.data || []).find((x) => x.name === name);
+    const value = item?.total_value?.value;
+    if (value != null) return num(value);
+    if ((item?.values || []).length) return (item.values || []).reduce((sum, row) => sum + num(row.value), 0);
+  }
+  return null;
+}
+
+async function metaRangeTotal(path, metricSets, startIso, endIso, token = metaBaseToken(), label = path) {
+  let lastError = null;
+  for (const metricSet of metricSets) {
+    const metrics = Array.isArray(metricSet) ? metricSet : metricSet.metrics;
+    const extraParams = Array.isArray(metricSet) ? {} : (metricSet.params || {});
+    try {
+      const json = await metaGet(path, {
+        metric: metrics.join(','),
+        period: 'day',
+        since: startIso,
+        until: addDays(endIso, 1),
+        ...extraParams,
+      }, token);
+      const value = insightTotalValue(json, metrics);
+      if (value == null) throw new Error(`No total value returned for metrics [${metrics.join(', ')}]`);
+      return { metric: (json.data || []).find((item) => metrics.includes(item.name))?.name || metrics[0], value };
+    } catch (err) {
+      lastError = err;
+      console.warn(`  - ${label}: range metrics [${metrics.join(', ')}] failed: ${err.message}`);
+    }
+  }
+  throw lastError || new Error(`No Meta range insight metric set worked for ${path}`);
 }
 
 function applyFacebookPageInsights(daily, insights) {
@@ -533,6 +570,78 @@ async function pullFacebook() {
     },
     content,
   };
+}
+
+function completeFriThuWeeks(count = 12) {
+  const end = new Date(`${END}T00:00:00Z`);
+  const back = (end.getUTCDay() - 4 + 7) % 7;
+  const thu = new Date(end);
+  thu.setUTCDate(end.getUTCDate() - back);
+  const weeks = [];
+  for (let i = 0; i < count; i++) {
+    const hi = new Date(thu);
+    hi.setUTCDate(thu.getUTCDate() - i * 7);
+    const lo = new Date(hi);
+    lo.setUTCDate(hi.getUTCDate() - 6);
+    weeks.push({ start: ymd(lo), end: ymd(hi) });
+  }
+  return weeks;
+}
+
+async function optionalMetaRangeTotal(path, metricSets, startIso, endIso, token, label) {
+  try {
+    return await metaRangeTotal(path, metricSets, startIso, endIso, token, label);
+  } catch (err) {
+    console.warn(`  - ${label}: unavailable for ${startIso} to ${endIso}: ${err.message}`);
+    return null;
+  }
+}
+
+async function buildMetaRangeOverrides() {
+  const token = metaBaseToken();
+  if (!token) return [];
+  const pageToken = await metaPageToken();
+  const overrides = [];
+  for (const range of completeFriThuWeeks(12)) {
+    const igViews = await optionalMetaRangeTotal(`/${ACCT.instagram.id}/insights`, [
+      { metrics: ['content_views'], params: { metric_type: 'total_value' } },
+      { metrics: ['views'], params: { metric_type: 'total_value' } },
+    ], range.start, range.end, token, 'Instagram Business Suite views');
+    const igReach = await optionalMetaRangeTotal(`/${ACCT.instagram.id}/insights`, [
+      { metrics: ['reach'], params: { metric_type: 'total_value' } },
+    ], range.start, range.end, token, 'Instagram Business Suite reach');
+    if (igViews?.value != null || igReach?.value != null) {
+      overrides.push({
+        platform: 'instagram',
+        ...range,
+        source: `Meta API range totals (${[igViews?.metric, igReach?.metric].filter(Boolean).join(', ')})`,
+        values: {
+          ...(igViews?.value != null ? { views: igViews.value } : {}),
+          ...(igReach?.value != null ? { reach: igReach.value } : {}),
+        },
+      });
+    }
+
+    const fbViews = await optionalMetaRangeTotal(`/${ACCT.facebook.id}/insights`, [
+      { metrics: ['page_total_media_view'], params: { metric_type: 'total_value' } },
+    ], range.start, range.end, pageToken, 'Facebook Business Suite views');
+    const fbReach = await optionalMetaRangeTotal(`/${ACCT.facebook.id}/insights`, [
+      { metrics: ['page_total_media_view_unique'], params: { metric_type: 'total_value' } },
+    ], range.start, range.end, pageToken, 'Facebook Business Suite viewers');
+    if (fbViews?.value != null || fbReach?.value != null) {
+      overrides.push({
+        platform: 'facebook',
+        ...range,
+        source: `Meta API range totals (${[fbViews?.metric, fbReach?.metric].filter(Boolean).join(', ')})`,
+        labels: { reach: 'Viewers' },
+        values: {
+          ...(fbViews?.value != null ? { views: fbViews.value } : {}),
+          ...(fbReach?.value != null ? { reach: fbReach.value } : {}),
+        },
+      });
+    }
+  }
+  return overrides;
 }
 
 async function googleAccessToken() {
@@ -787,6 +896,7 @@ async function main() {
   }
 
   const { metrics, content, carried } = mergeWithPrevious(results, previous);
+  const rangeOverrides = await buildMetaRangeOverrides();
   const data = {
     client: previous?.client || { id: 'better-dog-supplements', name: 'Better Dog Supplements', color: '#88cc33' },
     asOf: ASOF,
@@ -794,6 +904,7 @@ async function main() {
     source: 'live',
     generatedFrom: `Direct APIs (${Object.keys(results).join(', ')})${carried.length ? `; carried forward: ${carried.join(', ')}` : ''}`,
     directApiErrors: errors,
+    rangeOverrides,
     metrics,
     content,
   };

@@ -109,6 +109,11 @@ Notes:
   report, use `public/business-suite-overrides.js` for verified Business Suite
   totals from a screenshot or export. Keep only metric totals and date ranges in
   that file. Never add tokens, secrets, or private account access details.
+- The workflow also writes API-derived weekly Meta range totals into
+  `data.json` as `rangeOverrides` when Meta exposes them. The dashboard uses
+  these API-derived totals before any screenshot fallback, so weekly reports can
+  update automatically without manual screenshots whenever the platform API
+  allows it.
 - If Facebook post reporting fails with "Please reduce the amount of data
   you're asking for," use daily Page Insights for top-level totals and keep
   post-level details as best-effort only.
