@@ -776,7 +776,45 @@ async function logFacebookViewerDiagnostics(pageToken) {
       console.warn(`  - ${candidate.label} (${candidate.metric}) failed: ${err.message}`);
     }
   }
+  try {
+    const posts = await metaPaged(
+      `/${ACCT.facebook.id}/posts`,
+      { fields: 'id,created_time', limit: 25, since: unixDay(startIso), until: unixDay(endIso, true) },
+      null,
+      pageToken
+    );
+    let postViews = 0;
+    let postViewers = 0;
+    let postViewsDated = 0;
+    let postViewersDated = 0;
+    for (const post of posts) {
+      postViews += await optionalMetaInsightValue(`/${post.id}/insights`, 'post_media_view', pageToken);
+      postViewers += await optionalMetaInsightValue(`/${post.id}/insights`, 'post_total_media_view_unique', pageToken);
+      postViewsDated += await optionalMetaDatedInsightTotal(`/${post.id}/insights`, 'post_media_view', startIso, endIso, pageToken);
+      postViewersDated += await optionalMetaDatedInsightTotal(`/${post.id}/insights`, 'post_total_media_view_unique', startIso, endIso, pageToken);
+    }
+    diagnostics.candidates.push({ label: 'sum post media views', metric: 'post_media_view', postCount: posts.length, value: postViews });
+    diagnostics.candidates.push({ label: 'sum post media viewers', metric: 'post_total_media_view_unique', postCount: posts.length, value: postViewers });
+    diagnostics.candidates.push({ label: 'sum dated post media views', metric: 'post_media_view', postCount: posts.length, period: 'day', value: postViewsDated });
+    diagnostics.candidates.push({ label: 'sum dated post media viewers', metric: 'post_total_media_view_unique', postCount: posts.length, period: 'day', value: postViewersDated });
+  } catch (err) {
+    diagnostics.candidates.push({ label: 'post media sums', error: err.message });
+  }
   return diagnostics;
+}
+
+async function optionalMetaDatedInsightTotal(path, metric, startIso, endIso, token) {
+  try {
+    const json = await metaGet(path, {
+      metric,
+      period: 'day',
+      since: startIso,
+      until: addDays(endIso, 1),
+    }, token);
+    return insightTotalValue(json, [metric]) || 0;
+  } catch (err) {
+    return 0;
+  }
 }
 
 async function googleAccessToken() {
