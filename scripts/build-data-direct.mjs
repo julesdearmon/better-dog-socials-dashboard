@@ -628,7 +628,7 @@ async function buildMetaRangeOverrides() {
     const fbReach = await optionalMetaRangeTotal(`/${ACCT.facebook.id}/insights`, [
       { metrics: ['page_total_media_view_unique'], params: { metric_type: 'total_value' } },
     ], range.start, range.end, pageToken, 'Facebook Business Suite viewers');
-    if (fbViews?.value != null || fbReach?.value != null) {
+    if (fbViews?.value != null) {
       overrides.push({
         platform: 'facebook',
         ...range,
