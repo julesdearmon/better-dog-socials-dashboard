@@ -22,6 +22,7 @@ const DISPLAY_TZ = process.env.DISPLAY_TZ || 'America/New_York';
 const WINDOW_DAYS = Number(process.env.WINDOW_DAYS || 300);
 const META_GRAPH_VERSION = process.env.META_GRAPH_VERSION || 'v23.0';
 const FETCH_TIMEOUT_MS = 15000;
+const BUILD_DIAGNOSTICS = {};
 
 const ACCT = {
   instagram: {
@@ -679,7 +680,7 @@ async function buildMetaRangeOverrides() {
   const token = metaBaseToken();
   if (!token) return [];
   const pageToken = await metaPageToken();
-  await logFacebookViewerDiagnostics(pageToken);
+  BUILD_DIAGNOSTICS.facebookViewerMetrics = await logFacebookViewerDiagnostics(pageToken);
   const overrides = [];
   for (const range of completeFriThuWeeks(4)) {
     const igViews = await optionalMetaRangeTotal(`/${ACCT.instagram.id}/insights`, [
@@ -727,6 +728,7 @@ async function buildMetaRangeOverrides() {
 async function logFacebookViewerDiagnostics(pageToken) {
   const startIso = '2026-06-19';
   const endIso = '2026-06-25';
+  const diagnostics = { range: { start: startIso, end: endIso }, candidates: [] };
   const candidates = [
     { label: 'page media views', path: `/${ACCT.facebook.id}/insights`, metric: 'page_media_view', params: { metric_type: 'total_value' } },
     { label: 'page media viewers', path: `/${ACCT.facebook.id}/insights`, metric: 'page_total_media_view_unique', params: { metric_type: 'total_value' } },
@@ -746,11 +748,15 @@ async function logFacebookViewerDiagnostics(pageToken) {
         until: addDays(endIso, 1),
         ...candidate.params,
       }, pageToken);
-      console.log(`  - ${candidate.label} (${candidate.metric}): ${insightTotalValue(json, [candidate.metric])}`);
+      const value = insightTotalValue(json, [candidate.metric]);
+      diagnostics.candidates.push({ label: candidate.label, metric: candidate.metric, period, value });
+      console.log(`  - ${candidate.label} (${candidate.metric}): ${value}`);
     } catch (err) {
+      diagnostics.candidates.push({ label: candidate.label, metric: candidate.metric, error: err.message });
       console.warn(`  - ${candidate.label} (${candidate.metric}) failed: ${err.message}`);
     }
   }
+  return diagnostics;
 }
 
 async function googleAccessToken() {
@@ -1015,6 +1021,7 @@ async function main() {
     generatedFrom: `Direct APIs (${Object.keys(results).join(', ')})${carried.length ? `; carried forward: ${carried.join(', ')}` : ''}`,
     directApiErrors: errors,
     rangeOverrides,
+    diagnostics: BUILD_DIAGNOSTICS,
     metrics,
     content,
   };
