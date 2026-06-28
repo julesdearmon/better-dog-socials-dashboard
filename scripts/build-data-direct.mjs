@@ -22,7 +22,6 @@ const DISPLAY_TZ = process.env.DISPLAY_TZ || 'America/New_York';
 const WINDOW_DAYS = Number(process.env.WINDOW_DAYS || 300);
 const META_GRAPH_VERSION = process.env.META_GRAPH_VERSION || 'v23.0';
 const FETCH_TIMEOUT_MS = 15000;
-const BUILD_DIAGNOSTICS = {};
 
 const ACCT = {
   instagram: {
@@ -392,13 +391,11 @@ async function metaRangeTotal(path, metricSets, startIso, endIso, token = metaBa
 function applyFacebookPageInsights(daily, insights) {
   const byName = new Map((insights.data || []).map((item) => [item.name, item]));
   const views = byName.get('page_media_view') || byName.get('page_total_media_view') || byName.get('page_posts_impressions') || byName.get('page_impressions') || byName.get('page_views_total') || byName.get('page_video_views');
-  const reach = byName.get('page_total_media_view_unique') || byName.get('page_posts_impressions_unique') || byName.get('page_impressions_unique');
   applyMetaDailyValues(daily, views, 'views');
-  applyMetaDailyValues(daily, reach, 'reach');
   return {
-    hasReach: Boolean(reach),
+    hasReach: false,
     viewsMetric: views?.name || '',
-    reachMetric: reach?.name || '',
+    reachMetric: '',
   };
 }
 
@@ -524,17 +521,12 @@ async function pullFacebook() {
   const daily = emptyDaily();
   const content = [];
   const pageInsights = await metaDailyInsights(`/${id}/insights`, [
-    { metrics: ['page_media_view', 'page_total_media_view_unique'], params: { metric_type: 'total_value' } },
     { metrics: ['page_media_view'], params: { metric_type: 'total_value' } },
-    { metrics: ['page_total_media_view', 'page_total_media_view_unique'], params: { metric_type: 'total_value' } },
     { metrics: ['page_total_media_view'], params: { metric_type: 'total_value' } },
-    ['page_media_view', 'page_total_media_view_unique'],
     ['page_media_view'],
-    ['page_total_media_view', 'page_total_media_view_unique'],
     ['page_total_media_view'],
-    ['page_total_media_view_unique'],
-    ['page_posts_impressions', 'page_posts_impressions_unique'],
-    ['page_impressions', 'page_impressions_unique'],
+    ['page_posts_impressions'],
+    ['page_impressions'],
     ['page_views_total'],
     ['page_video_views'],
   ], token, 'Facebook page insights');
@@ -555,10 +547,8 @@ async function pullFacebook() {
           ? 'Meta only exposed Page/profile views for Facebook, not content views for the selected date range. Page views are excluded from the main content-view totals.'
           : 'Meta did not expose Facebook Business Suite content views for the selected date range.',
         hasWatchTime: false,
-        hasReach: pageInsightSummary.hasReach,
-        reachLabel: pageInsightSummary.reachMetric === 'page_total_media_view_unique' ? 'Viewers' : 'Reach',
-        reachNote: pageInsightSummary.reachMetric === 'page_total_media_view_unique' ? 'Facebook uses Business Suite Viewers as its reach metric.' : '',
-        reachUnavailableReason: pageInsightSummary.hasReach ? '' : 'Current Meta Page Insights fallback did not provide a matching reach metric.',
+        hasReach: false,
+        reachUnavailableReason: 'Facebook does not expose a supported content reach metric through the public Meta API. Business Suite Viewers is not the same calculation as Meta Page Insights unique media views.',
         asOf: ASOF,
         daily: toArr(daily),
       },
@@ -576,10 +566,8 @@ async function pullFacebook() {
       hasViews: !pageViewsOnly,
       viewsUnavailableReason: pageViewsOnly ? 'Meta only exposed Page/profile views for Facebook, not content views for the selected date range. Page views are excluded from the main content-view totals.' : '',
       hasWatchTime: false,
-      hasReach: pageInsightSummary.hasReach,
-      reachLabel: pageInsightSummary.reachMetric === 'page_total_media_view_unique' ? 'Viewers' : 'Reach',
-      reachNote: pageInsightSummary.reachMetric === 'page_total_media_view_unique' ? 'Facebook uses Business Suite Viewers as its reach metric.' : '',
-      reachUnavailableReason: pageInsightSummary.hasReach ? '' : 'Current Meta Page Insights fallback did not provide a matching reach metric.',
+      hasReach: false,
+      reachUnavailableReason: 'Facebook does not expose a supported content reach metric through the public Meta API. Business Suite Viewers is not the same calculation as Meta Page Insights unique media views.',
       asOf: ASOF,
       daily: toArr(daily),
     },
@@ -660,10 +648,8 @@ async function pullFacebook() {
       hasViews: !pageViewsOnly,
       viewsUnavailableReason: pageViewsOnly ? 'Meta only exposed Page/profile views for Facebook, not content views for the selected date range. Page views are excluded from the main content-view totals.' : '',
       hasWatchTime: false,
-      hasReach: pageInsightSummary.hasReach,
-      reachLabel: pageInsightSummary.reachMetric === 'page_total_media_view_unique' ? 'Viewers' : 'Reach',
-      reachNote: pageInsightSummary.reachMetric === 'page_total_media_view_unique' ? 'Facebook uses Business Suite Viewers as its reach metric.' : '',
-      reachUnavailableReason: pageInsightSummary.hasReach ? '' : 'Current Meta Page Insights fallback did not provide a matching reach metric.',
+      hasReach: false,
+      reachUnavailableReason: 'Facebook does not expose a supported content reach metric through the public Meta API. Business Suite Viewers is not the same calculation as Meta Page Insights unique media views.',
       asOf: ASOF,
       daily: toArr(daily),
     },
@@ -700,7 +686,6 @@ async function buildMetaRangeOverrides() {
   const token = metaBaseToken();
   if (!token) return [];
   const pageToken = await metaPageToken();
-  BUILD_DIAGNOSTICS.facebookViewerMetrics = await logFacebookViewerDiagnostics(pageToken);
   const overrides = [];
   for (const range of completeFriThuWeeks(4)) {
     const igViews = await optionalMetaRangeTotal(`/${ACCT.instagram.id}/insights`, [
@@ -726,115 +711,18 @@ async function buildMetaRangeOverrides() {
       { metrics: ['page_media_view'], params: { metric_type: 'total_value' } },
       { metrics: ['page_total_media_view'], params: { metric_type: 'total_value' } },
     ], range.start, range.end, pageToken, 'Facebook Business Suite views');
-    const fbReach = await optionalMetaRangeTotal(`/${ACCT.facebook.id}/insights`, [
-      { metrics: ['page_total_media_view_unique'], params: { metric_type: 'total_value' } },
-    ], range.start, range.end, pageToken, 'Facebook Business Suite viewers');
     if (fbViews?.value != null) {
       overrides.push({
         platform: 'facebook',
         ...range,
-        source: `Meta API range totals (${[fbViews?.metric, fbReach?.metric].filter(Boolean).join(', ')})`,
-        labels: { reach: 'Viewers' },
+        source: `Meta API range totals (${fbViews.metric})`,
         values: {
           ...(fbViews?.value != null ? { views: fbViews.value } : {}),
-          ...(fbReach?.value != null ? { reach: fbReach.value } : {}),
         },
       });
     }
   }
   return overrides;
-}
-
-async function logFacebookViewerDiagnostics(pageToken) {
-  const startIso = '2026-06-19';
-  const endIso = '2026-06-25';
-  const diagnostics = { range: { start: startIso, end: endIso }, candidates: [] };
-  const candidates = [
-    { label: 'page media views', path: `/${ACCT.facebook.id}/insights`, metric: 'page_media_view', params: { metric_type: 'total_value' } },
-    { label: 'page media views by organic ads', path: `/${ACCT.facebook.id}/insights`, metric: 'page_media_view', params: { metric_type: 'total_value', breakdown: 'is_from_ads' } },
-    { label: 'page media viewers', path: `/${ACCT.facebook.id}/insights`, metric: 'page_total_media_view_unique', params: { metric_type: 'total_value' } },
-    { label: 'page media viewers by organic ads', path: `/${ACCT.facebook.id}/insights`, metric: 'page_total_media_view_unique', params: { metric_type: 'total_value', breakdown: 'is_from_ads' } },
-    { label: 'page media viewers week', path: `/${ACCT.facebook.id}/insights`, metric: 'page_total_media_view_unique', params: { period: 'week' } },
-    { label: 'page media view unique singular', path: `/${ACCT.facebook.id}/insights`, metric: 'page_media_view_unique', params: { metric_type: 'total_value' } },
-    { label: 'page media views plural', path: `/${ACCT.facebook.id}/insights`, metric: 'page_media_views', params: { metric_type: 'total_value' } },
-    { label: 'page media viewers plural', path: `/${ACCT.facebook.id}/insights`, metric: 'page_media_views_unique', params: { metric_type: 'total_value' } },
-    { label: 'page total media views plural', path: `/${ACCT.facebook.id}/insights`, metric: 'page_total_media_views', params: { metric_type: 'total_value' } },
-    { label: 'page total media viewers plural', path: `/${ACCT.facebook.id}/insights`, metric: 'page_total_media_views_unique', params: { metric_type: 'total_value' } },
-    { label: 'page content views', path: `/${ACCT.facebook.id}/insights`, metric: 'page_content_views', params: { metric_type: 'total_value' } },
-    { label: 'page content viewers', path: `/${ACCT.facebook.id}/insights`, metric: 'page_content_views_unique', params: { metric_type: 'total_value' } },
-    { label: 'page total content views', path: `/${ACCT.facebook.id}/insights`, metric: 'page_total_content_views', params: { metric_type: 'total_value' } },
-    { label: 'page total content viewers', path: `/${ACCT.facebook.id}/insights`, metric: 'page_total_content_views_unique', params: { metric_type: 'total_value' } },
-    { label: 'page content view singular', path: `/${ACCT.facebook.id}/insights`, metric: 'page_content_view', params: { metric_type: 'total_value' } },
-    { label: 'page content viewer singular', path: `/${ACCT.facebook.id}/insights`, metric: 'page_content_view_unique', params: { metric_type: 'total_value' } },
-    { label: 'content views generic', path: `/${ACCT.facebook.id}/insights`, metric: 'content_views', params: { metric_type: 'total_value' } },
-    { label: 'content viewers generic', path: `/${ACCT.facebook.id}/insights`, metric: 'content_views_unique', params: { metric_type: 'total_value' } },
-    { label: 'views generic', path: `/${ACCT.facebook.id}/insights`, metric: 'views', params: { metric_type: 'total_value' } },
-    { label: 'reach generic', path: `/${ACCT.facebook.id}/insights`, metric: 'reach', params: { metric_type: 'total_value' } },
-    { label: 'page total reach legacy', path: `/${ACCT.facebook.id}/insights`, metric: 'page_impressions_unique', params: {} },
-    { label: 'page post reach legacy', path: `/${ACCT.facebook.id}/insights`, metric: 'page_posts_impressions_unique', params: {} },
-    { label: 'page video viewers legacy', path: `/${ACCT.facebook.id}/insights`, metric: 'page_video_views_unique', params: {} },
-  ];
-  console.log(`Facebook viewer diagnostic for ${startIso} to ${endIso}:`);
-  for (const candidate of candidates) {
-    try {
-      const period = candidate.params.period || 'day';
-      const json = await metaGet(candidate.path, {
-        metric: candidate.metric,
-        period,
-        since: startIso,
-        until: addDays(endIso, 1),
-        ...candidate.params,
-      }, pageToken);
-      const value = insightTotalValue(json, [candidate.metric]);
-      const item = (json.data || []).find((x) => x.name === candidate.metric);
-      const rawValue = item?.total_value?.value;
-      const breakdowns = item?.total_value?.breakdowns || item?.values?.[0]?.value || null;
-      diagnostics.candidates.push({ label: candidate.label, metric: candidate.metric, period, value, rawValue, breakdowns });
-      console.log(`  - ${candidate.label} (${candidate.metric}): ${value}`);
-    } catch (err) {
-      diagnostics.candidates.push({ label: candidate.label, metric: candidate.metric, error: err.message });
-      console.warn(`  - ${candidate.label} (${candidate.metric}) failed: ${err.message}`);
-    }
-  }
-  try {
-    const posts = await metaPaged(
-      `/${ACCT.facebook.id}/posts`,
-      { fields: 'id,created_time', limit: 25, since: unixDay(startIso), until: unixDay(endIso, true) },
-      null,
-      pageToken
-    );
-    let postViews = 0;
-    let postViewers = 0;
-    let postViewsDated = 0;
-    let postViewersDated = 0;
-    for (const post of posts) {
-      postViews += await optionalMetaInsightValue(`/${post.id}/insights`, 'post_media_view', pageToken);
-      postViewers += await optionalMetaInsightValue(`/${post.id}/insights`, 'post_total_media_view_unique', pageToken);
-      postViewsDated += await optionalMetaDatedInsightTotal(`/${post.id}/insights`, 'post_media_view', startIso, endIso, pageToken);
-      postViewersDated += await optionalMetaDatedInsightTotal(`/${post.id}/insights`, 'post_total_media_view_unique', startIso, endIso, pageToken);
-    }
-    diagnostics.candidates.push({ label: 'sum post media views', metric: 'post_media_view', postCount: posts.length, value: postViews });
-    diagnostics.candidates.push({ label: 'sum post media viewers', metric: 'post_total_media_view_unique', postCount: posts.length, value: postViewers });
-    diagnostics.candidates.push({ label: 'sum dated post media views', metric: 'post_media_view', postCount: posts.length, period: 'day', value: postViewsDated });
-    diagnostics.candidates.push({ label: 'sum dated post media viewers', metric: 'post_total_media_view_unique', postCount: posts.length, period: 'day', value: postViewersDated });
-  } catch (err) {
-    diagnostics.candidates.push({ label: 'post media sums', error: err.message });
-  }
-  return diagnostics;
-}
-
-async function optionalMetaDatedInsightTotal(path, metric, startIso, endIso, token) {
-  try {
-    const json = await metaGet(path, {
-      metric,
-      period: 'day',
-      since: startIso,
-      until: addDays(endIso, 1),
-    }, token);
-    return insightTotalValue(json, [metric]) || 0;
-  } catch (err) {
-    return 0;
-  }
 }
 
 async function googleAccessToken() {
@@ -1099,7 +987,6 @@ async function main() {
     generatedFrom: `Direct APIs (${Object.keys(results).join(', ')})${carried.length ? `; carried forward: ${carried.join(', ')}` : ''}`,
     directApiErrors: errors,
     rangeOverrides,
-    diagnostics: BUILD_DIAGNOSTICS,
     metrics,
     content,
   };
