@@ -438,6 +438,7 @@ async function pullInstagram() {
   const daily = emptyDaily();
   const content = [];
   let accountInsightSummary = null;
+  let businessSuiteDailyCount = 0;
   try {
     const accountInsights = await metaDailyInsights(`/${id}/insights`, [
       { metrics: ['content_views'], params: { metric_type: 'total_value' } },
@@ -499,12 +500,17 @@ async function pullInstagram() {
     });
   }
 
+  businessSuiteDailyCount = await applyInstagramBusinessSuiteDailyTotals(daily, token);
+
   return {
     metric: {
       platform: 'instagram',
       handle,
       source: 'live',
-      provider: accountInsightSummary?.viewsMetric ? `meta-ig-user-insights-api:${accountInsightSummary.viewsMetric}` : 'meta-media-insights-api',
+      provider: businessSuiteDailyCount
+        ? 'meta-ig-user-insights-api:daily-range-totals'
+        : (accountInsightSummary?.viewsMetric ? `meta-ig-user-insights-api:${accountInsightSummary.viewsMetric}` : 'meta-media-insights-api'),
+      businessSuiteDailyCount,
       hasWatchTime: false,
       hasReach: accountInsightSummary ? accountInsightSummary.hasReach : true,
       reachUnavailableReason: accountInsightSummary && !accountInsightSummary.hasReach ? 'Current Instagram account insight fallback did not provide reach.' : '',
@@ -680,6 +686,36 @@ async function optionalMetaRangeTotal(path, metricSets, startIso, endIso, token,
     console.warn(`  - ${label}: unavailable for ${startIso} to ${endIso}: ${err.message}`);
     return null;
   }
+}
+
+function recentCompleteDays(weekCount = 4) {
+  return completeFriThuWeeks(weekCount).flatMap((week) => {
+    const days = [];
+    for (let date = week.start; date <= week.end; date = addDays(date, 1)) days.push(date);
+    return days;
+  });
+}
+
+async function applyInstagramBusinessSuiteDailyTotals(daily, token) {
+  let applied = 0;
+  for (const date of recentCompleteDays(4)) {
+    const views = await optionalMetaRangeTotal(`/${ACCT.instagram.id}/insights`, [
+      { metrics: ['content_views'], params: { metric_type: 'total_value' } },
+      { metrics: ['views'], params: { metric_type: 'total_value' } },
+    ], date, date, token, 'Instagram Business Suite daily views');
+    const reach = await optionalMetaRangeTotal(`/${ACCT.instagram.id}/insights`, [
+      { metrics: ['reach'], params: { metric_type: 'total_value' } },
+    ], date, date, token, 'Instagram Business Suite daily reach');
+    const row = daily.get(date);
+    if (!row) continue;
+    if (views?.value != null) {
+      row.views = views.value;
+      applied += 1;
+    }
+    if (reach?.value != null) row.reach = reach.value;
+  }
+  if (applied) console.log(`  - Applied Instagram Business Suite daily totals for ${applied} recent days.`);
+  return applied;
 }
 
 async function buildMetaRangeOverrides() {
