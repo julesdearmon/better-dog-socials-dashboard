@@ -5,7 +5,7 @@ window.BUSINESS_SUITE_OVERRIDES = {
       start: '2026-06-19',
       end: '2026-06-25',
       source: 'Meta Business Suite Content Overview screenshot',
-      values: { views: 101700, reach: 39334 }
+      values: { views: 101704, reach: 39334 }
     },
     {
       platform: 'instagram',
