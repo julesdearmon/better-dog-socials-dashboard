@@ -212,9 +212,12 @@ const sourceDate = (m) => m?.asOf ? niceDate(m.asOf) : 'prior refresh';
 function isCarriedForward(p) {
   return !!state.data?.metrics?.[p]?.carriedForward;
 }
+function isPendingPlatform(p) {
+  return isCarriedForward(p);
+}
 function sourceStatus(p) {
   const m = state.data?.metrics?.[p] || {};
-  if (m.carriedForward) return { label: `Using last saved data from ${sourceDate(m)}`, cls: 'stale' };
+  if (m.carriedForward) return { label: 'Pending approval - no live data shown', cls: 'stale' };
   if (m.provider) return { label: `Fresh API data (${m.provider})`, cls: 'fresh' };
   return { label: m.source === 'live' ? 'Live data' : 'Demo or imported data', cls: m.source === 'live' ? 'fresh' : 'stale' };
 }
@@ -358,13 +361,16 @@ function allPlatforms() {
 // Platforms currently shown (respects the platform filter; never empty).
 function platforms() {
   const all = allPlatforms();
-  if (!state.selectedPlatforms) return all;
+  const active = all.filter((p) => !isPendingPlatform(p));
+  if (state.totalOnly) return active.length ? active : all;
+  if (!state.selectedPlatforms) return active.length ? active : all;
   const sel = all.filter((p) => state.selectedPlatforms.includes(p));
-  return sel.length ? sel : all;
+  return sel.length ? sel : (active.length ? active : all);
 }
 // Whether a platform reports a given metric (e.g. YouTube has no reach metric,
 // only YouTube has watch time).
 function supports(p, key) {
+  if (isPendingPlatform(p)) return false;
   const m = state.data.metrics[p];
   const hasOverride = businessSuiteOverride(p, state.rangeStart, state.rangeEnd)?.values?.[key] != null;
   if (hasOverride) return true;
@@ -500,7 +506,7 @@ function renderDataQuality() {
   const { pending } = freshnessSummary();
   const notes = [];
   if (pending.length) {
-    notes.push(`${escapeHtml(pending.map((x) => x.split(' from ')[0]).join(', '))} is using the last saved data until setup is finished.`);
+    notes.push(`${escapeHtml(pending.map((x) => x.split(' from ')[0]).join(', '))} is pending and excluded from totals until live API access is approved.`);
   }
   const overrideActive = [];
   for (const p of allPlatforms()) {
@@ -744,6 +750,11 @@ function renderOverview() {
   const start = state.rangeStart, end = state.rangeEnd;
   const ps = platforms();
   const info = periodInfo();
+  if (ps.length && ps.every(isPendingPlatform)) {
+    $('#overviewTitle').textContent = `Overall analysis - ${info.title}`;
+    el.innerHTML = '<p class="ov-headline"><strong>TikTok is pending approval.</strong> No live TikTok data is shown yet.</p>';
+    return;
+  }
   if (ps.length === 1) { renderFocusedOverview(ps[0], start, end, info); return; }
   $('#overviewTitle').textContent = `Overall analysis — ${info.title}`;
 
@@ -823,6 +834,7 @@ function renderContent() {
 
   // Top 3 per platform across the selected range, grouped.
   const groups = platforms().map((p) => {
+    if (isPendingPlatform(p)) return { p, top: [], pending: true };
     const top = state.data.content
       .filter((c) => c.platform === p && c.date >= period.start && c.date <= period.end)
       .sort((a, b) => (b[key] || 0) - (a[key] || 0))
@@ -853,7 +865,9 @@ function renderContent() {
         <span class="cg-dot" style="background:${PLATFORM_COLORS[g.p] || '#888'}"></span>
         <span class="cg-name">${nameOf(g.p)}</span>
       </div>
-      ${g.top.length
+      ${g.pending
+        ? `<p class="cg-empty">TikTok is pending approval. No live TikTok data is shown yet.</p>`
+        : g.top.length
         ? `<div class="table-wrap"><table class="posts-table">
             <thead><tr><th>#</th><th>Content</th><th>Type</th><th>Date</th><th class="num">Views</th><th class="num">Reach</th><th class="num">Engagement</th></tr></thead>
             <tbody>${g.top.map(rowHtml).join('')}</tbody>
@@ -884,9 +898,9 @@ function renderPlatformFilter() {
   const chip = (val, label, dot) =>
     `<button type="button" class="pf-chip ${focus === val ? 'on' : ''}" data-focus="${val}">` +
     (dot != null ? `<span class="pf-dot" style="background:${dot}"></span>` : '') + `${label}</button>`;
-  // [ Total (All Platforms) ] [ …each platform… ] — click a platform to show only its line.
+  // [ Total (Active Platforms) ] [ ...each platform... ] - pending platforms stay visible but are excluded from totals.
   $('#platformFilter').innerHTML = '<span class="pf-label">Show:</span>' +
-    chip('all', 'Total (All Platforms)', null) +
+    chip('all', 'Total (Active Platforms)', null) +
     all.map((p) => chip(p, nameOf(p), PLATFORM_COLORS[p] || '#888')).join('');
   for (const p of all) {
     if (!isCarriedForward(p)) continue;
@@ -901,21 +915,22 @@ function renderKpis() {
   // Heading reflects the actual scope (all platforms, or the filtered subset).
   const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
   const showing = platforms();
-  const scope = showing.length === allPlatforms().length
-    ? 'All Platforms'
+  const pendingOnly = showing.length > 0 && showing.every(isPendingPlatform);
+  const scope = currentFocus() === 'all' || state.totalOnly
+    ? 'Active Platforms'
     : showing.map(cap).join(', ');
   $('#kpisTitle').innerHTML = `Metric Totals <span class="scope">(${scope})</span>`;
 
   $('#kpis').innerHTML = METRICS.map((m) => {
     const curr = totalAt(m.key, 0);
     const prev = totalAt(m.key, 1);
-    const note = m.key === 'watchTime' ? 'YouTube · selected range' : 'selected range';
-    const val = m.key === 'watchTime' && curr === 0 ? null : curr;
+    const note = pendingOnly ? 'pending approval' : (m.key === 'watchTime' ? 'YouTube · selected range' : 'selected range');
+    const val = pendingOnly || (m.key === 'watchTime' && curr === 0) ? null : curr;
     return `
       <div class="kpi">
         <div class="label">${m.label} <span class="kpi-note">${note}</span></div>
         <div class="value">${m.fmt(val)}</div>
-        <div>${deltaHtml(curr, prev)}</div>
+        <div>${pendingOnly ? '' : deltaHtml(curr, prev)}</div>
       </div>`;
   }).join('');
 }
@@ -1001,6 +1016,7 @@ function renderWatchChart() {
 
 function renderTable() {
   const ps = platforms();
+  const pendingOnly = ps.length > 0 && ps.every(isPendingPlatform);
   $('#weekTable tbody').innerHTML = ps.map((p) => {
     const cells = METRICS.map((m) => {
       const curr = platformAt(p, m.key, 0);
@@ -1018,7 +1034,10 @@ function renderTable() {
     const val = m.key === 'watchTime' && curr === 0 ? null : curr;
     return `<td class="num">${m.fmt(val)} ${miniDelta(curr, prev)}</td>`;
   }).join('');
-  $('#weekTable tfoot').innerHTML = `<tr class="total-row"><td>Total</td>${totalCells}<td>${ps.some(isCarriedForward) ? '<span class="source-badge stale">Includes pending platform data</span>' : '<span class="source-badge fresh">Fresh API data</span>'}</td></tr>`;
+  const footerStatus = pendingOnly
+    ? '<span class="source-badge stale">Pending approval</span>'
+    : '<span class="source-badge fresh">Fresh API data</span>';
+  $('#weekTable tfoot').innerHTML = `<tr class="total-row"><td>Total</td>${totalCells}<td>${footerStatus}</td></tr>`;
 }
 
 // ---------------------------------------------------------------------------
