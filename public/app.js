@@ -180,7 +180,7 @@ function presetRange(name, asOfMs) {
   const lastMonthEnd = monthFirst - DAY;                      // last day of the previous month
   const lmE = new Date(lastMonthEnd);
   const lastMonthStart = Date.UTC(lmE.getUTCFullYear(), lmE.getUTCMonth(), 1);
-  if (name === 'last-week') return { start: iso(thu - 6 * DAY), end: iso(thu), gran: 'weekly' };
+  if (name === 'last-week') return { start: iso(thu - 6 * DAY), end: iso(thu), gran: 'daily' };
   if (name === 'last-4-weeks') return { start: iso(thu - (4 * 7 - 1) * DAY), end: iso(thu), gran: 'weekly' };
   if (name === 'last-month') return { start: iso(lastMonthStart), end: iso(lastMonthEnd), gran: 'daily' };
   if (name === 'last-3-months') {
