@@ -38,7 +38,6 @@ function rangeDays() {
 }
 function chartGranularity() {
   const days = rangeDays();
-  if (days > 0 && days <= 13) return 'daily';
   if (state.granularity === 'monthly' && days < 45) return 'daily';
   return state.granularity;
 }
@@ -181,7 +180,7 @@ function presetRange(name, asOfMs) {
   const lastMonthEnd = monthFirst - DAY;                      // last day of the previous month
   const lmE = new Date(lastMonthEnd);
   const lastMonthStart = Date.UTC(lmE.getUTCFullYear(), lmE.getUTCMonth(), 1);
-  if (name === 'last-week') return { start: iso(thu - 6 * DAY), end: iso(thu), gran: 'daily' };
+  if (name === 'last-week') return { start: iso(thu - 6 * DAY), end: iso(thu), gran: 'weekly' };
   if (name === 'last-4-weeks') return { start: iso(thu - (4 * 7 - 1) * DAY), end: iso(thu), gran: 'weekly' };
   if (name === 'last-month') return { start: iso(lastMonthStart), end: iso(lastMonthEnd), gran: 'daily' };
   if (name === 'last-3-months') {
@@ -532,7 +531,6 @@ function renderDataQuality() {
 function setGranularity(g) {
   if (!GRAN_NOUN[g]) return;
   state.granularity = g;
-  if (rangeDays() <= 13) state.granularity = 'daily';
   setGranButton(state.granularity);
   render();
 }
