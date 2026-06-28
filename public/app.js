@@ -472,9 +472,9 @@ function updateMode() {
     const through = dl.length ? niceDate(dl[dl.length - 1].date) : niceDate(state.data.asOf);
     const updated = state.data.updatedAt || 'unknown';
     const { fresh, pending } = freshnessSummary();
-    const pendingText = pending.length ? ` Setup pending: ${pending.map((x) => x.split(' from ')[0]).join(', ')}.` : '';
-    const errors = (state.data.directApiErrors || []).length ? ` Errors: ${state.data.directApiErrors.join(' | ')}` : '';
-    note.textContent = `Updated ${updated}. Live data through ${through}. Refreshed: ${fresh.join(', ') || 'none'}.${pendingText}${errors}`;
+    const pendingText = pending.length ? ` · Pending: ${pending.map((x) => x.split(' from ')[0]).join(', ')}` : '';
+    const errors = (state.data.directApiErrors || []).length ? ` · Errors: ${state.data.directApiErrors.join(' | ')}` : '';
+    note.textContent = `Updated ${updated} · Data through ${through} · Fresh: ${fresh.join(', ') || 'none'}${pendingText}${errors}`;
     note.hidden = false;
     return;
   }
@@ -500,23 +500,26 @@ function renderDataQuality() {
   const { pending } = freshnessSummary();
   const notes = [];
   if (pending.length) {
-    notes.push(`${escapeHtml(pending.map((x) => x.split(' from ')[0]).join(', '))} is not connected yet, so it is using the last saved data until that setup is finished.`);
+    notes.push(`${escapeHtml(pending.map((x) => x.split(' from ')[0]).join(', '))} is using the last saved data until setup is finished.`);
   }
+  const overrideActive = [];
   for (const p of allPlatforms()) {
     const m = state.data.metrics[p] || {};
     const override = businessSuiteOverride(p, state.rangeStart, state.rangeEnd);
-    if (override) notes.push(`${escapeHtml(nameOf(p))}: using Meta Business Suite Content Overview totals for this selected range.`);
+    if (override) overrideActive.push(nameOf(p));
     if (!override && m.hasViews === false && m.viewsUnavailableReason) notes.push(`${escapeHtml(nameOf(p))}: ${escapeHtml(m.viewsUnavailableReason)}`);
+    if (p === 'facebook' && m.hasReach === false && m.reachUnavailableReason) notes.push('Facebook reach is hidden because Meta does not expose a public metric that matches Business Suite Viewers.');
     if (!override && m.provider === 'meta-media-insights-api') notes.push(`${escapeHtml(nameOf(p))}: Meta account-level date-range views were not available, so this uses media-level post insights for content published in the selected range.`);
   }
+  if (overrideActive.length) notes.push(`${escapeHtml(overrideActive.join(', '))}: using Business Suite-matched totals where available.`);
   if (!notes.length) {
     quality.hidden = true;
     return;
   }
   if ((window.BUSINESS_SUITE_OVERRIDES?.ranges || []).some((r) => r.start === state.rangeStart && r.end === state.rangeEnd)) {
-    notes.push('Daily chart points are distributed from the available API detail; Business Suite weekly totals are the source of truth.');
+    notes.push('Chart points are distributed from available daily API detail.');
   }
-  quality.innerHTML = `<strong>Heads up:</strong> ${notes.join(' ')}`;
+  quality.innerHTML = `<strong>Data notes:</strong> ${[...new Set(notes)].join(' ')}`;
   quality.hidden = false;
 }
 
@@ -610,27 +613,9 @@ function render() {
     b.classList.toggle('active', !!r && r.start === state.rangeStart && r.end === state.rangeEnd);
   });
   const rLabel = rangeLabel(state.rangeStart, state.rangeEnd);
-  $('#reportWeek').textContent = rLabel + `  ·  vs prior ${state.priorRange.start} – ${state.priorRange.end}`;
-  $('#periodNote').innerHTML = {
-    daily: 'Top metrics total over your <strong>selected dates</strong>, vs the equal stretch just before. The charts plot each <strong>day</strong> in the range.',
-    weekly: 'Top metrics total over your <strong>selected dates</strong>, vs the equal stretch just before. The charts plot each complete <strong>Friday→Thursday week</strong> in the range.',
-    monthly: 'Top metrics total over your <strong>selected dates</strong>, vs the equal stretch just before. The charts plot each complete <strong>calendar month</strong> in the range.'
-  }[state.granularity];
-  $('#periodNote').innerHTML += ' <strong>Organic only:</strong> YouTube excludes ad-driven (“Advertising”) views and watch time; Instagram and Facebook run ads as separate creatives, so they don’t affect these numbers.';
-
   const compareLabel = rangeLabel(state.priorRange.start, state.priorRange.end);
-  $('#reportWeek').textContent = state.data.updatedAt ? `Updated ${state.data.updatedAt}` : '';
-  $('#periodNote').innerHTML = {
-    daily: `Totals are for <strong>${rLabel}</strong>, compared with <strong>${compareLabel}</strong>. The charts plot each <strong>day</strong> in the selected range.`,
-    weekly: `Totals are for <strong>${rLabel}</strong>, compared with <strong>${compareLabel}</strong>. The charts plot each complete <strong>Friday-to-Thursday week</strong> in the selected range. "Last complete week" means the most recent complete Friday-to-Thursday week, not the last seven calendar days.`,
-    monthly: `Totals are for <strong>${rLabel}</strong>, compared with <strong>${compareLabel}</strong>. The charts plot each complete <strong>calendar month</strong> in the selected range.`
-  }[state.granularity] + ' <strong>Organic only:</strong> YouTube excludes ad-driven ("Advertising") views and watch time; Instagram and Facebook run ads as separate creatives, so they do not affect these numbers.';
   $('#reportWeek').textContent = rLabel;
-  $('#periodNote').innerHTML = {
-    daily: `Totals are for <strong>${rLabel}</strong>. Charts show each <strong>day</strong>.`,
-    weekly: `Totals are for <strong>${rLabel}</strong>. Charts show each complete <strong>Friday-to-Thursday week</strong>.`,
-    monthly: `Totals are for <strong>${rLabel}</strong>. Charts show each complete <strong>calendar month</strong>.`
-  }[chartGran] + ` Comparison period: <strong>${compareLabel}</strong>.`;
+  $('#periodNote').innerHTML = `Compared with <strong>${compareLabel}</strong> · charted by <strong>${noun}</strong>.`;
 
   $('#postsTitle').textContent = `Posts per ${noun}`;
   $('#viewsTitle').textContent = `Views per ${noun}`;

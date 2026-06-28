@@ -75,17 +75,18 @@ body {
 }
 
 .data-quality-note {
-  background: #fff8ec;
-  border: 1px solid #ffd69b;
-  color: #744800;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--muted);
   border-radius: 8px;
-  padding: 10px 14px;
+  padding: 8px 12px;
   font-size: 12px;
-  line-height: 1.5;
-  margin-bottom: 16px;
+  line-height: 1.45;
+  margin-bottom: 14px;
 }
+.data-quality-note strong { color: var(--text); }
 
-.weekly-note { font-size: 13px; color: var(--muted); margin: 0 0 18px; }
+.weekly-note { font-size: 12px; color: var(--muted); margin: 0 0 14px; }
 .weekly-note strong { color: var(--text); }
 
 .page-title {
@@ -365,7 +366,7 @@ body {
 .ov-ai-para:last-of-type { margin-bottom: 14px; }
 
 /* ---- Spike insight ---- */
-.chart-hint { font-size: 12px; color: var(--muted); margin: 2px 0 16px; }
+.chart-hint { font-size: 12px; color: var(--muted); margin: 0 0 12px; }
 .chart-hint strong { color: var(--text); }
 
 .insight-card { border-color: var(--accent); box-shadow: 0 4px 18px rgba(136, 204, 51, 0.16); }
