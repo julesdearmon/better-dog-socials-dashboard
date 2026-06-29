@@ -374,8 +374,8 @@ function focusedPlatform() {
 function visibleMetricKeys() {
   const keys = [...CORE_METRIC_KEYS];
   const focus = focusedPlatform();
-  if (focus === 'instagram') keys.splice(1, 0, 'reach');
-  if (focus === 'youtube') keys.splice(1, 0, 'watchTime');
+  if (focus === 'instagram') keys.push('reach');
+  if (focus === 'youtube') keys.push('watchTime');
   return keys;
 }
 function visibleMetrics() {
