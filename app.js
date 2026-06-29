@@ -348,6 +348,8 @@ const METRICS = [
   { key: 'posts', label: 'Posts', fmt: fmtFull }
 ];
 
+const CORE_METRIC_KEYS = ['views', 'posts'];
+
 // Every platform that has data.
 function allPlatforms() {
   return Object.keys(state.data.metrics).filter((p) => {
@@ -363,6 +365,22 @@ function platforms() {
   if (!state.selectedPlatforms) return active.length ? active : all;
   const sel = all.filter((p) => state.selectedPlatforms.includes(p));
   return sel.length ? sel : (active.length ? active : all);
+}
+function focusedPlatform() {
+  if (state.totalOnly) return null;
+  if (state.selectedPlatforms && state.selectedPlatforms.length === 1) return state.selectedPlatforms[0];
+  return null;
+}
+function visibleMetricKeys() {
+  const keys = [...CORE_METRIC_KEYS];
+  const focus = focusedPlatform();
+  if (focus === 'instagram') keys.splice(1, 0, 'reach');
+  if (focus === 'youtube') keys.splice(1, 0, 'watchTime');
+  return keys;
+}
+function visibleMetrics() {
+  const keys = visibleMetricKeys();
+  return keys.map((key) => METRICS.find((m) => m.key === key)).filter(Boolean);
 }
 // Whether a platform reports a given metric (e.g. YouTube has no reach metric,
 // only YouTube has watch time).
@@ -627,12 +645,15 @@ function render() {
   $('#tableWeekLabel').textContent = rLabel;
 
   renderPlatformFilter();
+  renderChartVisibility();
   renderKpis();
   renderOverview();
   renderTrend('postsChart', 'posts');
   renderTrend('viewsChart', 'views');
-  renderTrend('reachChart', 'reach');
-  renderWatchChart();
+  if (!$('#reachCard')?.hidden) renderTrend('reachChart', 'reach');
+  else if (charts.reachChart) { charts.reachChart.destroy(); delete charts.reachChart; }
+  if (!$('#watchCard')?.hidden) renderWatchChart();
+  else if (charts.watchChart) { charts.watchChart.destroy(); delete charts.watchChart; }
   renderTable();
   renderContent();
 }
@@ -823,6 +844,13 @@ function renderOverview() {
 
 function renderContent() {
   if (!state.data.content) return;
+  const sortOptions = [
+    ['views', 'By views'],
+    ...(focusedPlatform() === 'instagram' ? [['reach', 'By reach']] : []),
+    ['eng', 'By engagement'],
+  ];
+  if (!sortOptions.some(([value]) => value === state.contentSort)) state.contentSort = 'views';
+  $('#contentSort').innerHTML = sortOptions.map(([value, label]) => `<option value="${value}">${label}</option>`).join('');
   $('#contentSort').value = state.contentSort;
 
   const period = { start: state.rangeStart, end: state.rangeEnd, label: rangeLabel(state.rangeStart, state.rangeEnd) };
@@ -905,6 +933,14 @@ function renderPlatformFilter() {
   }
 }
 
+function renderChartVisibility() {
+  const focus = focusedPlatform();
+  $('#viewsCard').hidden = false;
+  $('#postsCard').hidden = false;
+  $('#reachCard').hidden = focus !== 'instagram';
+  $('#watchCard').hidden = focus !== 'youtube';
+}
+
 function renderKpis() {
   const noun = GRAN_NOUN[state.granularity];
 
@@ -917,7 +953,7 @@ function renderKpis() {
     : showing.map(cap).join(', ');
   $('#kpisTitle').innerHTML = `Metric Totals <span class="scope">(${scope})</span>`;
 
-  $('#kpis').innerHTML = METRICS.map((m) => {
+  $('#kpis').innerHTML = visibleMetrics().map((m) => {
     const curr = totalAt(m.key, 0);
     const prev = totalAt(m.key, 1);
     const note = pendingOnly ? 'pending approval' : (m.key === 'watchTime' ? 'YouTube · selected range' : 'selected range');
@@ -1012,9 +1048,11 @@ function renderWatchChart() {
 
 function renderTable() {
   const ps = platforms();
+  const metrics = visibleMetrics();
   const pendingOnly = ps.length > 0 && ps.every(isPendingPlatform);
+  $('#weekTable thead').innerHTML = `<tr><th>Platform</th>${metrics.map((m) => `<th class="num">${escapeHtml(m.label)}</th>`).join('')}<th>Status</th></tr>`;
   $('#weekTable tbody').innerHTML = ps.map((p) => {
-    const cells = METRICS.map((m) => {
+    const cells = metrics.map((m) => {
       const curr = platformAt(p, m.key, 0);
       const prev = platformAt(p, m.key, 1);
       if (!supports(p, m.key)) return `<td class="num muted">—</td>`;
@@ -1024,7 +1062,7 @@ function renderTable() {
     return `<tr class="${status.cls === 'stale' ? 'stale-row' : ''}"><td><span class="pill ${p}">${nameOf(p)}</span></td>${cells}<td><span class="source-badge ${status.cls}">${escapeHtml(status.label)}</span></td></tr>`;
   }).join('');
 
-  const totalCells = METRICS.map((m) => {
+  const totalCells = metrics.map((m) => {
     const curr = totalAt(m.key, 0);
     const prev = totalAt(m.key, 1);
     const val = m.key === 'watchTime' && curr === 0 ? null : curr;

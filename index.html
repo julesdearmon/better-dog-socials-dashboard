@@ -72,20 +72,20 @@
     <p class="chart-hint" id="chartHint">Click any chart point for details.</p>
 
     <section class="grid">
-      <div class="card chart-card">
+      <div class="card chart-card" id="viewsCard">
         <div class="card-head"><h2 id="viewsTitle">Views</h2><span class="card-sub">by platform + total</span></div>
         <div class="chart-box"><canvas id="viewsChart"></canvas></div>
       </div>
-      <div class="card chart-card">
+      <div class="card chart-card" id="reachCard">
         <div class="card-head"><h2 id="reachTitle">Reach</h2><span class="card-sub">by platform + total</span></div>
         <div class="chart-box"><canvas id="reachChart"></canvas></div>
         <p class="chart-note">Reach currently reflects <strong>Instagram Reach</strong>. Daily reach is unique per day, while the selected-range total is deduplicated by Meta. Facebook, YouTube, and TikTok do not provide a matching public reach metric for this dashboard.</p>
       </div>
-      <div class="card chart-card">
+      <div class="card chart-card" id="watchCard">
         <div class="card-head"><h2>YouTube watch time</h2><span class="card-sub" id="watchSub">hours</span></div>
         <div class="chart-box"><canvas id="watchChart"></canvas></div>
       </div>
-      <div class="card chart-card">
+      <div class="card chart-card" id="postsCard">
         <div class="card-head"><h2 id="postsTitle">Posts</h2><span class="card-sub">by platform + total</span></div>
         <div class="chart-box"><canvas id="postsChart"></canvas></div>
       </div>
@@ -112,14 +112,6 @@
       <div class="table-wrap">
         <table class="posts-table" id="weekTable">
           <thead>
-            <tr>
-              <th>Platform</th>
-              <th class="num">Views</th>
-              <th class="num">Reach</th>
-              <th class="num">Watch time</th>
-              <th class="num">Posts</th>
-              <th>Status</th>
-            </tr>
           </thead>
           <tbody></tbody>
           <tfoot></tfoot>
