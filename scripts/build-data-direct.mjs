@@ -800,18 +800,18 @@ async function pullYouTube() {
   const { id, handle } = ACCT.youtube;
   const daily = emptyDaily();
 
-  const traffic = await youtubeAnalytics(token, {
+  const dailyTotals = await youtubeAnalytics(token, {
     ids: 'channel==MINE',
     startDate: START,
     endDate: END,
     metrics: 'views,estimatedMinutesWatched',
-    dimensions: 'day,insightTrafficSourceType',
+    dimensions: 'day',
     sort: 'day',
     maxResults: '10000',
   });
-  for (const row of traffic.rows || []) {
-    const [date, source, views, watchTime] = row;
-    if (!inAxis(date) || String(source).toUpperCase() === 'ADVERTISING') continue;
+  for (const row of dailyTotals.rows || []) {
+    const [date, views, watchTime] = row;
+    if (!inAxis(date)) continue;
     const b = daily.get(date);
     b.views += num(views);
     b.watchTime += num(watchTime);
@@ -868,7 +868,7 @@ async function pullYouTube() {
   }
 
   return {
-    metric: { platform: 'youtube', handle, source: 'live', provider: 'youtube-apis', hasWatchTime: true, hasReach: false, organicOnly: true, asOf: ASOF, daily: toArr(daily) },
+    metric: { platform: 'youtube', handle, source: 'live', provider: 'youtube-analytics-api:channel-daily-totals', hasWatchTime: true, hasReach: false, organicOnly: false, asOf: ASOF, daily: toArr(daily) },
     content,
   };
 }
