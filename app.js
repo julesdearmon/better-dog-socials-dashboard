@@ -176,17 +176,15 @@ function presetRange(name, asOfMs) {
   const d = new Date(base);
   let diff = (d.getUTCDay() - 4 + 7) % 7; if (diff === 0) diff = 7;
   const thu = base - diff * DAY;                              // most recent completed Thursday
+  const thisWeekStart = base - ((d.getUTCDay() - 5 + 7) % 7) * DAY; // current Friday-Thursday reporting week
   const monthFirst = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1);
   const lastMonthEnd = monthFirst - DAY;                      // last day of the previous month
-  const lmE = new Date(lastMonthEnd);
-  const lastMonthStart = Date.UTC(lmE.getUTCFullYear(), lmE.getUTCMonth(), 1);
+  const lastMonth = new Date(lastMonthEnd);
+  const lastMonthStart = Date.UTC(lastMonth.getUTCFullYear(), lastMonth.getUTCMonth(), 1);
+  if (name === 'this-week') return { start: iso(thisWeekStart), end: iso(base), gran: 'daily' };
   if (name === 'last-week') return { start: iso(thu - 6 * DAY), end: iso(thu), gran: 'daily' };
-  if (name === 'last-4-weeks') return { start: iso(thu - (4 * 7 - 1) * DAY), end: iso(thu), gran: 'weekly' };
   if (name === 'last-month') return { start: iso(lastMonthStart), end: iso(lastMonthEnd), gran: 'daily' };
-  if (name === 'last-3-months') {
-    const start = Date.UTC(lmE.getUTCFullYear(), lmE.getUTCMonth() - 2, 1);
-    return { start: iso(start), end: iso(lastMonthEnd), gran: 'monthly' };
-  }
+  if (name === 'this-month') return { start: iso(monthFirst), end: iso(base), gran: 'daily' };
   return null;
 }
 
