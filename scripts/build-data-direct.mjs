@@ -516,6 +516,8 @@ async function pullInstagram() {
       hasWatchTime: false,
       hasReach: accountInsightSummary ? accountInsightSummary.hasReach : true,
       reachUnavailableReason: accountInsightSummary && !accountInsightSummary.hasReach ? 'Current Instagram account insight fallback did not provide reach.' : '',
+      postProvider: 'meta-ig-media',
+      postDefinition: 'Published Instagram media posts and Reels returned by the Instagram media edge. Stories are not included.',
       asOf: ASOF,
       daily: toArr(daily),
     },
@@ -910,7 +912,19 @@ async function pullYouTube() {
   }
 
   return {
-    metric: { platform: 'youtube', handle, source: 'live', provider: 'youtube-analytics-api:channel-daily-totals', hasWatchTime: true, hasReach: false, organicOnly: false, asOf: ASOF, daily: toArr(daily) },
+    metric: {
+      platform: 'youtube',
+      handle,
+      source: 'live',
+      provider: 'youtube-analytics-api:channel-daily-totals',
+      hasWatchTime: true,
+      hasReach: false,
+      organicOnly: false,
+      postProvider: 'youtube-data-api:uploads-playlist',
+      postDefinition: 'Published YouTube uploads from the channel uploads playlist, including Shorts and standard videos.',
+      asOf: ASOF,
+      daily: toArr(daily),
+    },
     content,
   };
 }
