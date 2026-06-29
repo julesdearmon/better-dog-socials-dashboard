@@ -46,6 +46,8 @@ jobs:
           YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
           YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
           YOUTUBE_CHANNEL_ID: ${{ secrets.YOUTUBE_CHANNEL_ID }}
+          TIKTOK_BUSINESS_ACCESS_TOKEN: ${{ secrets.TIKTOK_BUSINESS_ACCESS_TOKEN }}
+          TIKTOK_BUSINESS_ID: ${{ secrets.TIKTOK_BUSINESS_ID }}
           TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
           TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
           TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_REFRESH_TOKEN }}
@@ -53,6 +55,7 @@ jobs:
         run: |
           if [ -n "$META_USER_ACCESS_TOKEN" ] || [ -n "$META_PAGE_ACCESS_TOKEN" ] || [ -n "$META_ACCESS_TOKEN" ] || \
              { [ -n "$YOUTUBE_CLIENT_ID" ] && [ -n "$YOUTUBE_CLIENT_SECRET" ] && [ -n "$YOUTUBE_REFRESH_TOKEN" ]; } || \
+             { [ -n "$TIKTOK_BUSINESS_ACCESS_TOKEN" ] && [ -n "$TIKTOK_BUSINESS_ID" ]; } || \
              { [ -n "$TIKTOK_CLIENT_KEY" ] && [ -n "$TIKTOK_CLIENT_SECRET" ] && [ -n "$TIKTOK_REFRESH_TOKEN" ]; }; then
             echo "Using direct platform APIs."
             node scripts/build-data-direct.mjs

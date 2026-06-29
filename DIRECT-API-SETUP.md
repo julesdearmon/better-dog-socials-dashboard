@@ -102,7 +102,29 @@ Useful docs:
 
 ### TikTok
 
-Required secrets:
+Preferred path: TikTok API for Business / Organic API.
+
+The regular TikTok for Developers app review was rejected for this dashboard
+because TikTok does not approve personal/company-internal dashboard use through
+that developer product. Use the Business API portal instead:
+
+- https://business-api.tiktok.com/portal
+- Organic API docs: https://business-api.tiktok.com/portal/docs/organic-api/v1.3
+
+Required Business API secrets:
+
+```text
+TIKTOK_BUSINESS_ACCESS_TOKEN
+TIKTOK_BUSINESS_ID
+```
+
+The direct builder now prefers TikTok Business/Organic API when those two
+secrets are present. It calls TikTok's business video list endpoint and maps
+video/post views, engagement, post date, URL, and reach when TikTok returns it.
+If the Business API app is not approved yet, leave these blank; the dashboard
+will keep TikTok marked pending and excluded from totals.
+
+Legacy fallback only:
 
 ```text
 TIKTOK_CLIENT_KEY
@@ -110,13 +132,10 @@ TIKTOK_CLIENT_SECRET
 TIKTOK_REFRESH_TOKEN
 ```
 
-The fast internal TikTok integration uses the Display API / Login Kit
-`video.list` endpoint. That endpoint gives public video posts plus fields like
-views, likes, comments, shares, title, and share URL.
-
-Important limitation: TikTok Display API does not expose organic reach in the
-same way Supermetrics currently does, so the direct TikTok connector marks
-TikTok reach as unavailable. Views and engagement remain available.
+These are for the TikTok for Developers Display API / Login Kit `video.list`
+endpoint. TikTok rejected that path for the internal reporting dashboard, so it
+should only be used if TikTok explicitly approves a future public-facing use
+case.
 
 TikTok access tokens expire quickly and are refreshed using the refresh token.
 TikTok may rotate refresh tokens; if the workflow log warns that it returned a
@@ -164,5 +183,5 @@ Set the needed environment variables first.
   uses post impressions as the closest all-post "views" equivalent.
 - YouTube: daily views/watch time are channel analytics by traffic source, with
   advertising excluded. Per-video top-content stats come from video statistics.
-- TikTok: direct Display API does not expose reach. We should revisit TikTok
-  Business/Marketing API access if TikTok reach is a hard requirement.
+- TikTok: use the Business/Organic API path for the internal dashboard. TikTok
+  for Developers / Display API is retained only as a legacy fallback.

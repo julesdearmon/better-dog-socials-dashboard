@@ -85,6 +85,8 @@ const metaInsightDay = (endTime) => {
   d.setUTCDate(d.getUTCDate() - 1);
   return ymd(d);
 };
+const hasTikTokBusinessCreds = () => !!(process.env.TIKTOK_BUSINESS_ACCESS_TOKEN && process.env.TIKTOK_BUSINESS_ID);
+const hasTikTokDisplayCreds = () => !!(process.env.TIKTOK_CLIENT_KEY && process.env.TIKTOK_CLIENT_SECRET && process.env.TIKTOK_REFRESH_TOKEN);
 
 function friendlyStamp() {
   return new Intl.DateTimeFormat('en-US', {
@@ -889,6 +891,9 @@ async function tiktokAccessToken() {
 }
 
 async function pullTikTok() {
+  if (hasTikTokBusinessCreds()) {
+    return pullTikTokBusiness();
+  }
   const token = await tiktokAccessToken();
   const { handle } = ACCT.tiktok;
   const daily = emptyDaily();
@@ -930,6 +935,136 @@ async function pullTikTok() {
 
   return {
     metric: { platform: 'tiktok', handle, source: 'live', provider: 'tiktok-display-api', hasWatchTime: false, hasReach: false, reachUnavailableReason: 'TikTok Display API does not expose organic reach.', asOf: ASOF, daily: toArr(daily) },
+    content,
+  };
+}
+
+async function tiktokBusinessGet(path, params = {}) {
+  const token = process.env.TIKTOK_BUSINESS_ACCESS_TOKEN;
+  if (!token) throw new Error('TIKTOK_BUSINESS_ACCESS_TOKEN is required');
+  const url = new URL(`https://business-api.tiktok.com/open_api/v1.3/${path.replace(/^\//, '')}`);
+  for (const [key, value] of Object.entries(params)) {
+    if (value != null && value !== '') url.searchParams.set(key, typeof value === 'string' ? value : JSON.stringify(value));
+  }
+  const res = await fetchWithTimeout(url.toString(), { headers: { 'Access-Token': token } });
+  const text = await res.text();
+  let json;
+  try {
+    json = text ? JSON.parse(text) : {};
+  } catch {
+    throw new Error(`Non-JSON response from ${safeUrl(url)}: ${text.slice(0, 300)}`);
+  }
+  if (!res.ok || (json.code != null && json.code !== 0)) {
+    throw new Error(`${res.status} ${json.message || json.msg || JSON.stringify(json)}`);
+  }
+  return json;
+}
+
+function firstDefined(obj, paths) {
+  for (const path of paths) {
+    const value = path.split('.').reduce((cur, key) => (cur == null ? undefined : cur[key]), obj);
+    if (value != null && value !== '') return value;
+  }
+  return undefined;
+}
+
+function tiktokBusinessRows(data) {
+  if (Array.isArray(data?.list)) return data.list;
+  if (Array.isArray(data?.videos)) return data.videos;
+  if (Array.isArray(data?.posts)) return data.posts;
+  if (Array.isArray(data?.items)) return data.items;
+  if (Array.isArray(data?.data?.list)) return data.data.list;
+  if (Array.isArray(data?.data?.videos)) return data.data.videos;
+  return [];
+}
+
+function tiktokBusinessDate(item) {
+  const raw = firstDefined(item, ['create_time', 'createTime', 'publish_time', 'publishTime', 'create_date', 'date']);
+  if (raw == null) return '';
+  if (typeof raw === 'number' || /^\d+$/.test(String(raw))) {
+    const n = num(raw);
+    return ymd(new Date(n > 2_000_000_000 ? n : n * 1000));
+  }
+  return dateOnly(raw);
+}
+
+async function pullTikTokBusiness() {
+  const { handle } = ACCT.tiktok;
+  const businessId = process.env.TIKTOK_BUSINESS_ID;
+  if (!businessId) throw new Error('TIKTOK_BUSINESS_ID is required');
+  const daily = emptyDaily();
+  const content = [];
+  const fields = [
+    'item_id',
+    'video_id',
+    'create_time',
+    'share_url',
+    'video_url',
+    'caption',
+    'title',
+    'metrics',
+    'view_count',
+    'like_count',
+    'comment_count',
+    'share_count',
+    'reach',
+  ];
+  let page = 1;
+  let hasMore = true;
+
+  while (hasMore && page <= 50) {
+    const json = await tiktokBusinessGet('/business/video/list/', {
+      business_id: businessId,
+      start_date: START,
+      end_date: END,
+      page,
+      page_size: 100,
+      fields,
+    });
+    const data = json.data || {};
+    const rows = tiktokBusinessRows(data);
+    for (const item of rows) {
+      const date = tiktokBusinessDate(item);
+      if (!inAxis(date)) continue;
+      const views = num(firstDefined(item, ['metrics.views', 'metrics.video_views', 'metrics.view_count', 'video_views', 'view_count']));
+      const reach = firstDefined(item, ['metrics.reach', 'reach']);
+      const likes = num(firstDefined(item, ['metrics.likes', 'metrics.like_count', 'likes', 'like_count']));
+      const comments = num(firstDefined(item, ['metrics.comments', 'metrics.comment_count', 'comments', 'comment_count']));
+      const shares = num(firstDefined(item, ['metrics.shares', 'metrics.share_count', 'shares', 'share_count']));
+      const b = daily.get(date);
+      if (!b) continue;
+      b.posts += 1;
+      b.views += views;
+      if (reach != null) b.reach += num(reach);
+      content.push({
+        platform: 'tiktok',
+        date,
+        url: firstDefined(item, ['share_url', 'video_url', 'url']) || '',
+        title: caption(firstDefined(item, ['caption', 'title', 'video_title'])),
+        type: 'Short Form Clip',
+        views,
+        reach: reach == null ? null : num(reach),
+        eng: likes + comments + shares,
+      });
+    }
+    const pageInfo = data.page_info || data.pageInfo || {};
+    hasMore = Boolean(data.has_more || data.hasMore || pageInfo.has_more || pageInfo.hasMore || (pageInfo.total_page && page < num(pageInfo.total_page)));
+    page += 1;
+  }
+
+  const hasReach = content.some((item) => item.reach != null);
+  return {
+    metric: {
+      platform: 'tiktok',
+      handle,
+      source: 'live',
+      provider: 'tiktok-business-organic-api',
+      hasWatchTime: false,
+      hasReach,
+      reachUnavailableReason: hasReach ? '' : 'TikTok Business Organic API did not return reach for the connected account.',
+      asOf: ASOF,
+      daily: toArr(daily),
+    },
     content,
   };
 }
@@ -991,7 +1126,7 @@ async function main() {
     ['instagram', pullInstagram, !!metaBaseToken()],
     ['facebook', pullFacebook, !!metaBaseToken()],
     ['youtube', pullYouTube, !!(process.env.YOUTUBE_CLIENT_ID && process.env.YOUTUBE_CLIENT_SECRET && process.env.YOUTUBE_REFRESH_TOKEN)],
-    ['tiktok', pullTikTok, !!(process.env.TIKTOK_CLIENT_KEY && process.env.TIKTOK_CLIENT_SECRET && process.env.TIKTOK_REFRESH_TOKEN)],
+    ['tiktok', pullTikTok, hasTikTokBusinessCreds() || hasTikTokDisplayCreds()],
   ]) {
     if (!configured) {
       errors.push(`${name}: credentials not configured`);
