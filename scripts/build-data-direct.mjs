@@ -541,6 +541,7 @@ async function pullFacebook() {
   const pageInsightSummary = applyFacebookPageInsights(daily, pageInsights);
   const pageViewsOnly = pageInsightSummary.viewsMetric === 'page_views_total';
   const hasFacebookContentViews = ['page_media_view', 'page_total_media_view'].includes(pageInsightSummary.viewsMetric);
+  const postCountSummary = await applyFacebookPublishedPostCounts(daily, token);
 
   if (!hasFacebookContentViews) {
     console.warn('  - Facebook Business Suite content views unavailable; skipping post-detail probes that do not match Content Overview totals.');
@@ -557,6 +558,8 @@ async function pullFacebook() {
         hasWatchTime: false,
         hasReach: false,
         reachUnavailableReason: 'Facebook does not expose a supported content reach metric through the public Meta API. Business Suite Viewers is not the same calculation as Meta Page Insights unique media views.',
+        postProvider: postCountSummary.provider,
+        postDefinition: 'Published Facebook Page posts returned by the Page published_posts edge. Stories are not included.',
         asOf: ASOF,
         daily: toArr(daily),
       },
@@ -576,6 +579,8 @@ async function pullFacebook() {
       hasWatchTime: false,
       hasReach: false,
       reachUnavailableReason: 'Facebook does not expose a supported content reach metric through the public Meta API. Business Suite Viewers is not the same calculation as Meta Page Insights unique media views.',
+      postProvider: postCountSummary.provider,
+      postDefinition: 'Published Facebook Page posts returned by the Page published_posts edge. Stories are not included.',
       asOf: ASOF,
       daily: toArr(daily),
     },
@@ -663,6 +668,43 @@ async function pullFacebook() {
     },
     content,
   };
+}
+
+async function applyFacebookPublishedPostCounts(daily, token) {
+  const { id } = ACCT.facebook;
+  const fields = 'id,created_time';
+  const endpoints = ['published_posts', 'posts'];
+  const seen = new Set();
+  let lastError = null;
+
+  for (const endpoint of endpoints) {
+    try {
+      for (let chunkStart = START; chunkStart <= END; chunkStart = addDays(chunkStart, 30)) {
+        const chunkEnd = minIso(addDays(chunkStart, 29), END);
+        const chunk = await metaPaged(
+          `/${id}/${endpoint}`,
+          { fields, limit: 100, since: unixDay(chunkStart), until: unixDay(chunkEnd, true) },
+          null,
+          token
+        );
+        for (const post of chunk) {
+          if (!post.id || seen.has(post.id)) continue;
+          const date = dateOnly(post.created_time);
+          if (!inAxis(date)) continue;
+          seen.add(post.id);
+          daily.get(date).posts += 1;
+        }
+      }
+      console.log(`  - Facebook post counts: ${seen.size} published posts from /${endpoint}.`);
+      return { count: seen.size, provider: `meta-page-${endpoint}` };
+    } catch (err) {
+      lastError = err;
+      console.warn(`  - Facebook post count via /${endpoint} unavailable: ${err.message}`);
+    }
+  }
+
+  console.warn(`  - Facebook post counts unavailable: ${lastError?.message || 'unknown error'}`);
+  return { count: 0, provider: 'unavailable' };
 }
 
 function completeFriThuWeeks(count = 12) {
@@ -1135,7 +1177,8 @@ async function main() {
     }
     try {
       results[name] = await fn();
-      console.log(`  OK ${name}: ${results[name].content.length} posts`);
+      const postTotal = (results[name].metric.daily || []).reduce((sum, row) => sum + (row.posts || 0), 0);
+      console.log(`  OK ${name}: ${postTotal} posts`);
     } catch (err) {
       errors.push(`${name}: ${err.message}`);
       console.error(`  FAIL ${name}: ${err.message}`);

@@ -91,6 +91,10 @@ High-level steps:
 
 Notes:
 
+- The dashboard's `Posts` metric means published feed/video items inside the
+  selected date range. It currently includes Instagram media posts/Reels,
+  Facebook Page published posts, and YouTube uploads. It does not include
+  Instagram or Facebook Stories.
 - If Meta says no permissions are available, refresh the page and confirm the
   app role/system user assignment.
 - For dashboard totals, use account/page-level daily insights for the selected
