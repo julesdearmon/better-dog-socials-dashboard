@@ -684,13 +684,15 @@ async function applyFacebookPublishedPostCounts(daily, token) {
   ].join(',');
   const basicFields = [
     'id', 'created_time', 'permalink_url', 'message', 'status_type',
-    'attachments{media_type,type}', 'shares', 'reactions.summary(true)', 'comments.summary(true)',
+    'attachments{media_type,type}', 'shares',
   ].join(',');
+  const postListFields = 'id,created_time,permalink_url,message,status_type';
+  const minimalFields = 'id,created_time';
   const endpoints = ['published_posts', 'posts'];
   let lastError = null;
 
   for (const endpoint of endpoints) {
-    for (const [fieldLabel, fields] of [['with-insights', fullFields], ['basic', basicFields]]) {
+    for (const [fieldLabel, fields] of [['with-insights', fullFields], ['basic', basicFields], ['post-list', postListFields], ['minimal', minimalFields]]) {
       const seen = new Set();
       const posts = [];
       const countsByDate = new Map();
