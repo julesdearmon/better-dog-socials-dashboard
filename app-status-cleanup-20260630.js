@@ -826,13 +826,14 @@ function renderOverview() {
 
 function renderContent() {
   if (!state.data.content) return;
+  const focus = focusedPlatform();
   const sortOptions = [
-    ['views', 'By views'],
-    ...(focusedPlatform() === 'instagram' ? [['reach', 'By reach']] : []),
-    ...(focusedPlatform() === 'youtube' ? [['watchTime', 'By watch time']] : []),
+    ...(focus === 'facebook' ? [] : [['views', 'By views']]),
+    ...(focus === 'instagram' ? [['reach', 'By reach']] : []),
+    ...(focus === 'youtube' ? [['watchTime', 'By watch time']] : []),
     ['eng', 'By engagement'],
   ];
-  if (!sortOptions.some(([value]) => value === state.contentSort)) state.contentSort = 'views';
+  if (!sortOptions.some(([value]) => value === state.contentSort)) state.contentSort = sortOptions[0][0];
   $('#contentSort').innerHTML = sortOptions.map(([value, label]) => `<option value="${value}">${label}</option>`).join('');
   $('#contentSort').value = state.contentSort;
 
@@ -855,7 +856,8 @@ function renderContent() {
     return { p, top };
   });
 
-  const contentColumns = (platform) => {
+  const contentColumns = (platform, rows) => {
+    const hasViews = platform !== 'facebook' || rows.some((c) => c.views != null);
     const base = [
       { label: '#', cls: '', value: (_c, i) => i + 1 },
       { label: 'Content', cls: '', value: (c) => {
@@ -866,8 +868,8 @@ function renderContent() {
       } },
       { label: 'Type', cls: '', value: (c) => `<span class="type-tag">${escapeHtml(c.type || '-')}</span>` },
       { label: 'Date', cls: '', value: (c) => c.date },
-      { label: 'Views', cls: 'num', value: (c) => fmtFull(c.views) },
     ];
+    if (hasViews) base.push({ label: 'Views', cls: 'num', value: (c) => fmtFull(c.views) });
     if (platform === 'instagram') base.push({ label: 'Reach', cls: 'num', value: (c) => fmtFull(c.reach) });
     if (platform === 'youtube') base.push({ label: 'Watch time', cls: 'num', value: (c) => c.watchTime == null ? '-' : `${fmt(c.watchTime / 60)} hrs` });
     base.push({ label: 'Engagement', cls: 'num', value: (c) => fmtFull(c.eng) });
@@ -875,7 +877,7 @@ function renderContent() {
   };
 
   const tableHtml = (platform, rows) => {
-    const cols = contentColumns(platform);
+    const cols = contentColumns(platform, rows);
     return `<div class="table-wrap"><table class="posts-table">
       <thead><tr>${cols.map((col) => `<th${col.cls ? ` class="${col.cls}"` : ''}>${escapeHtml(col.label)}</th>`).join('')}</tr></thead>
       <tbody>${rows.map((c, i) => `<tr>${cols.map((col) => `<td${col.cls ? ` class="${col.cls}"` : ''}>${col.value(c, i)}</td>`).join('')}</tr>`).join('')}</tbody>
