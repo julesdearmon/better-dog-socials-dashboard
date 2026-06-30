@@ -492,20 +492,13 @@ function updateMode() {
     const dl = state.data.metrics.instagram ? state.data.metrics.instagram.daily : [];
     const through = dl.length ? niceDate(dl[dl.length - 1].date) : niceDate(state.data.asOf);
     const updated = state.data.updatedAt || 'unknown';
-    const { fresh, pending } = freshnessSummary();
-    const pendingText = pending.length ? ` · Pending: ${pending.map((x) => x.split(' from ')[0]).join(', ')}` : '';
-    const errors = (state.data.directApiErrors || []).length ? ` · Errors: ${state.data.directApiErrors.join(' | ')}` : '';
-    note.textContent = `Updated ${updated} · Data through ${through} · Fresh: ${fresh.join(', ') || 'none'}${pendingText}${errors}`;
-    note.hidden = false;
-    return;
-  }
-  if (live) {
-    const src = state.data.generatedFrom ? ` · ${state.data.generatedFrom}` : '';
-    // "Through" = the latest day actually in the data; "updated" = when it was last refreshed.
-    const dl = state.data.metrics.instagram ? state.data.metrics.instagram.daily : [];
-    const through = dl.length ? niceDate(dl[dl.length - 1].date) : niceDate(state.data.asOf);
-    const updated = state.data.updatedAt ? ` · last updated ${state.data.updatedAt}` : '';
-    note.textContent = `✓ Live data through ${through}${updated}${src}`;
+    const errors = state.data.directApiErrors || [];
+    const tiktokPending = errors.some((x) => /^tiktok:/i.test(x)) || isPendingPlatform('tiktok');
+    const realErrors = errors.filter((x) => !/^tiktok:/i.test(x));
+    const parts = [`Updated ${updated}`, `Data through ${through}`];
+    if (tiktokPending) parts.push('TikTok not connected yet');
+    if (realErrors.length) parts.push(`⚠️ Connection issue: ${realErrors.join(' | ')}`);
+    note.textContent = parts.join(' - ');
     note.hidden = false;
   } else {
     note.hidden = true;
@@ -518,21 +511,15 @@ function niceDate(iso) {
 
 function renderDataQuality() {
   const quality = $('#dataQualityNote');
-  const { pending } = freshnessSummary();
   const notes = [];
-  if (pending.length) {
-    notes.push(`${escapeHtml(pending.map((x) => x.split(' from ')[0]).join(', '))} is pending and excluded from totals until live API access is approved.`);
-  }
-  const overrideActive = [];
+  const realErrors = (state.data.directApiErrors || []).filter((x) => !/^tiktok:/i.test(x));
+  if (realErrors.length) notes.push(`⚠️ Connection issue: ${escapeHtml(realErrors.join(' | '))}`);
   for (const p of allPlatforms()) {
     const m = state.data.metrics[p] || {};
     const override = businessSuiteOverride(p, state.rangeStart, state.rangeEnd);
-    if (override) overrideActive.push(nameOf(p));
     if (!override && m.hasViews === false && m.viewsUnavailableReason) notes.push(`${escapeHtml(nameOf(p))}: ${escapeHtml(m.viewsUnavailableReason)}`);
-    if (p === 'facebook' && m.hasReach === false && m.reachUnavailableReason) notes.push('Facebook reach is hidden because Meta does not expose a public metric that matches Business Suite Viewers.');
     if (!override && m.provider === 'meta-media-insights-api') notes.push(`${escapeHtml(nameOf(p))}: Meta account-level date-range views were not available, so this uses media-level post insights for content published in the selected range.`);
   }
-  if (overrideActive.length) notes.push(`${escapeHtml(overrideActive.join(', '))}: using Business Suite-matched totals where available.`);
   if (!notes.length) {
     quality.hidden = true;
     return;
@@ -540,10 +527,9 @@ function renderDataQuality() {
   if ((window.BUSINESS_SUITE_OVERRIDES?.ranges || []).some((r) => r.start === state.rangeStart && r.end === state.rangeEnd)) {
     notes.push('Chart points are distributed from available daily API detail.');
   }
-  quality.innerHTML = `<strong>Data notes:</strong> ${[...new Set(notes)].join(' ')}`;
+  quality.innerHTML = [...new Set(notes)].join(' ');
   quality.hidden = false;
 }
-
 function setGranularity(g) {
   if (!GRAN_NOUN[g]) return;
   state.granularity = g;
@@ -1116,6 +1102,10 @@ function fmtMetricVal(key, v) {
 
 function showInsight(platform, metricKey, idx) {
   const panel = $('#insightPanel');
+  const period = state.periods[idx];
+  const scope = platform === 'total' ? 'All platforms' : nameOf(platform);
+  const metric = METRIC_NOUN[metricKey] || metricKey;
+  $('#insightTitle').textContent = period ? `${scope} ${metric} - ${period.label}` : 'Data insights';
   $('#insightBody').innerHTML = buildInsight(platform, metricKey, idx);
   panel.hidden = false;
   panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
