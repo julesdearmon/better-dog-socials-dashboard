@@ -641,9 +641,6 @@ function render() {
   $('#viewsTitle').textContent = `Views per ${noun}`;
   $('#reachTitle').textContent = `Reach per ${noun}`;
   $('#watchSub').textContent = `hours per ${noun}`;
-  $('#tableTitle').textContent = `Selected range by platform`;
-  $('#tableWeekLabel').textContent = rLabel;
-
   renderPlatformFilter();
   renderChartVisibility();
   renderKpis();
@@ -654,7 +651,6 @@ function render() {
   else if (charts.reachChart) { charts.reachChart.destroy(); delete charts.reachChart; }
   if (!$('#watchCard')?.hidden) renderWatchChart();
   else if (charts.watchChart) { charts.watchChart.destroy(); delete charts.watchChart; }
-  renderTable();
   renderContent();
 }
 
