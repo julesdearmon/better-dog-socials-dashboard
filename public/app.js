@@ -853,11 +853,17 @@ function renderContent() {
   const key = state.contentSort;
 
   // Top 3 per platform across the selected range, grouped.
+  const contentScore = (c) => {
+    const primary = c[key];
+    if (primary != null && primary !== 0) return primary;
+    if (key === 'views' && c.platform === 'facebook') return c.eng || 0;
+    return primary || 0;
+  };
   const groups = platforms().map((p) => {
     if (isPendingPlatform(p)) return { p, top: [], pending: true };
     const top = state.data.content
       .filter((c) => c.platform === p && c.date >= period.start && c.date <= period.end)
-      .sort((a, b) => (b[key] || 0) - (a[key] || 0))
+      .sort((a, b) => contentScore(b) - contentScore(a))
       .slice(0, 3);
     return { p, top };
   });

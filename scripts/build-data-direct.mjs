@@ -677,47 +677,48 @@ async function pullFacebook() {
 
 async function applyFacebookPublishedPostCounts(daily, token) {
   const { id } = ACCT.facebook;
-  const fields = [
-    'id',
-    'created_time',
-    'permalink_url',
-    'message',
-    'status_type',
-    'attachments{media_type,type}',
-    'shares',
-    'reactions.summary(true)',
-    'comments.summary(true)',
-    'insights.metric(post_impressions,post_video_views,post_impressions_unique)',
+  const fullFields = [
+    'id', 'created_time', 'permalink_url', 'message', 'status_type',
+    'attachments{media_type,type}', 'shares', 'reactions.summary(true)',
+    'comments.summary(true)', 'insights.metric(post_impressions,post_video_views,post_impressions_unique)',
+  ].join(',');
+  const basicFields = [
+    'id', 'created_time', 'permalink_url', 'message', 'status_type',
+    'attachments{media_type,type}', 'shares', 'reactions.summary(true)', 'comments.summary(true)',
   ].join(',');
   const endpoints = ['published_posts', 'posts'];
-  const seen = new Set();
-  const posts = [];
   let lastError = null;
 
   for (const endpoint of endpoints) {
-    try {
-      for (let chunkStart = START; chunkStart <= END; chunkStart = addDays(chunkStart, 30)) {
-        const chunkEnd = minIso(addDays(chunkStart, 29), END);
-        const chunk = await metaPaged(
-          `/${id}/${endpoint}`,
-          { fields, limit: 100, since: unixDay(chunkStart), until: unixDay(chunkEnd, true) },
-          null,
-          token
-        );
-        for (const post of chunk) {
-          if (!post.id || seen.has(post.id)) continue;
-          const date = dateOnly(post.created_time);
-          if (!inAxis(date)) continue;
-          seen.add(post.id);
-          daily.get(date).posts += 1;
-          posts.push(post);
+    for (const [fieldLabel, fields] of [['with-insights', fullFields], ['basic', basicFields]]) {
+      const seen = new Set();
+      const posts = [];
+      const countsByDate = new Map();
+      try {
+        for (let chunkStart = START; chunkStart <= END; chunkStart = addDays(chunkStart, 30)) {
+          const chunkEnd = minIso(addDays(chunkStart, 29), END);
+          const chunk = await metaPaged(
+            `/${id}/${endpoint}`,
+            { fields, limit: 100, since: unixDay(chunkStart), until: unixDay(chunkEnd, true) },
+            null,
+            token
+          );
+          for (const post of chunk) {
+            if (!post.id || seen.has(post.id)) continue;
+            const date = dateOnly(post.created_time);
+            if (!inAxis(date)) continue;
+            seen.add(post.id);
+            posts.push(post);
+            countsByDate.set(date, (countsByDate.get(date) || 0) + 1);
+          }
         }
+        for (const [date, count] of countsByDate) daily.get(date).posts += count;
+        console.log(`  - Facebook post counts: ${seen.size} published posts from /${endpoint} (${fieldLabel}).`);
+        return { count: seen.size, provider: `meta-page-${endpoint}:${fieldLabel}`, posts };
+      } catch (err) {
+        lastError = err;
+        console.warn(`  - Facebook post count via /${endpoint} (${fieldLabel}) unavailable: ${err.message}`);
       }
-      console.log(`  - Facebook post counts: ${seen.size} published posts from /${endpoint}.`);
-      return { count: seen.size, provider: `meta-page-${endpoint}`, posts };
-    } catch (err) {
-      lastError = err;
-      console.warn(`  - Facebook post count via /${endpoint} unavailable: ${err.message}`);
     }
   }
 
@@ -744,7 +745,7 @@ function facebookPostContent(post) {
     url: post.permalink_url || '',
     title: caption(post.message),
     type: facebookPostType(post),
-    views: videoViews || impressions,
+    views: videoViews || impressions || null,
     reach,
     eng: num(post.reactions?.summary?.total_count) + num(post.comments?.summary?.total_count) + num(post.shares?.count),
   };
