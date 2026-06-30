@@ -930,6 +930,26 @@ async function pullYouTube() {
   } while (pageToken);
 
   const content = [];
+  const videoAnalytics = new Map();
+  if (videos.length) {
+    try {
+      const videoTotals = await youtubeAnalytics(token, {
+        ids: 'channel==MINE',
+        startDate: START,
+        endDate: END,
+        metrics: 'views,estimatedMinutesWatched',
+        dimensions: 'video',
+        filters: `video==${videos.map((v) => v.id).join(',')}`,
+        maxResults: '10000',
+      });
+      for (const row of videoTotals.rows || []) {
+        const [videoId, views, watchTime] = row;
+        videoAnalytics.set(videoId, { views: num(views), watchTime: num(watchTime) });
+      }
+    } catch (err) {
+      console.warn(`  - YouTube per-video analytics unavailable, using public video statistics only: ${err.message}`);
+    }
+  }
   for (let i = 0; i < videos.length; i += 50) {
     const batch = videos.slice(i, i + 50);
     const details = await youtubeData(token, 'videos', {
@@ -941,7 +961,8 @@ async function pullYouTube() {
       const date = dateOnly(item.snippet?.publishedAt);
       if (!inAxis(date)) continue;
       daily.get(date).posts += 1;
-      const views = num(item.statistics?.viewCount);
+      const analytics = videoAnalytics.get(item.id);
+      const views = analytics?.views ?? num(item.statistics?.viewCount);
       content.push({
         platform: 'youtube',
         date,
@@ -949,6 +970,7 @@ async function pullYouTube() {
         title: item.snippet?.title || '',
         type: isoDurationSeconds(item.contentDetails?.duration) <= 180 ? 'Short Form Clip' : 'Video',
         views,
+        watchTime: analytics?.watchTime ?? null,
         reach: null,
         eng: num(item.statistics?.likeCount) + num(item.statistics?.commentCount),
       });
