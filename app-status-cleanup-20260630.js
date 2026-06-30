@@ -829,6 +829,7 @@ function renderContent() {
   const sortOptions = [
     ['views', 'By views'],
     ...(focusedPlatform() === 'instagram' ? [['reach', 'By reach']] : []),
+    ...(focusedPlatform() === 'youtube' ? [['watchTime', 'By watch time']] : []),
     ['eng', 'By engagement'],
   ];
   if (!sortOptions.some(([value]) => value === state.contentSort)) state.contentSort = 'views';
@@ -854,21 +855,31 @@ function renderContent() {
     return { p, top };
   });
 
-  const rowHtml = (c, i) => {
-    const label = c.title && c.title.trim() ? c.title : `${capWord(c.platform)} post`;
-    const link = c.url && c.url !== '#'
-      ? `<a class="content-link" href="${escapeHtml(c.url)}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`
-      : escapeHtml(label);
-    const reach = c.reach == null ? '—' : fmtFull(c.reach);
-    return `<tr>
-      <td>${i + 1}</td>
-      <td class="content-title">${link}</td>
-      <td><span class="type-tag">${escapeHtml(c.type || '—')}</span></td>
-      <td>${c.date}</td>
-      <td class="num">${fmtFull(c.views)}</td>
-      <td class="num">${reach}</td>
-      <td class="num">${fmtFull(c.eng)}</td>
-    </tr>`;
+  const contentColumns = (platform) => {
+    const base = [
+      { label: '#', cls: '', value: (_c, i) => i + 1 },
+      { label: 'Content', cls: '', value: (c) => {
+        const label = c.title && c.title.trim() ? c.title : `${capWord(c.platform)} post`;
+        return c.url && c.url !== '#'
+          ? `<a class="content-link" href="${escapeHtml(c.url)}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`
+          : escapeHtml(label);
+      } },
+      { label: 'Type', cls: '', value: (c) => `<span class="type-tag">${escapeHtml(c.type || '-')}</span>` },
+      { label: 'Date', cls: '', value: (c) => c.date },
+      { label: 'Views', cls: 'num', value: (c) => fmtFull(c.views) },
+    ];
+    if (platform === 'instagram') base.push({ label: 'Reach', cls: 'num', value: (c) => fmtFull(c.reach) });
+    if (platform === 'youtube') base.push({ label: 'Watch time', cls: 'num', value: (c) => c.watchTime == null ? '-' : `${fmt(c.watchTime / 60)} hrs` });
+    base.push({ label: 'Engagement', cls: 'num', value: (c) => fmtFull(c.eng) });
+    return base;
+  };
+
+  const tableHtml = (platform, rows) => {
+    const cols = contentColumns(platform);
+    return `<div class="table-wrap"><table class="posts-table">
+      <thead><tr>${cols.map((col) => `<th${col.cls ? ` class="${col.cls}"` : ''}>${escapeHtml(col.label)}</th>`).join('')}</tr></thead>
+      <tbody>${rows.map((c, i) => `<tr>${cols.map((col) => `<td${col.cls ? ` class="${col.cls}"` : ''}>${col.value(c, i)}</td>`).join('')}</tr>`).join('')}</tbody>
+    </table></div>`;
   };
 
   $('#contentGroups').innerHTML = groups.map((g) => `
@@ -880,10 +891,7 @@ function renderContent() {
       ${g.pending
         ? `<p class="cg-empty">TikTok is pending approval. No live TikTok data is shown yet.</p>`
         : g.top.length
-        ? `<div class="table-wrap"><table class="posts-table">
-            <thead><tr><th>#</th><th>Content</th><th>Type</th><th>Date</th><th class="num">Views</th><th class="num">Reach</th><th class="num">Engagement</th></tr></thead>
-            <tbody>${g.top.map(rowHtml).join('')}</tbody>
-          </table></div>`
+        ? tableHtml(g.p, g.top)
         : `<p class="cg-empty">No posts in ${escapeHtml(period.label)}.</p>`}
     </div>
   `).join('');
