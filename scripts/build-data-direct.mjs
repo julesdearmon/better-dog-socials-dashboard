@@ -544,6 +544,9 @@ async function pullFacebook() {
   const pageViewsOnly = pageInsightSummary.viewsMetric === 'page_views_total';
   const hasFacebookContentViews = ['page_media_view', 'page_total_media_view'].includes(pageInsightSummary.viewsMetric);
   const postCountSummary = await applyFacebookPublishedPostCounts(daily, token);
+  for (const item of postCountSummary.posts || []) {
+    content.push(facebookPostContent(item));
+  }
 
   if (!hasFacebookContentViews) {
     console.warn('  - Facebook Business Suite content views unavailable; skipping post-detail probes that do not match Content Overview totals.');
@@ -674,9 +677,21 @@ async function pullFacebook() {
 
 async function applyFacebookPublishedPostCounts(daily, token) {
   const { id } = ACCT.facebook;
-  const fields = 'id,created_time';
+  const fields = [
+    'id',
+    'created_time',
+    'permalink_url',
+    'message',
+    'status_type',
+    'attachments{media_type,type}',
+    'shares',
+    'reactions.summary(true)',
+    'comments.summary(true)',
+    'insights.metric(post_impressions,post_video_views,post_impressions_unique)',
+  ].join(',');
   const endpoints = ['published_posts', 'posts'];
   const seen = new Set();
+  const posts = [];
   let lastError = null;
 
   for (const endpoint of endpoints) {
@@ -695,10 +710,11 @@ async function applyFacebookPublishedPostCounts(daily, token) {
           if (!inAxis(date)) continue;
           seen.add(post.id);
           daily.get(date).posts += 1;
+          posts.push(post);
         }
       }
       console.log(`  - Facebook post counts: ${seen.size} published posts from /${endpoint}.`);
-      return { count: seen.size, provider: `meta-page-${endpoint}` };
+      return { count: seen.size, provider: `meta-page-${endpoint}`, posts };
     } catch (err) {
       lastError = err;
       console.warn(`  - Facebook post count via /${endpoint} unavailable: ${err.message}`);
@@ -706,7 +722,32 @@ async function applyFacebookPublishedPostCounts(daily, token) {
   }
 
   console.warn(`  - Facebook post counts unavailable: ${lastError?.message || 'unknown error'}`);
-  return { count: 0, provider: 'unavailable' };
+  return { count: 0, provider: 'unavailable', posts: [] };
+}
+
+function facebookPostType(post) {
+  const s = `${post.status_type || ''} ${post.attachments?.data?.[0]?.media_type || ''} ${post.attachments?.data?.[0]?.type || ''}`.toLowerCase();
+  if (s.includes('video')) return 'Short Form Clip';
+  if (s.includes('album') || s.includes('carousel')) return 'Carousel';
+  if (s.includes('photo') || s.includes('image')) return 'Single Image';
+  return 'Text Post';
+}
+
+function facebookPostContent(post) {
+  const insights = post.insights || { data: [] };
+  const impressions = insightValue(insights, ['post_impressions']);
+  const videoViews = insightValue(insights, ['post_video_views']);
+  const reach = insightValue(insights, ['post_impressions_unique']);
+  return {
+    platform: 'facebook',
+    date: dateOnly(post.created_time),
+    url: post.permalink_url || '',
+    title: caption(post.message),
+    type: facebookPostType(post),
+    views: videoViews || impressions,
+    reach,
+    eng: num(post.reactions?.summary?.total_count) + num(post.comments?.summary?.total_count) + num(post.shares?.count),
+  };
 }
 
 function completeFriThuWeeks(count = 12) {
