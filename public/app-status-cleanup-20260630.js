@@ -867,7 +867,7 @@ function renderContent() {
           : escapeHtml(label);
       } },
       { label: 'Type', cls: '', value: (c) => `<span class="type-tag">${escapeHtml(c.type || '-')}</span>` },
-      { label: 'Date', cls: '', value: (c) => c.date },
+      { label: 'Date posted', cls: '', value: (c) => c.date },
     ];
     if (hasViews) base.push({ label: 'Views', cls: 'num', value: (c) => fmtFull(c.views) });
     if (platform === 'instagram') base.push({ label: 'Reach', cls: 'num', value: (c) => fmtFull(c.reach) });
