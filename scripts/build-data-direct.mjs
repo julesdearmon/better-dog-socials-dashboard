@@ -746,16 +746,15 @@ async function applyFacebookPublishedPostCounts(daily, token) {
 
 async function hydrateFacebookPostInsights(posts, token) {
   let viewsFound = 0;
-  let reachFound = 0;
   let source = '';
+  const limit = 8;
 
-  for (const post of posts) {
+  const hydrate = async (post) => {
     if (!post.id) continue;
     const path = `/${post.id}/insights`;
     const currentViews = await optionalMetaInsightMaybe(path, 'views', token);
     const videoViews = currentViews == null ? await optionalMetaInsightMaybe(path, 'post_video_views', token) : null;
     const impressions = currentViews == null && videoViews == null ? await optionalMetaInsightMaybe(path, 'post_impressions', token) : null;
-    const reach = await optionalMetaInsightMaybe(path, 'post_impressions_unique', token);
     const views = currentViews ?? videoViews ?? impressions;
 
     if (views != null) {
@@ -764,10 +763,10 @@ async function hydrateFacebookPostInsights(posts, token) {
       source ||= post._dashboardViewsSource;
       viewsFound += 1;
     }
-    if (reach != null) {
-      post._dashboardReach = reach;
-      reachFound += 1;
-    }
+  };
+
+  for (let i = 0; i < posts.length; i += limit) {
+    await Promise.all(posts.slice(i, i + limit).map(hydrate));
   }
 
   if (posts.length) {
@@ -776,7 +775,6 @@ async function hydrateFacebookPostInsights(posts, token) {
   return {
     provider: viewsFound ? `meta-post-insights:${source || 'mixed'}` : 'meta-post-insights:unavailable',
     viewsFound,
-    reachFound,
   };
 }
 
@@ -801,7 +799,7 @@ function facebookPostContent(post) {
     title: caption(post.message),
     type: facebookPostType(post),
     views,
-    reach: post._dashboardReach ?? reach,
+    reach,
     eng: num(post.reactions?.summary?.total_count) + num(post.comments?.summary?.total_count) + num(post.shares?.count),
   };
 }
