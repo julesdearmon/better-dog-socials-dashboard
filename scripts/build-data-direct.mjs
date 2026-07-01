@@ -750,7 +750,7 @@ async function hydrateFacebookPostInsights(posts, token) {
   const limit = 8;
 
   const hydrate = async (post) => {
-    if (!post.id) continue;
+    if (!post.id) return;
     const path = `/${post.id}/insights`;
     const currentViews = await optionalMetaInsightMaybe(path, 'views', token);
     const videoViews = currentViews == null ? await optionalMetaInsightMaybe(path, 'post_video_views', token) : null;
