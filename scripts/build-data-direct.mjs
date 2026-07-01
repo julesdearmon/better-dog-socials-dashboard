@@ -323,6 +323,17 @@ async function optionalMetaInsightValue(path, metricName, token = metaBaseToken(
   }
 }
 
+async function optionalMetaInsightMaybe(path, metricName, token = metaBaseToken()) {
+  try {
+    const insights = await metaGet(path, { metric: metricName }, token);
+    const item = (insights.data || []).find((x) => x.name === metricName);
+    const value = item?.values?.[0]?.value ?? item?.total_value?.value;
+    return value == null ? null : num(value);
+  } catch {
+    return null;
+  }
+}
+
 async function metaDailyInsights(path, metricSets, token = metaBaseToken(), label = path) {
   let lastError = null;
   for (const metricSet of metricSets) {
@@ -544,6 +555,7 @@ async function pullFacebook() {
   const pageViewsOnly = pageInsightSummary.viewsMetric === 'page_views_total';
   const hasFacebookContentViews = ['page_media_view', 'page_total_media_view'].includes(pageInsightSummary.viewsMetric);
   const postCountSummary = await applyFacebookPublishedPostCounts(daily, token);
+  const postInsightSummary = await hydrateFacebookPostInsights(postCountSummary.posts || [], token);
   for (const item of postCountSummary.posts || []) {
     content.push(facebookPostContent(item));
   }
@@ -564,6 +576,8 @@ async function pullFacebook() {
         hasReach: false,
         reachUnavailableReason: 'Facebook does not expose a supported content reach metric through the public Meta API. Business Suite Viewers is not the same calculation as Meta Page Insights unique media views.',
         postProvider: postCountSummary.provider,
+        postInsightProvider: postInsightSummary.provider,
+        postViewsFound: postInsightSummary.viewsFound,
         postDefinition: 'Published Facebook Page posts returned by the Page published_posts edge. Stories are not included.',
         asOf: ASOF,
         daily: toArr(daily),
@@ -585,6 +599,8 @@ async function pullFacebook() {
       hasReach: false,
       reachUnavailableReason: 'Facebook does not expose a supported content reach metric through the public Meta API. Business Suite Viewers is not the same calculation as Meta Page Insights unique media views.',
       postProvider: postCountSummary.provider,
+      postInsightProvider: postInsightSummary.provider,
+      postViewsFound: postInsightSummary.viewsFound,
       postDefinition: 'Published Facebook Page posts returned by the Page published_posts edge. Stories are not included.',
       asOf: ASOF,
       daily: toArr(daily),
@@ -728,6 +744,42 @@ async function applyFacebookPublishedPostCounts(daily, token) {
   return { count: 0, provider: 'unavailable', posts: [] };
 }
 
+async function hydrateFacebookPostInsights(posts, token) {
+  let viewsFound = 0;
+  let reachFound = 0;
+  let source = '';
+
+  for (const post of posts) {
+    if (!post.id) continue;
+    const path = `/${post.id}/insights`;
+    const currentViews = await optionalMetaInsightMaybe(path, 'views', token);
+    const videoViews = currentViews == null ? await optionalMetaInsightMaybe(path, 'post_video_views', token) : null;
+    const impressions = currentViews == null && videoViews == null ? await optionalMetaInsightMaybe(path, 'post_impressions', token) : null;
+    const reach = await optionalMetaInsightMaybe(path, 'post_impressions_unique', token);
+    const views = currentViews ?? videoViews ?? impressions;
+
+    if (views != null) {
+      post._dashboardViews = views;
+      post._dashboardViewsSource = currentViews != null ? 'views' : (videoViews != null ? 'post_video_views' : 'post_impressions');
+      source ||= post._dashboardViewsSource;
+      viewsFound += 1;
+    }
+    if (reach != null) {
+      post._dashboardReach = reach;
+      reachFound += 1;
+    }
+  }
+
+  if (posts.length) {
+    console.log(`  - Facebook post insights: views found for ${viewsFound}/${posts.length} posts${source ? ` via ${source}` : ''}.`);
+  }
+  return {
+    provider: viewsFound ? `meta-post-insights:${source || 'mixed'}` : 'meta-post-insights:unavailable',
+    viewsFound,
+    reachFound,
+  };
+}
+
 function facebookPostType(post) {
   const s = `${post.status_type || ''} ${post.attachments?.data?.[0]?.media_type || ''} ${post.attachments?.data?.[0]?.type || ''}`.toLowerCase();
   if (s.includes('video')) return 'Short Form Clip';
@@ -741,14 +793,15 @@ function facebookPostContent(post) {
   const impressions = insightValue(insights, ['post_impressions']);
   const videoViews = insightValue(insights, ['post_video_views']);
   const reach = insightValue(insights, ['post_impressions_unique']);
+  const views = post._dashboardViews ?? (videoViews || impressions || null);
   return {
     platform: 'facebook',
     date: dateOnly(post.created_time),
     url: post.permalink_url || '',
     title: caption(post.message),
     type: facebookPostType(post),
-    views: videoViews || impressions || null,
-    reach,
+    views,
+    reach: post._dashboardReach ?? reach,
     eng: num(post.reactions?.summary?.total_count) + num(post.comments?.summary?.total_count) + num(post.shares?.count),
   };
 }
