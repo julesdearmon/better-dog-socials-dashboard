@@ -790,6 +790,8 @@ async function hydrateFacebookPostInsights(posts, token) {
   let viewsFound = 0;
   let source = '';
   const limit = 8;
+  const maxPosts = Number(process.env.FACEBOOK_POST_INSIGHT_LIMIT || 80);
+  const postsToProbe = posts.slice(0, maxPosts);
 
   const hydrate = async (post) => {
     if (!post.id) return;
@@ -807,12 +809,12 @@ async function hydrateFacebookPostInsights(posts, token) {
     }
   };
 
-  for (let i = 0; i < posts.length; i += limit) {
-    await Promise.all(posts.slice(i, i + limit).map(hydrate));
+  for (let i = 0; i < postsToProbe.length; i += limit) {
+    await Promise.all(postsToProbe.slice(i, i + limit).map(hydrate));
   }
 
   if (posts.length) {
-    console.log(`  - Facebook post insights: views found for ${viewsFound}/${posts.length} posts${source ? ` via ${source}` : ''}.`);
+    console.log(`  - Facebook post insights: views found for ${viewsFound}/${postsToProbe.length} probed posts${posts.length > postsToProbe.length ? ` (${posts.length} total posts)` : ''}${source ? ` via ${source}` : ''}.`);
   }
   return {
     provider: viewsFound ? `meta-post-insights:${source || 'mixed'}` : 'meta-post-insights:unavailable',
