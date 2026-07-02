@@ -22,6 +22,8 @@ const DISPLAY_TZ = process.env.DISPLAY_TZ || 'America/New_York';
 const WINDOW_DAYS = Number(process.env.WINDOW_DAYS || 300);
 const META_GRAPH_VERSION = process.env.META_GRAPH_VERSION || 'v23.0';
 const FETCH_TIMEOUT_MS = 15000;
+const API_RETRY_ATTEMPTS = Number(process.env.API_RETRY_ATTEMPTS || 3);
+const API_RETRY_BASE_MS = Number(process.env.API_RETRY_BASE_MS || 1200);
 
 const ACCT = {
   instagram: {
@@ -154,6 +156,34 @@ function safeUrl(url) {
   }
 }
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+function isRetriableHttpStatus(status) {
+  return status === 408 || status === 409 || status === 425 || status === 429 || status >= 500;
+}
+
+function isRetriableError(err) {
+  if (err?.retriable) return true;
+  const msg = String(err?.message || err);
+  return /timed out|fetch failed|ECONNRESET|ETIMEDOUT|ENOTFOUND|EAI_AGAIN|network/i.test(msg);
+}
+
+async function withRetry(label, fn) {
+  let lastError = null;
+  for (let attempt = 1; attempt <= API_RETRY_ATTEMPTS; attempt += 1) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastError = err;
+      if (attempt >= API_RETRY_ATTEMPTS || !isRetriableError(err)) throw err;
+      const delay = API_RETRY_BASE_MS * attempt;
+      console.warn(`  - retrying ${label} after transient error (${attempt}/${API_RETRY_ATTEMPTS}): ${err.message}`);
+      await sleep(delay);
+    }
+  }
+  throw lastError;
+}
+
 async function fetchWithTimeout(url, options = {}) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
@@ -168,57 +198,69 @@ async function fetchWithTimeout(url, options = {}) {
 }
 
 async function getJson(url, token) {
-  const res = await fetchWithTimeout(url, token ? { headers: { Authorization: `Bearer ${token}` } } : undefined);
-  const text = await res.text();
-  let body;
-  try {
-    body = text ? JSON.parse(text) : {};
-  } catch {
-    throw new Error(`Non-JSON response from ${safeUrl(url)}: ${text.slice(0, 300)}`);
-  }
-  if (!res.ok || body.error) {
-    const msg = body.error?.message || body.error_description || JSON.stringify(body.error || body);
-    throw new Error(`${res.status} ${msg}`);
-  }
-  return body;
+  return withRetry(`GET ${safeUrl(url)}`, async () => {
+    const res = await fetchWithTimeout(url, token ? { headers: { Authorization: `Bearer ${token}` } } : undefined);
+    const text = await res.text();
+    let body;
+    try {
+      body = text ? JSON.parse(text) : {};
+    } catch {
+      throw new Error(`Non-JSON response from ${safeUrl(url)}: ${text.slice(0, 300)}`);
+    }
+    if (!res.ok || body.error) {
+      const msg = body.error?.message || body.error_description || JSON.stringify(body.error || body);
+      const err = new Error(`${res.status} ${msg}`);
+      if (isRetriableHttpStatus(res.status)) err.retriable = true;
+      throw err;
+    }
+    return body;
+  });
 }
 
 async function postForm(url, body) {
-  const res = await fetchWithTimeout(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams(body),
+  return withRetry(`POST ${url}`, async () => {
+    const res = await fetchWithTimeout(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(body),
+    });
+    const text = await res.text();
+    let json;
+    try {
+      json = text ? JSON.parse(text) : {};
+    } catch {
+      throw new Error(`Non-JSON response from ${url}: ${text.slice(0, 300)}`);
+    }
+    if (!res.ok || json.error) {
+      const err = new Error(`${res.status} ${json.error_description || json.error || JSON.stringify(json)}`);
+      if (isRetriableHttpStatus(res.status)) err.retriable = true;
+      throw err;
+    }
+    return json;
   });
-  const text = await res.text();
-  let json;
-  try {
-    json = text ? JSON.parse(text) : {};
-  } catch {
-    throw new Error(`Non-JSON response from ${url}: ${text.slice(0, 300)}`);
-  }
-  if (!res.ok || json.error) {
-    throw new Error(`${res.status} ${json.error_description || json.error || JSON.stringify(json)}`);
-  }
-  return json;
 }
 
 async function postJson(url, token, body) {
-  const res = await fetchWithTimeout(url, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
+  return withRetry(`POST ${url}`, async () => {
+    const res = await fetchWithTimeout(url, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const text = await res.text();
+    let json;
+    try {
+      json = text ? JSON.parse(text) : {};
+    } catch {
+      throw new Error(`Non-JSON response from ${url}: ${text.slice(0, 300)}`);
+    }
+    if (!res.ok || (json.error && json.error.code && json.error.code !== 'ok')) {
+      const err = new Error(`${res.status} ${json.error?.message || json.error_description || JSON.stringify(json.error || json)}`);
+      if (isRetriableHttpStatus(res.status)) err.retriable = true;
+      throw err;
+    }
+    return json;
   });
-  const text = await res.text();
-  let json;
-  try {
-    json = text ? JSON.parse(text) : {};
-  } catch {
-    throw new Error(`Non-JSON response from ${url}: ${text.slice(0, 300)}`);
-  }
-  if (!res.ok || (json.error && json.error.code && json.error.code !== 'ok')) {
-    throw new Error(`${res.status} ${json.error?.message || json.error_description || JSON.stringify(json.error || json)}`);
-  }
-  return json;
 }
 
 function metaBaseToken() {
@@ -907,13 +949,20 @@ async function googleAccessToken() {
   if (!YOUTUBE_CLIENT_ID || !YOUTUBE_CLIENT_SECRET || !YOUTUBE_REFRESH_TOKEN) {
     throw new Error('YOUTUBE_CLIENT_ID, YOUTUBE_CLIENT_SECRET, and YOUTUBE_REFRESH_TOKEN are required');
   }
-  const json = await postForm('https://oauth2.googleapis.com/token', {
-    client_id: YOUTUBE_CLIENT_ID,
-    client_secret: YOUTUBE_CLIENT_SECRET,
-    refresh_token: YOUTUBE_REFRESH_TOKEN,
-    grant_type: 'refresh_token',
-  });
-  return json.access_token;
+  try {
+    const json = await postForm('https://oauth2.googleapis.com/token', {
+      client_id: YOUTUBE_CLIENT_ID,
+      client_secret: YOUTUBE_CLIENT_SECRET,
+      refresh_token: YOUTUBE_REFRESH_TOKEN,
+      grant_type: 'refresh_token',
+    });
+    return json.access_token;
+  } catch (err) {
+    if (/expired|revoked|invalid_grant/i.test(err.message)) {
+      throw new Error('YouTube refresh token expired or was revoked; reconnect YouTube OAuth and update YOUTUBE_REFRESH_TOKEN');
+    }
+    throw err;
+  }
 }
 
 async function youtubeAnalytics(token, params) {
