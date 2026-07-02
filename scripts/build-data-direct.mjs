@@ -790,20 +790,17 @@ async function hydrateFacebookPostInsights(posts, token) {
   let viewsFound = 0;
   let source = '';
   const limit = 8;
-  const maxPosts = Number(process.env.FACEBOOK_POST_INSIGHT_LIMIT || 80);
+  const maxPosts = Number(process.env.FACEBOOK_POST_INSIGHT_LIMIT || 40);
   const postsToProbe = posts.slice(0, maxPosts);
 
   const hydrate = async (post) => {
     if (!post.id) return;
     const path = `/${post.id}/insights`;
-    const currentViews = await optionalMetaInsightMaybe(path, 'views', token);
-    const videoViews = currentViews == null ? await optionalMetaInsightMaybe(path, 'post_video_views', token) : null;
-    const impressions = currentViews == null && videoViews == null ? await optionalMetaInsightMaybe(path, 'post_impressions', token) : null;
-    const views = currentViews ?? videoViews ?? impressions;
+    const views = await optionalMetaInsightMaybe(path, 'post_video_views', token);
 
     if (views != null) {
       post._dashboardViews = views;
-      post._dashboardViewsSource = currentViews != null ? 'views' : (videoViews != null ? 'post_video_views' : 'post_impressions');
+      post._dashboardViewsSource = 'post_video_views';
       source ||= post._dashboardViewsSource;
       viewsFound += 1;
     }
