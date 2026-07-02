@@ -255,6 +255,7 @@ body {
 }
 .card-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; }
 .card-head h2 { font-size: 15px; margin: 0; font-weight: 650; }
+.section-note { margin: -6px 0 14px; color: var(--muted); font-size: 13px; }
 .card-sub { font-size: 12px; color: var(--muted); }
 .chart-card { margin-bottom: 0; }
 .chart-box { position: relative; height: 280px; width: 100%; }
