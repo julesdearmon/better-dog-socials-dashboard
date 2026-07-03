@@ -53,15 +53,15 @@ jobs:
           TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_REFRESH_TOKEN }}
           DISPLAY_TZ: America/New_York
         run: |
-          if [ -n "$META_USER_ACCESS_TOKEN" ] || [ -n "$META_PAGE_ACCESS_TOKEN" ] || [ -n "$META_ACCESS_TOKEN" ] || \
+          if [ -n "$SUPERMETRICS_API_KEY" ]; then
+            echo "Using Supermetrics API."
+            node scripts/build-data.mjs
+          elif [ -n "$META_USER_ACCESS_TOKEN" ] || [ -n "$META_PAGE_ACCESS_TOKEN" ] || [ -n "$META_ACCESS_TOKEN" ] || \
              { [ -n "$YOUTUBE_CLIENT_ID" ] && [ -n "$YOUTUBE_CLIENT_SECRET" ] && [ -n "$YOUTUBE_REFRESH_TOKEN" ]; } || \
              { [ -n "$TIKTOK_BUSINESS_ACCESS_TOKEN" ] && [ -n "$TIKTOK_BUSINESS_ID" ]; } || \
              { [ -n "$TIKTOK_CLIENT_KEY" ] && [ -n "$TIKTOK_CLIENT_SECRET" ] && [ -n "$TIKTOK_REFRESH_TOKEN" ]; }; then
             echo "Using direct platform APIs."
             node scripts/build-data-direct.mjs
-          elif [ -n "$SUPERMETRICS_API_KEY" ]; then
-            echo "Using Supermetrics API fallback."
-            node scripts/build-data.mjs
           else
             echo "::warning::No API credentials set - deploying committed data.json as a seed. Add direct API secrets to enable daily refresh."
           fi

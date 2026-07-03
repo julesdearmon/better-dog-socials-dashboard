@@ -116,11 +116,54 @@ async function query({ ds_id, account, fields, settings }) {
   let rows = Array.isArray(json?.data) ? json.data : [];
   if (rows.length && Array.isArray(rows[0])) {
     const first = rows[0].map((c) => String(c).toLowerCase());
-    const looksHeader = fields.some((f) => first.includes(f.toLowerCase()));
+    const looksHeader = first.some((cell) =>
+      fields.map((f) => f.toLowerCase()).includes(cell) ||
+      /date|views?|reach|posts?|media|video|likes?|comments?|minutes?|link|type|caption|message|id/.test(cell)
+    );
     if (looksHeader) rows = rows.slice(1);
     return rows.map((r) => Object.fromEntries(fields.map((f, i) => [f, r[i]])));
   }
   // some deployments return array of objects already
+  return rows;
+}
+
+async function queryRange({ ds_id, account, fields, settings, start_date = START, end_date = END }) {
+  const body = {
+    ds_id,
+    ds_accounts: account,
+    date_range_type: 'custom',
+    start_date,
+    end_date,
+    fields: fields.join(','),
+    max_rows: 1000000,
+  };
+  if (settings) body.settings = settings;
+
+  const res = await fetch(ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${API_KEY}`,
+    },
+    body: JSON.stringify(body),
+  });
+
+  const text = await res.text();
+  if (!res.ok) throw new Error(`Supermetrics ${ds_id} ${res.status}: ${text.slice(0, 500)}`);
+  let json;
+  try { json = JSON.parse(text); } catch { throw new Error(`${ds_id}: non-JSON response: ${text.slice(0, 300)}`); }
+
+  let rows = Array.isArray(json?.data) ? json.data : [];
+  if (rows.length && Array.isArray(rows[0])) {
+    const first = rows[0].map((c) => String(c).toLowerCase());
+    const fieldNames = fields.map((f) => f.toLowerCase());
+    const looksHeader = first.some((cell) =>
+      fieldNames.includes(cell) ||
+      /date|views?|reach|posts?|media|video|likes?|comments?|minutes?|link|type|caption|message|id/.test(cell)
+    );
+    if (looksHeader) rows = rows.slice(1);
+    return rows.map((r) => Object.fromEntries(fields.map((f, i) => [f, r[i]])));
+  }
   return rows;
 }
 
@@ -154,17 +197,28 @@ const toArr = (map) => AXIS.map((d) => map.get(d));
 
 async function pullInstagram() {
   const { ds_id, account, handle } = ACCT.instagram;
-  const fields = ['timestamp', 'media_id', 'media_views', 'media_reach',
-    'media_permalink', 'media_type', 'media_caption', 'media_like_count', 'media_comments_count'];
-  const rows = await query({ ds_id, account, fields });
+  const dailyRows = await queryRange({ ds_id, account, fields: ['date', 'profile_views', 'reach'] });
+  const rows = await queryRange({
+    ds_id,
+    account,
+    fields: ['timestamp', 'media_id', 'media_permalink', 'media_type', 'media_caption',
+      'media_views', 'media_reach', 'media_like_count', 'media_comments_count'],
+  });
   const daily = emptyDaily();
   const content = [];
   const typeOf = (t) => (t === 'VIDEO' ? 'Short Form Clip' : t === 'CAROUSEL_ALBUM' ? 'Carousel' : 'Single Image');
+  for (const r of dailyRows) {
+    const date = dateOnly(r.date);
+    if (!inAxis(date)) continue;
+    const b = daily.get(date);
+    b.views += num(r.profile_views);
+    b.reach += num(r.reach);
+  }
   for (const r of rows) {
     const date = dateOnly(r.timestamp);
     if (!inAxis(date)) continue;
     const b = daily.get(date);
-    b.posts += 1; b.views += num(r.media_views); b.reach += num(r.media_reach);
+    b.posts += 1;
     content.push({
       platform: 'instagram', date, url: r.media_permalink || '',
       title: caption(r.media_caption), type: typeOf(r.media_type),
@@ -181,9 +235,18 @@ async function pullInstagram() {
 async function pullFacebook() {
   const { ds_id, account, handle } = ACCT.facebook;
   const settings = { include_all_published_posts: true };
-  const fields = ['date', 'post_ID', 'post_media_views', 'post_total_media_views_unique',
-    'post_linkto', 'post_type', 'post_message', 'post_reactions_total', 'post_comments_on_post'];
-  const rows = await query({ ds_id, account, fields, settings });
+  const dailyRows = await queryRange({
+    ds_id,
+    account,
+    fields: ['date', 'page_media_view', 'page_total_media_view_unique', 'page_post_engagements'],
+  });
+  const rows = await queryRange({
+    ds_id,
+    account,
+    fields: ['date', 'post_ID', 'post_linkto', 'post_type', 'post_message',
+      'post_media_views', 'post_total_media_views_unique', 'post_reactions_total', 'post_comments_on_post'],
+    settings,
+  });
   const daily = emptyDaily();
   const content = [];
   const typeOf = (t) => {
@@ -193,11 +256,18 @@ async function pullFacebook() {
     if (s.includes('photo') || s.includes('profile_media') || s.includes('cover')) return 'Single Image';
     return 'Text Post';
   };
+  for (const r of dailyRows) {
+    const date = dateOnly(r.date);
+    if (!inAxis(date)) continue;
+    const b = daily.get(date);
+    b.views += num(r.page_media_view);
+    b.reach += num(r.page_total_media_view_unique);
+  }
   for (const r of rows) {
     const date = dateOnly(r.date);
     if (!inAxis(date)) continue;
     const b = daily.get(date);
-    b.posts += 1; b.views += num(r.post_media_views); b.reach += num(r.post_total_media_views_unique);
+    b.posts += 1;
     content.push({
       platform: 'facebook', date, url: r.post_linkto || '',
       title: caption(r.post_message), type: typeOf(r.post_type),
@@ -216,24 +286,24 @@ async function pullYouTube() {
   const daily = emptyDaily();
 
   // ORGANIC ONLY: TrafficSources, sum every source EXCEPT ADVERTISING.
-  const ts = await query({
+  const ts = await queryRange({
     ds_id, account,
-    settings: { report_type: 'TrafficSources' },
-    fields: ['date', 'insightTrafficSourceType', 'views', 'estimatedMinutesWatched'],
+    settings: { report_type: 'ChannelTotals' },
+    fields: ['date', 'views', 'estimatedMinutesWatched'],
   });
   for (const r of ts) {
     const date = dateOnly(r.date);
     if (!inAxis(date)) continue;
-    if (String(r.insightTrafficSourceType).toUpperCase() === 'ADVERTISING') continue; // exclude paid
     const b = daily.get(date);
     b.views += num(r.views); b.watchTime += num(r.estimatedMinutesWatched);
   }
 
   // posts + content from LatestVideos (per-video views still include ad views — known limitation)
-  const vids = await query({
+  const vids = await queryRange({
     ds_id, account,
     settings: { report_type: 'LatestVideos' },
-    fields: ['video_published_date', 'video_url', 'video_title', 'video_length', 'views', 'likes', 'comments'],
+    fields: ['video_published_date', 'video_url', 'video_title', 'video_length',
+      'views', 'estimatedMinutesWatched', 'likes', 'comments'],
   });
   const content = [];
   const isShort = (len) => {
@@ -249,11 +319,12 @@ async function pullYouTube() {
       platform: 'youtube', date, url: r.video_url || '',
       title: r.video_title || '', // YouTube keeps its real title (no CAPTION)
       type: isShort(r.video_length) ? 'Short Form Clip' : 'Video',
-      views: num(r.views), reach: null, eng: num(r.likes) + num(r.comments),
+      views: num(r.views), watchTime: num(r.estimatedMinutesWatched), reach: null,
+      eng: num(r.likes) + num(r.comments),
     });
   }
   return {
-    metric: { platform: 'youtube', handle, source: 'live', hasWatchTime: true, hasReach: false, organicOnly: true, asOf: ASOF, daily: toArr(daily) },
+    metric: { platform: 'youtube', handle, source: 'live', hasWatchTime: true, hasReach: false, organicOnly: false, asOf: ASOF, daily: toArr(daily) },
     content,
   };
 }
@@ -283,6 +354,77 @@ async function pullTikTok() {
     metric: { platform: 'tiktok', handle, source: 'live', hasWatchTime: false, hasReach: true, asOf: ASOF, daily: toArr(daily) },
     content,
   };
+}
+
+function completeFriThuWeeks(count = 8) {
+  const end = new Date(`${END}T00:00:00Z`);
+  const back = (end.getUTCDay() - 4 + 7) % 7;
+  const thu = new Date(end);
+  thu.setUTCDate(end.getUTCDate() - back);
+  const ranges = [];
+  for (let i = 0; i < count; i += 1) {
+    const hi = new Date(thu);
+    hi.setUTCDate(thu.getUTCDate() - i * 7);
+    const lo = new Date(hi);
+    lo.setUTCDate(hi.getUTCDate() - 6);
+    ranges.push({ start: ymd(lo), end: ymd(hi) });
+  }
+  return ranges;
+}
+
+async function buildSupermetricsRangeOverrides() {
+  const overrides = [];
+  for (const range of completeFriThuWeeks(8)) {
+    const [ig] = await queryRange({
+      ds_id: ACCT.instagram.ds_id,
+      account: ACCT.instagram.account,
+      start_date: range.start,
+      end_date: range.end,
+      fields: ['profile_views', 'reach'],
+    });
+    if (ig) {
+      overrides.push({
+        platform: 'instagram',
+        ...range,
+        source: 'Supermetrics exact range total',
+        values: { views: num(ig.profile_views), reach: num(ig.reach) },
+      });
+    }
+
+    const [fb] = await queryRange({
+      ds_id: ACCT.facebook.ds_id,
+      account: ACCT.facebook.account,
+      start_date: range.start,
+      end_date: range.end,
+      fields: ['page_media_view', 'page_total_media_view_unique'],
+    });
+    if (fb) {
+      overrides.push({
+        platform: 'facebook',
+        ...range,
+        source: 'Supermetrics exact range total',
+        values: { views: num(fb.page_media_view) },
+      });
+    }
+
+    const [yt] = await queryRange({
+      ds_id: ACCT.youtube.ds_id,
+      account: ACCT.youtube.account,
+      start_date: range.start,
+      end_date: range.end,
+      settings: { report_type: 'ChannelTotals' },
+      fields: ['views', 'estimatedMinutesWatched'],
+    });
+    if (yt) {
+      overrides.push({
+        platform: 'youtube',
+        ...range,
+        source: 'Supermetrics exact range total',
+        values: { views: num(yt.views), watchTime: num(yt.estimatedMinutesWatched) },
+      });
+    }
+  }
+  return overrides;
 }
 
 // =====================================================================
@@ -341,6 +483,7 @@ async function main() {
     metrics[name] = r.metric;
     content = content.concat(r.content);
   }
+  const rangeOverrides = await buildSupermetricsRangeOverrides();
 
   const data = {
     client: { id: 'better-dog-supplements', name: 'Better Dog Supplements', color: '#88cc33' },
@@ -348,6 +491,8 @@ async function main() {
     updatedAt: friendlyStamp(),
     source: 'live',
     generatedFrom: 'Supermetrics API (Instagram, Facebook, YouTube, TikTok)',
+    directApiErrors: errors,
+    rangeOverrides,
     metrics,
     content,
   };
