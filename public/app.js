@@ -847,9 +847,13 @@ function renderOverview() {
 function renderContent() {
   if (!state.data.content) return;
   const focus = focusedPlatform();
+  const shown = platforms();
+  const canSortReach = focus
+    ? supports(focus, 'reach')
+    : shown.some((p) => supports(p, 'reach'));
   const sortOptions = [
-    ...(focus === 'facebook' ? [] : [['views', 'By views']]),
-    ...(focus === 'instagram' ? [['reach', 'By reach']] : []),
+    ['views', 'By views'],
+    ...(canSortReach ? [['reach', 'By reach']] : []),
     ...(focus === 'youtube' ? [['watchTime', 'By watch time']] : []),
     ['eng', 'By engagement'],
   ];
@@ -877,7 +881,6 @@ function renderContent() {
   });
 
   const contentColumns = (platform, rows) => {
-    const hasViews = platform !== 'facebook' || rows.some((c) => c.views != null);
     const base = [
       { label: '#', cls: '', value: (_c, i) => i + 1 },
       { label: 'Content', cls: '', value: (c) => {
@@ -889,8 +892,8 @@ function renderContent() {
       { label: 'Type', cls: '', value: (c) => `<span class="type-tag">${escapeHtml(c.type || '-')}</span>` },
       { label: 'Date posted', cls: '', value: (c) => c.date },
     ];
-    if (hasViews) base.push({ label: 'Views', cls: 'num', value: (c) => fmtFull(c.views) });
-    if (platform === 'instagram') base.push({ label: 'Reach', cls: 'num', value: (c) => fmtFull(c.reach) });
+    base.push({ label: 'Views', cls: 'num', value: (c) => fmtFull(c.views) });
+    if (supports(platform, 'reach') && rows.some((c) => c.reach != null)) base.push({ label: 'Reach', cls: 'num', value: (c) => fmtFull(c.reach) });
     if (platform === 'youtube') base.push({ label: 'Watch time', cls: 'num', value: (c) => c.watchTime == null ? '-' : `${fmt(c.watchTime / 60)} hrs` });
     base.push({ label: 'Engagement', cls: 'num', value: (c) => fmtFull(c.eng) });
     return base;

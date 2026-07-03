@@ -1,6 +1,6 @@
-name: Deploy dashboard
+name: Validate dashboard data
 
-# Publishes refreshed dashboard files to GitHub Pages.
+# GitHub Pages now publishes from the gh-pages branch.
 # Daily data refresh is handled by the Codex Supermetrics automation.
 on:
   workflow_dispatch: {}
@@ -9,31 +9,17 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: dashboard-validation
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  validate:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: public
-
-      - name: Deploy to GitHub Pages
-        id: deploy
-        uses: actions/deploy-pages@v5
+      - name: Validate dashboard data
+        run: node scripts/validate-dashboard-data.mjs
