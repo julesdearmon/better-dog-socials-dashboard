@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "node --watch server/index.js",
-    "build": "node scripts/build-data-direct.mjs",
+    "build": "node scripts/validate-dashboard-data.mjs",
     "build:direct": "node scripts/build-data-direct.mjs",
-    "build:supermetrics": "node scripts/build-data.mjs"
+    "build:supermetrics": "node scripts/supermetrics-rest-disabled.mjs"
   },
   "engines": {
     "node": ">=18"

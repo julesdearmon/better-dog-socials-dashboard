@@ -15,37 +15,50 @@ connections.
 
 ## What This Process Does
 
-The dashboard is a static website hosted on GitHub Pages. A GitHub Actions
-workflow refreshes the social data, writes it into the public dashboard files,
-and redeploys the site.
+The dashboard is a static website hosted on GitHub Pages. Codex refreshes the
+social data through the connected Supermetrics ChatGPT/Codex connector, writes
+it into the public dashboard files, commits it, and pushes it. GitHub Actions
+only deploys the already-refreshed files to GitHub Pages.
 
 For each brand, the setup has four parts:
 
 1. Confirm the brand accounts and IDs.
-2. Create developer/API access with each platform.
-3. Store credentials as GitHub repository secrets.
-4. Run the GitHub workflow and verify the dashboard.
+2. Confirm the brand is connected in Supermetrics.
+3. Run or wait for the Codex Supermetrics refresh.
+4. Verify GitHub deploys the refreshed dashboard.
 
 ## Important Links
 
 - Dashboard: https://julesdearmon.github.io/better-dog-socials-dashboard/
 - GitHub repo: https://github.com/julesdearmon/better-dog-socials-dashboard
 - GitHub Actions: https://github.com/julesdearmon/better-dog-socials-dashboard/actions
-- GitHub repository secrets: https://github.com/julesdearmon/better-dog-socials-dashboard/settings/secrets/actions
 - Meta developers: https://developers.facebook.com/
 - Meta Business settings: https://business.facebook.com/settings/
 - Google Cloud console: https://console.cloud.google.com/
 - Google OAuth Playground: https://developers.google.com/oauthplayground/
 - TikTok Developer Portal: https://developers.tiktok.com/
 
-## GitHub Secrets
+## Current Better Dog Refresh Path
 
-GitHub secrets are private values used by the workflow. They are not visible on
-the public dashboard. Add them here:
+Supermetrics support confirmed that the current license supports Supermetrics
+inside ChatGPT/Codex, but does not include the standalone Supermetrics REST
+Query API.
 
-GitHub repo -> Settings -> Secrets and variables -> Actions -> New repository secret
+Do this:
 
-Use exact names. Secret names are safe to document; secret values are not.
+- Use the connected Supermetrics ChatGPT/Codex connector to pull data.
+- Let Codex update `public/data.json` and `public/realdata.js`.
+- Let GitHub Actions deploy the committed public files.
+
+Do not do this on the current plan:
+
+- Do not call the `/enterprise/v2/query/data/json` REST endpoint from GitHub
+  Actions.
+- Do not rely on `SUPERMETRICS_API_KEY` as a GitHub secret for this dashboard
+  unless the account is upgraded to the standalone Supermetrics API product.
+
+The default repo `npm run build` validates the existing dashboard data. It does
+not fetch fresh data.
 
 ## Meta: Instagram and Facebook
 
