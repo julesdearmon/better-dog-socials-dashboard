@@ -1,11 +1,10 @@
 name: Refresh & deploy dashboard
 
 # Rebuilds public/data.json and publishes the static site to GitHub Pages.
-# Preferred source is direct platform APIs. Supermetrics remains a fallback
-# while the direct credentials are being connected.
+# Supermetrics is the only approved source for published dashboard data.
 on:
   schedule:
-    - cron: '5 10 * * *'   # 10:05 UTC is about 6:05 AM US-Eastern.
+    - cron: '0 10 * * *'   # 10:00 UTC is 6:00 AM US-Eastern during daylight time.
   workflow_dispatch: {}
   push:
     branches: [main]
@@ -37,37 +36,14 @@ jobs:
       - name: Pull fresh data
         env:
           SUPERMETRICS_API_KEY: ${{ secrets.SUPERMETRICS_API_KEY }}
-          META_USER_ACCESS_TOKEN: ${{ secrets.META_USER_ACCESS_TOKEN }}
-          META_PAGE_ACCESS_TOKEN: ${{ secrets.META_PAGE_ACCESS_TOKEN }}
-          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
-          META_IG_ACCOUNT_ID: ${{ secrets.META_IG_ACCOUNT_ID }}
-          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
-          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
-          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
-          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
-          YOUTUBE_CHANNEL_ID: ${{ secrets.YOUTUBE_CHANNEL_ID }}
-          TIKTOK_BUSINESS_ACCESS_TOKEN: ${{ secrets.TIKTOK_BUSINESS_ACCESS_TOKEN }}
-          TIKTOK_BUSINESS_ID: ${{ secrets.TIKTOK_BUSINESS_ID }}
-          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
-          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
-          TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_REFRESH_TOKEN }}
           DISPLAY_TZ: America/New_York
         run: |
-          if [ -n "$SUPERMETRICS_API_KEY" ]; then
-            echo "Using Supermetrics API."
-            node scripts/build-data.mjs || {
-              echo "::warning::Supermetrics API failed; falling back to direct platform APIs."
-              node scripts/build-data-direct.mjs
-            }
-          elif [ -n "$META_USER_ACCESS_TOKEN" ] || [ -n "$META_PAGE_ACCESS_TOKEN" ] || [ -n "$META_ACCESS_TOKEN" ] || \
-             { [ -n "$YOUTUBE_CLIENT_ID" ] && [ -n "$YOUTUBE_CLIENT_SECRET" ] && [ -n "$YOUTUBE_REFRESH_TOKEN" ]; } || \
-             { [ -n "$TIKTOK_BUSINESS_ACCESS_TOKEN" ] && [ -n "$TIKTOK_BUSINESS_ID" ]; } || \
-             { [ -n "$TIKTOK_CLIENT_KEY" ] && [ -n "$TIKTOK_CLIENT_SECRET" ] && [ -n "$TIKTOK_REFRESH_TOKEN" ]; }; then
-            echo "Using direct platform APIs."
-            node scripts/build-data-direct.mjs
-          else
-            echo "::warning::No API credentials set - deploying committed data.json as a seed. Add direct API secrets to enable daily refresh."
+          if [ -z "$SUPERMETRICS_API_KEY" ]; then
+            echo "::error::SUPERMETRICS_API_KEY is required. Dashboard data must come from Supermetrics only."
+            exit 1
           fi
+          echo "Using Supermetrics API."
+          node scripts/build-data.mjs
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

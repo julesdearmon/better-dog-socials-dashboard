@@ -455,6 +455,7 @@ async function main() {
   console.log(`Pulling Supermetrics ${START} → ${END} (asOf ${ASOF})`);
   const results = {};
   const errors = [];
+  const requiredSources = ['instagram', 'facebook', 'youtube'];
   for (const [name, fn] of [
     ['instagram', pullInstagram], ['facebook', pullFacebook],
     ['youtube', pullYouTube], ['tiktok', pullTikTok],
@@ -469,13 +470,11 @@ async function main() {
     }
   }
 
-  if (Object.keys(results).length === 0) {
-    console.error('FATAL: every source failed — not writing files (keeping previous data).');
+  const failedRequired = requiredSources.filter((name) => !results[name]);
+  if (failedRequired.length) {
+    console.error(`FATAL: required Supermetrics source(s) failed: ${failedRequired.join(', ')}. Not writing files.`);
+    console.error(errors.join('\n'));
     process.exit(1);
-  }
-  if (errors.length) {
-    // partial pull: per SKILL, keep the sources that worked and note the failures.
-    console.warn(`Partial pull — ${errors.length} source(s) failed:\n  ${errors.join('\n  ')}`);
   }
 
   const metrics = {};
@@ -504,8 +503,8 @@ async function main() {
     asOf: ASOF,
     updatedAt: friendlyStamp(),
     source: 'live',
-    generatedFrom: 'Supermetrics API (Instagram, Facebook, YouTube, TikTok)',
-    directApiErrors: errors,
+    generatedFrom: 'Supermetrics API (Instagram, Facebook, YouTube); TikTok pending',
+    directApiErrors: errors.filter((x) => !/^tiktok:/i.test(x)),
     rangeOverrides,
     metrics,
     content,
