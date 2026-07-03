@@ -37,9 +37,14 @@ function rangeDays() {
   return Math.round((Date.parse(state.rangeEnd + 'T00:00:00Z') - Date.parse(state.rangeStart + 'T00:00:00Z')) / DAY) + 1;
 }
 function chartGranularity() {
+  const allowed = allowedGranularities();
+  return allowed.includes(state.granularity) ? state.granularity : allowed[0];
+}
+function allowedGranularities() {
   const days = rangeDays();
-  if (state.granularity === 'monthly' && days < 45) return 'daily';
-  return state.granularity;
+  if (!days || days <= 14) return ['daily'];
+  if (days <= 45) return ['daily', 'weekly'];
+  return ['daily', 'weekly', 'monthly'];
 }
 function suggestedGranularity(startIso, endIso) {
   const days = Math.round((Date.parse(endIso + 'T00:00:00Z') - Date.parse(startIso + 'T00:00:00Z')) / DAY) + 1;
@@ -48,7 +53,13 @@ function suggestedGranularity(startIso, endIso) {
   return 'monthly';
 }
 function setGranButton(g) {
-  [...$('#granToggle').children].forEach((b) => b.classList.toggle('active', b.dataset.g === g));
+  const allowed = allowedGranularities();
+  [...$('#granToggle').children].forEach((b) => {
+    const isAllowed = allowed.includes(b.dataset.g);
+    b.hidden = !isAllowed;
+    b.disabled = !isAllowed;
+    b.classList.toggle('active', isAllowed && b.dataset.g === g);
+  });
 }
 
 function fmt(n) {
@@ -183,7 +194,7 @@ function presetRange(name, asOfMs) {
   const lastMonthStart = Date.UTC(lastMonth.getUTCFullYear(), lastMonth.getUTCMonth(), 1);
   if (name === 'this-week') return { start: iso(thisWeekStart), end: iso(base), gran: 'daily' };
   if (name === 'last-week') return { start: iso(thu - 6 * DAY), end: iso(thu), gran: 'daily' };
-  if (name === 'last-month') return { start: iso(lastMonthStart), end: iso(lastMonthEnd), gran: 'daily' };
+  if (name === 'last-month') return { start: iso(lastMonthStart), end: iso(lastMonthEnd), gran: 'weekly' };
   if (name === 'this-month') return { start: iso(monthFirst), end: iso(base), gran: 'daily' };
   return null;
 }
@@ -531,7 +542,7 @@ function renderDataQuality() {
   quality.hidden = false;
 }
 function setGranularity(g) {
-  if (!GRAN_NOUN[g]) return;
+  if (!GRAN_NOUN[g] || !allowedGranularities().includes(g)) return;
   state.granularity = g;
   setGranButton(state.granularity);
   render();
@@ -611,6 +622,8 @@ function render() {
   $('#insightPanel').hidden = true; state.insightKey = null; // stale once the view changes; re-click to refresh
   const chartGran = chartGranularity();
   const noun = GRAN_NOUN[chartGran];
+  state.granularity = chartGran;
+  setGranButton(chartGran);
 
   // Reflect the selected range in the calendar button + header.
   renderCalBtn();
@@ -896,7 +909,7 @@ function renderContent() {
         ? `<p class="cg-empty">TikTok is pending approval. No live TikTok data is shown yet.</p>`
         : g.top.length
         ? tableHtml(g.p, g.top)
-        : `<p class="cg-empty">No posts in ${escapeHtml(period.label)}.</p>`}
+        : `<p class="cg-empty">${g.p === 'tiktok' ? 'TikTok totals are connected, but TikTok post-level content is not available from Supermetrics yet.' : `No posts in ${escapeHtml(period.label)}.`}</p>`}
     </div>
   `).join('');
 }
