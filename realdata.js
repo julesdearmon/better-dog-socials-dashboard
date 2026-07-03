@@ -1,4 +1,3 @@
-// Real data embedded for file:// usage; loaded by app.js as window.REAL_DATA.
 window.REAL_DATA = {
   "client": {
     "id": "better-dog-supplements",
@@ -481,7 +480,7 @@ window.REAL_DATA = {
       "source": "live",
       "provider": "supermetrics",
       "hasWatchTime": false,
-      "hasReach": false,
+      "hasReach": true,
       "asOf": "2026-07-02",
       "daily": [
         {
@@ -799,7 +798,9 @@ window.REAL_DATA = {
           "reach": 139,
           "watchTime": 0
         }
-      ]
+      ],
+      "reachLabel": "Page media views unique",
+      "reachNote": "Facebook reach uses Supermetrics Page media views unique."
     },
     "youtube": {
       "platform": "youtube",
@@ -1125,7 +1126,8 @@ window.REAL_DATA = {
           "reach": 0,
           "watchTime": 0
         }
-      ]
+      ],
+      "reachUnavailableReason": "YouTube Unique viewers is not available in the current Supermetrics YouTube connector."
     },
     "tiktok": {
       "platform": "tiktok",
@@ -1134,13 +1136,12 @@ window.REAL_DATA = {
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "hasTopContent": false,
-      "topContentUnavailableReason": "TikTok Organic post-level Supermetrics query timed out; profile totals are connected.",
+      "hasTopContent": true,
       "asOf": "2026-07-02",
       "daily": [
         {
           "date": "2026-05-19",
-          "posts": 0,
+          "posts": 1,
           "views": 619,
           "reach": 537,
           "profileViews": 10,
@@ -1149,7 +1150,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-20",
-          "posts": 0,
+          "posts": 1,
           "views": 1049,
           "reach": 966,
           "profileViews": 13,
@@ -1158,7 +1159,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-21",
-          "posts": 0,
+          "posts": 1,
           "views": 3360,
           "reach": 3239,
           "profileViews": 23,
@@ -1176,7 +1177,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-23",
-          "posts": 0,
+          "posts": 1,
           "views": 4021,
           "reach": 3945,
           "profileViews": 11,
@@ -1185,7 +1186,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-24",
-          "posts": 0,
+          "posts": 1,
           "views": 5468,
           "reach": 5371,
           "profileViews": 20,
@@ -1194,7 +1195,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-25",
-          "posts": 0,
+          "posts": 1,
           "views": 9027,
           "reach": 8882,
           "profileViews": 34,
@@ -1203,7 +1204,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-26",
-          "posts": 0,
+          "posts": 1,
           "views": 13682,
           "reach": 13522,
           "profileViews": 52,
@@ -1212,7 +1213,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-27",
-          "posts": 0,
+          "posts": 1,
           "views": 23520,
           "reach": 23378,
           "profileViews": 93,
@@ -1221,7 +1222,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-28",
-          "posts": 0,
+          "posts": 8,
           "views": 42715,
           "reach": 42413,
           "profileViews": 235,
@@ -1230,7 +1231,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-29",
-          "posts": 0,
+          "posts": 23,
           "views": 27591,
           "reach": 27403,
           "profileViews": 100,
@@ -1239,7 +1240,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-30",
-          "posts": 0,
+          "posts": 12,
           "views": 17284,
           "reach": 16649,
           "profileViews": 67,
@@ -1248,7 +1249,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-31",
-          "posts": 0,
+          "posts": 7,
           "views": 27883,
           "reach": 26952,
           "profileViews": 94,
@@ -1257,7 +1258,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-01",
-          "posts": 0,
+          "posts": 5,
           "views": 16485,
           "reach": 15807,
           "profileViews": 70,
@@ -1266,7 +1267,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-02",
-          "posts": 0,
+          "posts": 5,
           "views": 14587,
           "reach": 13850,
           "profileViews": 44,
@@ -1275,7 +1276,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-03",
-          "posts": 0,
+          "posts": 1,
           "views": 9775,
           "reach": 9132,
           "profileViews": 42,
@@ -1293,7 +1294,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-05",
-          "posts": 0,
+          "posts": 1,
           "views": 16430,
           "reach": 16058,
           "profileViews": 67,
@@ -1311,7 +1312,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-07",
-          "posts": 0,
+          "posts": 1,
           "views": 9897,
           "reach": 9551,
           "profileViews": 62,
@@ -1329,7 +1330,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-09",
-          "posts": 0,
+          "posts": 1,
           "views": 14425,
           "reach": 14031,
           "profileViews": 56,
@@ -1338,7 +1339,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-10",
-          "posts": 0,
+          "posts": 1,
           "views": 12588,
           "reach": 12047,
           "profileViews": 46,
@@ -1347,7 +1348,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-11",
-          "posts": 0,
+          "posts": 3,
           "views": 25359,
           "reach": 25062,
           "profileViews": 93,
@@ -1356,7 +1357,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-12",
-          "posts": 0,
+          "posts": 5,
           "views": 35838,
           "reach": 35532,
           "profileViews": 103,
@@ -1365,7 +1366,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-13",
-          "posts": 0,
+          "posts": 2,
           "views": 12486,
           "reach": 12198,
           "profileViews": 40,
@@ -1374,7 +1375,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-14",
-          "posts": 0,
+          "posts": 2,
           "views": 20779,
           "reach": 20463,
           "profileViews": 56,
@@ -1383,7 +1384,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-15",
-          "posts": 0,
+          "posts": 5,
           "views": 21194,
           "reach": 20665,
           "profileViews": 83,
@@ -1392,7 +1393,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-16",
-          "posts": 0,
+          "posts": 5,
           "views": 15111,
           "reach": 14787,
           "profileViews": 53,
@@ -1401,7 +1402,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-17",
-          "posts": 0,
+          "posts": 5,
           "views": 28381,
           "reach": 28059,
           "profileViews": 78,
@@ -1410,7 +1411,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-18",
-          "posts": 0,
+          "posts": 7,
           "views": 26836,
           "reach": 26266,
           "profileViews": 81,
@@ -1419,7 +1420,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-19",
-          "posts": 0,
+          "posts": 6,
           "views": 23032,
           "reach": 22221,
           "profileViews": 71,
@@ -1428,7 +1429,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-20",
-          "posts": 0,
+          "posts": 6,
           "views": 23510,
           "reach": 22640,
           "profileViews": 92,
@@ -1437,7 +1438,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-21",
-          "posts": 0,
+          "posts": 3,
           "views": 22003,
           "reach": 20849,
           "profileViews": 74,
@@ -1446,7 +1447,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-22",
-          "posts": 0,
+          "posts": 4,
           "views": 15398,
           "reach": 14805,
           "profileViews": 52,
@@ -1455,7 +1456,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-23",
-          "posts": 0,
+          "posts": 6,
           "views": 18394,
           "reach": 17371,
           "profileViews": 68,
@@ -1464,7 +1465,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-24",
-          "posts": 0,
+          "posts": 5,
           "views": 24917,
           "reach": 24490,
           "profileViews": 89,
@@ -1473,7 +1474,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-25",
-          "posts": 0,
+          "posts": 6,
           "views": 21325,
           "reach": 20579,
           "profileViews": 66,
@@ -1482,7 +1483,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-26",
-          "posts": 0,
+          "posts": 5,
           "views": 41185,
           "reach": 40275,
           "profileViews": 120,
@@ -1491,7 +1492,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-27",
-          "posts": 0,
+          "posts": 6,
           "views": 38527,
           "reach": 37940,
           "profileViews": 116,
@@ -1500,7 +1501,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-28",
-          "posts": 0,
+          "posts": 6,
           "views": 23290,
           "reach": 22568,
           "profileViews": 84,
@@ -1509,7 +1510,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-29",
-          "posts": 0,
+          "posts": 5,
           "views": 34125,
           "reach": 33291,
           "profileViews": 112,
@@ -1518,7 +1519,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-30",
-          "posts": 0,
+          "posts": 6,
           "views": 11657,
           "reach": 11064,
           "profileViews": 39,
@@ -1527,7 +1528,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-07-01",
-          "posts": 0,
+          "posts": 5,
           "views": 14500,
           "reach": 14179,
           "profileViews": 52,
@@ -1536,17 +1537,41 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-07-02",
-          "posts": 0,
+          "posts": 6,
           "views": 0,
           "reach": 0,
           "profileViews": 0,
           "followers": 0,
           "watchTime": 0
         }
-      ]
+      ],
+      "reachLabel": "Reached audience",
+      "postProvider": "supermetrics-tiktok-organic-videos-filtered"
     }
   },
   "content": [
+    {
+      "platform": "tiktok",
+      "date": "2026-05-28",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7645127973598760205",
+      "title": "The skin is one of the first places the body shows that something is off. Skin Magic supports healthy skin from the inside.",
+      "type": "Short Form Clip",
+      "views": 325530,
+      "reach": 180000,
+      "eng": 0,
+      "sourceId": "7645127973598760205"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-05-31",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7645422333015919902",
+      "title": "If skin issues keep coming back no matter what you try on the outside, the answer might be inside.",
+      "type": "Short Form Clip",
+      "views": 53363,
+      "reach": 28967,
+      "eng": 0,
+      "sourceId": "7645422333015919902"
+    },
     {
       "platform": "instagram",
       "date": "2026-06-06",
@@ -1596,6 +1621,17 @@ window.REAL_DATA = {
       "views": 15949,
       "reach": 14755,
       "eng": 572
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-10",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7647930539952852254",
+      "title": "When food obsession takes over mealtime, it is worth addressing at the source. Cesar shares his method.",
+      "type": "Short Form Clip",
+      "views": 15556,
+      "reach": 11713,
+      "eng": 0,
+      "sourceId": "7647930539952852254"
     },
     {
       "platform": "instagram",
@@ -1648,6 +1684,17 @@ window.REAL_DATA = {
       "eng": 509
     },
     {
+      "platform": "tiktok",
+      "date": "2026-06-25",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7655347869494299934",
+      "title": "Ever look at your dog and think something just feels off? Happy-Go-Lucky Belly supports comfortable digestion.",
+      "type": "Short Form Clip",
+      "views": 11174,
+      "reach": 9436,
+      "eng": 0,
+      "sourceId": "7655347869494299934"
+    },
+    {
       "platform": "instagram",
       "date": "2026-05-22",
       "url": "https://www.instagram.com/p/DYpL5SHD8P_/",
@@ -1698,6 +1745,17 @@ window.REAL_DATA = {
       "eng": 692
     },
     {
+      "platform": "tiktok",
+      "date": "2026-06-18",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7652630734280150302",
+      "title": "Your dog is paying attention to what you practice every day. Calm energy and clear direction help your dog settle.",
+      "type": "Short Form Clip",
+      "views": 9633,
+      "reach": 8728,
+      "eng": 0,
+      "sourceId": "7652630734280150302"
+    },
+    {
       "platform": "instagram",
       "date": "2026-05-30",
       "url": "https://www.instagram.com/reel/DY95EPSEWKA/",
@@ -1718,6 +1776,17 @@ window.REAL_DATA = {
       "eng": 75
     },
     {
+      "platform": "tiktok",
+      "date": "2026-06-16",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7649116034749730079",
+      "title": "Big coats are beautiful, but they can attract unwanted pests when spending time outdoors.",
+      "type": "Short Form Clip",
+      "views": 7807,
+      "reach": 4991,
+      "eng": 0,
+      "sourceId": "7649116034749730079"
+    },
+    {
       "platform": "instagram",
       "date": "2026-06-30",
       "url": "https://www.instagram.com/reel/DaNty2NDcq1/",
@@ -1726,6 +1795,17 @@ window.REAL_DATA = {
       "views": 7517,
       "reach": 6852,
       "eng": 425
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-28",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7655822037751041310",
+      "title": "For some dogs, food is the biggest thing in their world. Cesar shows how to bring structure and calm to mealtime.",
+      "type": "Short Form Clip",
+      "views": 7504,
+      "reach": 3079,
+      "eng": 0,
+      "sourceId": "7655822037751041310"
     },
     {
       "platform": "instagram",
@@ -1778,6 +1858,28 @@ window.REAL_DATA = {
       "eng": 403
     },
     {
+      "platform": "tiktok",
+      "date": "2026-05-29",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7644957016250813726",
+      "title": "Ever wonder why your dog might eat grass or other plants? Inner Purity helps support natural cleansing.",
+      "type": "Short Form Clip",
+      "views": 6511,
+      "reach": 5497,
+      "eng": 0,
+      "sourceId": "7644957016250813726"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-20",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7652007870522723614",
+      "title": "Dogs can show a broken spirit in several ways. Calm Confidence supports balance from within.",
+      "type": "Short Form Clip",
+      "views": 5008,
+      "reach": 4418,
+      "eng": 0,
+      "sourceId": "7652007870522723614"
+    },
+    {
       "platform": "instagram",
       "date": "2026-06-04",
       "url": "https://www.instagram.com/reel/DZKxHC6AfJM/",
@@ -1788,6 +1890,127 @@ window.REAL_DATA = {
       "eng": 376
     },
     {
+      "platform": "tiktok",
+      "date": "2026-06-18",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7652006245137665310",
+      "title": "Dogs are not complicated. We are. Calm Surrender helps dogs stay calm through everyday stress.",
+      "type": "Short Form Clip",
+      "views": 4521,
+      "reach": 3992,
+      "eng": 0,
+      "sourceId": "7652006245137665310"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-26",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7655053656722558238",
+      "title": "Patience at mealtime does not come naturally to every dog. Cesar shows the method he uses.",
+      "type": "Short Form Clip",
+      "views": 4480,
+      "reach": 4047,
+      "eng": 0,
+      "sourceId": "7655053656722558238"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-05-23",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7641973110710734110",
+      "title": "Snow Monkey dry skin and irritation: Skin Magic and Allergy Balance support dogs from the inside out.",
+      "type": "Short Form Clip",
+      "views": 4080,
+      "reach": 3411,
+      "eng": 0,
+      "sourceId": "7641973110710734110"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-28",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7655822148065430814",
+      "title": "Here is what Cesar feeding routine looks like with high-drive, food-focused dogs like Ice.",
+      "type": "Short Form Clip",
+      "views": 3715,
+      "reach": 3346,
+      "eng": 0,
+      "sourceId": "7655822148065430814"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-05-30",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7645393224793640223",
+      "title": "Skin issues in dogs are easy to spot but not always easy to fix. Skin Magic supports healthy skin from inside.",
+      "type": "Short Form Clip",
+      "views": 3623,
+      "reach": 2721,
+      "eng": 0,
+      "sourceId": "7645393224793640223"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-18",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7649427050683452703",
+      "title": "A puppy immune system gets stronger as they explore the world. Puppy Defense supports immune function and gut balance.",
+      "type": "Short Form Clip",
+      "views": 3305,
+      "reach": 3015,
+      "eng": 0,
+      "sourceId": "7649427050683452703"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-05-28",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7645123612956970253",
+      "title": "Some environments put real stress on a dog body. Allergy Balance supports a healthy immune response.",
+      "type": "Short Form Clip",
+      "views": 3083,
+      "reach": 1410,
+      "eng": 0,
+      "sourceId": "7645123612956970253"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-14",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7649113809658989855",
+      "title": "Dogs show discomfort in quiet ways. Inner Purity supports a healthy internal environment.",
+      "type": "Short Form Clip",
+      "views": 2897,
+      "reach": 2565,
+      "eng": 0,
+      "sourceId": "7649113809658989855"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-12",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7647931867726941470",
+      "title": "Every feeding at The Dog Psychology Center follows the same energy. Cesar shows how it works.",
+      "type": "Short Form Clip",
+      "views": 2700,
+      "reach": 2213,
+      "eng": 0,
+      "sourceId": "7647931867726941470"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-20",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7653215557302455582",
+      "title": "When a dog skin is uncomfortable, it shows. Skin Magic supports healthy skin and soothes irritation.",
+      "type": "Short Form Clip",
+      "views": 2643,
+      "reach": 2074,
+      "eng": 0,
+      "sourceId": "7653215557302455582"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-30",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256113506684191",
+      "title": "Stress in dogs does not always look dramatic. Calm Surrender offers non-sedating support.",
+      "type": "Short Form Clip",
+      "views": 2628,
+      "reach": 1017,
+      "eng": 0,
+      "sourceId": "7657256113506684191"
+    },
+    {
       "platform": "instagram",
       "date": "2026-06-02",
       "url": "https://www.instagram.com/p/DZFnbdegTay/",
@@ -1796,6 +2019,28 @@ window.REAL_DATA = {
       "views": 2061,
       "reach": 1398,
       "eng": 46
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-29",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656865433806507294",
+      "title": "Here is a look at how feeding works at The Dog Psychology Center under Cesar approach.",
+      "type": "Short Form Clip",
+      "views": 1452,
+      "reach": 834,
+      "eng": 0,
+      "sourceId": "7656865433806507294"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-29",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656865581311741215",
+      "title": "Structure at mealtime matters. Here is how Cesar handles it with the dogs at The Dog Psychology Center.",
+      "type": "Short Form Clip",
+      "views": 1343,
+      "reach": 958,
+      "eng": 0,
+      "sourceId": "7656865581311741215"
     },
     {
       "platform": "instagram",
@@ -1849,6 +2094,17 @@ window.REAL_DATA = {
       "watchTime": 106,
       "reach": null,
       "eng": 17
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-01",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657257539117108510",
+      "title": "Mealtime with a high-energy dog like Zeus takes a specific approach. Here is how Cesar manages it.",
+      "type": "Short Form Clip",
+      "views": 1043,
+      "reach": 64,
+      "eng": 0,
+      "sourceId": "7657257539117108510"
     },
     {
       "platform": "instagram",
@@ -1936,6 +2192,17 @@ window.REAL_DATA = {
       "eng": 18
     },
     {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656916624238316830",
+      "title": "What does happy-go-lucky look like in a dog? Happy-Go-Lucky Belly supports healthy digestion.",
+      "type": "Short Form Clip",
+      "views": 576,
+      "reach": 0,
+      "eng": 0,
+      "sourceId": "7656916624238316830"
+    },
+    {
       "platform": "instagram",
       "date": "2026-05-21",
       "url": "https://www.instagram.com/reel/DYmnKL-j6XF/",
@@ -1964,6 +2231,17 @@ window.REAL_DATA = {
       "views": 528,
       "reach": 465,
       "eng": 14
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-01",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256658036378911",
+      "title": "Zeus has a lot of energy, especially at mealtime. Cesar shows how he handles it.",
+      "type": "Short Form Clip",
+      "views": 510,
+      "reach": 249,
+      "eng": 0,
+      "sourceId": "7657256658036378911"
     },
     {
       "platform": "instagram",
@@ -2027,6 +2305,28 @@ window.REAL_DATA = {
       "eng": 14
     },
     {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658040941864930590",
+      "title": "Dogs reflect the energy we bring. Calm Confidence supports relaxation, clarity, and emotional balance.",
+      "type": "Short Form Clip",
+      "views": 442,
+      "reach": 0,
+      "eng": 0,
+      "sourceId": "7658040941864930590"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-01",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657257701499604255",
+      "title": "Feeding a high-energy dog the right way takes more than just putting food down.",
+      "type": "Short Form Clip",
+      "views": 431,
+      "reach": 36,
+      "eng": 0,
+      "sourceId": "7657257701499604255"
+    },
+    {
       "platform": "facebook",
       "date": "2026-06-20",
       "url": "https://www.facebook.com/674626722402999_122178751448906904",
@@ -2055,6 +2355,17 @@ window.REAL_DATA = {
       "views": 401,
       "reach": 355,
       "eng": 11
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658041583962541343",
+      "title": "The skin can reflect what is going on inside the body. Skin Magic supports healthy skin.",
+      "type": "Short Form Clip",
+      "views": 401,
+      "reach": 0,
+      "eng": 0,
+      "sourceId": "7658041583962541343"
     },
     {
       "platform": "facebook",
@@ -2188,6 +2499,17 @@ window.REAL_DATA = {
       "eng": 6
     },
     {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658041215278992671",
+      "title": "When a dog belly is not right, their whole body feels it. Happy Go-Lucky Belly supports digestive balance.",
+      "type": "Short Form Clip",
+      "views": 311,
+      "reach": 0,
+      "eng": 0,
+      "sourceId": "7658041215278992671"
+    },
+    {
       "platform": "facebook",
       "date": "2026-06-27",
       "url": "https://www.facebook.com/674626722402999_122179661126906904",
@@ -2216,6 +2538,17 @@ window.REAL_DATA = {
       "views": 302,
       "reach": 273,
       "eng": 11
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-01",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256317395930398",
+      "title": "Cesar walks through a few Better Dog Supplements he relies on at the ranch.",
+      "type": "Short Form Clip",
+      "views": 301,
+      "reach": 274,
+      "eng": 0,
+      "sourceId": "7657256317395930398"
     },
     {
       "platform": "facebook",
@@ -2299,6 +2632,17 @@ window.REAL_DATA = {
       "views": 284,
       "reach": 253,
       "eng": 4
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657257891170176286",
+      "title": "The way a dog eats says a lot about where their energy is. Cesar shares his approach.",
+      "type": "Short Form Clip",
+      "views": 283,
+      "reach": 0,
+      "eng": 0,
+      "sourceId": "7657257891170176286"
     },
     {
       "platform": "youtube",
@@ -2470,6 +2814,17 @@ window.REAL_DATA = {
       "eng": 8
     },
     {
+      "platform": "tiktok",
+      "date": "2026-07-01",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256501731478815",
+      "title": "Here is how Cesar works with dogs like Zeus who have zero patience at mealtime.",
+      "type": "Short Form Clip",
+      "views": 147,
+      "reach": 60,
+      "eng": 0,
+      "sourceId": "7657256501731478815"
+    },
+    {
       "platform": "youtube",
       "date": "2026-05-19",
       "url": "https://www.youtube.com/watch?v=B1BsuygjscM",
@@ -2576,6 +2931,17 @@ window.REAL_DATA = {
       "watchTime": 11,
       "reach": null,
       "eng": 5
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658040601652350239",
+      "title": "Some dogs were not meant for the environment we bring them into. Allergy Balance supports immune response.",
+      "type": "Short Form Clip",
+      "views": 20,
+      "reach": 0,
+      "eng": 0,
+      "sourceId": "7658040601652350239"
     },
     {
       "platform": "facebook",

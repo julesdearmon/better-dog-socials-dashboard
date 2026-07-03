@@ -374,7 +374,8 @@ function focusedPlatform() {
 function visibleMetricKeys() {
   const keys = [...CORE_METRIC_KEYS];
   const focus = focusedPlatform();
-  if (focus === 'instagram') keys.push('reach');
+  const shown = platforms();
+  if (shown.some((p) => supports(p, 'reach'))) keys.push('reach');
   if (focus === 'youtube') keys.push('watchTime');
   return keys;
 }
@@ -935,7 +936,7 @@ function renderChartVisibility() {
   const focus = focusedPlatform();
   $('#viewsCard').hidden = false;
   $('#postsCard').hidden = false;
-  $('#reachCard').hidden = focus !== 'instagram';
+  $('#reachCard').hidden = !platforms().some((p) => supports(p, 'reach'));
   $('#watchCard').hidden = focus !== 'youtube';
 }
 
@@ -954,7 +955,7 @@ function renderKpis() {
   $('#kpis').innerHTML = visibleMetrics().map((m) => {
     const curr = totalAt(m.key, 0);
     const prev = totalAt(m.key, 1);
-    const note = pendingOnly ? 'pending approval' : (m.key === 'watchTime' ? 'YouTube · selected range' : 'selected range');
+    const note = pendingOnly ? 'pending approval' : (m.key === 'watchTime' ? 'YouTube · selected range' : (m.key === 'reach' ? 'available platforms' : 'selected range'));
     const val = pendingOnly || (m.key === 'watchTime' && curr === 0) ? null : curr;
     return `
       <div class="kpi">
