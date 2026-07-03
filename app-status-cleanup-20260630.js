@@ -37,9 +37,14 @@ function rangeDays() {
   return Math.round((Date.parse(state.rangeEnd + 'T00:00:00Z') - Date.parse(state.rangeStart + 'T00:00:00Z')) / DAY) + 1;
 }
 function chartGranularity() {
+  const allowed = allowedGranularities();
+  return allowed.includes(state.granularity) ? state.granularity : allowed[0];
+}
+function allowedGranularities() {
   const days = rangeDays();
-  if (state.granularity === 'monthly' && days < 45) return 'daily';
-  return state.granularity;
+  if (!days || days <= 14) return ['daily'];
+  if (days <= 45) return ['daily', 'weekly'];
+  return ['daily', 'weekly', 'monthly'];
 }
 function suggestedGranularity(startIso, endIso) {
   const days = Math.round((Date.parse(endIso + 'T00:00:00Z') - Date.parse(startIso + 'T00:00:00Z')) / DAY) + 1;
@@ -48,7 +53,13 @@ function suggestedGranularity(startIso, endIso) {
   return 'monthly';
 }
 function setGranButton(g) {
-  [...$('#granToggle').children].forEach((b) => b.classList.toggle('active', b.dataset.g === g));
+  const allowed = allowedGranularities();
+  [...$('#granToggle').children].forEach((b) => {
+    const isAllowed = allowed.includes(b.dataset.g);
+    b.hidden = !isAllowed;
+    b.disabled = !isAllowed;
+    b.classList.toggle('active', isAllowed && b.dataset.g === g);
+  });
 }
 
 function fmt(n) {
@@ -181,10 +192,12 @@ function presetRange(name, asOfMs) {
   const lastMonthEnd = monthFirst - DAY;                      // last day of the previous month
   const lastMonth = new Date(lastMonthEnd);
   const lastMonthStart = Date.UTC(lastMonth.getUTCFullYear(), lastMonth.getUTCMonth(), 1);
+  const last3MonthsStart = Date.UTC(lastMonth.getUTCFullYear(), lastMonth.getUTCMonth() - 2, 1);
   if (name === 'this-week') return { start: iso(thisWeekStart), end: iso(base), gran: 'daily' };
   if (name === 'last-week') return { start: iso(thu - 6 * DAY), end: iso(thu), gran: 'daily' };
-  if (name === 'last-month') return { start: iso(lastMonthStart), end: iso(lastMonthEnd), gran: 'daily' };
   if (name === 'this-month') return { start: iso(monthFirst), end: iso(base), gran: 'daily' };
+  if (name === 'last-month') return { start: iso(lastMonthStart), end: iso(lastMonthEnd), gran: 'weekly' };
+  if (name === 'last-3-months') return { start: iso(last3MonthsStart), end: iso(lastMonthEnd), gran: 'weekly' };
   return null;
 }
 
@@ -495,10 +508,12 @@ function updateMode() {
     const updated = state.data.updatedAt || 'unknown';
     const errors = state.data.directApiErrors || [];
     const tiktokPending = errors.some((x) => /^tiktok:/i.test(x)) || isPendingPlatform('tiktok');
+    const tiktokTopContentUnavailable = state.data.metrics?.tiktok?.hasTopContent === false;
     const realErrors = errors.filter((x) => !/^tiktok:/i.test(x));
-    const parts = [`Updated ${updated}`, `Data through ${through}`];
+    const parts = [`Updated ${updated}`, `Data through ${through}`, 'Source: Supermetrics'];
     if (tiktokPending) parts.push('TikTok not connected yet');
-    if (realErrors.length) parts.push(`⚠️ Connection issue: ${realErrors.join(' | ')}`);
+    else if (tiktokTopContentUnavailable) parts.push('TikTok top content unavailable');
+    if (realErrors.length) parts.push(`Warning: Connection issue: ${realErrors.join(' | ')}`);
     note.textContent = parts.join(' - ');
     note.hidden = false;
   } else {
@@ -532,7 +547,7 @@ function renderDataQuality() {
   quality.hidden = false;
 }
 function setGranularity(g) {
-  if (!GRAN_NOUN[g]) return;
+  if (!GRAN_NOUN[g] || !allowedGranularities().includes(g)) return;
   state.granularity = g;
   setGranButton(state.granularity);
   render();
@@ -567,6 +582,8 @@ async function load() {
     }
     if (!state.rangeStart || !state.rangeEnd) {
       const r = defaultRange(Date.parse(state.data.asOf + 'T00:00:00Z'));
+      const firstDate = state.data.metrics?.instagram?.daily?.[0]?.date;
+      if (firstDate && firstDate > r.start) r.start = firstDate;
       state.rangeStart = r.start; state.rangeEnd = r.end;
     }
     render();
@@ -610,6 +627,8 @@ function render() {
   $('#insightPanel').hidden = true; state.insightKey = null; // stale once the view changes; re-click to refresh
   const chartGran = chartGranularity();
   const noun = GRAN_NOUN[chartGran];
+  state.granularity = chartGran;
+  setGranButton(chartGran);
 
   // Reflect the selected range in the calendar button + header.
   renderCalBtn();
@@ -752,7 +771,7 @@ function renderOverview() {
   const info = periodInfo();
   if (ps.length && ps.every(isPendingPlatform)) {
     $('#overviewTitle').textContent = `Overall analysis - ${info.title}`;
-    el.innerHTML = '<p class="ov-headline"><strong>TikTok is pending approval.</strong> No live TikTok data is shown yet.</p>';
+    el.innerHTML = '<p class="ov-headline"><strong>TikTok totals are connected.</strong> Top content is unavailable until the Supermetrics post-level query stops timing out.</p>';
     return;
   }
   if (ps.length === 1) { renderFocusedOverview(ps[0], start, end, info); return; }
@@ -828,9 +847,13 @@ function renderOverview() {
 function renderContent() {
   if (!state.data.content) return;
   const focus = focusedPlatform();
+  const shown = platforms();
+  const canSortReach = focus
+    ? supports(focus, 'reach')
+    : shown.some((p) => supports(p, 'reach'));
   const sortOptions = [
-    ...(focus === 'facebook' ? [] : [['views', 'By views']]),
-    ...(focus === 'instagram' ? [['reach', 'By reach']] : []),
+    ['views', 'By views'],
+    ...(canSortReach ? [['reach', 'By reach']] : []),
     ...(focus === 'youtube' ? [['watchTime', 'By watch time']] : []),
     ['eng', 'By engagement'],
   ];
@@ -858,7 +881,6 @@ function renderContent() {
   });
 
   const contentColumns = (platform, rows) => {
-    const hasViews = platform !== 'facebook' || rows.some((c) => c.views != null);
     const base = [
       { label: '#', cls: '', value: (_c, i) => i + 1 },
       { label: 'Content', cls: '', value: (c) => {
@@ -870,8 +892,8 @@ function renderContent() {
       { label: 'Type', cls: '', value: (c) => `<span class="type-tag">${escapeHtml(c.type || '-')}</span>` },
       { label: 'Date posted', cls: '', value: (c) => c.date },
     ];
-    if (hasViews) base.push({ label: 'Views', cls: 'num', value: (c) => fmtFull(c.views) });
-    if (platform === 'instagram') base.push({ label: 'Reach', cls: 'num', value: (c) => fmtFull(c.reach) });
+    base.push({ label: 'Views', cls: 'num', value: (c) => fmtFull(c.views) });
+    if (supports(platform, 'reach') && rows.some((c) => c.reach != null)) base.push({ label: 'Reach', cls: 'num', value: (c) => fmtFull(c.reach) });
     if (platform === 'youtube') base.push({ label: 'Watch time', cls: 'num', value: (c) => c.watchTime == null ? '-' : `${fmt(c.watchTime / 60)} hrs` });
     base.push({ label: 'Engagement', cls: 'num', value: (c) => fmtFull(c.eng) });
     return base;
@@ -892,10 +914,10 @@ function renderContent() {
         <span class="cg-name">${nameOf(g.p)}</span>
       </div>
       ${g.pending
-        ? `<p class="cg-empty">TikTok is pending approval. No live TikTok data is shown yet.</p>`
+        ? `<p class="cg-empty">TikTok totals are connected, but TikTok top content is not available from Supermetrics yet.</p>`
         : g.top.length
         ? tableHtml(g.p, g.top)
-        : `<p class="cg-empty">No posts in ${escapeHtml(period.label)}.</p>`}
+        : `<p class="cg-empty">${g.p === 'tiktok' ? 'TikTok totals are connected, but TikTok post-level content is not available from Supermetrics yet.' : `No posts in ${escapeHtml(period.label)}.`}</p>`}
     </div>
   `).join('');
 }
