@@ -85,6 +85,7 @@ const num = (v) => { const n = Number(v); return Number.isFinite(n) ? n : 0; };
  */
 async function query({ ds_id, account, fields, settings }) {
   const body = {
+    api_key: API_KEY,
     ds_id,
     ds_accounts: account,
     date_range_type: 'custom',
@@ -99,7 +100,6 @@ async function query({ ds_id, account, fields, settings }) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${API_KEY}`,
     },
     body: JSON.stringify(body),
   });
@@ -129,6 +129,7 @@ async function query({ ds_id, account, fields, settings }) {
 
 async function queryRange({ ds_id, account, fields, settings, start_date = START, end_date = END }) {
   const body = {
+    api_key: API_KEY,
     ds_id,
     ds_accounts: account,
     date_range_type: 'custom',
@@ -143,7 +144,6 @@ async function queryRange({ ds_id, account, fields, settings, start_date = START
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${API_KEY}`,
     },
     body: JSON.stringify(body),
   });
