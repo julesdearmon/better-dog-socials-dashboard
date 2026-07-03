@@ -130,10 +130,10 @@
       "platform": "instagram",
       "start": "2026-06-01",
       "end": "2026-06-30",
-      "source": "Supermetrics exact range total",
+      "source": "Meta Business Suite Content Overview screenshot",
       "values": {
-        "views": 567508,
-        "reach": 79776
+        "views": 567510,
+        "reach": 80700
       }
     },
     {
@@ -144,6 +144,16 @@
       "values": {
         "views": 17412,
         "reach": 3854
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-05-01",
+      "end": "2026-05-31",
+      "source": "Derived from Meta Business Suite June screenshot percent change",
+      "values": {
+        "views": 395753,
+        "reach": 68974
       }
     }
   ],
