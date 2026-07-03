@@ -5,7 +5,7 @@
     "color": "#88cc33"
   },
   "asOf": "2026-07-02",
-  "updatedAt": "Jul 3, 2026, 7:45 AM",
+  "updatedAt": "Jul 3, 2026, 12:25 PM",
   "source": "live",
   "generatedFrom": "Supermetrics API (Instagram, Facebook, TikTok, YouTube)",
   "directApiErrors": [],
@@ -157,6 +157,132 @@
       "hasReach": true,
       "asOf": "2026-07-02",
       "daily": [
+        {
+          "posts": 1,
+          "date": "2026-05-01",
+          "views": 20144,
+          "reach": 15874,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-02",
+          "views": 17030,
+          "reach": 13366,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-03",
+          "views": 3987,
+          "reach": 1842,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-04",
+          "views": 24400,
+          "reach": 1612,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-05",
+          "views": 9574,
+          "reach": 1218,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-06",
+          "views": 7268,
+          "reach": 2917,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-07",
+          "views": 15541,
+          "reach": 8575,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-08",
+          "views": 15176,
+          "reach": 10760,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-09",
+          "views": 5535,
+          "reach": 2738,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-10",
+          "views": 3884,
+          "reach": 681,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-11",
+          "views": 13820,
+          "reach": 455,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-12",
+          "views": 13521,
+          "reach": 707,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-13",
+          "views": 8958,
+          "reach": 3927,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-14",
+          "views": 7384,
+          "reach": 3538,
+          "watchTime": 0
+        },
+        {
+          "posts": 2,
+          "date": "2026-05-15",
+          "views": 8456,
+          "reach": 5209,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-16",
+          "views": 4987,
+          "reach": 1670,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-17",
+          "views": 12852,
+          "reach": 322,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-18",
+          "views": 36764,
+          "reach": 327,
+          "watchTime": 0
+        },
         {
           "date": "2026-05-19",
           "posts": 1,
@@ -483,6 +609,132 @@
       "hasReach": true,
       "asOf": "2026-07-02",
       "daily": [
+        {
+          "posts": 1,
+          "date": "2026-05-01",
+          "views": 496,
+          "reach": 189,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-02",
+          "views": 231,
+          "reach": 78,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-03",
+          "views": 434,
+          "reach": 139,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-04",
+          "views": 284,
+          "reach": 121,
+          "watchTime": 0
+        },
+        {
+          "posts": 2,
+          "date": "2026-05-05",
+          "views": 955,
+          "reach": 656,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-06",
+          "views": 1143,
+          "reach": 813,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-07",
+          "views": 2732,
+          "reach": 1791,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-08",
+          "views": 3288,
+          "reach": 2233,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-09",
+          "views": 5354,
+          "reach": 3912,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-10",
+          "views": 6336,
+          "reach": 4227,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-11",
+          "views": 4694,
+          "reach": 3111,
+          "watchTime": 0
+        },
+        {
+          "posts": 2,
+          "date": "2026-05-12",
+          "views": 3849,
+          "reach": 2915,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-13",
+          "views": 2910,
+          "reach": 2092,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-14",
+          "views": 1681,
+          "reach": 1013,
+          "watchTime": 0
+        },
+        {
+          "posts": 2,
+          "date": "2026-05-15",
+          "views": 1943,
+          "reach": 1307,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-16",
+          "views": 1570,
+          "reach": 1133,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-17",
+          "views": 2663,
+          "reach": 1606,
+          "watchTime": 0
+        },
+        {
+          "posts": 1,
+          "date": "2026-05-18",
+          "views": 3436,
+          "reach": 2224,
+          "watchTime": 0
+        },
         {
           "date": "2026-05-19",
           "posts": 1,
@@ -812,6 +1064,132 @@
       "asOf": "2026-07-02",
       "daily": [
         {
+          "posts": 0,
+          "date": "2026-05-01",
+          "views": 316,
+          "reach": 0,
+          "watchTime": 235
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-02",
+          "views": 353,
+          "reach": 0,
+          "watchTime": 299
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-03",
+          "views": 289,
+          "reach": 0,
+          "watchTime": 251
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-04",
+          "views": 288,
+          "reach": 0,
+          "watchTime": 252
+        },
+        {
+          "posts": 4,
+          "date": "2026-05-05",
+          "views": 335,
+          "reach": 0,
+          "watchTime": 213
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-06",
+          "views": 442,
+          "reach": 0,
+          "watchTime": 265
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-07",
+          "views": 536,
+          "reach": 0,
+          "watchTime": 244
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-08",
+          "views": 5380,
+          "reach": 0,
+          "watchTime": 2834
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-09",
+          "views": 8514,
+          "reach": 0,
+          "watchTime": 5502
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-10",
+          "views": 11448,
+          "reach": 0,
+          "watchTime": 7864
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-11",
+          "views": 4502,
+          "reach": 0,
+          "watchTime": 3108
+        },
+        {
+          "posts": 6,
+          "date": "2026-05-12",
+          "views": 3269,
+          "reach": 0,
+          "watchTime": 1512
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-13",
+          "views": 1415,
+          "reach": 0,
+          "watchTime": 808
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-14",
+          "views": 1286,
+          "reach": 0,
+          "watchTime": 658
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-15",
+          "views": 1141,
+          "reach": 0,
+          "watchTime": 671
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-16",
+          "views": 2665,
+          "reach": 0,
+          "watchTime": 646
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-17",
+          "views": 862,
+          "reach": 0,
+          "watchTime": 520
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-18",
+          "views": 702,
+          "reach": 0,
+          "watchTime": 427
+        },
+        {
           "date": "2026-05-19",
           "posts": 1,
           "views": 302,
@@ -1139,6 +1517,126 @@
       "hasTopContent": true,
       "asOf": "2026-07-02",
       "daily": [
+        {
+          "posts": 0,
+          "date": "2026-05-04",
+          "views": 29,
+          "reach": 3948,
+          "profileViews": 2,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-05",
+          "views": 61,
+          "reach": 0,
+          "profileViews": 2,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-06",
+          "views": 1279,
+          "reach": 0,
+          "profileViews": 9,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-07",
+          "views": 1654,
+          "reach": 0,
+          "profileViews": 14,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-08",
+          "views": 1166,
+          "reach": 0,
+          "profileViews": 5,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-09",
+          "views": 195,
+          "reach": 0,
+          "profileViews": 8,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-10",
+          "views": 235,
+          "reach": 0,
+          "profileViews": 6,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-11",
+          "views": 708,
+          "reach": 6067,
+          "profileViews": 5,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-12",
+          "views": 3228,
+          "reach": 0,
+          "profileViews": 27,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-13",
+          "views": 1094,
+          "reach": 0,
+          "profileViews": 9,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-14",
+          "views": 676,
+          "reach": 0,
+          "profileViews": 4,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-15",
+          "views": 837,
+          "reach": 0,
+          "profileViews": 2,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-16",
+          "views": 288,
+          "reach": 0,
+          "profileViews": 0,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-17",
+          "views": 322,
+          "reach": 0,
+          "profileViews": 1,
+          "watchTime": 0
+        },
+        {
+          "posts": 0,
+          "date": "2026-05-18",
+          "views": 1246,
+          "reach": 914,
+          "profileViews": 9,
+          "watchTime": 0
+        },
         {
           "date": "2026-05-19",
           "posts": 1,
@@ -1551,821 +2049,224 @@
   },
   "content": [
     {
-      "platform": "tiktok",
-      "date": "2026-05-28",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7645127973598760205",
-      "title": "The skin is one of the first places the body shows that something is off. Skin Magic supports healthy skin from the inside.",
+      "platform": "facebook",
+      "date": "2026-05-01",
+      "url": "https://www.facebook.com/674626722402999_122172190358906904",
+      "title": "Here's how I approach feeding dogs who are obsessed with food like Ice!",
       "type": "Short Form Clip",
-      "views": 325530,
-      "reach": 180000,
-      "eng": 0,
-      "sourceId": "7645127973598760205"
+      "views": 404,
+      "reach": 316,
+      "eng": 8
     },
     {
-      "platform": "tiktok",
-      "date": "2026-05-31",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7645422333015919902",
-      "title": "If skin issues keep coming back no matter what you try on the outside, the answer might be inside.",
-      "type": "Short Form Clip",
-      "views": 53363,
-      "reach": 28967,
-      "eng": 0,
-      "sourceId": "7645422333015919902"
+      "platform": "facebook",
+      "date": "2026-05-02",
+      "url": "https://www.facebook.com/674626722402999_122172315614906904",
+      "title": "Puppy Defense earned the paw of approval.",
+      "type": "Feed Post",
+      "views": 264,
+      "reach": 167,
+      "eng": 4
     },
     {
-      "platform": "instagram",
-      "date": "2026-06-06",
-      "url": "https://www.instagram.com/reel/DZP6uldjIMC/",
+      "platform": "facebook",
+      "date": "2026-05-03",
+      "url": "https://www.facebook.com/674626722402999_122172436418906904",
+      "title": "Priorities matter.",
+      "type": "Feed Post",
+      "views": 366,
+      "reach": 200,
+      "eng": 11
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-05-05",
+      "url": "https://www.facebook.com/674626722402999_122172680504906904",
+      "title": "How your dog responds to noise might have everything to do with their position in the pack.",
+      "type": "Short Form Clip",
+      "views": 537,
+      "reach": 476,
+      "eng": 7
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-05-05",
+      "url": "https://www.facebook.com/674626722402999_1512824923533133",
+      "title": "Some breeds feel environmental changes more than others, especially when it comes to skin and allergies.",
+      "type": "Short Form Clip",
+      "views": 0,
+      "reach": 0,
+      "eng": 380
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-05-06",
+      "url": "https://www.facebook.com/674626722402999_122172860498906904",
+      "title": "Stress in dogs can show up in many ways. Do you know how to spot it?",
+      "type": "Short Form Clip",
+      "views": 334,
+      "reach": 309,
+      "eng": 3
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-05-07",
+      "url": "https://www.facebook.com/674626722402999_122172935300906904",
       "title": "Does your dog follow you around everywhere?",
       "type": "Short Form Clip",
-      "views": 33858,
-      "reach": 31237,
-      "eng": 924
+      "views": 320,
+      "reach": 287,
+      "eng": 6
     },
     {
-      "platform": "instagram",
-      "date": "2026-05-27",
-      "url": "https://www.instagram.com/reel/DY2KBPyDqyQ/",
-      "title": "Skin Magic was formulated for Cesar Millan to help support healthy skin and soothe irritation naturally.",
+      "platform": "facebook",
+      "date": "2026-05-08",
+      "url": "https://www.facebook.com/674626722402999_122173078586906904",
+      "title": "Regular motion plays a big role in keeping dogs healthy.",
       "type": "Short Form Clip",
-      "views": 21913,
-      "reach": 19082,
-      "eng": 50
+      "views": 163,
+      "reach": 131,
+      "eng": 4
     },
     {
-      "platform": "instagram",
-      "date": "2026-05-20",
-      "url": "https://www.instagram.com/reel/DYkC08lE59C/",
-      "title": "Calm Surrender was formulated for Cesar Millan to help promote calm behavior and emotional balance.",
+      "platform": "facebook",
+      "date": "2026-05-10",
+      "url": "https://www.facebook.com/674626722402999_122173394960906904",
+      "title": "Would not have it any other way.",
+      "type": "Feed Post",
+      "views": 289,
+      "reach": 185,
+      "eng": 9
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-05-12",
+      "url": "https://www.facebook.com/674626722402999_122173640210906904",
+      "title": "Some dogs go at 100mph.",
       "type": "Short Form Clip",
-      "views": 17638,
-      "reach": 16487,
-      "eng": 68
+      "views": 340,
+      "reach": 315,
+      "eng": 6
     },
     {
-      "platform": "instagram",
-      "date": "2026-05-29",
-      "url": "https://www.instagram.com/reel/DY7UaZMjZLu/",
-      "title": "Ever wonder why your dog might eat grass or other plants?",
+      "platform": "facebook",
+      "date": "2026-05-12",
+      "url": "https://www.facebook.com/674626722402999_1518465426302416",
+      "title": "Keeping a long-haired corgi like Kimchi looking this good takes more than just brushing.",
       "type": "Short Form Clip",
-      "views": 17344,
-      "reach": 15762,
-      "eng": 800
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-05-28",
-      "url": "https://www.instagram.com/reel/DY4uhhfxBeI/",
-      "title": "Nature has a way of showing us what our dogs need.",
-      "type": "Short Form Clip",
-      "views": 15949,
-      "reach": 14755,
-      "eng": 572
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-10",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7647930539952852254",
-      "title": "When food obsession takes over mealtime, it is worth addressing at the source. Cesar shares his method.",
-      "type": "Short Form Clip",
-      "views": 15556,
-      "reach": 11713,
-      "eng": 0,
-      "sourceId": "7647930539952852254"
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-23",
-      "url": "https://www.instagram.com/reel/DZ7y6bSD2WO/",
-      "title": "When Nancy Cartwright, the voice of Bart Simpson, enters the Better Dog chat, we are all ears.",
-      "type": "Short Form Clip",
-      "views": 14395,
-      "reach": 13580,
-      "eng": 38
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-16",
-      "url": "https://www.instagram.com/reel/DZpotrglJNw/",
-      "title": "Your dog is paying attention to what you practice every day.",
-      "type": "Short Form Clip",
-      "views": 12931,
-      "reach": 11512,
-      "eng": 984
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-20",
-      "url": "https://www.instagram.com/reel/DZz21CvElk9/",
-      "title": "Dogs can show a broken spirit in several ways.",
-      "type": "Short Form Clip",
-      "views": 12535,
-      "reach": 11260,
-      "eng": 725
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-12",
-      "url": "https://www.instagram.com/reel/DZfa7vpiEaI/",
-      "title": "Ever notice your dog has loose stool and immediately start wondering what caused it?",
-      "type": "Short Form Clip",
-      "views": 11303,
-      "reach": 10042,
-      "eng": 515
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-28",
-      "url": "https://www.instagram.com/reel/DaIkKlCAoNM/",
-      "title": "What causes tear stains in dogs?",
-      "type": "Short Form Clip",
-      "views": 11254,
-      "reach": 10204,
-      "eng": 509
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-25",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7655347869494299934",
-      "title": "Ever look at your dog and think something just feels off? Happy-Go-Lucky Belly supports comfortable digestion.",
-      "type": "Short Form Clip",
-      "views": 11174,
-      "reach": 9436,
-      "eng": 0,
-      "sourceId": "7655347869494299934"
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-05-22",
-      "url": "https://www.instagram.com/p/DYpL5SHD8P_/",
-      "title": "Does your dog get anxious when you leave the house?",
-      "type": "Carousel",
-      "views": 10571,
-      "reach": 9056,
-      "eng": 40
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-19",
-      "url": "https://www.instagram.com/reel/DZxSOpiDTaM/",
-      "title": "Behavior problems do not just happen.",
-      "type": "Short Form Clip",
-      "views": 10337,
-      "reach": 9443,
-      "eng": 923
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-25",
-      "url": "https://www.instagram.com/reel/DaA1m1iD_YG/",
-      "title": "Ever look at your dog and think something just feels off?",
-      "type": "Short Form Clip",
-      "views": 10192,
-      "reach": 9392,
-      "eng": 680
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-18",
-      "url": "https://www.instagram.com/reel/DZutcZICcSJ/",
-      "title": "Dogs are not complicated.",
-      "type": "Short Form Clip",
-      "views": 10140,
-      "reach": 9007,
-      "eng": 654
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-12",
-      "url": "https://www.instagram.com/reel/DZft1LxE8eQ/",
-      "title": "Does your dog get extra active when guests arrive?",
-      "type": "Short Form Clip",
-      "views": 9989,
-      "reach": 9019,
-      "eng": 692
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-18",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7652630734280150302",
-      "title": "Your dog is paying attention to what you practice every day. Calm energy and clear direction help your dog settle.",
-      "type": "Short Form Clip",
-      "views": 9633,
-      "reach": 8728,
-      "eng": 0,
-      "sourceId": "7652630734280150302"
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-05-30",
-      "url": "https://www.instagram.com/reel/DY95EPSEWKA/",
-      "title": "Raising a great dog means stepping into both roles.",
-      "type": "Short Form Clip",
-      "views": 9125,
-      "reach": 8474,
-      "eng": 838
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-09",
-      "url": "https://www.instagram.com/reel/DZXiLsJgOBD/",
-      "title": "This made such a big difference in my dog?s itching.",
-      "type": "Short Form Clip",
-      "views": 8832,
-      "reach": 8251,
-      "eng": 75
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-16",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7649116034749730079",
-      "title": "Big coats are beautiful, but they can attract unwanted pests when spending time outdoors.",
-      "type": "Short Form Clip",
-      "views": 7807,
-      "reach": 4991,
-      "eng": 0,
-      "sourceId": "7649116034749730079"
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-30",
-      "url": "https://www.instagram.com/reel/DaNty2NDcq1/",
-      "title": "Some dogs come with no brakes, just a gas pedal.",
-      "type": "Short Form Clip",
-      "views": 7517,
-      "reach": 6852,
-      "eng": 425
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-28",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7655822037751041310",
-      "title": "For some dogs, food is the biggest thing in their world. Cesar shows how to bring structure and calm to mealtime.",
-      "type": "Short Form Clip",
-      "views": 7504,
-      "reach": 3079,
-      "eng": 0,
-      "sourceId": "7655822037751041310"
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-05-23",
-      "url": "https://www.instagram.com/reel/DYrwwr2gFT_/",
-      "title": "When I see a dog dealing with dry skin and irritation, I think about comfort.",
-      "type": "Short Form Clip",
-      "views": 7356,
-      "reach": 6852,
-      "eng": 639
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-03",
-      "url": "https://www.instagram.com/reel/DZIMN44lGH9/",
-      "title": "This is where Tommy?s shiny coat comes from.",
-      "type": "Short Form Clip",
-      "views": 7293,
-      "reach": 6759,
-      "eng": 548
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-26",
-      "url": "https://www.instagram.com/reel/DaDa1IwgYVt/",
-      "title": "Healthy skin shows up in the coat, the shine, the moisture, and the way your dog feels every day.",
-      "type": "Short Form Clip",
-      "views": 7149,
-      "reach": 6622,
-      "eng": 428
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-13",
-      "url": "https://www.instagram.com/reel/DZh1ZmrDFsl/",
-      "title": "The key is not just seeing the signs, it is understanding what they mean.",
-      "type": "Short Form Clip",
-      "views": 7139,
-      "reach": 6449,
-      "eng": 482
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-27",
-      "url": "https://www.instagram.com/reel/DaF_WKfjWPt/",
-      "title": "Watching your dog slow down can be tough.",
-      "type": "Short Form Clip",
-      "views": 7110,
-      "reach": 6591,
-      "eng": 403
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-05-29",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7644957016250813726",
-      "title": "Ever wonder why your dog might eat grass or other plants? Inner Purity helps support natural cleansing.",
-      "type": "Short Form Clip",
-      "views": 6511,
-      "reach": 5497,
-      "eng": 0,
-      "sourceId": "7644957016250813726"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-20",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7652007870522723614",
-      "title": "Dogs can show a broken spirit in several ways. Calm Confidence supports balance from within.",
-      "type": "Short Form Clip",
-      "views": 5008,
-      "reach": 4418,
-      "eng": 0,
-      "sourceId": "7652007870522723614"
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-04",
-      "url": "https://www.instagram.com/reel/DZKxHC6AfJM/",
-      "title": "Their well-being comes from what we do every single day.",
-      "type": "Short Form Clip",
-      "views": 5006,
-      "reach": 4505,
-      "eng": 376
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-18",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7652006245137665310",
-      "title": "Dogs are not complicated. We are. Calm Surrender helps dogs stay calm through everyday stress.",
-      "type": "Short Form Clip",
-      "views": 4521,
-      "reach": 3992,
-      "eng": 0,
-      "sourceId": "7652006245137665310"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-26",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7655053656722558238",
-      "title": "Patience at mealtime does not come naturally to every dog. Cesar shows the method he uses.",
-      "type": "Short Form Clip",
-      "views": 4480,
-      "reach": 4047,
-      "eng": 0,
-      "sourceId": "7655053656722558238"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-05-23",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7641973110710734110",
-      "title": "Snow Monkey dry skin and irritation: Skin Magic and Allergy Balance support dogs from the inside out.",
-      "type": "Short Form Clip",
-      "views": 4080,
-      "reach": 3411,
-      "eng": 0,
-      "sourceId": "7641973110710734110"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-28",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7655822148065430814",
-      "title": "Here is what Cesar feeding routine looks like with high-drive, food-focused dogs like Ice.",
-      "type": "Short Form Clip",
-      "views": 3715,
-      "reach": 3346,
-      "eng": 0,
-      "sourceId": "7655822148065430814"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-05-30",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7645393224793640223",
-      "title": "Skin issues in dogs are easy to spot but not always easy to fix. Skin Magic supports healthy skin from inside.",
-      "type": "Short Form Clip",
-      "views": 3623,
-      "reach": 2721,
-      "eng": 0,
-      "sourceId": "7645393224793640223"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-18",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7649427050683452703",
-      "title": "A puppy immune system gets stronger as they explore the world. Puppy Defense supports immune function and gut balance.",
-      "type": "Short Form Clip",
-      "views": 3305,
-      "reach": 3015,
-      "eng": 0,
-      "sourceId": "7649427050683452703"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-05-28",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7645123612956970253",
-      "title": "Some environments put real stress on a dog body. Allergy Balance supports a healthy immune response.",
-      "type": "Short Form Clip",
-      "views": 3083,
-      "reach": 1410,
-      "eng": 0,
-      "sourceId": "7645123612956970253"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-14",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7649113809658989855",
-      "title": "Dogs show discomfort in quiet ways. Inner Purity supports a healthy internal environment.",
-      "type": "Short Form Clip",
-      "views": 2897,
-      "reach": 2565,
-      "eng": 0,
-      "sourceId": "7649113809658989855"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-12",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7647931867726941470",
-      "title": "Every feeding at The Dog Psychology Center follows the same energy. Cesar shows how it works.",
-      "type": "Short Form Clip",
-      "views": 2700,
-      "reach": 2213,
-      "eng": 0,
-      "sourceId": "7647931867726941470"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-20",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7653215557302455582",
-      "title": "When a dog skin is uncomfortable, it shows. Skin Magic supports healthy skin and soothes irritation.",
-      "type": "Short Form Clip",
-      "views": 2643,
-      "reach": 2074,
-      "eng": 0,
-      "sourceId": "7653215557302455582"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-30",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256113506684191",
-      "title": "Stress in dogs does not always look dramatic. Calm Surrender offers non-sedating support.",
-      "type": "Short Form Clip",
-      "views": 2628,
-      "reach": 1017,
-      "eng": 0,
-      "sourceId": "7657256113506684191"
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-02",
-      "url": "https://www.instagram.com/p/DZFnbdegTay/",
-      "title": "Travel days are stressful enough.",
-      "type": "Carousel",
-      "views": 2061,
-      "reach": 1398,
-      "eng": 46
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-29",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656865433806507294",
-      "title": "Here is a look at how feeding works at The Dog Psychology Center under Cesar approach.",
-      "type": "Short Form Clip",
-      "views": 1452,
-      "reach": 834,
-      "eng": 0,
-      "sourceId": "7656865433806507294"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-06-29",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656865581311741215",
-      "title": "Structure at mealtime matters. Here is how Cesar handles it with the dogs at The Dog Psychology Center.",
-      "type": "Short Form Clip",
-      "views": 1343,
-      "reach": 958,
-      "eng": 0,
-      "sourceId": "7656865581311741215"
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-05-31",
-      "url": "https://www.instagram.com/reel/DZAd7fVkmiL/",
-      "title": "I waited a long time to create the right supplement line for dogs.",
-      "type": "Short Form Clip",
-      "views": 1257,
-      "reach": 1127,
-      "eng": 108
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-16",
-      "url": "https://www.youtube.com/watch?v=n_RJiFLMuTM",
-      "title": "Puppy Problems Don?t Just Happen",
-      "type": "Short Form Clip",
-      "views": 1157,
-      "watchTime": 101,
-      "reach": null,
-      "eng": 15
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-07-02",
-      "url": "https://www.instagram.com/reel/DaS3UvoAcv-/",
-      "title": "What does happy-go-lucky look like in a dog?",
-      "type": "Short Form Clip",
-      "views": 1144,
-      "reach": 1043,
-      "eng": 84
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-23",
-      "url": "https://www.youtube.com/watch?v=jWAz-L6u0Zw",
-      "title": "The Voice of Bart Simpson Just Entered the Better Dog Chat",
-      "type": "Short Form Clip",
-      "views": 1130,
-      "watchTime": 152,
-      "reach": null,
-      "eng": 31
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-05-28",
-      "url": "https://www.youtube.com/watch?v=GEp4ekp2smQ",
-      "title": "Why dogs eat grass",
-      "type": "Short Form Clip",
-      "views": 1050,
-      "watchTime": 106,
-      "reach": null,
-      "eng": 17
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-01",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657257539117108510",
-      "title": "Mealtime with a high-energy dog like Zeus takes a specific approach. Here is how Cesar manages it.",
-      "type": "Short Form Clip",
-      "views": 1043,
-      "reach": 64,
-      "eng": 0,
-      "sourceId": "7657257539117108510"
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-05",
-      "url": "https://www.instagram.com/reel/DZNV-3qDngC/",
-      "title": "If your dog gets anxious during storms.",
-      "type": "Short Form Clip",
-      "views": 924,
-      "reach": 801,
-      "eng": 27
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-25",
-      "url": "https://www.youtube.com/watch?v=DGNuvoDyQ34",
-      "title": "Why would a dog slow down?",
-      "type": "Short Form Clip",
-      "views": 897,
-      "watchTime": 179,
-      "reach": null,
-      "eng": 29
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-29",
-      "url": "https://www.youtube.com/watch?v=iCBrktyNzZU",
-      "title": "Some dogs come with no brakes, just a gas pedal.",
-      "type": "Short Form Clip",
-      "views": 849,
-      "watchTime": 169,
-      "reach": null,
-      "eng": 18
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-08",
-      "url": "https://www.youtube.com/watch?v=QfTZxVKyqQY",
-      "title": "This made such a big difference in my dog?s itching.",
-      "type": "Short Form Clip",
-      "views": 784,
-      "watchTime": 103,
-      "reach": null,
-      "eng": 18
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-25",
-      "url": "https://www.youtube.com/watch?v=HykvhGw1ccQ",
-      "title": "Ever look at your dog and think something just feels off?",
-      "type": "Short Form Clip",
-      "views": 745,
-      "watchTime": 182,
-      "reach": null,
-      "eng": 33
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-25",
-      "url": "https://www.youtube.com/watch?v=dNEw9lhX4MA",
-      "title": "What causes tear stains in dogs?",
-      "type": "Short Form Clip",
-      "views": 740,
-      "watchTime": 183,
-      "reach": null,
-      "eng": 24
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-24",
-      "url": "https://www.instagram.com/p/DZ-RA6cGOL0/",
-      "title": "When the paw licking keeps coming back, do not just look at the paw.",
-      "type": "Carousel",
-      "views": 730,
-      "reach": 371,
-      "eng": 29
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-05-26",
-      "url": "https://www.instagram.com/reel/DYzmAT3nGkX/",
-      "title": "Does your dog show any of these signs?",
-      "type": "Short Form Clip",
-      "views": 711,
-      "reach": 587,
-      "eng": 18
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-02",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656916624238316830",
-      "title": "What does happy-go-lucky look like in a dog? Happy-Go-Lucky Belly supports healthy digestion.",
-      "type": "Short Form Clip",
-      "views": 576,
+      "views": 0,
       "reach": 0,
-      "eng": 0,
-      "sourceId": "7656916624238316830"
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-05-21",
-      "url": "https://www.instagram.com/reel/DYmnKL-j6XF/",
-      "title": "Your dog reflects your energy, your leadership, and your emotional balance.",
-      "type": "Short Form Clip",
-      "views": 570,
-      "reach": 397,
-      "eng": 58
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-05-19",
-      "url": "https://www.instagram.com/reel/DYhhN8-DsMP/",
-      "title": "Some dogs struggle in climates their bodies were not built for.",
-      "type": "Short Form Clip",
-      "views": 539,
-      "reach": 429,
-      "eng": 48
+      "eng": 553
     },
     {
       "platform": "facebook",
-      "date": "2026-06-18",
-      "url": "https://www.facebook.com/674626722402999_122178474956906904",
-      "title": "Dogs are not complicated.",
+      "date": "2026-05-13",
+      "url": "https://www.facebook.com/674626722402999_122173772282906904",
+      "title": "Sometimes when dogs slow down, it comes back to what is happening inside their body.",
       "type": "Short Form Clip",
-      "views": 528,
-      "reach": 465,
-      "eng": 14
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-01",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256658036378911",
-      "title": "Zeus has a lot of energy, especially at mealtime. Cesar shows how he handles it.",
-      "type": "Short Form Clip",
-      "views": 510,
-      "reach": 249,
-      "eng": 0,
-      "sourceId": "7657256658036378911"
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-17",
-      "url": "https://www.instagram.com/p/DZsIlLXjZxN/",
-      "title": "Your dog?s skin comfort can affect their whole day.",
-      "type": "Carousel",
-      "views": 487,
-      "reach": 214,
-      "eng": 22
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-05-28",
-      "url": "https://www.youtube.com/watch?v=AMS3sPJU8VU",
-      "title": "Raising a great dog means stepping into both roles",
-      "type": "Short Form Clip",
-      "views": 487,
-      "watchTime": 82,
-      "reach": null,
-      "eng": 15
+      "views": 358,
+      "reach": 312,
+      "eng": 6
     },
     {
       "platform": "facebook",
-      "date": "2026-06-11",
-      "url": "https://www.facebook.com/674626722402999_122177533322906904",
-      "title": "Ever notice your dog has loose stool and immediately start wondering what caused it?",
+      "date": "2026-05-14",
+      "url": "https://www.facebook.com/674626722402999_122173891850906904",
+      "title": "Dry, irritated skin can take a toll on your dog comfort.",
       "type": "Short Form Clip",
-      "views": 486,
-      "reach": 391,
-      "eng": 12
+      "views": 204,
+      "reach": 149,
+      "eng": 6
     },
     {
       "platform": "facebook",
-      "date": "2026-06-09",
-      "url": "https://www.facebook.com/674626722402999_122177269910906904",
-      "title": "This made such a big difference in my dog?s itching.",
-      "type": "Short Form Clip",
-      "views": 469,
-      "reach": 377,
-      "eng": 5
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-10",
-      "url": "https://www.instagram.com/p/DZaG-KxjHuz/",
-      "title": "A calm dog is not created in one moment.",
-      "type": "Carousel",
-      "views": 458,
-      "reach": 219,
-      "eng": 26
+      "date": "2026-05-15",
+      "url": "https://www.facebook.com/674626722402999_122174012048906904",
+      "title": "National Pet Month is a reminder to celebrate the love, loyalty, and joy our pets bring into our lives every day.",
+      "type": "Feed Post",
+      "views": 173,
+      "reach": 103,
+      "eng": 3
     },
     {
       "platform": "facebook",
-      "date": "2026-06-12",
-      "url": "https://www.facebook.com/674626722402999_122177666540906904",
-      "title": "Does your dog get extra active when guests arrive?",
+      "date": "2026-05-15",
+      "url": "https://www.facebook.com/674626722402999_122174013152906904",
+      "title": "Anxiety is not a natural state for a dog.",
       "type": "Short Form Clip",
-      "views": 449,
-      "reach": 383,
-      "eng": 14
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-02",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658040941864930590",
-      "title": "Dogs reflect the energy we bring. Calm Confidence supports relaxation, clarity, and emotional balance.",
-      "type": "Short Form Clip",
-      "views": 442,
-      "reach": 0,
-      "eng": 0,
-      "sourceId": "7658040941864930590"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-01",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657257701499604255",
-      "title": "Feeding a high-energy dog the right way takes more than just putting food down.",
-      "type": "Short Form Clip",
-      "views": 431,
-      "reach": 36,
-      "eng": 0,
-      "sourceId": "7657257701499604255"
+      "views": 466,
+      "reach": 401,
+      "eng": 8
     },
     {
       "platform": "facebook",
-      "date": "2026-06-20",
-      "url": "https://www.facebook.com/674626722402999_122178751448906904",
-      "title": "Dogs can show a broken spirit in several ways.",
+      "date": "2026-05-16",
+      "url": "https://www.facebook.com/674626722402999_122174124968906904",
+      "title": "Senior dogs remind us how fast time goes.",
       "type": "Short Form Clip",
-      "views": 428,
-      "reach": 377,
+      "views": 281,
+      "reach": 246,
+      "eng": 6
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-05-17",
+      "url": "https://www.facebook.com/674626722402999_122174245652906904",
+      "title": "They make everything better without trying.",
+      "type": "Feed Post",
+      "views": 288,
+      "reach": 178,
       "eng": 10
     },
     {
       "platform": "facebook",
-      "date": "2026-05-30",
-      "url": "https://www.facebook.com/674626722402999_122176000232906904",
-      "title": "Raising a great dog means stepping into both roles.",
+      "date": "2026-05-18",
+      "url": "https://www.facebook.com/674626722402999_1524288425720116",
+      "title": "Can you learn calmness by holding a tarantula?",
       "type": "Short Form Clip",
-      "views": 408,
-      "reach": 356,
-      "eng": 13
+      "views": 0,
+      "reach": 0,
+      "eng": 492
     },
     {
       "platform": "facebook",
-      "date": "2026-06-19",
-      "url": "https://www.facebook.com/674626722402999_122178603338906904",
-      "title": "Behavior problems do not just happen.",
+      "date": "2026-05-19",
+      "url": "https://www.facebook.com/674626722402999_122174512400906904",
+      "title": "Some dogs struggle in climates their bodies were not built for.",
       "type": "Short Form Clip",
-      "views": 401,
-      "reach": 355,
-      "eng": 11
+      "views": 202,
+      "reach": 173,
+      "eng": 7
     },
     {
-      "platform": "tiktok",
-      "date": "2026-07-02",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658041583962541343",
-      "title": "The skin can reflect what is going on inside the body. Skin Magic supports healthy skin.",
+      "platform": "facebook",
+      "date": "2026-05-20",
+      "url": "https://www.facebook.com/674626722402999_122174671154906904",
+      "title": "Calm Surrender was formulated for Cesar Millan.",
       "type": "Short Form Clip",
-      "views": 401,
-      "reach": 0,
-      "eng": 0,
-      "sourceId": "7658041583962541343"
+      "views": 364,
+      "reach": 322,
+      "eng": 4
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-05-21",
+      "url": "https://www.facebook.com/674626722402999_122174808302906904",
+      "title": "Your dog reflects your energy, your leadership, and your emotional balance.",
+      "type": "Short Form Clip",
+      "views": 214,
+      "reach": 185,
+      "eng": 4
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-05-23",
+      "url": "https://www.facebook.com/674626722402999_122175062486906904",
+      "title": "When I see a dog dealing with dry skin and irritation, I think about comfort.",
+      "type": "Short Form Clip",
+      "views": 365,
+      "reach": 310,
+      "eng": 10
     },
     {
       "platform": "facebook",
@@ -2379,6 +2280,16 @@
     },
     {
       "platform": "facebook",
+      "date": "2026-05-26",
+      "url": "https://www.facebook.com/674626722402999_122175449636906904",
+      "title": "Does your dog show any of these signs?",
+      "type": "Short Form Clip",
+      "views": 315,
+      "reach": 271,
+      "eng": 6
+    },
+    {
+      "platform": "facebook",
       "date": "2026-05-27",
       "url": "https://www.facebook.com/674626722402999_122175572006906904",
       "title": "Skin Magic was formulated for Cesar Millan.",
@@ -2388,33 +2299,13 @@
       "eng": 8
     },
     {
-      "platform": "instagram",
-      "date": "2026-05-24",
-      "url": "https://www.instagram.com/reel/DYuVgVuDdLV/",
-      "title": "As dogs age, their bodies need more support.",
-      "type": "Short Form Clip",
-      "views": 384,
-      "reach": 314,
-      "eng": 41
-    },
-    {
       "platform": "facebook",
-      "date": "2026-06-25",
-      "url": "https://www.facebook.com/674626722402999_122179407434906904",
-      "title": "Ever look at your dog and think something just feels off?",
+      "date": "2026-05-28",
+      "url": "https://www.facebook.com/674626722402999_122175757610906904",
+      "title": "Nature has a way of showing us what our dogs need.",
       "type": "Short Form Clip",
-      "views": 379,
-      "reach": 340,
-      "eng": 13
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-06-28",
-      "url": "https://www.facebook.com/674626722402999_122179787678906904",
-      "title": "What causes tear stains in dogs?",
-      "type": "Short Form Clip",
-      "views": 375,
-      "reach": 337,
+      "views": 357,
+      "reach": 322,
       "eng": 6
     },
     {
@@ -2429,95 +2320,33 @@
     },
     {
       "platform": "facebook",
-      "date": "2026-06-13",
-      "url": "https://www.facebook.com/674626722402999_122177776466906904",
-      "title": "The key is not just seeing the signs, it is understanding what they mean.",
+      "date": "2026-05-30",
+      "url": "https://www.facebook.com/674626722402999_122176000232906904",
+      "title": "Raising a great dog means stepping into both roles.",
       "type": "Short Form Clip",
-      "views": 369,
-      "reach": 324,
-      "eng": 11
+      "views": 408,
+      "reach": 356,
+      "eng": 13
     },
     {
       "platform": "facebook",
-      "date": "2026-05-23",
-      "url": "https://www.facebook.com/674626722402999_122175062486906904",
-      "title": "When I see a dog dealing with dry skin and irritation, I think about comfort.",
+      "date": "2026-05-31",
+      "url": "https://www.facebook.com/674626722402999_122176124348906904",
+      "title": "I waited a long time to create the right supplement line for dogs.",
       "type": "Short Form Clip",
-      "views": 365,
-      "reach": 310,
-      "eng": 10
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-05-20",
-      "url": "https://www.facebook.com/674626722402999_122174671154906904",
-      "title": "Calm Surrender was formulated for Cesar Millan.",
-      "type": "Short Form Clip",
-      "views": 364,
-      "reach": 322,
-      "eng": 4
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-05-28",
-      "url": "https://www.facebook.com/674626722402999_122175757610906904",
-      "title": "Nature has a way of showing us what our dogs need.",
-      "type": "Short Form Clip",
-      "views": 357,
-      "reach": 322,
-      "eng": 6
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-06-23",
-      "url": "https://www.facebook.com/674626722402999_122179178774906904",
-      "title": "When Nancy Cartwright enters the Better Dog chat, we are all ears.",
-      "type": "Short Form Clip",
-      "views": 338,
-      "reach": 300,
+      "views": 155,
+      "reach": 124,
       "eng": 3
     },
     {
-      "platform": "youtube",
-      "date": "2026-06-08",
-      "url": "https://www.youtube.com/watch?v=KCftYqD1IAM",
-      "title": "How to spot allergies early",
-      "type": "Short Form Clip",
-      "views": 335,
-      "watchTime": 77,
-      "reach": null,
-      "eng": 12
-    },
-    {
       "platform": "facebook",
-      "date": "2026-05-26",
-      "url": "https://www.facebook.com/674626722402999_122175449636906904",
-      "title": "Does your dog show any of these signs?",
+      "date": "2026-06-03",
+      "url": "https://www.facebook.com/674626722402999_122176496594906904",
+      "title": "This is where Tommy?s shiny coat comes from.",
       "type": "Short Form Clip",
-      "views": 315,
-      "reach": 271,
-      "eng": 6
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-02",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658041215278992671",
-      "title": "When a dog belly is not right, their whole body feels it. Happy Go-Lucky Belly supports digestive balance.",
-      "type": "Short Form Clip",
-      "views": 311,
-      "reach": 0,
-      "eng": 0,
-      "sourceId": "7658041215278992671"
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-06-27",
-      "url": "https://www.facebook.com/674626722402999_122179661126906904",
-      "title": "Watching your dog slow down can be tough.",
-      "type": "Short Form Clip",
-      "views": 308,
-      "reach": 279,
-      "eng": 5
+      "views": 284,
+      "reach": 253,
+      "eng": 4
     },
     {
       "platform": "facebook",
@@ -2531,237 +2360,6 @@
     },
     {
       "platform": "facebook",
-      "date": "2026-06-06",
-      "url": "https://www.facebook.com/674626722402999_122176868834906904",
-      "title": "Does your dog follow you around everywhere?",
-      "type": "Short Form Clip",
-      "views": 302,
-      "reach": 273,
-      "eng": 11
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-01",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256317395930398",
-      "title": "Cesar walks through a few Better Dog Supplements he relies on at the ranch.",
-      "type": "Short Form Clip",
-      "views": 301,
-      "reach": 274,
-      "eng": 0,
-      "sourceId": "7657256317395930398"
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-06-14",
-      "url": "https://www.facebook.com/674626722402999_122177900942906904",
-      "title": "Seasonal allergies are tough on dogs too.",
-      "type": "Single Image",
-      "views": 298,
-      "reach": 171,
-      "eng": 7
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-08",
-      "url": "https://www.youtube.com/watch?v=MA2m6cwDXsw",
-      "title": "Does your dog get extra active when guests arrive?",
-      "type": "Short Form Clip",
-      "views": 298,
-      "watchTime": 53,
-      "reach": null,
-      "eng": 13
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-07",
-      "url": "https://www.instagram.com/reel/DZSffUPj77B/",
-      "title": "Help your dog feel comfortable again.",
-      "type": "Short Form Clip",
-      "views": 296,
-      "reach": 250,
-      "eng": 14
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-01",
-      "url": "https://www.youtube.com/watch?v=eLV0olz2gwQ",
-      "title": "If your dog gets anxious during storms",
-      "type": "Short Form Clip",
-      "views": 295,
-      "watchTime": 17,
-      "reach": null,
-      "eng": 7
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-06-26",
-      "url": "https://www.facebook.com/674626722402999_122179534532906904",
-      "title": "Healthy skin shows up in the coat, the shine, the moisture, and the way your dog feels every day.",
-      "type": "Short Form Clip",
-      "views": 290,
-      "reach": 254,
-      "eng": 3
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-16",
-      "url": "https://www.youtube.com/watch?v=0KGQRdQ-pJk",
-      "title": "How Dogs Show a Broken Spirit",
-      "type": "Short Form Clip",
-      "views": 288,
-      "watchTime": 24,
-      "reach": null,
-      "eng": 8
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-06-30",
-      "url": "https://www.facebook.com/674626722402999_122180034938906904",
-      "title": "Some dogs come with no brakes, just a gas pedal.",
-      "type": "Short Form Clip",
-      "views": 287,
-      "reach": 250,
-      "eng": 9
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-06-03",
-      "url": "https://www.facebook.com/674626722402999_122176496594906904",
-      "title": "This is where Tommy?s shiny coat comes from.",
-      "type": "Short Form Clip",
-      "views": 284,
-      "reach": 253,
-      "eng": 4
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-02",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657257891170176286",
-      "title": "The way a dog eats says a lot about where their energy is. Cesar shares his approach.",
-      "type": "Short Form Clip",
-      "views": 283,
-      "reach": 0,
-      "eng": 0,
-      "sourceId": "7657257891170176286"
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-25",
-      "url": "https://www.youtube.com/watch?v=Zxckh4AcxEQ",
-      "title": "What does healthy skin look like?",
-      "type": "Short Form Clip",
-      "views": 267,
-      "watchTime": 27,
-      "reach": null,
-      "eng": 10
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-07-01",
-      "url": "https://www.instagram.com/p/DaQSeqcCHlU/",
-      "title": "Loose stool can be your dog?s way of saying their belly needs support.",
-      "type": "Carousel",
-      "views": 265,
-      "reach": 117,
-      "eng": 14
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-01",
-      "url": "https://www.youtube.com/watch?v=R6X1jrDgQa0",
-      "title": "Helping a dog live a long healthy life",
-      "type": "Short Form Clip",
-      "views": 262,
-      "watchTime": 54,
-      "reach": null,
-      "eng": 17
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-06-14",
-      "url": "https://www.instagram.com/p/DZkaLsakbgg/",
-      "title": "Seasonal allergies are tough on dogs too.",
-      "type": "Single Image",
-      "views": 253,
-      "reach": 153,
-      "eng": 15
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-05-26",
-      "url": "https://www.youtube.com/watch?v=1imyKWdy0Hc",
-      "title": "5 Signs Your Dog Diet Is Not Working",
-      "type": "Short Form Clip",
-      "views": 245,
-      "watchTime": 25,
-      "reach": null,
-      "eng": 8
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-05-27",
-      "url": "https://www.youtube.com/watch?v=SK6PuFMvwUM",
-      "title": "Skin Magic was formulated for Cesar Millan",
-      "type": "Short Form Clip",
-      "views": 237,
-      "watchTime": 14,
-      "reach": null,
-      "eng": 4
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-06-16",
-      "url": "https://www.facebook.com/674626722402999_122178191900906904",
-      "title": "Your dog is paying attention to what you practice every day.",
-      "type": "Short Form Clip",
-      "views": 222,
-      "reach": 189,
-      "eng": 3
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-05-21",
-      "url": "https://www.facebook.com/674626722402999_122174808302906904",
-      "title": "Your dog reflects your energy, your leadership, and your emotional balance.",
-      "type": "Short Form Clip",
-      "views": 214,
-      "reach": 185,
-      "eng": 4
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-05-20",
-      "url": "https://www.youtube.com/watch?v=z02OWEEdCfQ",
-      "title": "Dog With Dry Skin and Irritation?",
-      "type": "Short Form Clip",
-      "views": 211,
-      "watchTime": 70,
-      "reach": null,
-      "eng": 9
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-05-20",
-      "url": "https://www.youtube.com/watch?v=gI0pz0QMO1Q",
-      "title": "As dogs age, their bodies need more support",
-      "type": "Short Form Clip",
-      "views": 206,
-      "watchTime": 70,
-      "reach": null,
-      "eng": 13
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-05-19",
-      "url": "https://www.facebook.com/674626722402999_122174512400906904",
-      "title": "Some dogs struggle in climates their bodies were not built for.",
-      "type": "Short Form Clip",
-      "views": 202,
-      "reach": 173,
-      "eng": 7
-    },
-    {
-      "platform": "facebook",
       "date": "2026-06-05",
       "url": "https://www.facebook.com/674626722402999_122176748624906904",
       "title": "If your dog gets anxious during storms.",
@@ -2771,112 +2369,14 @@
       "eng": 2
     },
     {
-      "platform": "youtube",
-      "date": "2026-06-16",
-      "url": "https://www.youtube.com/watch?v=KZJSf9Lm4mc",
-      "title": "3 Ways a Dog Can Feel Bad",
-      "type": "Short Form Clip",
-      "views": 185,
-      "watchTime": 36,
-      "reach": null,
-      "eng": 9
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-16",
-      "url": "https://www.youtube.com/watch?v=eICtzC7t-Hw",
-      "title": "Three Things Every Dog Needs Daily",
-      "type": "Short Form Clip",
-      "views": 159,
-      "watchTime": 66,
-      "reach": null,
-      "eng": 15
-    },
-    {
       "platform": "facebook",
-      "date": "2026-05-31",
-      "url": "https://www.facebook.com/674626722402999_122176124348906904",
-      "title": "I waited a long time to create the right supplement line for dogs.",
+      "date": "2026-06-06",
+      "url": "https://www.facebook.com/674626722402999_122176868834906904",
+      "title": "Does your dog follow you around everywhere?",
       "type": "Short Form Clip",
-      "views": 155,
-      "reach": 124,
-      "eng": 3
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-01",
-      "url": "https://www.youtube.com/watch?v=tF0-XURXtX4",
-      "title": "Help your dog feel comfortable again.",
-      "type": "Short Form Clip",
-      "views": 149,
-      "watchTime": 7,
-      "reach": null,
-      "eng": 8
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-01",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256501731478815",
-      "title": "Here is how Cesar works with dogs like Zeus who have zero patience at mealtime.",
-      "type": "Short Form Clip",
-      "views": 147,
-      "reach": 60,
-      "eng": 0,
-      "sourceId": "7657256501731478815"
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-05-19",
-      "url": "https://www.youtube.com/watch?v=B1BsuygjscM",
-      "title": "Some dogs struggle in climates their bodies were not built for.",
-      "type": "Short Form Clip",
-      "views": 141,
-      "watchTime": 22,
-      "reach": null,
-      "eng": 10
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-05-28",
-      "url": "https://www.youtube.com/watch?v=Jm__yJ39Ehw",
-      "title": "What does BetterDog Supplements mean to you?",
-      "type": "Short Form Clip",
-      "views": 141,
-      "watchTime": 41,
-      "reach": null,
-      "eng": 9
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-07-02",
-      "url": "https://www.facebook.com/674626722402999_122180272652906904",
-      "title": "What does happy-go-lucky look like in a dog?",
-      "type": "Short Form Clip",
-      "views": 140,
-      "reach": 123,
-      "eng": 8
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-05-20",
-      "url": "https://www.youtube.com/watch?v=Xi_w8SUkypE",
-      "title": "Your dog is a reflection of you",
-      "type": "Short Form Clip",
-      "views": 140,
-      "watchTime": 15,
-      "reach": null,
-      "eng": 8
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-05-20",
-      "url": "https://www.youtube.com/watch?v=pxFjAynqNj8",
-      "title": "Overactive Dog? Try This.",
-      "type": "Short Form Clip",
-      "views": 131,
-      "watchTime": 12,
-      "reach": null,
-      "eng": 3
+      "views": 302,
+      "reach": 273,
+      "eng": 11
     },
     {
       "platform": "facebook",
@@ -2887,61 +2387,6 @@
       "views": 118,
       "reach": 87,
       "eng": 2
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-01",
-      "url": "https://www.youtube.com/watch?v=wOnRhZ8oPNA",
-      "title": "Real shine cannot be washed off",
-      "type": "Short Form Clip",
-      "views": 114,
-      "watchTime": 27,
-      "reach": null,
-      "eng": 11
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-05-28",
-      "url": "https://www.youtube.com/watch?v=t_7X4c-yxKc",
-      "title": "What Nature Taught Me About How Dogs Heal",
-      "type": "Short Form Clip",
-      "views": 112,
-      "watchTime": 74,
-      "reach": null,
-      "eng": 15
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-08",
-      "url": "https://www.youtube.com/watch?v=L7vxvGqSaRs",
-      "title": "Why does my dog have a loose stool?",
-      "type": "Short Form Clip",
-      "views": 88,
-      "watchTime": 24,
-      "reach": null,
-      "eng": 9
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-01",
-      "url": "https://www.youtube.com/watch?v=6asCj3zz8S8",
-      "title": "Does your dog follow you around everywhere?",
-      "type": "Short Form Clip",
-      "views": 37,
-      "watchTime": 11,
-      "reach": null,
-      "eng": 5
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-02",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658040601652350239",
-      "title": "Some dogs were not meant for the environment we bring them into. Allergy Balance supports immune response.",
-      "type": "Short Form Clip",
-      "views": 20,
-      "reach": 0,
-      "eng": 0,
-      "sourceId": "7658040601652350239"
     },
     {
       "platform": "facebook",
@@ -2985,6 +2430,56 @@
     },
     {
       "platform": "facebook",
+      "date": "2026-06-09",
+      "url": "https://www.facebook.com/674626722402999_122177269910906904",
+      "title": "This made such a big difference in my dog?s itching.",
+      "type": "Short Form Clip",
+      "views": 469,
+      "reach": 377,
+      "eng": 5
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-06-11",
+      "url": "https://www.facebook.com/674626722402999_122177533322906904",
+      "title": "Ever notice your dog has loose stool and immediately start wondering what caused it?",
+      "type": "Short Form Clip",
+      "views": 486,
+      "reach": 391,
+      "eng": 12
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-06-12",
+      "url": "https://www.facebook.com/674626722402999_122177666540906904",
+      "title": "Does your dog get extra active when guests arrive?",
+      "type": "Short Form Clip",
+      "views": 449,
+      "reach": 383,
+      "eng": 14
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-06-13",
+      "url": "https://www.facebook.com/674626722402999_122177776466906904",
+      "title": "The key is not just seeing the signs, it is understanding what they mean.",
+      "type": "Short Form Clip",
+      "views": 369,
+      "reach": 324,
+      "eng": 11
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-06-14",
+      "url": "https://www.facebook.com/674626722402999_122177900942906904",
+      "title": "Seasonal allergies are tough on dogs too.",
+      "type": "Single Image",
+      "views": 298,
+      "reach": 171,
+      "eng": 7
+    },
+    {
+      "platform": "facebook",
       "date": "2026-06-15",
       "url": "https://www.facebook.com/674626722402999_1548479086634383",
       "title": "Did you know that there is a right and a wrong way to feed a dog?",
@@ -2995,6 +2490,76 @@
     },
     {
       "platform": "facebook",
+      "date": "2026-06-16",
+      "url": "https://www.facebook.com/674626722402999_122178191900906904",
+      "title": "Your dog is paying attention to what you practice every day.",
+      "type": "Short Form Clip",
+      "views": 222,
+      "reach": 189,
+      "eng": 3
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-06-18",
+      "url": "https://www.facebook.com/674626722402999_122178474956906904",
+      "title": "Dogs are not complicated.",
+      "type": "Short Form Clip",
+      "views": 528,
+      "reach": 465,
+      "eng": 14
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-06-19",
+      "url": "https://www.facebook.com/674626722402999_122178603338906904",
+      "title": "Behavior problems do not just happen.",
+      "type": "Short Form Clip",
+      "views": 401,
+      "reach": 355,
+      "eng": 11
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-06-20",
+      "url": "https://www.facebook.com/674626722402999_122178751448906904",
+      "title": "Dogs can show a broken spirit in several ways.",
+      "type": "Short Form Clip",
+      "views": 428,
+      "reach": 377,
+      "eng": 10
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-06-23",
+      "url": "https://www.facebook.com/674626722402999_122179178774906904",
+      "title": "When Nancy Cartwright enters the Better Dog chat, we are all ears.",
+      "type": "Short Form Clip",
+      "views": 338,
+      "reach": 300,
+      "eng": 3
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-06-25",
+      "url": "https://www.facebook.com/674626722402999_122179407434906904",
+      "title": "Ever look at your dog and think something just feels off?",
+      "type": "Short Form Clip",
+      "views": 379,
+      "reach": 340,
+      "eng": 13
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-06-26",
+      "url": "https://www.facebook.com/674626722402999_122179534532906904",
+      "title": "Healthy skin shows up in the coat, the shine, the moisture, and the way your dog feels every day.",
+      "type": "Short Form Clip",
+      "views": 290,
+      "reach": 254,
+      "eng": 3
+    },
+    {
+      "platform": "facebook",
       "date": "2026-06-26",
       "url": "https://www.facebook.com/674626722402999_1554369226045369",
       "title": "Your dog feels your energy before they hear your words.",
@@ -3002,6 +2567,1379 @@
       "views": 0,
       "reach": 0,
       "eng": 1025
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-06-27",
+      "url": "https://www.facebook.com/674626722402999_122179661126906904",
+      "title": "Watching your dog slow down can be tough.",
+      "type": "Short Form Clip",
+      "views": 308,
+      "reach": 279,
+      "eng": 5
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-06-28",
+      "url": "https://www.facebook.com/674626722402999_122179787678906904",
+      "title": "What causes tear stains in dogs?",
+      "type": "Short Form Clip",
+      "views": 375,
+      "reach": 337,
+      "eng": 6
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-06-30",
+      "url": "https://www.facebook.com/674626722402999_122180034938906904",
+      "title": "Some dogs come with no brakes, just a gas pedal.",
+      "type": "Short Form Clip",
+      "views": 287,
+      "reach": 250,
+      "eng": 9
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-07-02",
+      "url": "https://www.facebook.com/674626722402999_122180272652906904",
+      "title": "What does happy-go-lucky look like in a dog?",
+      "type": "Short Form Clip",
+      "views": 140,
+      "reach": 123,
+      "eng": 8
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-01",
+      "url": "https://www.instagram.com/reel/DXzOVzKm_qj/",
+      "title": "Here's how I approach feeding dogs who are obsessed with food like Ice!",
+      "type": "Short Form Clip",
+      "views": 38044,
+      "reach": 33336,
+      "eng": 1245
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-02",
+      "url": "https://www.instagram.com/p/DX1y0E-AbpA/",
+      "title": "Puppy Defense earned the paw of approval.",
+      "type": "Feed Post",
+      "views": 228,
+      "reach": 145,
+      "eng": 17
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-03",
+      "url": "https://www.instagram.com/p/DX4XpFLAOBI/",
+      "title": "Priorities matter.",
+      "type": "Feed Post",
+      "views": 264,
+      "reach": 147,
+      "eng": 19
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-05",
+      "url": "https://www.instagram.com/reel/DX9hOyak1aI/",
+      "title": "How your dog responds to noise might have everything to do with their position in the pack.",
+      "type": "Short Form Clip",
+      "views": 667,
+      "reach": 534,
+      "eng": 61
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-06",
+      "url": "https://www.instagram.com/reel/DYBYd9kjzXX/",
+      "title": "Stress in dogs can show up in many ways. Do you know how to spot it?",
+      "type": "Short Form Clip",
+      "views": 9779,
+      "reach": 8927,
+      "eng": 296
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-07",
+      "url": "https://www.instagram.com/reel/DYCq2huDaPm/",
+      "title": "Does your dog follow you around everywhere?",
+      "type": "Short Form Clip",
+      "views": 9448,
+      "reach": 8874,
+      "eng": 179
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-08",
+      "url": "https://www.instagram.com/reel/DYFPqqAiHCH/",
+      "title": "Regular motion plays a big role in keeping dogs healthy.",
+      "type": "Short Form Clip",
+      "views": 10543,
+      "reach": 9664,
+      "eng": 87
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-10",
+      "url": "https://www.instagram.com/p/DYKZOmQjVsA/",
+      "title": "Would not have it any other way.",
+      "type": "Feed Post",
+      "views": 431,
+      "reach": 301,
+      "eng": 30
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-12",
+      "url": "https://www.instagram.com/reel/DYPi0_AiHjw/",
+      "title": "Some dogs go at 100mph.",
+      "type": "Short Form Clip",
+      "views": 580,
+      "reach": 494,
+      "eng": 43
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-13",
+      "url": "https://www.instagram.com/reel/DYSHsuFgbO3/",
+      "title": "Sometimes when dogs slow down, it comes back to what is happening inside their body.",
+      "type": "Short Form Clip",
+      "views": 7196,
+      "reach": 6574,
+      "eng": 43
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-14",
+      "url": "https://www.instagram.com/reel/DYUsYSCjKM0/",
+      "title": "Dry, irritated skin can take a toll on your dog comfort.",
+      "type": "Short Form Clip",
+      "views": 328,
+      "reach": 277,
+      "eng": 30
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-15",
+      "url": "https://www.instagram.com/p/DYXQI0ZDee-/",
+      "title": "National Pet Month is a reminder to celebrate the love, loyalty, and joy our pets bring into our lives every day.",
+      "type": "Feed Post",
+      "views": 6588,
+      "reach": 5999,
+      "eng": 30
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-15",
+      "url": "https://www.instagram.com/reel/DYXRSYPjVMx/",
+      "title": "Anxiety is not a natural state for a dog.",
+      "type": "Short Form Clip",
+      "views": 640,
+      "reach": 513,
+      "eng": 64
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-16",
+      "url": "https://www.instagram.com/reel/DYZ2BAuCVFk/",
+      "title": "Senior dogs remind us how fast time goes.",
+      "type": "Short Form Clip",
+      "views": 378,
+      "reach": 302,
+      "eng": 51
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-17",
+      "url": "https://www.instagram.com/p/DYcavZKiGzo/",
+      "title": "They make everything better without trying.",
+      "type": "Feed Post",
+      "views": 384,
+      "reach": 220,
+      "eng": 25
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-19",
+      "url": "https://www.instagram.com/reel/DYhhN8-DsMP/",
+      "title": "Some dogs struggle in climates their bodies were not built for.",
+      "type": "Short Form Clip",
+      "views": 539,
+      "reach": 429,
+      "eng": 48
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-20",
+      "url": "https://www.instagram.com/reel/DYkC08lE59C/",
+      "title": "Calm Surrender was formulated for Cesar Millan to help promote calm behavior and emotional balance.",
+      "type": "Short Form Clip",
+      "views": 17638,
+      "reach": 16487,
+      "eng": 68
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-21",
+      "url": "https://www.instagram.com/reel/DYmnKL-j6XF/",
+      "title": "Your dog reflects your energy, your leadership, and your emotional balance.",
+      "type": "Short Form Clip",
+      "views": 570,
+      "reach": 397,
+      "eng": 58
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-22",
+      "url": "https://www.instagram.com/p/DYpL5SHD8P_/",
+      "title": "Does your dog get anxious when you leave the house?",
+      "type": "Carousel",
+      "views": 10571,
+      "reach": 9056,
+      "eng": 40
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-23",
+      "url": "https://www.instagram.com/reel/DYrwwr2gFT_/",
+      "title": "When I see a dog dealing with dry skin and irritation, I think about comfort.",
+      "type": "Short Form Clip",
+      "views": 7356,
+      "reach": 6852,
+      "eng": 639
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-24",
+      "url": "https://www.instagram.com/reel/DYuVgVuDdLV/",
+      "title": "As dogs age, their bodies need more support.",
+      "type": "Short Form Clip",
+      "views": 384,
+      "reach": 314,
+      "eng": 41
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-26",
+      "url": "https://www.instagram.com/reel/DYzmAT3nGkX/",
+      "title": "Does your dog show any of these signs?",
+      "type": "Short Form Clip",
+      "views": 711,
+      "reach": 587,
+      "eng": 18
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-27",
+      "url": "https://www.instagram.com/reel/DY2KBPyDqyQ/",
+      "title": "Skin Magic was formulated for Cesar Millan to help support healthy skin and soothe irritation naturally.",
+      "type": "Short Form Clip",
+      "views": 21913,
+      "reach": 19082,
+      "eng": 50
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-28",
+      "url": "https://www.instagram.com/reel/DY4uhhfxBeI/",
+      "title": "Nature has a way of showing us what our dogs need.",
+      "type": "Short Form Clip",
+      "views": 15949,
+      "reach": 14755,
+      "eng": 572
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-29",
+      "url": "https://www.instagram.com/reel/DY7UaZMjZLu/",
+      "title": "Ever wonder why your dog might eat grass or other plants?",
+      "type": "Short Form Clip",
+      "views": 17344,
+      "reach": 15762,
+      "eng": 800
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-30",
+      "url": "https://www.instagram.com/reel/DY95EPSEWKA/",
+      "title": "Raising a great dog means stepping into both roles.",
+      "type": "Short Form Clip",
+      "views": 9125,
+      "reach": 8474,
+      "eng": 838
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-05-31",
+      "url": "https://www.instagram.com/reel/DZAd7fVkmiL/",
+      "title": "I waited a long time to create the right supplement line for dogs.",
+      "type": "Short Form Clip",
+      "views": 1257,
+      "reach": 1127,
+      "eng": 108
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-02",
+      "url": "https://www.instagram.com/p/DZFnbdegTay/",
+      "title": "Travel days are stressful enough.",
+      "type": "Carousel",
+      "views": 2061,
+      "reach": 1398,
+      "eng": 46
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-03",
+      "url": "https://www.instagram.com/reel/DZIMN44lGH9/",
+      "title": "This is where Tommy?s shiny coat comes from.",
+      "type": "Short Form Clip",
+      "views": 7293,
+      "reach": 6759,
+      "eng": 548
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-04",
+      "url": "https://www.instagram.com/reel/DZKxHC6AfJM/",
+      "title": "Their well-being comes from what we do every single day.",
+      "type": "Short Form Clip",
+      "views": 5006,
+      "reach": 4505,
+      "eng": 376
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-05",
+      "url": "https://www.instagram.com/reel/DZNV-3qDngC/",
+      "title": "If your dog gets anxious during storms.",
+      "type": "Short Form Clip",
+      "views": 924,
+      "reach": 801,
+      "eng": 27
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-06",
+      "url": "https://www.instagram.com/reel/DZP6uldjIMC/",
+      "title": "Does your dog follow you around everywhere?",
+      "type": "Short Form Clip",
+      "views": 33858,
+      "reach": 31237,
+      "eng": 924
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-07",
+      "url": "https://www.instagram.com/reel/DZSffUPj77B/",
+      "title": "Help your dog feel comfortable again.",
+      "type": "Short Form Clip",
+      "views": 296,
+      "reach": 250,
+      "eng": 14
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-09",
+      "url": "https://www.instagram.com/reel/DZXiLsJgOBD/",
+      "title": "This made such a big difference in my dog?s itching.",
+      "type": "Short Form Clip",
+      "views": 8832,
+      "reach": 8251,
+      "eng": 75
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-10",
+      "url": "https://www.instagram.com/p/DZaG-KxjHuz/",
+      "title": "A calm dog is not created in one moment.",
+      "type": "Carousel",
+      "views": 458,
+      "reach": 219,
+      "eng": 26
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-12",
+      "url": "https://www.instagram.com/reel/DZfa7vpiEaI/",
+      "title": "Ever notice your dog has loose stool and immediately start wondering what caused it?",
+      "type": "Short Form Clip",
+      "views": 11303,
+      "reach": 10042,
+      "eng": 515
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-12",
+      "url": "https://www.instagram.com/reel/DZft1LxE8eQ/",
+      "title": "Does your dog get extra active when guests arrive?",
+      "type": "Short Form Clip",
+      "views": 9989,
+      "reach": 9019,
+      "eng": 692
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-13",
+      "url": "https://www.instagram.com/reel/DZh1ZmrDFsl/",
+      "title": "The key is not just seeing the signs, it is understanding what they mean.",
+      "type": "Short Form Clip",
+      "views": 7139,
+      "reach": 6449,
+      "eng": 482
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-14",
+      "url": "https://www.instagram.com/p/DZkaLsakbgg/",
+      "title": "Seasonal allergies are tough on dogs too.",
+      "type": "Single Image",
+      "views": 253,
+      "reach": 153,
+      "eng": 15
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-16",
+      "url": "https://www.instagram.com/reel/DZpotrglJNw/",
+      "title": "Your dog is paying attention to what you practice every day.",
+      "type": "Short Form Clip",
+      "views": 12931,
+      "reach": 11512,
+      "eng": 984
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-17",
+      "url": "https://www.instagram.com/p/DZsIlLXjZxN/",
+      "title": "Your dog?s skin comfort can affect their whole day.",
+      "type": "Carousel",
+      "views": 487,
+      "reach": 214,
+      "eng": 22
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-18",
+      "url": "https://www.instagram.com/reel/DZutcZICcSJ/",
+      "title": "Dogs are not complicated.",
+      "type": "Short Form Clip",
+      "views": 10140,
+      "reach": 9007,
+      "eng": 654
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-19",
+      "url": "https://www.instagram.com/reel/DZxSOpiDTaM/",
+      "title": "Behavior problems do not just happen.",
+      "type": "Short Form Clip",
+      "views": 10337,
+      "reach": 9443,
+      "eng": 923
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-20",
+      "url": "https://www.instagram.com/reel/DZz21CvElk9/",
+      "title": "Dogs can show a broken spirit in several ways.",
+      "type": "Short Form Clip",
+      "views": 12535,
+      "reach": 11260,
+      "eng": 725
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-23",
+      "url": "https://www.instagram.com/reel/DZ7y6bSD2WO/",
+      "title": "When Nancy Cartwright, the voice of Bart Simpson, enters the Better Dog chat, we are all ears.",
+      "type": "Short Form Clip",
+      "views": 14395,
+      "reach": 13580,
+      "eng": 38
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-24",
+      "url": "https://www.instagram.com/p/DZ-RA6cGOL0/",
+      "title": "When the paw licking keeps coming back, do not just look at the paw.",
+      "type": "Carousel",
+      "views": 730,
+      "reach": 371,
+      "eng": 29
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-25",
+      "url": "https://www.instagram.com/reel/DaA1m1iD_YG/",
+      "title": "Ever look at your dog and think something just feels off?",
+      "type": "Short Form Clip",
+      "views": 10192,
+      "reach": 9392,
+      "eng": 680
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-26",
+      "url": "https://www.instagram.com/reel/DaDa1IwgYVt/",
+      "title": "Healthy skin shows up in the coat, the shine, the moisture, and the way your dog feels every day.",
+      "type": "Short Form Clip",
+      "views": 7149,
+      "reach": 6622,
+      "eng": 428
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-27",
+      "url": "https://www.instagram.com/reel/DaF_WKfjWPt/",
+      "title": "Watching your dog slow down can be tough.",
+      "type": "Short Form Clip",
+      "views": 7110,
+      "reach": 6591,
+      "eng": 403
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-28",
+      "url": "https://www.instagram.com/reel/DaIkKlCAoNM/",
+      "title": "What causes tear stains in dogs?",
+      "type": "Short Form Clip",
+      "views": 11254,
+      "reach": 10204,
+      "eng": 509
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-06-30",
+      "url": "https://www.instagram.com/reel/DaNty2NDcq1/",
+      "title": "Some dogs come with no brakes, just a gas pedal.",
+      "type": "Short Form Clip",
+      "views": 7517,
+      "reach": 6852,
+      "eng": 425
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-07-01",
+      "url": "https://www.instagram.com/p/DaQSeqcCHlU/",
+      "title": "Loose stool can be your dog?s way of saying their belly needs support.",
+      "type": "Carousel",
+      "views": 265,
+      "reach": 117,
+      "eng": 14
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-07-02",
+      "url": "https://www.instagram.com/reel/DaS3UvoAcv-/",
+      "title": "What does happy-go-lucky look like in a dog?",
+      "type": "Short Form Clip",
+      "views": 1144,
+      "reach": 1043,
+      "eng": 84
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-05-23",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7641973110710734110",
+      "title": "Snow Monkey dry skin and irritation: Skin Magic and Allergy Balance support dogs from the inside out.",
+      "type": "Short Form Clip",
+      "views": 4080,
+      "reach": 3411,
+      "eng": 0,
+      "sourceId": "7641973110710734110"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-05-28",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7645127973598760205",
+      "title": "The skin is one of the first places the body shows that something is off. Skin Magic supports healthy skin from the inside.",
+      "type": "Short Form Clip",
+      "views": 325530,
+      "reach": 180000,
+      "eng": 0,
+      "sourceId": "7645127973598760205"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-05-28",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7645123612956970253",
+      "title": "Some environments put real stress on a dog body. Allergy Balance supports a healthy immune response.",
+      "type": "Short Form Clip",
+      "views": 3083,
+      "reach": 1410,
+      "eng": 0,
+      "sourceId": "7645123612956970253"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-05-29",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7644957016250813726",
+      "title": "Ever wonder why your dog might eat grass or other plants? Inner Purity helps support natural cleansing.",
+      "type": "Short Form Clip",
+      "views": 6511,
+      "reach": 5497,
+      "eng": 0,
+      "sourceId": "7644957016250813726"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-05-30",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7645393224793640223",
+      "title": "Skin issues in dogs are easy to spot but not always easy to fix. Skin Magic supports healthy skin from inside.",
+      "type": "Short Form Clip",
+      "views": 3623,
+      "reach": 2721,
+      "eng": 0,
+      "sourceId": "7645393224793640223"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-05-31",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7645422333015919902",
+      "title": "If skin issues keep coming back no matter what you try on the outside, the answer might be inside.",
+      "type": "Short Form Clip",
+      "views": 53363,
+      "reach": 28967,
+      "eng": 0,
+      "sourceId": "7645422333015919902"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-10",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7647930539952852254",
+      "title": "When food obsession takes over mealtime, it is worth addressing at the source. Cesar shares his method.",
+      "type": "Short Form Clip",
+      "views": 15556,
+      "reach": 11713,
+      "eng": 0,
+      "sourceId": "7647930539952852254"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-12",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7647931867726941470",
+      "title": "Every feeding at The Dog Psychology Center follows the same energy. Cesar shows how it works.",
+      "type": "Short Form Clip",
+      "views": 2700,
+      "reach": 2213,
+      "eng": 0,
+      "sourceId": "7647931867726941470"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-14",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7649113809658989855",
+      "title": "Dogs show discomfort in quiet ways. Inner Purity supports a healthy internal environment.",
+      "type": "Short Form Clip",
+      "views": 2897,
+      "reach": 2565,
+      "eng": 0,
+      "sourceId": "7649113809658989855"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-16",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7649116034749730079",
+      "title": "Big coats are beautiful, but they can attract unwanted pests when spending time outdoors.",
+      "type": "Short Form Clip",
+      "views": 7807,
+      "reach": 4991,
+      "eng": 0,
+      "sourceId": "7649116034749730079"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-18",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7652630734280150302",
+      "title": "Your dog is paying attention to what you practice every day. Calm energy and clear direction help your dog settle.",
+      "type": "Short Form Clip",
+      "views": 9633,
+      "reach": 8728,
+      "eng": 0,
+      "sourceId": "7652630734280150302"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-18",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7652006245137665310",
+      "title": "Dogs are not complicated. We are. Calm Surrender helps dogs stay calm through everyday stress.",
+      "type": "Short Form Clip",
+      "views": 4521,
+      "reach": 3992,
+      "eng": 0,
+      "sourceId": "7652006245137665310"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-18",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7649427050683452703",
+      "title": "A puppy immune system gets stronger as they explore the world. Puppy Defense supports immune function and gut balance.",
+      "type": "Short Form Clip",
+      "views": 3305,
+      "reach": 3015,
+      "eng": 0,
+      "sourceId": "7649427050683452703"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-20",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7652007870522723614",
+      "title": "Dogs can show a broken spirit in several ways. Calm Confidence supports balance from within.",
+      "type": "Short Form Clip",
+      "views": 5008,
+      "reach": 4418,
+      "eng": 0,
+      "sourceId": "7652007870522723614"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-20",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7653215557302455582",
+      "title": "When a dog skin is uncomfortable, it shows. Skin Magic supports healthy skin and soothes irritation.",
+      "type": "Short Form Clip",
+      "views": 2643,
+      "reach": 2074,
+      "eng": 0,
+      "sourceId": "7653215557302455582"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-25",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7655347869494299934",
+      "title": "Ever look at your dog and think something just feels off? Happy-Go-Lucky Belly supports comfortable digestion.",
+      "type": "Short Form Clip",
+      "views": 11174,
+      "reach": 9436,
+      "eng": 0,
+      "sourceId": "7655347869494299934"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-26",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7655053656722558238",
+      "title": "Patience at mealtime does not come naturally to every dog. Cesar shows the method he uses.",
+      "type": "Short Form Clip",
+      "views": 4480,
+      "reach": 4047,
+      "eng": 0,
+      "sourceId": "7655053656722558238"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-28",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7655822037751041310",
+      "title": "For some dogs, food is the biggest thing in their world. Cesar shows how to bring structure and calm to mealtime.",
+      "type": "Short Form Clip",
+      "views": 7504,
+      "reach": 3079,
+      "eng": 0,
+      "sourceId": "7655822037751041310"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-28",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7655822148065430814",
+      "title": "Here is what Cesar feeding routine looks like with high-drive, food-focused dogs like Ice.",
+      "type": "Short Form Clip",
+      "views": 3715,
+      "reach": 3346,
+      "eng": 0,
+      "sourceId": "7655822148065430814"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-29",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656865433806507294",
+      "title": "Here is a look at how feeding works at The Dog Psychology Center under Cesar approach.",
+      "type": "Short Form Clip",
+      "views": 1452,
+      "reach": 834,
+      "eng": 0,
+      "sourceId": "7656865433806507294"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-29",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656865581311741215",
+      "title": "Structure at mealtime matters. Here is how Cesar handles it with the dogs at The Dog Psychology Center.",
+      "type": "Short Form Clip",
+      "views": 1343,
+      "reach": 958,
+      "eng": 0,
+      "sourceId": "7656865581311741215"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-06-30",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256113506684191",
+      "title": "Stress in dogs does not always look dramatic. Calm Surrender offers non-sedating support.",
+      "type": "Short Form Clip",
+      "views": 2628,
+      "reach": 1017,
+      "eng": 0,
+      "sourceId": "7657256113506684191"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-01",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657257539117108510",
+      "title": "Mealtime with a high-energy dog like Zeus takes a specific approach. Here is how Cesar manages it.",
+      "type": "Short Form Clip",
+      "views": 1043,
+      "reach": 64,
+      "eng": 0,
+      "sourceId": "7657257539117108510"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-01",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256658036378911",
+      "title": "Zeus has a lot of energy, especially at mealtime. Cesar shows how he handles it.",
+      "type": "Short Form Clip",
+      "views": 510,
+      "reach": 249,
+      "eng": 0,
+      "sourceId": "7657256658036378911"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-01",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657257701499604255",
+      "title": "Feeding a high-energy dog the right way takes more than just putting food down.",
+      "type": "Short Form Clip",
+      "views": 431,
+      "reach": 36,
+      "eng": 0,
+      "sourceId": "7657257701499604255"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-01",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256317395930398",
+      "title": "Cesar walks through a few Better Dog Supplements he relies on at the ranch.",
+      "type": "Short Form Clip",
+      "views": 301,
+      "reach": 274,
+      "eng": 0,
+      "sourceId": "7657256317395930398"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-01",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256501731478815",
+      "title": "Here is how Cesar works with dogs like Zeus who have zero patience at mealtime.",
+      "type": "Short Form Clip",
+      "views": 147,
+      "reach": 60,
+      "eng": 0,
+      "sourceId": "7657256501731478815"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656916624238316830",
+      "title": "What does happy-go-lucky look like in a dog? Happy-Go-Lucky Belly supports healthy digestion.",
+      "type": "Short Form Clip",
+      "views": 576,
+      "reach": 0,
+      "eng": 0,
+      "sourceId": "7656916624238316830"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658040941864930590",
+      "title": "Dogs reflect the energy we bring. Calm Confidence supports relaxation, clarity, and emotional balance.",
+      "type": "Short Form Clip",
+      "views": 442,
+      "reach": 0,
+      "eng": 0,
+      "sourceId": "7658040941864930590"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658041583962541343",
+      "title": "The skin can reflect what is going on inside the body. Skin Magic supports healthy skin.",
+      "type": "Short Form Clip",
+      "views": 401,
+      "reach": 0,
+      "eng": 0,
+      "sourceId": "7658041583962541343"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658041215278992671",
+      "title": "When a dog belly is not right, their whole body feels it. Happy Go-Lucky Belly supports digestive balance.",
+      "type": "Short Form Clip",
+      "views": 311,
+      "reach": 0,
+      "eng": 0,
+      "sourceId": "7658041215278992671"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657257891170176286",
+      "title": "The way a dog eats says a lot about where their energy is. Cesar shares his approach.",
+      "type": "Short Form Clip",
+      "views": 283,
+      "reach": 0,
+      "eng": 0,
+      "sourceId": "7657257891170176286"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658040601652350239",
+      "title": "Some dogs were not meant for the environment we bring them into. Allergy Balance supports immune response.",
+      "type": "Short Form Clip",
+      "views": 20,
+      "reach": 0,
+      "eng": 0,
+      "sourceId": "7658040601652350239"
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-05",
+      "url": "https://www.youtube.com/watch?v=dbk2_QZQznM",
+      "title": "What Makes a Dog Healthy?",
+      "type": "Short Form Clip",
+      "views": 500,
+      "watchTime": 118,
+      "reach": null,
+      "eng": 27
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-05",
+      "url": "https://www.youtube.com/watch?v=ZWd_X9_kPB4",
+      "title": "Does your dog follow you around everywhere?",
+      "type": "Short Form Clip",
+      "views": 378,
+      "watchTime": 85,
+      "reach": null,
+      "eng": 27
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-05",
+      "url": "https://www.youtube.com/watch?v=H8sW_Ji8k-c",
+      "title": "Signs of Stress in Dogs",
+      "type": "Short Form Clip",
+      "views": 177,
+      "watchTime": 86,
+      "reach": null,
+      "eng": 9
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-05",
+      "url": "https://www.youtube.com/watch?v=eAIOdOwqHH8",
+      "title": "Is Your Dog Scared Of Loud Noises?",
+      "type": "Short Form Clip",
+      "views": 111,
+      "watchTime": 41,
+      "reach": null,
+      "eng": 14
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-12",
+      "url": "https://www.youtube.com/watch?v=tFcipFIk8EQ",
+      "title": "When I think about senior dogs",
+      "type": "Short Form Clip",
+      "views": 1841,
+      "watchTime": 93,
+      "reach": null,
+      "eng": 10
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-12",
+      "url": "https://www.youtube.com/watch?v=au1fpikpohk",
+      "title": "Signs of stress in dogs",
+      "type": "Short Form Clip",
+      "views": 1268,
+      "watchTime": 330,
+      "reach": null,
+      "eng": 39
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-12",
+      "url": "https://www.youtube.com/watch?v=bPztJIEuWDI",
+      "title": "Some dogs go at 100mph",
+      "type": "Short Form Clip",
+      "views": 827,
+      "watchTime": 161,
+      "reach": null,
+      "eng": 20
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-12",
+      "url": "https://www.youtube.com/watch?v=Bm09DUCS_Ko",
+      "title": "4 Reasons Dogs Slow Down",
+      "type": "Short Form Clip",
+      "views": 721,
+      "watchTime": 102,
+      "reach": null,
+      "eng": 18
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-12",
+      "url": "https://www.youtube.com/watch?v=MkvSa0GeIqc",
+      "title": "Anxiety is not a natural state for a dog",
+      "type": "Short Form Clip",
+      "views": 157,
+      "watchTime": 57,
+      "reach": null,
+      "eng": 8
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-12",
+      "url": "https://www.youtube.com/watch?v=Vyas2UA-Hvc",
+      "title": "Does Your Dog Have Skin Issues?",
+      "type": "Short Form Clip",
+      "views": 93,
+      "watchTime": 8,
+      "reach": null,
+      "eng": 7
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-19",
+      "url": "https://www.youtube.com/watch?v=B1BsuygjscM",
+      "title": "Some dogs struggle in climates their bodies were not built for.",
+      "type": "Short Form Clip",
+      "views": 141,
+      "watchTime": 22,
+      "reach": null,
+      "eng": 10
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-20",
+      "url": "https://www.youtube.com/watch?v=z02OWEEdCfQ",
+      "title": "Dog With Dry Skin and Irritation?",
+      "type": "Short Form Clip",
+      "views": 211,
+      "watchTime": 70,
+      "reach": null,
+      "eng": 9
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-20",
+      "url": "https://www.youtube.com/watch?v=gI0pz0QMO1Q",
+      "title": "As dogs age, their bodies need more support",
+      "type": "Short Form Clip",
+      "views": 206,
+      "watchTime": 70,
+      "reach": null,
+      "eng": 13
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-20",
+      "url": "https://www.youtube.com/watch?v=Xi_w8SUkypE",
+      "title": "Your dog is a reflection of you",
+      "type": "Short Form Clip",
+      "views": 140,
+      "watchTime": 15,
+      "reach": null,
+      "eng": 8
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-20",
+      "url": "https://www.youtube.com/watch?v=pxFjAynqNj8",
+      "title": "Overactive Dog? Try This.",
+      "type": "Short Form Clip",
+      "views": 131,
+      "watchTime": 12,
+      "reach": null,
+      "eng": 3
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-26",
+      "url": "https://www.youtube.com/watch?v=1imyKWdy0Hc",
+      "title": "5 Signs Your Dog Diet Is Not Working",
+      "type": "Short Form Clip",
+      "views": 245,
+      "watchTime": 25,
+      "reach": null,
+      "eng": 8
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-27",
+      "url": "https://www.youtube.com/watch?v=SK6PuFMvwUM",
+      "title": "Skin Magic was formulated for Cesar Millan",
+      "type": "Short Form Clip",
+      "views": 237,
+      "watchTime": 14,
+      "reach": null,
+      "eng": 4
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-28",
+      "url": "https://www.youtube.com/watch?v=GEp4ekp2smQ",
+      "title": "Why dogs eat grass",
+      "type": "Short Form Clip",
+      "views": 1050,
+      "watchTime": 106,
+      "reach": null,
+      "eng": 17
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-28",
+      "url": "https://www.youtube.com/watch?v=AMS3sPJU8VU",
+      "title": "Raising a great dog means stepping into both roles",
+      "type": "Short Form Clip",
+      "views": 487,
+      "watchTime": 82,
+      "reach": null,
+      "eng": 15
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-28",
+      "url": "https://www.youtube.com/watch?v=Jm__yJ39Ehw",
+      "title": "What does BetterDog Supplements mean to you?",
+      "type": "Short Form Clip",
+      "views": 141,
+      "watchTime": 41,
+      "reach": null,
+      "eng": 9
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-05-28",
+      "url": "https://www.youtube.com/watch?v=t_7X4c-yxKc",
+      "title": "What Nature Taught Me About How Dogs Heal",
+      "type": "Short Form Clip",
+      "views": 112,
+      "watchTime": 74,
+      "reach": null,
+      "eng": 15
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-01",
+      "url": "https://www.youtube.com/watch?v=eLV0olz2gwQ",
+      "title": "If your dog gets anxious during storms",
+      "type": "Short Form Clip",
+      "views": 295,
+      "watchTime": 17,
+      "reach": null,
+      "eng": 7
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-01",
+      "url": "https://www.youtube.com/watch?v=R6X1jrDgQa0",
+      "title": "Helping a dog live a long healthy life",
+      "type": "Short Form Clip",
+      "views": 262,
+      "watchTime": 54,
+      "reach": null,
+      "eng": 17
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-01",
+      "url": "https://www.youtube.com/watch?v=tF0-XURXtX4",
+      "title": "Help your dog feel comfortable again.",
+      "type": "Short Form Clip",
+      "views": 149,
+      "watchTime": 7,
+      "reach": null,
+      "eng": 8
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-01",
+      "url": "https://www.youtube.com/watch?v=wOnRhZ8oPNA",
+      "title": "Real shine cannot be washed off",
+      "type": "Short Form Clip",
+      "views": 114,
+      "watchTime": 27,
+      "reach": null,
+      "eng": 11
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-01",
+      "url": "https://www.youtube.com/watch?v=6asCj3zz8S8",
+      "title": "Does your dog follow you around everywhere?",
+      "type": "Short Form Clip",
+      "views": 37,
+      "watchTime": 11,
+      "reach": null,
+      "eng": 5
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-08",
+      "url": "https://www.youtube.com/watch?v=QfTZxVKyqQY",
+      "title": "This made such a big difference in my dog?s itching.",
+      "type": "Short Form Clip",
+      "views": 784,
+      "watchTime": 103,
+      "reach": null,
+      "eng": 18
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-08",
+      "url": "https://www.youtube.com/watch?v=KCftYqD1IAM",
+      "title": "How to spot allergies early",
+      "type": "Short Form Clip",
+      "views": 335,
+      "watchTime": 77,
+      "reach": null,
+      "eng": 12
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-08",
+      "url": "https://www.youtube.com/watch?v=MA2m6cwDXsw",
+      "title": "Does your dog get extra active when guests arrive?",
+      "type": "Short Form Clip",
+      "views": 298,
+      "watchTime": 53,
+      "reach": null,
+      "eng": 13
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-08",
+      "url": "https://www.youtube.com/watch?v=L7vxvGqSaRs",
+      "title": "Why does my dog have a loose stool?",
+      "type": "Short Form Clip",
+      "views": 88,
+      "watchTime": 24,
+      "reach": null,
+      "eng": 9
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-16",
+      "url": "https://www.youtube.com/watch?v=n_RJiFLMuTM",
+      "title": "Puppy Problems Don?t Just Happen",
+      "type": "Short Form Clip",
+      "views": 1157,
+      "watchTime": 101,
+      "reach": null,
+      "eng": 15
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-16",
+      "url": "https://www.youtube.com/watch?v=0KGQRdQ-pJk",
+      "title": "How Dogs Show a Broken Spirit",
+      "type": "Short Form Clip",
+      "views": 288,
+      "watchTime": 24,
+      "reach": null,
+      "eng": 8
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-16",
+      "url": "https://www.youtube.com/watch?v=KZJSf9Lm4mc",
+      "title": "3 Ways a Dog Can Feel Bad",
+      "type": "Short Form Clip",
+      "views": 185,
+      "watchTime": 36,
+      "reach": null,
+      "eng": 9
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-16",
+      "url": "https://www.youtube.com/watch?v=eICtzC7t-Hw",
+      "title": "Three Things Every Dog Needs Daily",
+      "type": "Short Form Clip",
+      "views": 159,
+      "watchTime": 66,
+      "reach": null,
+      "eng": 15
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-23",
+      "url": "https://www.youtube.com/watch?v=jWAz-L6u0Zw",
+      "title": "The Voice of Bart Simpson Just Entered the Better Dog Chat",
+      "type": "Short Form Clip",
+      "views": 1130,
+      "watchTime": 152,
+      "reach": null,
+      "eng": 31
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-25",
+      "url": "https://www.youtube.com/watch?v=DGNuvoDyQ34",
+      "title": "Why would a dog slow down?",
+      "type": "Short Form Clip",
+      "views": 897,
+      "watchTime": 179,
+      "reach": null,
+      "eng": 29
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-25",
+      "url": "https://www.youtube.com/watch?v=HykvhGw1ccQ",
+      "title": "Ever look at your dog and think something just feels off?",
+      "type": "Short Form Clip",
+      "views": 745,
+      "watchTime": 182,
+      "reach": null,
+      "eng": 33
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-25",
+      "url": "https://www.youtube.com/watch?v=dNEw9lhX4MA",
+      "title": "What causes tear stains in dogs?",
+      "type": "Short Form Clip",
+      "views": 740,
+      "watchTime": 183,
+      "reach": null,
+      "eng": 24
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-25",
+      "url": "https://www.youtube.com/watch?v=Zxckh4AcxEQ",
+      "title": "What does healthy skin look like?",
+      "type": "Short Form Clip",
+      "views": 267,
+      "watchTime": 27,
+      "reach": null,
+      "eng": 10
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-29",
+      "url": "https://www.youtube.com/watch?v=iCBrktyNzZU",
+      "title": "Some dogs come with no brakes, just a gas pedal.",
+      "type": "Short Form Clip",
+      "views": 849,
+      "watchTime": 169,
+      "reach": null,
+      "eng": 18
     }
   ]
 }
