@@ -29,22 +29,25 @@
       "connector": "Facebook Insights",
       "status": "live",
       "historyStart": "2026-01-01",
-      "requiredMetrics": ["views", "posts"]
+      "requiredMetrics": ["views", "reach", "posts"],
+      "reachMetric": "Page media views unique"
     },
     "tiktok": {
       "provider": "supermetrics",
       "connector": "TikTok Organic",
-      "status": "live-totals",
+      "status": "live",
       "historyStart": "2026-05-04",
-      "requiredMetrics": ["views", "reach"],
-      "knownLimitations": ["Post-level/top-content query currently times out; publish live totals only until fixed."]
+      "requiredMetrics": ["views", "reach", "posts"],
+      "reachMetric": "Reached audience",
+      "queryNote": "Video-level rows should be requested with a create-date filter to avoid large-query timeouts."
     },
     "youtube": {
       "provider": "supermetrics",
       "connector": "YouTube Analytics",
       "status": "live",
       "historyStart": "2026-01-01",
-      "requiredMetrics": ["views", "watchTime", "posts"]
+      "requiredMetrics": ["views", "watchTime", "posts"],
+      "knownLimitations": ["Unique viewers is not available in the current Supermetrics YouTube connector, so YouTube reach is not shown."]
     }
   }
 }

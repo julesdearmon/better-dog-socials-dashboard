@@ -13,9 +13,9 @@
       "provider": "supermetrics"
     },
     "tiktok": {
-      "status": "live-totals",
+      "status": "live",
       "provider": "supermetrics",
-      "note": "TikTok totals are live; post-level/top-content query is unavailable until Supermetrics stops timing out."
+      "note": "TikTok totals, post counts, reach, and top content are live via filtered TikTok Organic video queries."
     },
     "youtube": {
       "status": "live",
