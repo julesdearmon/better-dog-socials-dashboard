@@ -1,9 +1,8 @@
-name: Refresh & deploy dashboard
+name: Deploy dashboard
 
-# Rebuilds dashboard data from Supermetrics only, then publishes to GitHub Pages.
+# Publishes refreshed dashboard files to GitHub Pages.
+# Daily data refresh is handled by the Codex Supermetrics automation.
 on:
-  schedule:
-    - cron: '0 10 * * *'   # 10:00 UTC is 6:00 AM US-Eastern during daylight time.
   workflow_dispatch: {}
   push:
     branches: [main]
@@ -26,23 +25,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Pull fresh Supermetrics data
-        env:
-          SUPERMETRICS_API_KEY: ${{ secrets.SUPERMETRICS_API_KEY }}
-          DISPLAY_TZ: America/New_York
-          WINDOW_DAYS: 45
-        run: |
-          if [ -z "$SUPERMETRICS_API_KEY" ]; then
-            echo "::error::SUPERMETRICS_API_KEY is required. Dashboard data must come from Supermetrics only."
-            exit 1
-          fi
-          node scripts/build-data.mjs
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

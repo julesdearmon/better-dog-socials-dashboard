@@ -566,6 +566,8 @@ async function load() {
     }
     if (!state.rangeStart || !state.rangeEnd) {
       const r = defaultRange(Date.parse(state.data.asOf + 'T00:00:00Z'));
+      const firstDate = state.data.metrics?.instagram?.daily?.[0]?.date;
+      if (firstDate && firstDate > r.start) r.start = firstDate;
       state.rangeStart = r.start; state.rangeEnd = r.end;
     }
     render();
