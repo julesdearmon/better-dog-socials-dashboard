@@ -505,10 +505,12 @@ function updateMode() {
     const updated = state.data.updatedAt || 'unknown';
     const errors = state.data.directApiErrors || [];
     const tiktokPending = errors.some((x) => /^tiktok:/i.test(x)) || isPendingPlatform('tiktok');
+    const tiktokTopContentUnavailable = state.data.metrics?.tiktok?.hasTopContent === false;
     const realErrors = errors.filter((x) => !/^tiktok:/i.test(x));
-    const parts = [`Updated ${updated}`, `Data through ${through}`];
+    const parts = [`Updated ${updated}`, `Data through ${through}`, 'Source: Supermetrics'];
     if (tiktokPending) parts.push('TikTok not connected yet');
-    if (realErrors.length) parts.push(`⚠️ Connection issue: ${realErrors.join(' | ')}`);
+    else if (tiktokTopContentUnavailable) parts.push('TikTok top content unavailable');
+    if (realErrors.length) parts.push(`Warning: Connection issue: ${realErrors.join(' | ')}`);
     note.textContent = parts.join(' - ');
     note.hidden = false;
   } else {
@@ -766,7 +768,7 @@ function renderOverview() {
   const info = periodInfo();
   if (ps.length && ps.every(isPendingPlatform)) {
     $('#overviewTitle').textContent = `Overall analysis - ${info.title}`;
-    el.innerHTML = '<p class="ov-headline"><strong>TikTok is pending approval.</strong> No live TikTok data is shown yet.</p>';
+    el.innerHTML = '<p class="ov-headline"><strong>TikTok totals are connected.</strong> Top content is unavailable until the Supermetrics post-level query stops timing out.</p>';
     return;
   }
   if (ps.length === 1) { renderFocusedOverview(ps[0], start, end, info); return; }
@@ -906,7 +908,7 @@ function renderContent() {
         <span class="cg-name">${nameOf(g.p)}</span>
       </div>
       ${g.pending
-        ? `<p class="cg-empty">TikTok is pending approval. No live TikTok data is shown yet.</p>`
+        ? `<p class="cg-empty">TikTok totals are connected, but TikTok top content is not available from Supermetrics yet.</p>`
         : g.top.length
         ? tableHtml(g.p, g.top)
         : `<p class="cg-empty">${g.p === 'tiktok' ? 'TikTok totals are connected, but TikTok post-level content is not available from Supermetrics yet.' : `No posts in ${escapeHtml(period.label)}.`}</p>`}

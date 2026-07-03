@@ -1,0 +1,38 @@
+{
+  "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
+  "standaloneSupermetricsRestApi": {
+    "enabled": false,
+    "reason": "Current Supermetrics license supports ChatGPT/Codex connector access, not standalone /enterprise/v2 REST Query API access."
+  },
+  "deployment": {
+    "githubActionsRole": "deploy-only",
+    "refreshRole": "Codex pulls through the connected Supermetrics connector, updates public/data.json and public/realdata.js, commits, and pushes."
+  },
+  "platforms": {
+    "instagram": {
+      "provider": "supermetrics",
+      "connector": "Instagram Insights",
+      "status": "live",
+      "requiredMetrics": ["views", "reach", "posts"]
+    },
+    "facebook": {
+      "provider": "supermetrics",
+      "connector": "Facebook Insights",
+      "status": "live",
+      "requiredMetrics": ["views", "posts"]
+    },
+    "tiktok": {
+      "provider": "supermetrics",
+      "connector": "TikTok Organic",
+      "status": "live-totals",
+      "requiredMetrics": ["views", "reach"],
+      "knownLimitations": ["Post-level/top-content query currently times out; publish live totals only until fixed."]
+    },
+    "youtube": {
+      "provider": "supermetrics",
+      "connector": "YouTube Analytics",
+      "status": "live",
+      "requiredMetrics": ["views", "watchTime", "posts"]
+    }
+  }
+}

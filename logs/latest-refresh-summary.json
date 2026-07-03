@@ -1,0 +1,27 @@
+{
+  "refreshedAt": "Jul 3, 2026, 7:45 AM",
+  "dataThrough": "2026-07-02",
+  "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
+  "generatedFrom": "Supermetrics API (Instagram, Facebook, TikTok, YouTube)",
+  "platforms": {
+    "instagram": {
+      "status": "live",
+      "provider": "supermetrics"
+    },
+    "facebook": {
+      "status": "live",
+      "provider": "supermetrics"
+    },
+    "tiktok": {
+      "status": "live-totals",
+      "provider": "supermetrics",
+      "note": "TikTok totals are live; post-level/top-content query is unavailable until Supermetrics stops timing out."
+    },
+    "youtube": {
+      "status": "live",
+      "provider": "supermetrics"
+    }
+  },
+  "errors": [],
+  "published": true
+}

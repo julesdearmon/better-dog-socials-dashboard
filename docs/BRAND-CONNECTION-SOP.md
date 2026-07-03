@@ -60,6 +60,15 @@ Do not do this on the current plan:
 The default repo `npm run build` validates the existing dashboard data. It does
 not fetch fresh data.
 
+Reliability guardrails:
+
+- `config/data-sources.json` is the source-of-truth file for which connector
+  each platform should use.
+- `logs/latest-refresh-summary.json` records the latest refresh status in plain
+  language for audits.
+- `scripts/validate-dashboard-data.mjs` blocks publishing mixed-source,
+  stale, errored, or carried-forward data.
+
 ## Meta: Instagram and Facebook
 
 Goal: pull Instagram and Facebook Page reporting through Meta APIs.
