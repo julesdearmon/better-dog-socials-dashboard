@@ -91,7 +91,7 @@ async function query({ ds_id, account, fields, settings }) {
     start_date: START,
     end_date: END,
     fields: fields.join(','),
-    max_rows: 1000000,
+    max_rows: 10000,
   };
   if (settings) body.settings = settings;
 
@@ -135,7 +135,7 @@ async function queryRange({ ds_id, account, fields, settings, start_date = START
     start_date,
     end_date,
     fields: fields.join(','),
-    max_rows: 1000000,
+    max_rows: 10000,
   };
   if (settings) body.settings = settings;
 
@@ -330,6 +330,7 @@ async function pullYouTube() {
 }
 
 async function pullTikTok() {
+  throw new Error('TikTok is pending API approval and is intentionally excluded from live totals');
   const { ds_id, account, handle } = ACCT.tiktok;
   const settings = { report_type: 'videos' };
   const fields = ['videos__create_date', 'videos__video_views', 'videos__reach',
@@ -356,7 +357,7 @@ async function pullTikTok() {
   };
 }
 
-function completeFriThuWeeks(count = 8) {
+function completeFriThuWeeks(count = 4) {
   const end = new Date(`${END}T00:00:00Z`);
   const back = (end.getUTCDay() - 4 + 7) % 7;
   const thu = new Date(end);
@@ -374,7 +375,7 @@ function completeFriThuWeeks(count = 8) {
 
 async function buildSupermetricsRangeOverrides() {
   const overrides = [];
-  for (const range of completeFriThuWeeks(8)) {
+  for (const range of completeFriThuWeeks(4)) {
     const [ig] = await queryRange({
       ds_id: ACCT.instagram.ds_id,
       account: ACCT.instagram.account,
@@ -482,6 +483,19 @@ async function main() {
   for (const [name, r] of Object.entries(results)) {
     metrics[name] = r.metric;
     content = content.concat(r.content);
+  }
+  if (!metrics.tiktok) {
+    metrics.tiktok = {
+      platform: 'tiktok',
+      handle: ACCT.tiktok.handle,
+      source: 'pending',
+      provider: 'pending-api-approval',
+      carriedForward: true,
+      hasWatchTime: false,
+      hasReach: false,
+      asOf: ASOF,
+      daily: toArr(emptyDaily()),
+    };
   }
   const rangeOverrides = await buildSupermetricsRangeOverrides();
 
