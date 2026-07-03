@@ -8,23 +8,34 @@
     "githubActionsRole": "deploy-only",
     "refreshRole": "Codex pulls through the connected Supermetrics connector, updates public/data.json and public/realdata.js, commits, and pushes."
   },
+  "history": {
+    "target": "year-to-date",
+    "defaultStart": "2026-01-01",
+    "notes": [
+      "Instagram, Facebook, and YouTube should be pulled from 2026-01-01 forward.",
+      "TikTok Organic's earliest supported Supermetrics date is 2026-05-04, so TikTok cannot show January-April 2026 through this connector."
+    ]
+  },
   "platforms": {
     "instagram": {
       "provider": "supermetrics",
       "connector": "Instagram Insights",
       "status": "live",
+      "historyStart": "2026-01-01",
       "requiredMetrics": ["views", "reach", "posts"]
     },
     "facebook": {
       "provider": "supermetrics",
       "connector": "Facebook Insights",
       "status": "live",
+      "historyStart": "2026-01-01",
       "requiredMetrics": ["views", "posts"]
     },
     "tiktok": {
       "provider": "supermetrics",
       "connector": "TikTok Organic",
       "status": "live-totals",
+      "historyStart": "2026-05-04",
       "requiredMetrics": ["views", "reach"],
       "knownLimitations": ["Post-level/top-content query currently times out; publish live totals only until fixed."]
     },
@@ -32,6 +43,7 @@
       "provider": "supermetrics",
       "connector": "YouTube Analytics",
       "status": "live",
+      "historyStart": "2026-01-01",
       "requiredMetrics": ["views", "watchTime", "posts"]
     }
   }

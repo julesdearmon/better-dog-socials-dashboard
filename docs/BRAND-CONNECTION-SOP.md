@@ -68,6 +68,10 @@ Reliability guardrails:
   language for audits.
 - `scripts/validate-dashboard-data.mjs` blocks publishing mixed-source,
   stale, errored, or carried-forward data.
+- The refresh should pull year-to-date history where Supermetrics supports it:
+  Instagram, Facebook, and YouTube from January 1, 2026 forward; TikTok Organic
+  from May 4, 2026 forward because Supermetrics does not support earlier TikTok
+  Organic dates for this account.
 
 ## Meta: Instagram and Facebook
 
