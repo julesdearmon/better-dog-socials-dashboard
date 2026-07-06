@@ -1144,7 +1144,7 @@ function renderTrend(canvasId, metricKey) {
     return;
   }
   const datasets = [];
-  if (!focusedPlatform() && ['views', 'posts'].includes(metricKey) && ps.length > 1) {
+  if (!focusedPlatform() && ['views', 'posts', 'reach'].includes(metricKey) && ps.length > 1) {
     datasets.push({
       label: 'Total',
       data: labels.map((_, i) => ps.reduce((s, p) => s + (state.series[p][i]?.[metricKey] || 0), 0)),
