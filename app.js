@@ -1040,9 +1040,10 @@ function renderPlatformFilter() {
   const chip = (val, label, dot) =>
     `<button type="button" class="pf-chip ${focus === val ? 'on' : ''}" data-focus="${val}">` +
     (dot != null ? `<span class="pf-dot" style="background:${dot}"></span>` : '') + `${label}</button>`;
-  // [ Total (Active Platforms) ] [ ...each platform... ] - pending platforms stay visible but are excluded from totals.
+  // [ All platforms ] [ Totals only ] [ ...each platform... ] - pending platforms stay visible but are excluded from totals.
   $('#platformFilter').innerHTML = '<span class="pf-label">Show:</span>' +
-    chip('all', 'Total (Active Platforms)', null) +
+    chip('all', 'All platforms', null) +
+    chip('total', 'Totals only', null) +
     all.map((p) => chip(p, nameOf(p), PLATFORM_COLORS[p] || '#888')).join('');
   for (const p of all) {
     if (!isCarriedForward(p)) continue;
