@@ -348,6 +348,8 @@ body {
 .ov-delta.flat { color: var(--muted); }
 .ov-reason { font-size: 13px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 11px 13px; margin: 0 0 14px; line-height: 1.55; }
 .ov-reason strong { color: var(--text); }
+.ov-note { font-size: 12px; color: var(--muted); margin: -2px 0 12px; line-height: 1.45; }
+.ov-note strong { color: var(--text); }
 .ov-list { list-style: none; padding: 0; margin: 0; }
 .ov-list li { font-size: 13px; padding: 9px 0; border-bottom: 1px solid var(--line); line-height: 1.5; }
 .ov-list li:last-child { border-bottom: none; }
@@ -362,6 +364,8 @@ body {
 .ov-fmt { list-style: none; margin: 0 0 6px; padding: 0; }
 .ov-fmt li { font-size: 13px; padding: 5px 0; border-bottom: 1px dashed var(--line); }
 .ov-fmt li:last-child { border-bottom: none; }
+.ov-action-list { margin: 0 0 14px; padding-left: 20px; }
+.ov-action-list li { font-size: 13px; line-height: 1.5; padding: 4px 0; }
 .ov-ai-tag { font-size: 11px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 8px; }
 .ov-ai-para { font-size: 13.5px; line-height: 1.6; margin: 0 0 10px; }
 .ov-ai-para:last-of-type { margin-bottom: 14px; }
