@@ -230,14 +230,9 @@ function presetRange(name, asOfMs) {
   return null;
 }
 
-// Default range: the most recent 12 completed Fri–Thu weeks (ending last Thursday).
+// Default range: the most recent completed Fri-Thu reporting week.
 function defaultRange(asOfMs) {
-  const base = midnightUTC(asOfMs);
-  let diff = (new Date(base).getUTCDay() - 4 + 7) % 7;
-  if (diff === 0) diff = 7;
-  const endMs = base - diff * DAY;            // most recent completed Thursday
-  const startMs = endMs - (12 * 7 - 1) * DAY; // 12 weeks back (a Friday)
-  return { start: iso(startMs), end: iso(endMs) };
+  return presetRange('last-week', asOfMs);
 }
 
 // Human label for the selected range, e.g. "Jun 1 – Jun 30, 2026".
