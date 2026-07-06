@@ -238,13 +238,13 @@ async function pullFacebook() {
   const dailyRows = await queryRange({
     ds_id,
     account,
-    fields: ['date', 'page_media_view', 'page_total_media_view_unique', 'page_post_engagements'],
+    fields: ['date', 'page_media_view_organic', 'page_media_view_paid', 'page_total_media_view_unique', 'page_post_engagements'],
   });
   const rows = await queryRange({
     ds_id,
     account,
     fields: ['date', 'post_ID', 'post_linkto', 'post_type', 'post_message',
-      'post_media_views', 'post_total_media_views_unique', 'post_reactions_total', 'post_comments_on_post'],
+      'post_media_view_organic', 'post_media_view_paid', 'post_total_media_views_unique', 'post_reactions_total', 'post_comments_on_post'],
     settings,
   });
   const daily = emptyDaily();
@@ -260,7 +260,7 @@ async function pullFacebook() {
     const date = dateOnly(r.date);
     if (!inAxis(date)) continue;
     const b = daily.get(date);
-    b.views += num(r.page_media_view);
+    b.views += num(r.page_media_view_organic);
     b.reach += num(r.page_total_media_view_unique);
   }
   for (const r of rows) {
@@ -271,12 +271,22 @@ async function pullFacebook() {
     content.push({
       platform: 'facebook', date, url: r.post_linkto || '',
       title: caption(r.post_message), type: typeOf(r.post_type),
-      views: num(r.post_media_views), reach: num(r.post_total_media_views_unique),
+      views: num(r.post_media_view_organic), reach: num(r.post_total_media_views_unique),
       eng: num(r.post_reactions_total) + num(r.post_comments_on_post),
     });
   }
   return {
-    metric: { platform: 'facebook', handle, source: 'live', hasWatchTime: false, asOf: ASOF, daily: toArr(daily) },
+    metric: {
+      platform: 'facebook',
+      handle,
+      source: 'live',
+      hasWatchTime: false,
+      asOf: ASOF,
+      daily: toArr(daily),
+      viewsLabel: 'Organic media views',
+      viewsNote: 'Facebook views use Page media views organic from Supermetrics. Reach uses Page media views unique and is not an organic-only reach split.',
+      reachNote: 'Facebook reach uses Page media views unique, not an organic-only reach split.',
+    },
     content,
   };
 }

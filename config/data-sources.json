@@ -30,6 +30,7 @@
       "status": "live",
       "historyStart": "2026-01-01",
       "requiredMetrics": ["views", "reach", "posts"],
+      "viewsMetric": "Page media views organic",
       "reachMetric": "Page media views unique"
     },
     "tiktok": {

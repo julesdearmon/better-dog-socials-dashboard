@@ -10,7 +10,7 @@ const TOTAL_COLOR = '#222322'; // Better Dog brand near-black
 const DISPLAY_NAMES = { instagram: 'Instagram', facebook: 'Facebook', tiktok: 'TikTok', youtube: 'YouTube' };
 const PAID_CONTEXT = {
   instagram: 'Instagram totals include organic plus paid/promoted distribution. Supermetrics does not expose an organic-only Instagram split here.',
-  facebook: 'Facebook exposes separate organic and paid media-view fields in Supermetrics.',
+  facebook: 'Facebook views use organic media views. Reach uses Page media views unique, not an organic-only reach split.',
   tiktok: 'TikTok is from the TikTok Organic source.',
   youtube: 'YouTube advertising traffic can be separated through Traffic Sources.'
 };
@@ -276,12 +276,25 @@ function reachContextSummary() {
   }
   const p = ps[0];
   if (p === 'instagram') return 'Instagram reach includes paid/promoted distribution.';
-  if (p === 'facebook') return 'Facebook reach uses Page media views unique.';
+  if (p === 'facebook') return 'Facebook reach uses total unique media views.';
   if (p === 'tiktok') return 'TikTok reach uses Reached audience from TikTok Organic.';
   return '';
 }
 
+function viewsContextSummary() {
+  const ps = platforms().filter((p) => supports(p, 'views'));
+  if (!ps.includes('facebook')) return '';
+  if (ps.length === 1) return 'Facebook views are organic media views.';
+  return 'Facebook views are organic. Instagram includes paid/promoted distribution.';
+}
+
 function renderMetricNotes() {
+  const viewsNote = $('#viewsNote');
+  if (viewsNote) {
+    const note = viewsContextSummary();
+    viewsNote.textContent = note;
+    viewsNote.hidden = !note || $('#viewsCard')?.hidden;
+  }
   const reachNote = $('#reachNote');
   if (!reachNote) return;
   const note = reachContextSummary();
@@ -292,7 +305,7 @@ function renderMetricNotes() {
 function kpiContextFor(key, ps = platforms()) {
   const parts = [];
   if ((key === 'views' || key === 'reach') && ps.includes('instagram')) parts.push('Instagram includes paid/promoted.');
-  if (key === 'views' && ps.length === 1 && ps[0] === 'facebook') parts.push('Organic/paid split available.');
+  if (key === 'views' && ps.includes('facebook')) parts.push('Facebook organic views.');
   if (key === 'views' && ps.length === 1 && ps[0] === 'youtube') parts.push('Ad traffic can be checked separately.');
   if (key === 'views' && ps.length === 1 && ps[0] === 'tiktok') parts.push('TikTok Organic source.');
   if (key === 'reach' && allPlatforms().includes('youtube') && ps.length > 1) parts.push('Excludes YouTube.');
@@ -803,7 +816,7 @@ function renderFocusedOverview(p, start, end, info) {
   if (p === 'instagram') {
     html += '<p class="ov-reason"><strong>Paid media context:</strong> Instagram views and reach include organic plus paid/promoted distribution. The current Supermetrics Instagram connector does not expose an organic-only split, so Instagram changes should not be read as purely organic movement.</p>';
   } else if (p === 'facebook') {
-    html += '<p class="ov-reason"><strong>Paid media context:</strong> Facebook has separate organic and paid media-view fields available in Supermetrics, so paid impact can be checked before calling a change organic growth.</p>';
+    html += '<p class="ov-reason"><strong>Paid media context:</strong> Facebook views are organic media views. Reach uses Page media views unique, not an organic-only reach split.</p>';
   } else if (p === 'youtube') {
     html += '<p class="ov-reason"><strong>Paid media context:</strong> YouTube advertising traffic can be separated from other traffic sources before interpreting view changes.</p>';
   }
@@ -897,7 +910,7 @@ function renderOverview() {
     `${anyReach ? `, <strong>${fmt(tr)}</strong> reach${wordDelta(dr)}` : ''} vs the previous ${info.word}.</p>`;
 
   if (ps.includes('instagram')) {
-    html += '<p class="ov-reason"><strong>Paid media context:</strong> Instagram totals include paid/promoted distribution plus organic activity. Because an organic-only Instagram split is unavailable here, Instagram movement should be treated as mixed distribution. Facebook, YouTube, and TikTok have cleaner paid/organic context available.</p>';
+    html += '<p class="ov-reason"><strong>Paid media context:</strong> Instagram totals include paid/promoted distribution plus organic activity. Facebook views use organic media views.</p>';
   }
 
   // Biggest mover (data only): the platform whose views changed most, and — if one
