@@ -1,6 +1,6 @@
 {
-  "refreshedAt": "Jul 3, 2026, 7:45 AM",
-  "dataThrough": "2026-07-02",
+  "refreshedAt": "Jul 6, 2026, 5:15 AM",
+  "dataThrough": "2026-07-05",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
   "generatedFrom": "Supermetrics API (Instagram, Facebook, TikTok, YouTube)",
   "platforms": {
@@ -15,11 +15,12 @@
     "tiktok": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "TikTok totals, post counts, reach, and top content are live via filtered TikTok Organic video queries."
+      "note": "TikTok totals, post counts, reach, and top content refreshed with filtered TikTok Organic queries."
     },
     "youtube": {
       "status": "live",
-      "provider": "supermetrics"
+      "provider": "supermetrics",
+      "note": "No YouTube rows returned for July 3-5."
     }
   },
   "errors": [],
