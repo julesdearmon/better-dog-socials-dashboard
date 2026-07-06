@@ -1044,15 +1044,23 @@ function renderTrend(canvasId, metricKey) {
     }]);
     return;
   }
-  // "All" / single-platform focus: one line per shown platform, no Total line
-  // (the Total has its own dedicated button).
-  const datasets = ps.map((p) => ({
+  const datasets = [];
+  if (!focusedPlatform() && ['views', 'posts'].includes(metricKey) && ps.length > 1) {
+    datasets.push({
+      label: 'Total',
+      data: labels.map((_, i) => ps.reduce((s, p) => s + (state.series[p][i]?.[metricKey] || 0), 0)),
+      borderColor: TOTAL_COLOR,
+      backgroundColor: TOTAL_COLOR + '22',
+      tension: 0.3, pointRadius: 2, borderWidth: 3, fill: false
+    });
+  }
+  datasets.push(...ps.map((p) => ({
     label: nameOf(p),
     data: state.series[p].map((x) => x[metricKey] || 0),
     borderColor: PLATFORM_COLORS[p],
     backgroundColor: PLATFORM_COLORS[p] + '22',
     tension: 0.3, pointRadius: 2, borderWidth: 2, fill: false
-  }));
+  })));
   lineChart(canvasId, labels, datasets);
 }
 
