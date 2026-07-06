@@ -106,7 +106,7 @@ body {
   display: inline-flex; align-items: center; gap: 7px;
   border: 1px solid var(--line); background: var(--panel); color: var(--muted);
   border-radius: 999px; padding: 6px 13px; font-size: 13px; cursor: pointer;
-  text-transform: capitalize; transition: all 0.12s;
+  transition: all 0.12s;
 }
 .pf-chip .pf-dot { width: 9px; height: 9px; border-radius: 50%; opacity: 0.3; }
 .pf-chip:hover { border-color: var(--muted); }
