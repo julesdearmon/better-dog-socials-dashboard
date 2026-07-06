@@ -677,7 +677,7 @@ window.REAL_DATA = {
         {
           "posts": 1,
           "date": "2026-05-01",
-          "views": 496,
+          "views": 488,
           "reach": 189,
           "watchTime": 0,
           "totalFollowers": 382,
@@ -686,7 +686,7 @@ window.REAL_DATA = {
         {
           "posts": 1,
           "date": "2026-05-02",
-          "views": 231,
+          "views": 228,
           "reach": 78,
           "watchTime": 0,
           "totalFollowers": 394,
@@ -695,7 +695,7 @@ window.REAL_DATA = {
         {
           "posts": 1,
           "date": "2026-05-03",
-          "views": 434,
+          "views": 364,
           "reach": 139,
           "watchTime": 0,
           "totalFollowers": 401,
@@ -704,7 +704,7 @@ window.REAL_DATA = {
         {
           "posts": 0,
           "date": "2026-05-04",
-          "views": 284,
+          "views": 213,
           "reach": 121,
           "watchTime": 0,
           "totalFollowers": 408,
@@ -713,7 +713,7 @@ window.REAL_DATA = {
         {
           "posts": 2,
           "date": "2026-05-05",
-          "views": 955,
+          "views": 554,
           "reach": 656,
           "watchTime": 0,
           "totalFollowers": 416,
@@ -722,7 +722,7 @@ window.REAL_DATA = {
         {
           "posts": 1,
           "date": "2026-05-06",
-          "views": 1143,
+          "views": 343,
           "reach": 813,
           "watchTime": 0,
           "totalFollowers": 419,
@@ -731,7 +731,7 @@ window.REAL_DATA = {
         {
           "posts": 1,
           "date": "2026-05-07",
-          "views": 2732,
+          "views": 433,
           "reach": 1791,
           "watchTime": 0,
           "totalFollowers": 427,
@@ -740,7 +740,7 @@ window.REAL_DATA = {
         {
           "posts": 1,
           "date": "2026-05-08",
-          "views": 3288,
+          "views": 258,
           "reach": 2233,
           "watchTime": 0,
           "totalFollowers": 431,
@@ -749,7 +749,7 @@ window.REAL_DATA = {
         {
           "posts": 0,
           "date": "2026-05-09",
-          "views": 5354,
+          "views": 91,
           "reach": 3912,
           "watchTime": 0,
           "totalFollowers": 438,
@@ -758,7 +758,7 @@ window.REAL_DATA = {
         {
           "posts": 1,
           "date": "2026-05-10",
-          "views": 6336,
+          "views": 362,
           "reach": 4227,
           "watchTime": 0,
           "totalFollowers": 447,
@@ -767,7 +767,7 @@ window.REAL_DATA = {
         {
           "posts": 0,
           "date": "2026-05-11",
-          "views": 4694,
+          "views": 309,
           "reach": 3111,
           "watchTime": 0,
           "totalFollowers": 451,
@@ -776,7 +776,7 @@ window.REAL_DATA = {
         {
           "posts": 2,
           "date": "2026-05-12",
-          "views": 3849,
+          "views": 393,
           "reach": 2915,
           "watchTime": 0,
           "totalFollowers": 455,
@@ -785,7 +785,7 @@ window.REAL_DATA = {
         {
           "posts": 1,
           "date": "2026-05-13",
-          "views": 2910,
+          "views": 314,
           "reach": 2092,
           "watchTime": 0,
           "totalFollowers": 458,
@@ -794,7 +794,7 @@ window.REAL_DATA = {
         {
           "posts": 1,
           "date": "2026-05-14",
-          "views": 1681,
+          "views": 274,
           "reach": 1013,
           "watchTime": 0,
           "totalFollowers": 460,
@@ -803,7 +803,7 @@ window.REAL_DATA = {
         {
           "posts": 2,
           "date": "2026-05-15",
-          "views": 1943,
+          "views": 435,
           "reach": 1307,
           "watchTime": 0,
           "totalFollowers": 469,
@@ -812,7 +812,7 @@ window.REAL_DATA = {
         {
           "posts": 1,
           "date": "2026-05-16",
-          "views": 1570,
+          "views": 380,
           "reach": 1133,
           "watchTime": 0,
           "totalFollowers": 475,
@@ -821,7 +821,7 @@ window.REAL_DATA = {
         {
           "posts": 1,
           "date": "2026-05-17",
-          "views": 2663,
+          "views": 302,
           "reach": 1606,
           "watchTime": 0,
           "totalFollowers": 484,
@@ -830,7 +830,7 @@ window.REAL_DATA = {
         {
           "posts": 1,
           "date": "2026-05-18",
-          "views": 3436,
+          "views": 226,
           "reach": 2224,
           "watchTime": 0,
           "totalFollowers": 489,
@@ -839,7 +839,7 @@ window.REAL_DATA = {
         {
           "date": "2026-05-19",
           "posts": 1,
-          "views": 2026,
+          "views": 210,
           "reach": 1309,
           "watchTime": 0,
           "totalFollowers": 494,
@@ -848,7 +848,7 @@ window.REAL_DATA = {
         {
           "date": "2026-05-20",
           "posts": 1,
-          "views": 1263,
+          "views": 318,
           "reach": 800,
           "watchTime": 0,
           "totalFollowers": 499,
@@ -857,7 +857,7 @@ window.REAL_DATA = {
         {
           "date": "2026-05-21",
           "posts": 1,
-          "views": 775,
+          "views": 227,
           "reach": 445,
           "watchTime": 0,
           "totalFollowers": 503,
@@ -866,7 +866,7 @@ window.REAL_DATA = {
         {
           "date": "2026-05-22",
           "posts": 0,
-          "views": 603,
+          "views": 70,
           "reach": 317,
           "watchTime": 0,
           "totalFollowers": 505,
@@ -875,7 +875,7 @@ window.REAL_DATA = {
         {
           "date": "2026-05-23",
           "posts": 1,
-          "views": 832,
+          "views": 267,
           "reach": 524,
           "watchTime": 0,
           "totalFollowers": 511,
@@ -884,7 +884,7 @@ window.REAL_DATA = {
         {
           "date": "2026-05-24",
           "posts": 1,
-          "views": 958,
+          "views": 292,
           "reach": 587,
           "watchTime": 0,
           "totalFollowers": 515,
@@ -893,7 +893,7 @@ window.REAL_DATA = {
         {
           "date": "2026-05-25",
           "posts": 0,
-          "views": 820,
+          "views": 183,
           "reach": 338,
           "watchTime": 0,
           "totalFollowers": 517,
@@ -902,7 +902,7 @@ window.REAL_DATA = {
         {
           "date": "2026-05-26",
           "posts": 1,
-          "views": 943,
+          "views": 388,
           "reach": 502,
           "watchTime": 0,
           "totalFollowers": 520,
@@ -911,7 +911,7 @@ window.REAL_DATA = {
         {
           "date": "2026-05-27",
           "posts": 1,
-          "views": 962,
+          "views": 282,
           "reach": 593,
           "watchTime": 0,
           "totalFollowers": 522,
@@ -920,7 +920,7 @@ window.REAL_DATA = {
         {
           "date": "2026-05-28",
           "posts": 1,
-          "views": 1312,
+          "views": 374,
           "reach": 736,
           "watchTime": 0,
           "totalFollowers": 526,
@@ -929,7 +929,7 @@ window.REAL_DATA = {
         {
           "date": "2026-05-29",
           "posts": 1,
-          "views": 1130,
+          "views": 369,
           "reach": 649,
           "watchTime": 0,
           "totalFollowers": 532,
@@ -938,7 +938,7 @@ window.REAL_DATA = {
         {
           "date": "2026-05-30",
           "posts": 1,
-          "views": 1088,
+          "views": 410,
           "reach": 591,
           "watchTime": 0,
           "totalFollowers": 540,
@@ -947,7 +947,7 @@ window.REAL_DATA = {
         {
           "date": "2026-05-31",
           "posts": 1,
-          "views": 1047,
+          "views": 149,
           "reach": 502,
           "watchTime": 0,
           "totalFollowers": 544,
@@ -956,7 +956,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-01",
           "posts": 0,
-          "views": 943,
+          "views": 254,
           "reach": 443,
           "watchTime": 0,
           "totalFollowers": 549,
@@ -965,7 +965,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-02",
           "posts": 0,
-          "views": 1054,
+          "views": 99,
           "reach": 517,
           "watchTime": 0,
           "totalFollowers": 551,
@@ -974,7 +974,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-03",
           "posts": 1,
-          "views": 1211,
+          "views": 242,
           "reach": 697,
           "watchTime": 0,
           "totalFollowers": 553,
@@ -983,7 +983,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-04",
           "posts": 1,
-          "views": 1207,
+          "views": 244,
           "reach": 704,
           "watchTime": 0,
           "totalFollowers": 556,
@@ -992,7 +992,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-05",
           "posts": 1,
-          "views": 993,
+          "views": 197,
           "reach": 525,
           "watchTime": 0,
           "totalFollowers": 559,
@@ -1001,7 +1001,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-06",
           "posts": 1,
-          "views": 1317,
+          "views": 313,
           "reach": 726,
           "watchTime": 0,
           "totalFollowers": 562,
@@ -1010,7 +1010,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-07",
           "posts": 1,
-          "views": 1052,
+          "views": 86,
           "reach": 492,
           "watchTime": 0,
           "totalFollowers": 570,
@@ -1019,7 +1019,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-08",
           "posts": 4,
-          "views": 1187,
+          "views": 129,
           "reach": 527,
           "watchTime": 0,
           "totalFollowers": 575,
@@ -1028,7 +1028,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-09",
           "posts": 1,
-          "views": 1140,
+          "views": 265,
           "reach": 619,
           "watchTime": 0,
           "totalFollowers": 581,
@@ -1037,7 +1037,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-10",
           "posts": 0,
-          "views": 987,
+          "views": 187,
           "reach": 468,
           "watchTime": 0,
           "totalFollowers": 587,
@@ -1046,7 +1046,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-11",
           "posts": 1,
-          "views": 1094,
+          "views": 322,
           "reach": 625,
           "watchTime": 0,
           "totalFollowers": 587,
@@ -1055,7 +1055,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-12",
           "posts": 1,
-          "views": 1146,
+          "views": 444,
           "reach": 679,
           "watchTime": 0,
           "totalFollowers": 594,
@@ -1064,7 +1064,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-13",
           "posts": 1,
-          "views": 1043,
+          "views": 343,
           "reach": 619,
           "watchTime": 0,
           "totalFollowers": 596,
@@ -1073,7 +1073,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-14",
           "posts": 1,
-          "views": 1093,
+          "views": 208,
           "reach": 480,
           "watchTime": 0,
           "totalFollowers": 600,
@@ -1082,7 +1082,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-15",
           "posts": 1,
-          "views": 1289,
+          "views": 251,
           "reach": 551,
           "watchTime": 0,
           "totalFollowers": 612,
@@ -1091,7 +1091,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-16",
           "posts": 1,
-          "views": 997,
+          "views": 209,
           "reach": 497,
           "watchTime": 0,
           "totalFollowers": 616,
@@ -1100,7 +1100,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-17",
           "posts": 0,
-          "views": 703,
+          "views": 105,
           "reach": 355,
           "watchTime": 0,
           "totalFollowers": 619,
@@ -1109,7 +1109,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-18",
           "posts": 1,
-          "views": 1001,
+          "views": 481,
           "reach": 592,
           "watchTime": 0,
           "totalFollowers": 624,
@@ -1118,7 +1118,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-19",
           "posts": 1,
-          "views": 844,
+          "views": 369,
           "reach": 531,
           "watchTime": 0,
           "totalFollowers": 627,
@@ -1127,7 +1127,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-20",
           "posts": 1,
-          "views": 888,
+          "views": 438,
           "reach": 502,
           "watchTime": 0,
           "totalFollowers": 632,
@@ -1136,7 +1136,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-21",
           "posts": 0,
-          "views": 757,
+          "views": 131,
           "reach": 384,
           "watchTime": 0,
           "totalFollowers": 634,
@@ -1145,7 +1145,7 @@ window.REAL_DATA = {
         {
           "date": "2026-06-22",
           "posts": 0,
-          "views": 691,
+          "views": 200,
           "reach": 310,
           "watchTime": 0,
           "totalFollowers": 640,
@@ -1226,7 +1226,7 @@ window.REAL_DATA = {
         {
           "date": "2026-07-01",
           "posts": 0,
-          "views": 139,
+          "views": 278,
           "reach": 48,
           "watchTime": 0,
           "totalFollowers": 709,
@@ -1270,11 +1270,13 @@ window.REAL_DATA = {
         }
       ],
       "reachLabel": "Page media views unique",
-      "reachNote": "Facebook reach uses Supermetrics Page media views unique.",
+      "reachNote": "Facebook reach uses Page media views unique, not an organic-only reach split.",
       "hasFollowers": true,
       "totalFollowers": 750,
       "followersAsOf": "2026-07-06",
-      "followersNote": "New followers are derived from daily Page follower count changes; total followers is the latest Page total."
+      "followersNote": "New followers are derived from daily Page follower count changes; total followers is the latest Page total.",
+      "viewsLabel": "Organic media views",
+      "viewsNote": "Facebook views use Page media views organic from Supermetrics. Reach uses Page media views unique and is not an organic-only reach split."
     },
     "youtube": {
       "platform": "youtube",
@@ -2456,7 +2458,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122172190358906904",
       "title": "Here's how I approach feeding dogs who are obsessed with food like Ice!",
       "type": "Short Form Clip",
-      "views": 404,
+      "views": 414,
       "reach": 316,
       "eng": 8
     },
@@ -2786,7 +2788,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122173891850906904",
       "title": "Dry, irritated skin can take a toll on your dog comfort.",
       "type": "Short Form Clip",
-      "views": 204,
+      "views": 202,
       "reach": 149,
       "eng": 6
     },
@@ -2866,7 +2868,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122174245652906904",
       "title": "They make everything better without trying.",
       "type": "Feed Post",
-      "views": 288,
+      "views": 289,
       "reach": 178,
       "eng": 10
     },
@@ -2896,7 +2898,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122174512400906904",
       "title": "Some dogs struggle in climates their bodies were not built for.",
       "type": "Short Form Clip",
-      "views": 202,
+      "views": 204,
       "reach": 173,
       "eng": 7
     },
@@ -2927,7 +2929,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122174671154906904",
       "title": "Calm Surrender was formulated for Cesar Millan.",
       "type": "Short Form Clip",
-      "views": 364,
+      "views": 366,
       "reach": 322,
       "eng": 4
     },
@@ -2991,7 +2993,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122174808302906904",
       "title": "Your dog reflects your energy, your leadership, and your emotional balance.",
       "type": "Short Form Clip",
-      "views": 214,
+      "views": 215,
       "reach": 185,
       "eng": 4
     },
@@ -3021,7 +3023,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122175062486906904",
       "title": "When I see a dog dealing with dry skin and irritation, I think about comfort.",
       "type": "Short Form Clip",
-      "views": 365,
+      "views": 368,
       "reach": 310,
       "eng": 10
     },
@@ -3052,7 +3054,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122175188192906904",
       "title": "As dogs age, their bodies need more support.",
       "type": "Short Form Clip",
-      "views": 388,
+      "views": 392,
       "reach": 324,
       "eng": 9
     },
@@ -3072,7 +3074,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122175449636906904",
       "title": "Does your dog show any of these signs?",
       "type": "Short Form Clip",
-      "views": 315,
+      "views": 318,
       "reach": 271,
       "eng": 6
     },
@@ -3103,7 +3105,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122175572006906904",
       "title": "Skin Magic was formulated for Cesar Millan.",
       "type": "Short Form Clip",
-      "views": 388,
+      "views": 391,
       "reach": 309,
       "eng": 8
     },
@@ -3134,7 +3136,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122175757610906904",
       "title": "Nature has a way of showing us what our dogs need.",
       "type": "Short Form Clip",
-      "views": 357,
+      "views": 360,
       "reach": 322,
       "eng": 6
     },
@@ -3251,7 +3253,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122176000232906904",
       "title": "Raising a great dog means stepping into both roles.",
       "type": "Short Form Clip",
-      "views": 408,
+      "views": 412,
       "reach": 356,
       "eng": 13
     },
@@ -3282,7 +3284,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122176124348906904",
       "title": "I waited a long time to create the right supplement line for dogs.",
       "type": "Short Form Clip",
-      "views": 155,
+      "views": 159,
       "reach": 124,
       "eng": 3
     },
@@ -3378,7 +3380,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122176496594906904",
       "title": "This is where Tommy?s shiny coat comes from.",
       "type": "Short Form Clip",
-      "views": 284,
+      "views": 289,
       "reach": 253,
       "eng": 4
     },
@@ -3398,7 +3400,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122176621544906904",
       "title": "Their well-being comes from what we do every single day.",
       "type": "Short Form Clip",
-      "views": 302,
+      "views": 307,
       "reach": 271,
       "eng": 4
     },
@@ -3418,7 +3420,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122176748624906904",
       "title": "If your dog gets anxious during storms.",
       "type": "Short Form Clip",
-      "views": 191,
+      "views": 195,
       "reach": 164,
       "eng": 2
     },
@@ -3438,7 +3440,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122176868834906904",
       "title": "Does your dog follow you around everywhere?",
       "type": "Short Form Clip",
-      "views": 302,
+      "views": 307,
       "reach": 273,
       "eng": 11
     },
@@ -3458,7 +3460,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122177006180906904",
       "title": "Help your dog feel comfortable again.",
       "type": "Short Form Clip",
-      "views": 118,
+      "views": 123,
       "reach": 87,
       "eng": 2
     },
@@ -3562,7 +3564,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122177269910906904",
       "title": "This made such a big difference in my dog?s itching.",
       "type": "Short Form Clip",
-      "views": 469,
+      "views": 485,
       "reach": 377,
       "eng": 5
     },
@@ -3603,7 +3605,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122177533322906904",
       "title": "Ever notice your dog has loose stool and immediately start wondering what caused it?",
       "type": "Short Form Clip",
-      "views": 486,
+      "views": 503,
       "reach": 391,
       "eng": 12
     },
@@ -3613,7 +3615,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122177666540906904",
       "title": "Does your dog get extra active when guests arrive?",
       "type": "Short Form Clip",
-      "views": 449,
+      "views": 459,
       "reach": 383,
       "eng": 14
     },
@@ -3654,7 +3656,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122177776466906904",
       "title": "The key is not just seeing the signs, it is understanding what they mean.",
       "type": "Short Form Clip",
-      "views": 369,
+      "views": 383,
       "reach": 324,
       "eng": 11
     },
@@ -3674,7 +3676,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122177900942906904",
       "title": "Seasonal allergies are tough on dogs too.",
       "type": "Single Image",
-      "views": 298,
+      "views": 324,
       "reach": 171,
       "eng": 7
     },
@@ -3715,7 +3717,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122178191900906904",
       "title": "Your dog is paying attention to what you practice every day.",
       "type": "Short Form Clip",
-      "views": 222,
+      "views": 246,
       "reach": 189,
       "eng": 3
     },
@@ -3800,7 +3802,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122178474956906904",
       "title": "Dogs are not complicated.",
       "type": "Short Form Clip",
-      "views": 528,
+      "views": 554,
       "reach": 465,
       "eng": 14
     },
@@ -3853,7 +3855,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122178603338906904",
       "title": "Behavior problems do not just happen.",
       "type": "Short Form Clip",
-      "views": 401,
+      "views": 428,
       "reach": 355,
       "eng": 11
     },
@@ -3873,7 +3875,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122178751448906904",
       "title": "Dogs can show a broken spirit in several ways.",
       "type": "Short Form Clip",
-      "views": 428,
+      "views": 458,
       "reach": 377,
       "eng": 10
     },
@@ -3915,7 +3917,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122179178774906904",
       "title": "When Nancy Cartwright enters the Better Dog chat, we are all ears.",
       "type": "Short Form Clip",
-      "views": 338,
+      "views": 371,
       "reach": 300,
       "eng": 3
     },
@@ -3956,7 +3958,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122179407434906904",
       "title": "Ever look at your dog and think something just feels off?",
       "type": "Short Form Clip",
-      "views": 379,
+      "views": 420,
       "reach": 340,
       "eng": 13
     },
@@ -4031,7 +4033,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122179534532906904",
       "title": "Healthy skin shows up in the coat, the shine, the moisture, and the way your dog feels every day.",
       "type": "Short Form Clip",
-      "views": 290,
+      "views": 333,
       "reach": 254,
       "eng": 3
     },
@@ -4072,7 +4074,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122179661126906904",
       "title": "Watching your dog slow down can be tough.",
       "type": "Short Form Clip",
-      "views": 308,
+      "views": 361,
       "reach": 279,
       "eng": 5
     },
@@ -4092,7 +4094,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122179787678906904",
       "title": "What causes tear stains in dogs?",
       "type": "Short Form Clip",
-      "views": 375,
+      "views": 450,
       "reach": 337,
       "eng": 6
     },
@@ -4178,7 +4180,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122180034938906904",
       "title": "Some dogs come with no brakes, just a gas pedal.",
       "type": "Short Form Clip",
-      "views": 287,
+      "views": 374,
       "reach": 250,
       "eng": 9
     },
@@ -4274,7 +4276,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122180272652906904",
       "title": "What does happy-go-lucky look like in a dog?",
       "type": "Short Form Clip",
-      "views": 140,
+      "views": 260,
       "reach": 123,
       "eng": 8
     },
@@ -4360,7 +4362,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122180388566906904",
       "title": "A dog's confidence grows when they know their needs are met.",
       "type": "Short Form Clip",
-      "views": 209,
+      "views": 225,
       "reach": 164,
       "eng": 9
     },
@@ -4440,7 +4442,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122180496350906904",
       "title": "A happier belly makes everyday life easier, for your dog and for you.",
       "type": "Single Image",
-      "views": 149,
+      "views": 178,
       "reach": 103,
       "eng": 2
     },
@@ -4470,7 +4472,7 @@ window.REAL_DATA = {
       "url": "https://www.facebook.com/674626722402999_122180654498906904",
       "title": "Ever wonder why dogs chase or chew on their tail?",
       "type": "Short Form Clip",
-      "views": 458,
+      "views": 568,
       "reach": 428,
       "eng": 8
     },
