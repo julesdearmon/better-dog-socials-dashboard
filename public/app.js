@@ -8,6 +8,12 @@ const PLATFORM_COLORS = {
 };
 const TOTAL_COLOR = '#222322'; // Better Dog brand near-black
 const DISPLAY_NAMES = { instagram: 'Instagram', facebook: 'Facebook', tiktok: 'TikTok', youtube: 'YouTube' };
+const PAID_CONTEXT = {
+  instagram: 'Instagram totals include organic plus paid/promoted distribution. Supermetrics does not expose an organic-only Instagram split here.',
+  facebook: 'Facebook exposes separate organic and paid media-view fields in Supermetrics.',
+  tiktok: 'TikTok is from the TikTok Organic source.',
+  youtube: 'YouTube advertising traffic can be separated through Traffic Sources.'
+};
 const nameOf = (p) => DISPLAY_NAMES[p] || capWord(p);
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -239,6 +245,29 @@ function freshnessSummary() {
     else fresh.push(nameOf(p));
   }
   return { fresh, pending, stale: pending };
+}
+
+function paidContextSummary(ps = platforms()) {
+  if (!ps.length) return '';
+  if (ps.length === 1) return PAID_CONTEXT[ps[0]] || '';
+  const parts = [];
+  if (ps.includes('instagram')) parts.push('Instagram totals include paid/promoted distribution; organic-only split is unavailable.');
+  if (ps.includes('facebook')) parts.push('Facebook organic and paid media-view fields are available separately.');
+  if (ps.includes('tiktok')) parts.push('TikTok is organic.');
+  if (ps.includes('youtube')) parts.push('YouTube advertising traffic can be separated by traffic source.');
+  return parts.join(' ');
+}
+
+function renderPaidContextNote() {
+  const el = $('#paidContextNote');
+  if (!el) return;
+  const note = paidContextSummary(platforms());
+  if (!note) {
+    el.hidden = true;
+    return;
+  }
+  el.innerHTML = `<strong>Paid media context:</strong> ${escapeHtml(note)}`;
+  el.hidden = false;
 }
 
 // ---------------------------------------------------------------------------
@@ -648,6 +677,7 @@ function render() {
   $('#reachTitle').textContent = `Reach per ${noun}`;
   $('#watchSub').textContent = `hours per ${noun}`;
   renderPlatformFilter();
+  renderPaidContextNote();
   renderChartVisibility();
   renderKpis();
   renderOverview();
@@ -721,6 +751,14 @@ function renderFocusedOverview(p, start, end, info) {
   if (r != null) html += `, <strong>${fmt(r)}</strong> reach${wordDelta(deltaPct(r, prv.reach || 0))}`;
   if (watch != null) html += `, <strong>${fmt(watch / 60)}</strong> hrs watch time${wordDelta(deltaPct(watch, prv.watchTime || 0))}`;
   html += ` vs the previous ${info.word}.</p>`;
+
+  if (p === 'instagram') {
+    html += '<p class="ov-reason"><strong>Paid media context:</strong> Instagram views and reach include organic plus paid/promoted distribution. The current Supermetrics Instagram connector does not expose an organic-only split, so Instagram changes should not be read as purely organic movement.</p>';
+  } else if (p === 'facebook') {
+    html += '<p class="ov-reason"><strong>Paid media context:</strong> Facebook has separate organic and paid media-view fields available in Supermetrics, so paid impact can be checked before calling a change organic growth.</p>';
+  } else if (p === 'youtube') {
+    html += '<p class="ov-reason"><strong>Paid media context:</strong> YouTube advertising traffic can be separated from other traffic sources before interpreting view changes.</p>';
+  }
 
   // What contributed — decompose the views change into posting volume, per-post
   // performance, and any single breakout post (all from the data).
@@ -805,6 +843,10 @@ function renderOverview() {
   // Headline — totals over the selected range vs the previous one.
   let html = `<p class="ov-headline">Across ${escapeHtml(scopeLabel)}: <strong>${fmt(tv)}</strong> views${wordDelta(dv)}` +
     `${anyReach ? `, <strong>${fmt(tr)}</strong> reach${wordDelta(dr)}` : ''} vs the previous ${info.word}.</p>`;
+
+  if (ps.includes('instagram')) {
+    html += '<p class="ov-reason"><strong>Paid media context:</strong> Instagram totals include paid/promoted distribution plus organic activity. Because an organic-only Instagram split is unavailable here, Instagram movement should be treated as mixed distribution. Facebook, YouTube, and TikTok have cleaner paid/organic context available.</p>';
+  }
 
   // Biggest mover (data only): the platform whose views changed most, and — if one
   // post accounts for 40%+ of its views — a link to that post.
@@ -1235,6 +1277,10 @@ function buildInsight(platform, metricKey, idx) {
   const ytInScope = platform === 'youtube' || (platform === 'total' && scopePlatforms.includes('youtube'));
   if (ytInScope && (metricKey === 'views' || metricKey === 'watchTime') && !shareValid) {
     caveats.push(`YouTube ${metricName} reflects channel-wide viewing during this ${noun} (across all videos, old and new), so it can't be tied to a single upload. The posts above are what was published in the window.`);
+  }
+  const igInScope = platform === 'instagram' || (platform === 'total' && scopePlatforms.includes('instagram'));
+  if (igInScope && (metricKey === 'views' || metricKey === 'reach')) {
+    caveats.push('Instagram totals include organic plus paid/promoted distribution; organic-only Instagram split is not available in the current Supermetrics connector.');
   }
   if (caveats.length) html += `<p class="insight-caveat">${caveats.map(escapeHtml).join('<br>')}</p>`;
 

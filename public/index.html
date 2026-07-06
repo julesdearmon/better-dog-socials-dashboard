@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Better Dog Supplements — Social Dashboard</title>
   <meta name="description" content="Better Dog Supplements social media metrics dashboard" />
-  <link rel="stylesheet" href="styles.css?v=20260702-content-note" />
+  <link rel="stylesheet" href="styles.css?v=20260706-paid-context" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
@@ -70,6 +70,7 @@
     <section class="kpis" id="kpis"></section>
 
     <p class="chart-hint" id="chartHint">Click any chart point for details.</p>
+    <p class="paid-context-note" id="paidContextNote" hidden></p>
 
     <section class="grid">
       <div class="card chart-card" id="viewsCard">
@@ -83,7 +84,7 @@
       <div class="card chart-card" id="reachCard">
         <div class="card-head"><h2 id="reachTitle">Reach</h2><span class="card-sub">by platform + total</span></div>
         <div class="chart-box"><canvas id="reachChart"></canvas></div>
-        <p class="chart-note">Reach uses the closest verified field for each platform: Instagram Reach, Facebook Page media views unique, and TikTok Reached audience. YouTube reach is not shown because Unique viewers is not available in the current Supermetrics connector.</p>
+        <p class="chart-note">Reach uses the closest verified field for each platform: Instagram Reach, Facebook Page media views unique, and TikTok Reached audience. Instagram Reach includes paid/promoted distribution plus organic activity. YouTube reach is not shown because Unique viewers is not available in the current Supermetrics connector.</p>
       </div>
       <div class="card chart-card" id="watchCard">
         <div class="card-head"><h2>YouTube watch time</h2><span class="card-sub" id="watchSub">hours</span></div>
@@ -125,6 +126,6 @@
   <script src="realdata.js"></script>
   <script src="business-suite-overrides.js"></script>
   <script src="demo.js"></script>
-  <script src="app.js?v=20260706-total-lines"></script>
+  <script src="app.js?v=20260706-paid-context"></script>
 </body>
 </html>
