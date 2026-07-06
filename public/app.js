@@ -130,16 +130,39 @@ function periodsInRange(granularity, startMs, endMs) {
   return out;
 }
 
+function latestTotalFollowers(metric) {
+  if (!metric) return null;
+  if (metric.totalFollowers != null) return metric.totalFollowers;
+  let latest = null;
+  for (const row of metric.daily || []) {
+    if (row.totalFollowers != null) latest = row.totalFollowers;
+  }
+  return latest;
+}
+
 // Sum a platform's daily rows over an inclusive [startIso, endIso] window.
-function sumRange(daily, startIso, endIso) {
-  const t = { posts: 0, views: 0, reach: 0, watchTime: null };
+function sumRange(metric, startIso, endIso) {
+  const daily = Array.isArray(metric) ? metric : (metric?.daily || []);
+  const hasFollowers = !Array.isArray(metric) && !!metric?.hasFollowers;
+  const t = { posts: 0, views: 0, reach: 0, watchTime: null, newFollowers: null, totalFollowers: latestTotalFollowers(metric) };
+  let followerSum = 0;
+  let followerSeen = false;
+  let followerMissing = false;
   for (const row of daily) {
     if (row.date < startIso || row.date > endIso) continue;
     t.posts += row.posts || 0;
     t.views += row.views || 0;
     t.reach += row.reach || 0;
     if (row.watchTime != null) t.watchTime = (t.watchTime || 0) + row.watchTime;
+    if (hasFollowers) {
+      if (row.newFollowers == null) followerMissing = true;
+      else {
+        followerSeen = true;
+        followerSum += row.newFollowers || 0;
+      }
+    }
   }
+  if (hasFollowers) t.newFollowers = followerMissing ? null : (followerSeen ? followerSum : 0);
   return t;
 }
 
@@ -262,12 +285,21 @@ function renderPaidContextNote() {
   const el = $('#paidContextNote');
   if (!el) return;
   const note = paidContextSummary(platforms());
-  if (!note) {
+  const followerNote = followerContextSummary(platforms());
+  if (!note && !followerNote) {
     el.hidden = true;
     return;
   }
-  el.innerHTML = `<strong>Paid media context:</strong> ${escapeHtml(note)}`;
+  const parts = [];
+  if (note) parts.push(`<strong>Paid media context:</strong> ${escapeHtml(note)}`);
+  if (followerNote) parts.push(`<strong>Follower context:</strong> ${escapeHtml(followerNote)}`);
+  el.innerHTML = parts.join('<br>');
   el.hidden = false;
+}
+
+function followerContextSummary(ps = platforms()) {
+  if (!ps.some((p) => state.data?.metrics?.[p]?.hasFollowers)) return '';
+  return state.data?.followersDataNote || 'New followers is for the selected range. Total followers is the latest available platform total.';
 }
 
 // ---------------------------------------------------------------------------
@@ -363,7 +395,7 @@ function setupCalendar() {
 // Sum a platform's daily rows into the period buckets.
 function bucket(daily, periods) {
   if (!periods.length) return [];
-  const out = periods.map((p) => ({ ...p, posts: 0, views: 0, reach: 0, watchTime: null }));
+  const out = periods.map((p) => ({ ...p, posts: 0, views: 0, reach: 0, watchTime: null, newFollowers: null, totalFollowers: null }));
   // periods are contiguous & sorted; walk with a moving cursor for efficiency.
   let pi = 0;
   for (const row of daily) {
@@ -376,6 +408,8 @@ function bucket(daily, periods) {
     b.views += row.views || 0;
     b.reach += row.reach || 0;
     if (row.watchTime != null) b.watchTime = (b.watchTime || 0) + row.watchTime;
+    if (row.newFollowers != null) b.newFollowers = (b.newFollowers || 0) + row.newFollowers;
+    if (row.totalFollowers != null) b.totalFollowers = row.totalFollowers;
   }
   return out;
 }
@@ -387,7 +421,9 @@ const METRICS = [
   { key: 'views', label: 'Views', fmt: fmt },
   { key: 'reach', label: 'Reach', fmt: fmt },
   { key: 'watchTime', label: 'Watch time', fmt: (m) => (m == null ? '—' : fmt(m / 60) + ' hrs') },
-  { key: 'posts', label: 'Posts', fmt: fmtFull }
+  { key: 'posts', label: 'Posts', fmt: fmtFull },
+  { key: 'newFollowers', label: 'New followers', fmt: fmtFull },
+  { key: 'totalFollowers', label: 'Total followers', fmt: fmtFull, showDelta: false }
 ];
 
 const CORE_METRIC_KEYS = ['views', 'posts'];
@@ -417,6 +453,8 @@ function visibleMetricKeys() {
   const keys = [...CORE_METRIC_KEYS];
   const focus = focusedPlatform();
   const shown = platforms();
+  const hasFollowers = shown.some((p) => supports(p, 'newFollowers') || supports(p, 'totalFollowers'));
+  if (hasFollowers) keys.push('newFollowers', 'totalFollowers');
   if (shown.some((p) => supports(p, 'reach'))) keys.push('reach');
   if (focus === 'youtube') keys.push('watchTime');
   return keys;
@@ -435,24 +473,33 @@ function supports(p, key) {
   if (key === 'views') return m.hasViews !== false;
   if (key === 'watchTime') return !!m.hasWatchTime;
   if (key === 'reach') return m.hasReach !== false;
+  if (key === 'newFollowers' || key === 'totalFollowers') return !!m.hasFollowers;
   return true;
 }
 // Totals over the selected range (fromEnd 0) or the prior equal-length window (1).
 function totalAt(metricKey, fromEnd) {
   const totals = fromEnd === 0 ? state.curTotals : state.priorTotals;
   let sum = 0;
+  let sawValue = false;
+  let missing = false;
   for (const p of platforms()) {
     if (!supports(p, metricKey)) continue;
     const t = totals[p];
-    if (t && t[metricKey] != null) sum += t[metricKey];
+    if (t && t[metricKey] != null) {
+      sum += t[metricKey];
+      sawValue = true;
+    } else if (metricKey === 'newFollowers') {
+      missing = true;
+    }
   }
-  return sum;
+  if (missing) return null;
+  return sawValue ? sum : null;
 }
 function platformAt(p, metricKey, fromEnd) {
   const t = (fromEnd === 0 ? state.curTotals : state.priorTotals)[p];
   return t ? t[metricKey] : null;
 }
-function deltaPct(curr, prev) { return prev ? (curr - prev) / prev : null; }
+function deltaPct(curr, prev) { return curr != null && prev ? (curr - prev) / prev : null; }
 function deltaHtml(curr, prev) {
   const d = deltaPct(curr, prev);
   if (d == null) return `<span class="delta flat">— no prior period</span>`;
@@ -644,8 +691,8 @@ function buildSeries() {
   state.priorRange = { start: iso(priorStartMs), end: iso(priorEndMs) };
   state.curTotals = {}; state.priorTotals = {};
   for (const p of allPlatforms()) {
-    state.curTotals[p] = applyBusinessSuiteOverride(p, sumRange(state.data.metrics[p].daily, state.rangeStart, state.rangeEnd), state.rangeStart, state.rangeEnd);
-    state.priorTotals[p] = applyBusinessSuiteOverride(p, sumRange(state.data.metrics[p].daily, state.priorRange.start, state.priorRange.end), state.priorRange.start, state.priorRange.end);
+    state.curTotals[p] = applyBusinessSuiteOverride(p, sumRange(state.data.metrics[p], state.rangeStart, state.rangeEnd), state.rangeStart, state.rangeEnd);
+    state.priorTotals[p] = applyBusinessSuiteOverride(p, sumRange(state.data.metrics[p], state.priorRange.start, state.priorRange.end), state.priorRange.start, state.priorRange.end);
   }
 }
 
@@ -736,6 +783,8 @@ function renderFocusedOverview(p, start, end, info) {
   const v = cur.views || 0, vPrev = prv.views || 0;
   const r = supports(p, 'reach') ? (cur.reach || 0) : null;
   const watch = supports(p, 'watchTime') ? (cur.watchTime || 0) : null;
+  const newFollowers = supports(p, 'newFollowers') ? cur.newFollowers : null;
+  const totalFollowers = supports(p, 'totalFollowers') ? cur.totalFollowers : null;
   const dvV = deltaPct(v, vPrev);
   const items = contentIn(p, start, end);
   const prevItems = contentIn(p, state.priorRange.start, state.priorRange.end);
@@ -775,6 +824,8 @@ function renderFocusedOverview(p, start, end, info) {
   const stats = [`<strong>${fmt(eng)}</strong> engagements${wordDelta(deltaPct(eng, engPrev))}`];
   if (v > 0) stats.push(`${(eng / v * 100).toFixed(1)}% engagement rate`);
   if (posts) stats.push(`${fmt(Math.round(avg))} avg views per post`);
+  if (newFollowers != null) stats.push(`${fmtFull(newFollowers)} new followers`);
+  if (totalFollowers != null) stats.push(`${fmtFull(totalFollowers)} total followers`);
   if (best) stats.push(`best ${GRAN_NOUN[state.granularity]}: ${escapeHtml(best.label)} (${fmt(best.views)} views)`);
   html += `<p class="ov-reason">${stats.join(' · ')}.</p>`;
 
@@ -825,11 +876,13 @@ function renderOverview() {
     const v = supports(p, 'views') ? (cur.views || 0) : null;
     const r = supports(p, 'reach') ? (cur.reach || 0) : null;
     const watch = supports(p, 'watchTime') ? (cur.watchTime || 0) : null;
+    const newFollowers = supports(p, 'newFollowers') ? cur.newFollowers : null;
+    const totalFollowers = supports(p, 'totalFollowers') ? cur.totalFollowers : null;
     const top = (state.data.content || [])
       .filter((c) => c.platform === p && c.date >= start && c.date <= end)
       .sort((a, b) => (b.views || 0) - (a.views || 0))[0] || null;
     return {
-      p, v, r, watch, top,
+      p, v, r, watch, newFollowers, totalFollowers, top,
       dViews: v == null ? null : v - (prv.views || 0),
       dvViews: v == null ? null : deltaPct(v, prv.views || 0),
       dvReach: r != null ? deltaPct(r, prv.reach || 0) : null,
@@ -876,6 +929,8 @@ function renderOverview() {
     let s = parts.join(', ');
     if (x.r != null) s += `, ${fmt(x.r)} reach${wordDelta(x.dvReach)}`;
     if (x.watch != null) s += `, ${fmt(x.watch / 60)} hrs watch time${wordDelta(x.dvWatch)}`;
+    if (x.newFollowers != null) s += `, ${fmtFull(x.newFollowers)} new followers`;
+    if (x.totalFollowers != null) s += `, ${fmtFull(x.totalFollowers)} total followers`;
     const top = x.top ? ` Top post: ${linkedTop(x.top)} (${fmt(x.top.views)} views).` : '';
     html += `<li><span class="ov-dot" style="background:${PLATFORM_COLORS[x.p] || '#888'}"></span>` +
       `<strong>${nameOf(x.p)}</strong> got ${s}.${top}</li>`;
@@ -1019,13 +1074,14 @@ function renderKpis() {
   $('#kpis').innerHTML = visibleMetrics().map((m) => {
     const curr = totalAt(m.key, 0);
     const prev = totalAt(m.key, 1);
-    const note = pendingOnly ? 'pending approval' : (m.key === 'watchTime' ? 'YouTube · selected range' : (m.key === 'reach' ? 'available platforms' : 'selected range'));
+    const note = pendingOnly ? 'pending approval' : (m.key === 'totalFollowers' ? 'latest total' : (m.key === 'watchTime' ? 'YouTube - selected range' : (m.key === 'reach' ? 'available platforms' : 'selected range')));
     const val = pendingOnly || (m.key === 'watchTime' && curr === 0) ? null : curr;
+    const delta = m.showDelta === false ? '' : deltaHtml(curr, prev);
     return `
       <div class="kpi">
         <div class="label">${m.label} <span class="kpi-note">${note}</span></div>
         <div class="value">${m.fmt(val)}</div>
-        <div>${pendingOnly ? '' : deltaHtml(curr, prev)}</div>
+        <div>${pendingOnly ? '' : delta}</div>
       </div>`;
   }).join('');
 }
@@ -1127,7 +1183,7 @@ function renderTable() {
       const curr = platformAt(p, m.key, 0);
       const prev = platformAt(p, m.key, 1);
       if (!supports(p, m.key)) return `<td class="num muted">—</td>`;
-      return `<td class="num">${m.fmt(curr)} ${miniDelta(curr, prev)}</td>`;
+      return `<td class="num">${m.fmt(curr)} ${m.showDelta === false ? '' : miniDelta(curr, prev)}</td>`;
     }).join('');
     const status = sourceStatus(p);
     return `<tr class="${status.cls === 'stale' ? 'stale-row' : ''}"><td><span class="pill ${p}">${nameOf(p)}</span></td>${cells}<td><span class="source-badge ${status.cls}">${escapeHtml(status.label)}</span></td></tr>`;
@@ -1137,7 +1193,7 @@ function renderTable() {
     const curr = totalAt(m.key, 0);
     const prev = totalAt(m.key, 1);
     const val = m.key === 'watchTime' && curr === 0 ? null : curr;
-    return `<td class="num">${m.fmt(val)} ${miniDelta(curr, prev)}</td>`;
+    return `<td class="num">${m.fmt(val)} ${m.showDelta === false ? '' : miniDelta(curr, prev)}</td>`;
   }).join('');
   const footerStatus = pendingOnly
     ? '<span class="source-badge stale">Pending approval</span>'
@@ -1299,30 +1355,30 @@ function exportCsv() {
   const { client } = state.data;
   const noun = GRAN_NOUN[state.granularity];
   const ps = platforms();
-  const wow = (c, p) => (p ? (((c - p) / p) * 100).toFixed(1) + '%' : 'n/a');
+  const wow = (c, p) => (c != null && p ? (((c - p) / p) * 100).toFixed(1) + '%' : 'n/a');
   const lines = [];
   lines.push(`${csv(client.name)} — Social Report`);
   lines.push(`Range,${csv(state.rangeStart + ' to ' + state.rangeEnd)},vs prior,${csv(state.priorRange.start + ' to ' + state.priorRange.end)},Chart grouping,${noun}`);
   lines.push('');
-  lines.push(`Platform,Posts,Posts Δ,Views,Views Δ,Reach,Reach Δ,Watch time (min),Watch Δ,Source`);
+  lines.push(`Platform,Posts,Posts delta,Views,Views delta,New followers,New followers delta,Total followers,Reach,Reach delta,Watch time (min),Watch delta,Source`);
   for (const p of ps) {
     const m = state.data.metrics[p];
     const c = (k) => platformAt(p, k, 0), pr = (k) => platformAt(p, k, 1);
     const wt = m.hasWatchTime ? c('watchTime') : '';
     const wtw = m.hasWatchTime ? wow(c('watchTime'), pr('watchTime')) : '';
     lines.push([p, c('posts'), wow(c('posts'), pr('posts')), c('views'), wow(c('views'), pr('views')),
-      c('reach'), wow(c('reach'), pr('reach')), wt, wtw, m.source].join(','));
+      c('newFollowers'), wow(c('newFollowers'), pr('newFollowers')), c('totalFollowers'), c('reach'), wow(c('reach'), pr('reach')), wt, wtw, m.source].join(','));
   }
   const t = (k, i) => totalAt(k, i);
   lines.push(['TOTAL', t('posts', 0), wow(t('posts', 0), t('posts', 1)), t('views', 0), wow(t('views', 0), t('views', 1)),
-    t('reach', 0), wow(t('reach', 0), t('reach', 1)), t('watchTime', 0), wow(t('watchTime', 0), t('watchTime', 1)), ''].join(','));
+    t('newFollowers', 0), wow(t('newFollowers', 0), t('newFollowers', 1)), t('totalFollowers', 0), t('reach', 0), wow(t('reach', 0), t('reach', 1)), t('watchTime', 0), wow(t('watchTime', 0), t('watchTime', 1)), ''].join(','));
 
   lines.push('');
   lines.push(`History (per ${noun})`);
-  lines.push('Platform,Period,Posts,Views,Reach,Watch time (min)');
+  lines.push('Platform,Period,Posts,Views,New followers,Total followers,Reach,Watch time (min)');
   for (const p of ps) {
     state.series[p].forEach((x) => {
-      lines.push([p, csv(x.label), x.posts, x.views, x.reach, x.watchTime == null ? '' : x.watchTime].join(','));
+      lines.push([p, csv(x.label), x.posts, x.views, x.newFollowers == null ? '' : x.newFollowers, x.totalFollowers == null ? '' : x.totalFollowers, x.reach, x.watchTime == null ? '' : x.watchTime].join(','));
     });
   }
 
