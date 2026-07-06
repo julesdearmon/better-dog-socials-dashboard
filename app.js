@@ -265,36 +265,40 @@ function freshnessSummary() {
   return { fresh, pending, stale: pending };
 }
 
-function paidContextSummary(ps = platforms()) {
+function reachContextSummary() {
+  const ps = platforms().filter((p) => supports(p, 'reach'));
   if (!ps.length) return '';
-  if (ps.length === 1) return PAID_CONTEXT[ps[0]] || '';
-  const parts = [];
-  if (ps.includes('instagram')) parts.push('Instagram totals include paid/promoted distribution; organic-only split is unavailable.');
-  if (ps.includes('facebook')) parts.push('Facebook organic and paid media-view fields are available separately.');
-  if (ps.includes('tiktok')) parts.push('TikTok is organic.');
-  if (ps.includes('youtube')) parts.push('YouTube advertising traffic can be separated by traffic source.');
-  return parts.join(' ');
-}
-
-function renderPaidContextNote() {
-  const el = $('#paidContextNote');
-  if (!el) return;
-  const note = paidContextSummary(platforms());
-  const followerNote = followerContextSummary(platforms());
-  if (!note && !followerNote) {
-    el.hidden = true;
-    return;
+  if (state.totalOnly || ps.length > 1) {
+    const parts = [];
+    if (allPlatforms().includes('youtube')) parts.push('Reach excludes YouTube.');
+    if (ps.includes('instagram')) parts.push('Instagram includes paid/promoted distribution.');
+    return parts.join(' ');
   }
-  const parts = [];
-  if (note) parts.push(`<strong>Paid media context:</strong> ${escapeHtml(note)}`);
-  if (followerNote) parts.push(`<strong>Follower context:</strong> ${escapeHtml(followerNote)}`);
-  el.innerHTML = parts.join('<br>');
-  el.hidden = false;
+  const p = ps[0];
+  if (p === 'instagram') return 'Instagram reach includes paid/promoted distribution.';
+  if (p === 'facebook') return 'Facebook reach uses Page media views unique.';
+  if (p === 'tiktok') return 'TikTok reach uses Reached audience from TikTok Organic.';
+  return '';
 }
 
-function followerContextSummary(ps = platforms()) {
-  if (!ps.some((p) => state.data?.metrics?.[p]?.hasFollowers)) return '';
-  return state.data?.followersDataNote || 'New followers is for the selected range. Total followers is the latest available platform total.';
+function renderMetricNotes() {
+  const reachNote = $('#reachNote');
+  if (!reachNote) return;
+  const note = reachContextSummary();
+  reachNote.textContent = note;
+  reachNote.hidden = !note || $('#reachCard')?.hidden;
+}
+
+function kpiContextFor(key, ps = platforms()) {
+  const parts = [];
+  if ((key === 'views' || key === 'reach') && ps.includes('instagram')) parts.push('Instagram includes paid/promoted.');
+  if (key === 'views' && ps.length === 1 && ps[0] === 'facebook') parts.push('Organic/paid split available.');
+  if (key === 'views' && ps.length === 1 && ps[0] === 'youtube') parts.push('Ad traffic can be checked separately.');
+  if (key === 'views' && ps.length === 1 && ps[0] === 'tiktok') parts.push('TikTok Organic source.');
+  if (key === 'reach' && allPlatforms().includes('youtube') && ps.length > 1) parts.push('Excludes YouTube.');
+  if (key === 'newFollowers') parts.push('Selected range.');
+  if (key === 'totalFollowers') parts.push('Latest available total.');
+  return parts.join(' ');
 }
 
 // ---------------------------------------------------------------------------
@@ -719,8 +723,8 @@ function render() {
   $('#reachTitle').textContent = `Reach per ${noun}`;
   $('#watchSub').textContent = `hours per ${noun}`;
   renderPlatformFilter();
-  renderPaidContextNote();
   renderChartVisibility();
+  renderMetricNotes();
   renderKpis();
   renderCreativeOverview();
   renderTrend('postsChart', 'posts');
@@ -977,6 +981,45 @@ function classifyCreativeTheme(item) {
   return item?.type || 'Other';
 }
 
+function contentTitle(item) {
+  const text = (item?.title || `${nameOf(item?.platform || '')} post`).replace(/\s+/g, ' ').trim();
+  return text.length > 92 ? `${text.slice(0, 89)}...` : text;
+}
+
+function contentInlineLink(item) {
+  if (!item) return '';
+  const title = escapeHtml(contentTitle(item));
+  const meta = `${nameOf(item.platform)} - ${fmtFull(item.views || 0)} views`;
+  const label = item.url && item.url !== '#'
+    ? `<a class="ov-example-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${title}</a>`
+    : `<span>${title}</span>`;
+  return `${label} <span class="ov-example-meta">(${escapeHtml(meta)})</span>`;
+}
+
+function themeExamples(items, theme, count = 2, lowFirst = false) {
+  if (!theme) return [];
+  const score = (item) => {
+    const views = item.views || 0;
+    return lowFirst && views === 0 ? Number.MAX_SAFE_INTEGER : views;
+  };
+  return items
+    .filter((item) => classifyCreativeTheme(item) === theme.label)
+    .sort((a, b) => lowFirst ? score(a) - score(b) : score(b) - score(a))
+    .slice(0, count);
+}
+
+function inlineExamples(items) {
+  return items.map(contentInlineLink).filter(Boolean).join('; ');
+}
+
+function themeTakeaway(theme) {
+  if (!theme) return '';
+  if (theme.label === 'Dog-owner problem hook') return 'Dog owners are most likely responding to a clear symptom or question before the product is introduced.';
+  if (theme.label === 'Cesar behavior/routine') return 'Cesar-led behavior context is giving the clip a practical reason to watch before the supplement appears.';
+  if (theme.label === 'Product support claim') return 'Product claims can work, but the strongest versions still need a problem-led opening.';
+  return 'The strongest posts are giving viewers a clear reason to care in the opening line.';
+}
+
 function creativeThemeStats(items) {
   const totalViews = itemViews(items);
   const map = {};
@@ -1008,13 +1051,26 @@ function weakTheme(themes, winner) {
     .sort((a, b) => a.avg - b.avg)[0] || null;
 }
 
-function creativeActionFor(theme, weak) {
-  if (!theme) return 'Keep testing hooks until there is enough post-level data to identify a repeatable winner.';
-  if (theme.label === 'Cesar behavior/routine') return 'Make more native Cesar-led routine clips. Lead with the behavior lesson, then bring in the supplement as support.';
-  if (theme.label === 'Dog-owner problem hook') return 'Open with one concrete dog-owner problem or symptom, then explain the cause and product fit after the hook lands.';
-  if (theme.label === 'Product support claim') return 'Keep the product proof, but turn the first second into a problem or behavior hook before naming the supplement.';
-  if (weak?.label === 'Product support claim') return 'Reduce product-first openings and reframe those clips around the dog problem the product solves.';
-  return 'Repeat the winning hook structure and test it across Instagram, TikTok, and YouTube Shorts.';
+function creativeActionsFor(theme, weak, ps) {
+  const sourceLine = 'Pull first from existing Cesar product, selfie, Q&A, Journey, and UGC B-roll footage before requesting a new shoot.';
+  if (!theme) return ['Keep testing hooks until there is enough post-level data to identify a repeatable winner.', sourceLine];
+  const actions = [];
+  if (theme.label === 'Cesar behavior/routine') {
+    actions.push('Cut more Cesar-led routine clips: behavior lesson first, supplement support second.');
+    actions.push('New video idea if footage is missing: Cesar reacts to a food-focused or high-energy dog, names the behavior, then ties it to one formula.');
+  } else if (theme.label === 'Dog-owner problem hook') {
+    actions.push('Build the next batch around one visible dog-owner problem in the first second: tear stains, itching, loose stool, slowing down, or anxiety.');
+    actions.push('Use UGC B-roll for the symptom visual, then add Cesar/product footage after the hook lands.');
+  } else if (theme.label === 'Product support claim') {
+    actions.push('Keep the product proof, but rewrite the opening around the dog problem before naming the supplement.');
+  } else {
+    actions.push('Repeat the winning hook structure and test it across Instagram, TikTok, and YouTube Shorts.');
+  }
+  if (weak?.label === 'Product support claim') actions.push('Reduce product-first openings unless they are paired with a specific symptom or behavior.');
+  if (ps.includes('youtube')) actions.push('For YouTube, reuse the strongest short-form hooks but judge quality with watch time because reach is unavailable.');
+  actions.push(sourceLine);
+  const unique = [...new Set(actions)];
+  return [...unique.filter((line) => line !== sourceLine).slice(0, 3), sourceLine];
 }
 
 function platformReadRows(ps, start, end) {
@@ -1053,22 +1109,25 @@ function creativeAnalysisHtml(ps, start, end, info) {
   const winner = bestTheme(themes, items.length);
   const weak = weakTheme(themes, winner);
   const engRate = itemViews(items) ? itemEngagement(items) / itemViews(items) : null;
-  const action = creativeActionFor(winner, weak);
+  const winnerExamples = themeExamples(items, winner, 2);
+  const weakExamples = themeExamples(items, weak, 1, true);
+  const actions = creativeActionsFor(winner, weak, ps);
 
   let html = `<p class="ov-reason"><strong>Creative read:</strong> ${items.length} posts averaged <strong>${fmt(Math.round(curAvg))}</strong> views each ${analysisDeltaHtml(avgDelta)}.`;
   if (engRate != null) html += ` Posted-content engagement rate was <strong>${(engRate * 100).toFixed(1)}%</strong>.`;
   html += '</p>';
 
   if (winner) {
-    html += `<p class="ov-reason"><strong>Winning pattern:</strong> ${escapeHtml(winner.label)} is the strongest creative lane in this ${info.word}: <strong>${fmt(Math.round(winner.avg))}</strong> avg views across ${winner.n} ${winner.n === 1 ? 'post' : 'posts'}, accounting for ${Math.round(winner.share * 100)}% of posted-content views.</p>`;
+    html += `<p class="ov-reason"><strong>Winning pattern:</strong> ${escapeHtml(winner.label)} is strongest in this ${info.word}: <strong>${fmt(Math.round(winner.avg))}</strong> avg views across ${winner.n} ${winner.n === 1 ? 'post' : 'posts'}, accounting for ${Math.round(winner.share * 100)}% of posted-content views. ${escapeHtml(themeTakeaway(winner))}`;
+    if (winnerExamples.length) html += ` <span class="ov-examples">Examples: ${inlineExamples(winnerExamples)}.</span>`;
+    html += '</p>';
   }
   if (weak) {
-    html += `<p class="ov-reason"><strong>Weak spot:</strong> ${escapeHtml(weak.label)} is trailing at <strong>${fmt(Math.round(weak.avg))}</strong> avg views. It should not lead the next batch unless the opening hook is rebuilt.</p>`;
+    html += `<p class="ov-reason"><strong>Weak spot:</strong> ${escapeHtml(weak.label)} is trailing at <strong>${fmt(Math.round(weak.avg))}</strong> avg views. Rebuild the opening before using that lane as the lead.`;
+    if (weakExamples.length) html += ` <span class="ov-examples">Example to rebuild: ${inlineExamples(weakExamples)}.</span>`;
+    html += '</p>';
   }
 
-  const actions = [action];
-  if (ps.includes('instagram')) actions.push('Treat Instagram view and reach changes as mixed paid plus organic distribution; use post-level engagement and repeatable creative patterns for organic decisions.');
-  if (ps.includes('youtube')) actions.push('Use the strongest Instagram/TikTok hooks as YouTube Shorts, because YouTube reach is unavailable and watch time is the better quality signal there.');
   html += `<p class="ov-sub">Recommended actions</p><ol class="ov-action-list">${actions.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ol>`;
   return html;
 }
@@ -1290,11 +1349,13 @@ function renderKpis() {
     const note = pendingOnly ? 'pending approval' : (m.key === 'totalFollowers' ? 'latest total' : (m.key === 'watchTime' ? 'YouTube - selected range' : (m.key === 'reach' ? 'available platforms' : 'selected range')));
     const val = pendingOnly || (m.key === 'watchTime' && curr === 0) ? null : curr;
     const delta = m.showDelta === false ? '' : deltaHtml(curr, prev);
+    const context = pendingOnly ? '' : kpiContextFor(m.key, showing);
     return `
       <div class="kpi">
         <div class="label">${m.label} <span class="kpi-note">${note}</span></div>
         <div class="value">${m.fmt(val)}</div>
         <div>${pendingOnly ? '' : delta}</div>
+        ${context ? `<div class="kpi-context">${escapeHtml(context)}</div>` : ''}
       </div>`;
   }).join('');
 }
