@@ -28,6 +28,16 @@ for (const platform of requiredPlatforms) {
     const hasAnyValue = metric?.daily?.some((row) => Number(row[field] || 0) > 0);
     if (!hasAnyValue) problems.push(`${platform}: no ${field} values found`);
   }
+  if (platform !== 'youtube') {
+    for (const row of metric?.daily || []) {
+      const isLatestRow = row.date === data.asOf;
+      const hasPosts = Number(row.posts || 0) > 0;
+      const hasAnyPerformance = ['views', 'reach', 'watchTime'].some((field) => Number(row[field] || 0) > 0);
+      if (!isLatestRow && hasPosts && !hasAnyPerformance) {
+        problems.push(`${platform}: ${row.date} has posts but no views, reach, or watch time`);
+      }
+    }
+  }
   if (platform === 'tiktok' && metric?.hasTopContent === false && !metric?.topContentUnavailableReason) {
     problems.push('tiktok: top content is disabled without an explanation');
   }
