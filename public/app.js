@@ -727,7 +727,7 @@ function render() {
   renderPaidContextNote();
   renderChartVisibility();
   renderKpis();
-  renderOverview();
+  renderCreativeOverview();
   renderTrend('postsChart', 'posts');
   renderTrend('viewsChart', 'views');
   if (!$('#reachCard')?.hidden) renderTrend('reachChart', 'reach');
@@ -937,6 +937,223 @@ function renderOverview() {
   }
   html += '</ul>';
   if (inactive.length) html += `<p class="ov-inactive">No activity in this range on: ${inactive.map((x) => nameOf(x.p)).join(', ')}.</p>`;
+
+  el.innerHTML = html;
+}
+
+function analysisDeltaWords(d) {
+  if (d == null) return 'no prior comparison';
+  if (Math.abs(d) < 0.015) return 'about flat';
+  const pct = (Math.abs(d) * 100).toFixed(Math.abs(d) < 0.1 ? 1 : 0);
+  return `${d > 0 ? 'up' : 'down'} ${pct}%`;
+}
+
+function analysisDeltaHtml(d) {
+  if (d == null) return '<span class="ov-delta flat">(no prior)</span>';
+  if (Math.abs(d) < 0.015) return '<span class="ov-delta flat">(flat)</span>';
+  return `<span class="ov-delta ${d > 0 ? 'up' : 'down'}">(${analysisDeltaWords(d)})</span>`;
+}
+
+function itemViews(items) {
+  return items.reduce((sum, item) => sum + (item.views || 0), 0);
+}
+
+function itemEngagement(items) {
+  return items.reduce((sum, item) => sum + (item.eng || 0), 0);
+}
+
+function avgViews(items) {
+  return items.length ? itemViews(items) / items.length : 0;
+}
+
+function classifyCreativeTheme(item) {
+  const text = `${item?.title || ''} ${item?.type || ''}`.toLowerCase();
+  const has = (terms) => terms.some((term) => text.includes(term));
+  if (has(['cesar', 'mealtime', 'feeding', 'routine', 'high-drive', 'food-focused', 'food is', 'patience', 'structure', 'dog psychology', 'brakes', 'gas pedal', 'energy'])) {
+    return 'Cesar behavior/routine';
+  }
+  if (has(['tear stain', 'skin', 'coat', 'allerg', 'itch', 'digestion', 'belly', 'stool', 'joint', 'slow down', 'stress', 'healthy', 'happy-go-lucky', 'what causes', 'what does', 'signs of'])) {
+    return 'Dog-owner problem hook';
+  }
+  if (has(['supports', 'supplement', 'formula', 'ingredient', 'offers', 'calm surrender', 'calm confidence', 'skin magic', 'puppy defense'])) {
+    return 'Product support claim';
+  }
+  if (String(item?.type || '').toLowerCase().includes('short')) return 'General short-form clip';
+  return item?.type || 'Other';
+}
+
+function creativeThemeStats(items) {
+  const totalViews = itemViews(items);
+  const map = {};
+  for (const item of items) {
+    const label = classifyCreativeTheme(item);
+    const row = map[label] || { label, n: 0, views: 0, eng: 0 };
+    row.n += 1;
+    row.views += item.views || 0;
+    row.eng += item.eng || 0;
+    map[label] = row;
+  }
+  return Object.values(map).map((row) => ({
+    ...row,
+    avg: row.n ? row.views / row.n : 0,
+    avgEng: row.n ? row.eng / row.n : 0,
+    share: totalViews ? row.views / totalViews : 0
+  }));
+}
+
+function bestTheme(themes, itemCount) {
+  const minSample = itemCount >= 12 ? 3 : itemCount >= 6 ? 2 : 1;
+  const candidates = themes.filter((theme) => theme.n >= minSample);
+  return (candidates.length ? candidates : themes).slice().sort((a, b) => b.avg - a.avg)[0] || null;
+}
+
+function weakTheme(themes, winner) {
+  return themes
+    .filter((theme) => theme.label !== winner?.label && theme.n >= 2)
+    .sort((a, b) => a.avg - b.avg)[0] || null;
+}
+
+function creativeActionFor(theme, weak) {
+  if (!theme) return 'Keep testing hooks until there is enough post-level data to identify a repeatable winner.';
+  if (theme.label === 'Cesar behavior/routine') return 'Make more native Cesar-led routine clips. Lead with the behavior lesson, then bring in the supplement as support.';
+  if (theme.label === 'Dog-owner problem hook') return 'Open with one concrete dog-owner problem or symptom, then explain the cause and product fit after the hook lands.';
+  if (theme.label === 'Product support claim') return 'Keep the product proof, but turn the first second into a problem or behavior hook before naming the supplement.';
+  if (weak?.label === 'Product support claim') return 'Reduce product-first openings and reframe those clips around the dog problem the product solves.';
+  return 'Repeat the winning hook structure and test it across Instagram, TikTok, and YouTube Shorts.';
+}
+
+function platformReadRows(ps, start, end) {
+  return ps.map((p) => {
+    const cur = state.curTotals[p] || {};
+    const prv = state.priorTotals[p] || {};
+    const posts = cur.posts || 0;
+    const views = supports(p, 'views') ? (cur.views || 0) : null;
+    const reach = supports(p, 'reach') ? (cur.reach || 0) : null;
+    const watch = supports(p, 'watchTime') ? (cur.watchTime || 0) : null;
+    const newFollowers = supports(p, 'newFollowers') ? cur.newFollowers : null;
+    const items = contentIn(p, start, end);
+    return {
+      p, posts, views, reach, watch, newFollowers,
+      avg: posts ? (views || 0) / posts : 0,
+      dViews: views == null ? null : deltaPct(views, prv.views || 0),
+      dReach: reach == null ? null : deltaPct(reach, prv.reach || 0),
+      dWatch: watch == null ? null : deltaPct(watch, prv.watchTime || 0),
+      dFollowers: newFollowers == null ? null : deltaPct(newFollowers, prv.newFollowers || 0),
+      contentCount: items.length
+    };
+  });
+}
+
+function creativeAnalysisHtml(ps, start, end, info) {
+  const items = (state.data.content || []).filter((c) => ps.includes(c.platform) && c.date >= start && c.date <= end);
+  const prevItems = (state.data.content || []).filter((c) => ps.includes(c.platform) && c.date >= state.priorRange.start && c.date <= state.priorRange.end);
+  if (!items.length) {
+    return '<p class="ov-inactive">No posted content is available in this range, so there is not enough creative data to analyze.</p>';
+  }
+
+  const curAvg = avgViews(items);
+  const prevAvg = avgViews(prevItems);
+  const avgDelta = deltaPct(curAvg, prevAvg);
+  const themes = creativeThemeStats(items);
+  const winner = bestTheme(themes, items.length);
+  const weak = weakTheme(themes, winner);
+  const engRate = itemViews(items) ? itemEngagement(items) / itemViews(items) : null;
+  const action = creativeActionFor(winner, weak);
+
+  let html = `<p class="ov-reason"><strong>Creative read:</strong> ${items.length} posts averaged <strong>${fmt(Math.round(curAvg))}</strong> views each ${analysisDeltaHtml(avgDelta)}.`;
+  if (engRate != null) html += ` Posted-content engagement rate was <strong>${(engRate * 100).toFixed(1)}%</strong>.`;
+  html += '</p>';
+
+  if (winner) {
+    html += `<p class="ov-reason"><strong>Winning pattern:</strong> ${escapeHtml(winner.label)} is the strongest creative lane in this ${info.word}: <strong>${fmt(Math.round(winner.avg))}</strong> avg views across ${winner.n} ${winner.n === 1 ? 'post' : 'posts'}, accounting for ${Math.round(winner.share * 100)}% of posted-content views.</p>`;
+  }
+  if (weak) {
+    html += `<p class="ov-reason"><strong>Weak spot:</strong> ${escapeHtml(weak.label)} is trailing at <strong>${fmt(Math.round(weak.avg))}</strong> avg views. It should not lead the next batch unless the opening hook is rebuilt.</p>`;
+  }
+
+  const actions = [action];
+  if (ps.includes('instagram')) actions.push('Treat Instagram view and reach changes as mixed paid plus organic distribution; use post-level engagement and repeatable creative patterns for organic decisions.');
+  if (ps.includes('youtube')) actions.push('Use the strongest Instagram/TikTok hooks as YouTube Shorts, because YouTube reach is unavailable and watch time is the better quality signal there.');
+  html += `<p class="ov-sub">Recommended actions</p><ol class="ov-action-list">${actions.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ol>`;
+  return html;
+}
+
+function renderCreativeFocusedOverview(p, start, end, info) {
+  const el = $('#overview');
+  const cur = state.curTotals[p] || {};
+  const prv = state.priorTotals[p] || {};
+  const views = supports(p, 'views') ? (cur.views || 0) : null;
+  const reach = supports(p, 'reach') ? (cur.reach || 0) : null;
+  const watch = supports(p, 'watchTime') ? (cur.watchTime || 0) : null;
+  const newFollowers = supports(p, 'newFollowers') ? cur.newFollowers : null;
+  const totalFollowers = supports(p, 'totalFollowers') ? cur.totalFollowers : null;
+
+  $('#overviewTitle').textContent = `Content analysis - ${nameOf(p)} - ${info.title}`;
+  let html = `<p class="ov-headline"><strong>${nameOf(p)}</strong>: `;
+  const parts = [];
+  if (views != null) parts.push(`${fmt(views)} views ${analysisDeltaHtml(deltaPct(views, prv.views || 0))}`);
+  if (reach != null) parts.push(`${fmt(reach)} reach ${analysisDeltaHtml(deltaPct(reach, prv.reach || 0))}`);
+  if (watch != null) parts.push(`${fmt(watch / 60)} hrs watch time ${analysisDeltaHtml(deltaPct(watch, prv.watchTime || 0))}`);
+  if (newFollowers != null) parts.push(`${fmtFull(newFollowers)} new followers ${analysisDeltaHtml(deltaPct(newFollowers, prv.newFollowers || 0))}`);
+  if (totalFollowers != null) parts.push(`${fmtFull(totalFollowers)} total followers`);
+  html += `${parts.join(', ')} vs the previous ${info.word}.</p>`;
+
+  if (PAID_CONTEXT[p]) html += `<p class="ov-note"><strong>Paid context:</strong> ${escapeHtml(PAID_CONTEXT[p])}</p>`;
+  html += creativeAnalysisHtml([p], start, end, info);
+  el.innerHTML = html;
+}
+
+function renderCreativeOverview() {
+  const el = $('#overview');
+  if (!el) return;
+  const start = state.rangeStart;
+  const end = state.rangeEnd;
+  const ps = platforms();
+  const info = periodInfo();
+  if (ps.length === 1 && !state.totalOnly) {
+    renderCreativeFocusedOverview(ps[0], start, end, info);
+    return;
+  }
+
+  $('#overviewTitle').textContent = `Content analysis - ${info.title}`;
+  const totalViews = totalAt('views', 0);
+  const priorViews = totalAt('views', 1);
+  const totalReach = totalAt('reach', 0);
+  const priorReach = totalAt('reach', 1);
+  const rows = platformReadRows(ps, start, end);
+  const active = rows.filter((row) => (row.views || 0) > 0 || (row.reach || 0) > 0 || (row.watch || 0) > 0);
+  const driver = active.slice().sort((a, b) => Math.abs((b.views || 0) - (state.priorTotals[b.p]?.views || 0)) - Math.abs((a.views || 0) - (state.priorTotals[a.p]?.views || 0)))[0];
+  const contributor = active.slice().sort((a, b) => (b.views || 0) - (a.views || 0))[0];
+
+  let html = `<p class="ov-headline"><strong>${fmt(totalViews)}</strong> total views ${analysisDeltaHtml(deltaPct(totalViews, priorViews))}`;
+  if (totalReach != null) html += `, <strong>${fmt(totalReach)}</strong> total reach ${analysisDeltaHtml(deltaPct(totalReach, priorReach))}`;
+  html += ` vs the previous ${info.word}.</p>`;
+
+  if (contributor && totalViews) {
+    html += `<p class="ov-reason"><strong>Performance driver:</strong> ${nameOf(contributor.p)} contributed ${Math.round((contributor.views || 0) / totalViews * 100)}% of total views.`;
+    if (driver) html += ` The biggest view swing was ${nameOf(driver.p)} at ${analysisDeltaWords(driver.dViews)}.`;
+    html += '</p>';
+  }
+
+  if (ps.includes('instagram')) {
+    html += '<p class="ov-note"><strong>Paid context:</strong> Instagram views and reach include paid/promoted distribution, so Instagram changes are not a pure organic signal.</p>';
+  }
+
+  html += creativeAnalysisHtml(ps, start, end, info);
+
+  if (active.length) {
+    html += '<p class="ov-sub">Platform read</p><ul class="ov-list">';
+    for (const row of active) {
+      const bits = [];
+      if (row.views != null) bits.push(`${fmt(row.views)} views ${analysisDeltaHtml(row.dViews)}`);
+      if (row.reach != null) bits.push(`${fmt(row.reach)} reach ${analysisDeltaHtml(row.dReach)}`);
+      if (row.watch != null) bits.push(`${fmt(row.watch / 60)} hrs watch time ${analysisDeltaHtml(row.dWatch)}`);
+      if (row.newFollowers != null) bits.push(`${fmtFull(row.newFollowers)} new followers ${analysisDeltaHtml(row.dFollowers)}`);
+      if (row.avg) bits.push(`${fmt(Math.round(row.avg))} views/post`);
+      html += `<li><span class="ov-dot" style="background:${PLATFORM_COLORS[row.p] || '#888'}"></span><strong>${nameOf(row.p)}</strong>: ${bits.join(', ')}.</li>`;
+    }
+    html += '</ul>';
+  }
 
   el.innerHTML = html;
 }
