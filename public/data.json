@@ -1727,7 +1727,7 @@
         },
         {
           "date": "2026-06-25",
-          "posts": 4,
+          "posts": 1,
           "views": 735,
           "reach": 0,
           "watchTime": 206,
@@ -1735,7 +1735,7 @@
         },
         {
           "date": "2026-06-26",
-          "posts": 0,
+          "posts": 1,
           "views": 296,
           "reach": 0,
           "watchTime": 100,
@@ -1743,7 +1743,7 @@
         },
         {
           "date": "2026-06-27",
-          "posts": 0,
+          "posts": 1,
           "views": 1036,
           "reach": 0,
           "watchTime": 223,
@@ -1751,7 +1751,7 @@
         },
         {
           "date": "2026-06-28",
-          "posts": 0,
+          "posts": 1,
           "views": 438,
           "reach": 0,
           "watchTime": 144,
@@ -1759,7 +1759,7 @@
         },
         {
           "date": "2026-06-29",
-          "posts": 2,
+          "posts": 0,
           "views": 611,
           "reach": 0,
           "watchTime": 218,
@@ -1767,7 +1767,7 @@
         },
         {
           "date": "2026-06-30",
-          "posts": 0,
+          "posts": 1,
           "views": 953,
           "reach": 0,
           "watchTime": 261,
@@ -1783,7 +1783,7 @@
         },
         {
           "date": "2026-07-02",
-          "posts": 0,
+          "posts": 1,
           "views": 0,
           "reach": 0,
           "watchTime": 0,
@@ -3983,7 +3983,7 @@
     },
     {
       "platform": "youtube",
-      "date": "2026-06-25",
+      "date": "2026-06-27",
       "url": "https://www.youtube.com/watch?v=DGNuvoDyQ34",
       "title": "Why would a dog slow down?",
       "type": "Short Form Clip",
@@ -4005,7 +4005,7 @@
     },
     {
       "platform": "youtube",
-      "date": "2026-06-25",
+      "date": "2026-06-28",
       "url": "https://www.youtube.com/watch?v=dNEw9lhX4MA",
       "title": "What causes tear stains in dogs?",
       "type": "Short Form Clip",
@@ -4016,7 +4016,7 @@
     },
     {
       "platform": "youtube",
-      "date": "2026-06-25",
+      "date": "2026-06-26",
       "url": "https://www.youtube.com/watch?v=Zxckh4AcxEQ",
       "title": "What does healthy skin look like?",
       "type": "Short Form Clip",
@@ -4152,7 +4152,7 @@
     },
     {
       "platform": "youtube",
-      "date": "2026-06-29",
+      "date": "2026-07-02",
       "url": "https://www.youtube.com/watch?v=u_xMBbUWhCk",
       "title": "What does \"happy-go-lucky\" look like in a dog?",
       "type": "Short Form Clip",
@@ -4163,7 +4163,7 @@
     },
     {
       "platform": "youtube",
-      "date": "2026-06-29",
+      "date": "2026-06-30",
       "url": "https://www.youtube.com/watch?v=iCBrktyNzZU",
       "title": "Some dogs come with no brakes, just a gas pedal.",
       "type": "Short Form Clip",
