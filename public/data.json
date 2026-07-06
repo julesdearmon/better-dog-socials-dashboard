@@ -1759,7 +1759,7 @@
         },
         {
           "date": "2026-06-29",
-          "posts": 1,
+          "posts": 2,
           "views": 611,
           "reach": 0,
           "watchTime": 218,
@@ -4153,13 +4153,24 @@
     {
       "platform": "youtube",
       "date": "2026-06-29",
+      "url": "https://www.youtube.com/watch?v=u_xMBbUWhCk",
+      "title": "What does \"happy-go-lucky\" look like in a dog?",
+      "type": "Short Form Clip",
+      "views": 1049,
+      "watchTime": 204,
+      "reach": null,
+      "eng": 32
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-29",
       "url": "https://www.youtube.com/watch?v=iCBrktyNzZU",
       "title": "Some dogs come with no brakes, just a gas pedal.",
       "type": "Short Form Clip",
-      "views": 849,
-      "watchTime": 169,
+      "views": 1003,
+      "watchTime": 182,
       "reach": null,
-      "eng": 18
+      "eng": 20
     },
     {
       "platform": "facebook",
