@@ -225,6 +225,7 @@ body {
 .kpi .label { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
 .kpi-note { font-size: 10px; opacity: 0.7; }
 .kpi .value { font-size: 28px; font-weight: 720; letter-spacing: -0.5px; }
+.kpi-context { font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.35; }
 .delta { display: inline-block; font-size: 12px; margin-top: 8px; }
 .delta.up { color: var(--good); }
 .delta.down { color: var(--bad); }
@@ -348,6 +349,10 @@ body {
 .ov-delta.flat { color: var(--muted); }
 .ov-reason { font-size: 13px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 11px 13px; margin: 0 0 14px; line-height: 1.55; }
 .ov-reason strong { color: var(--text); }
+.ov-examples { color: var(--muted); }
+.ov-example-link { color: var(--text); font-weight: 650; text-decoration: none; }
+.ov-example-link:hover { color: var(--accent); text-decoration: underline; }
+.ov-example-meta { color: var(--muted); font-size: 12px; }
 .ov-note { font-size: 12px; color: var(--muted); margin: -2px 0 12px; line-height: 1.45; }
 .ov-note strong { color: var(--text); }
 .ov-list { list-style: none; padding: 0; margin: 0; }
@@ -419,4 +424,9 @@ body {
   .grid { grid-template-columns: 1fr; }
   .topbar { align-items: flex-start; flex-wrap: wrap; }
   .controls { flex-wrap: wrap; }
+}
+
+@media (max-width: 520px) {
+  .dashboard { padding: 20px 16px 48px; }
+  .kpis, .platform-cards { grid-template-columns: 1fr; }
 }
