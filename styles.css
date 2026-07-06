@@ -369,6 +369,17 @@ body {
 /* ---- Spike insight ---- */
 .chart-hint { font-size: 12px; color: var(--muted); margin: 0 0 12px; }
 .chart-hint strong { color: var(--text); }
+.paid-context-note {
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 12px;
+  line-height: 1.45;
+  margin: -4px 0 14px;
+}
+.paid-context-note strong { color: var(--text); }
 
 .insight-card { border-color: var(--accent); box-shadow: 0 4px 18px rgba(136, 204, 51, 0.16); }
 .insight-close { align-self: center; padding: 5px 12px; font-size: 12px; }
