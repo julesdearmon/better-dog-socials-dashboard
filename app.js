@@ -558,7 +558,7 @@ async function init() {
   $('#contentSort').addEventListener('change', (e) => { state.contentSort = e.target.value; renderContent(); });
 
   // Platform focus selector (delegated; chips rendered after data loads).
-  // Clicking a chip focuses one view: All, a single platform, or Total-only.
+  // Clicking a chip focuses one view: all platforms plus total, a single platform, or total-only.
   $('#platformFilter').addEventListener('click', (e) => {
     const btn = e.target.closest('button[data-focus]');
     if (!btn) return;
@@ -1311,11 +1311,11 @@ function renderPlatformFilter() {
   const chip = (val, label, dot) =>
     `<button type="button" class="pf-chip ${focus === val ? 'on' : ''}" data-focus="${val}">` +
     (dot != null ? `<span class="pf-dot" style="background:${dot}"></span>` : '') + `${label}</button>`;
-  // [ All platforms ] [ Totals only ] [ ...each platform... ] - pending platforms stay visible but are excluded from totals.
+  // [ All + Total ] [ ...each platform... ] [ Total only ] - pending platforms stay visible but are excluded from totals.
   $('#platformFilter').innerHTML = '<span class="pf-label">Show:</span>' +
-    chip('all', 'All platforms', null) +
-    chip('total', 'Totals only', null) +
-    all.map((p) => chip(p, nameOf(p), PLATFORM_COLORS[p] || '#888')).join('');
+    chip('all', 'All + Total', null) +
+    all.map((p) => chip(p, nameOf(p), PLATFORM_COLORS[p] || '#888')).join('') +
+    chip('total', 'Total only', null);
   for (const p of all) {
     if (!isCarriedForward(p)) continue;
     const btn = $(`#platformFilter [data-focus="${p}"]`);
