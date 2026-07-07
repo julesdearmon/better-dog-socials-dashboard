@@ -47,6 +47,11 @@ you're on mock data.
 
 ## Going live with real data
 
+For the current private client-hosting plan, use
+**[docs/PRIVATE_HOSTING.md](docs/PRIVATE_HOSTING.md)**. It covers Cloudflare Pages,
+Cloudflare Access, the `betterdog-dashboard.agmagency.com` subdomain, and the
+GoHighLevel portal link.
+
 1. `copy .env.example .env`
 2. Follow **[docs/API_SETUP.md](docs/API_SETUP.md)** to register a developer app
    per platform and get access tokens.
