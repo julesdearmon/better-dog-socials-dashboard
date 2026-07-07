@@ -12,8 +12,8 @@
     "target": "year-to-date",
     "defaultStart": "2026-01-01",
     "notes": [
-      "Instagram, Facebook, and YouTube should be pulled from 2026-01-01 forward.",
-      "TikTok Organic's earliest supported Supermetrics date is 2026-05-04, so TikTok cannot show January-April 2026 through this connector."
+      "Instagram, Facebook, and YouTube are pulled from 2026-01-01 forward.",
+      "TikTok Organic profile metrics are available from 2026-05-08 in the current Supermetrics connector."
     ]
   },
   "platforms": {
@@ -22,14 +22,22 @@
       "connector": "Instagram Insights",
       "status": "live",
       "historyStart": "2026-01-01",
-      "requiredMetrics": ["views", "reach", "posts"]
+      "requiredMetrics": [
+        "views",
+        "reach",
+        "posts"
+      ]
     },
     "facebook": {
       "provider": "supermetrics",
       "connector": "Facebook Insights",
       "status": "live",
       "historyStart": "2026-01-01",
-      "requiredMetrics": ["views", "reach", "posts"],
+      "requiredMetrics": [
+        "views",
+        "reach",
+        "posts"
+      ],
       "viewsMetric": "Page media views organic",
       "reachMetric": "Page media views unique"
     },
@@ -37,18 +45,28 @@
       "provider": "supermetrics",
       "connector": "TikTok Organic",
       "status": "live",
-      "historyStart": "2026-05-04",
-      "requiredMetrics": ["views", "reach", "posts"],
+      "historyStart": "2026-05-08",
+      "requiredMetrics": [
+        "views",
+        "reach",
+        "posts"
+      ],
       "reachMetric": "Reached audience",
-      "queryNote": "Video-level rows should be requested with a create-date filter to avoid large-query timeouts."
+      "queryNote": "Profile metrics start on 2026-05-08; video-level top content can timeout, so keep profile totals live and use filtered/smaller post queries."
     },
     "youtube": {
       "provider": "supermetrics",
       "connector": "YouTube Analytics",
       "status": "live",
       "historyStart": "2026-01-01",
-      "requiredMetrics": ["views", "watchTime", "posts"],
-      "knownLimitations": ["Unique viewers is not available in the current Supermetrics YouTube connector, so YouTube reach is not shown."]
+      "requiredMetrics": [
+        "views",
+        "watchTime",
+        "posts"
+      ],
+      "knownLimitations": [
+        "Unique viewers is not available in the current Supermetrics YouTube connector, so YouTube reach is not shown."
+      ]
     }
   }
 }

@@ -1,26 +1,28 @@
 {
-  "refreshedAt": "Jul 6, 2026, 5:15 AM",
-  "dataThrough": "2026-07-05",
+  "refreshedAt": "Jul 7, 2026, 6:20 AM",
+  "dataThrough": "2026-07-06",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
   "generatedFrom": "Supermetrics API (Instagram, Facebook, TikTok, YouTube)",
   "platforms": {
     "instagram": {
       "status": "live",
-      "provider": "supermetrics"
+      "provider": "supermetrics",
+      "note": "YTD metrics pulled from Jan 1; YTD reach uses an exact range override."
     },
     "facebook": {
       "status": "live",
-      "provider": "supermetrics"
+      "provider": "supermetrics",
+      "note": "Views use organic media views; YTD paid views are retained for context."
     },
     "tiktok": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "TikTok totals, post counts, reach, and top content refreshed with filtered TikTok Organic queries."
+      "note": "Profile metrics are available from May 8, 2026; top-content rows can still timeout."
     },
     "youtube": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "No YouTube rows returned for July 3-5."
+      "note": "Channel totals pulled through the latest rows returned by Supermetrics; July 5-6 were zero-filled where no rows returned."
     }
   },
   "errors": [],
