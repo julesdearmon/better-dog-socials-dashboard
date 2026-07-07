@@ -186,7 +186,7 @@ function applyBusinessSuiteOverride(platform, totals, startIso, endIso) {
 function applyBusinessSuiteSeriesOverrides() {
   for (const p of Object.keys(state.series || {})) {
     const override = businessSuiteOverride(p, state.rangeStart, state.rangeEnd);
-    if (!override) continue;
+    if (!override || override.seriesDistribute === false) continue;
     for (const [metric, target] of Object.entries(override.values || {})) {
       const rows = state.series[p] || [];
       if (!rows.length || !Number.isFinite(Number(target))) continue;
@@ -222,6 +222,7 @@ function presetRange(name, asOfMs) {
   const lastMonth = new Date(lastMonthEnd);
   const lastMonthStart = Date.UTC(lastMonth.getUTCFullYear(), lastMonth.getUTCMonth(), 1);
   const last3MonthsStart = Date.UTC(lastMonth.getUTCFullYear(), lastMonth.getUTCMonth() - 2, 1);
+  if (name === 'ytd-2026') return { start: '2026-01-01', end: iso(base), gran: 'monthly' };
   if (name === 'this-week') return { start: iso(thisWeekStart), end: iso(base), gran: 'daily' };
   if (name === 'last-week') return { start: iso(thu - 6 * DAY), end: iso(thu), gran: 'daily' };
   if (name === 'this-month') return { start: iso(monthFirst), end: iso(base), gran: 'daily' };
@@ -230,9 +231,9 @@ function presetRange(name, asOfMs) {
   return null;
 }
 
-// Default range: the most recent completed Fri-Thu reporting week.
+// Default range: 2026 year-to-date.
 function defaultRange(asOfMs) {
-  return presetRange('last-week', asOfMs);
+  return presetRange('ytd-2026', asOfMs);
 }
 
 // Human label for the selected range, e.g. "Jun 1 – Jun 30, 2026".
@@ -309,7 +310,11 @@ function kpiContextFor(key, ps = platforms()) {
   if (key === 'views' && ps.length === 1 && ps[0] === 'youtube') parts.push('Ad traffic can be checked separately.');
   if (key === 'views' && ps.length === 1 && ps[0] === 'tiktok') parts.push('TikTok Organic source.');
   if (key === 'reach' && allPlatforms().includes('youtube') && ps.length > 1) parts.push('Excludes YouTube.');
-  if (key === 'newFollowers') parts.push('Selected range.');
+  if (key === 'newFollowers') {
+    parts.push('Selected range.');
+    const excluded = ps.filter((p) => state.data.metrics[p]?.hasNewFollowers === false).map(nameOf);
+    if (excluded.length) parts.push(`Excludes ${excluded.join(', ')}.`);
+  }
   if (key === 'totalFollowers') parts.push('Latest available total.');
   return parts.join(' ');
 }
@@ -485,7 +490,8 @@ function supports(p, key) {
   if (key === 'views') return m.hasViews !== false;
   if (key === 'watchTime') return !!m.hasWatchTime;
   if (key === 'reach') return m.hasReach !== false;
-  if (key === 'newFollowers' || key === 'totalFollowers') return !!m.hasFollowers;
+  if (key === 'newFollowers') return !!m.hasFollowers && m.hasNewFollowers !== false;
+  if (key === 'totalFollowers') return !!m.hasFollowers;
   return true;
 }
 // Totals over the selected range (fromEnd 0) or the prior equal-length window (1).
@@ -623,6 +629,9 @@ function renderDataQuality() {
     const override = businessSuiteOverride(p, state.rangeStart, state.rangeEnd);
     if (!override && m.hasViews === false && m.viewsUnavailableReason) notes.push(`${escapeHtml(nameOf(p))}: ${escapeHtml(m.viewsUnavailableReason)}`);
     if (!override && m.provider === 'meta-media-insights-api') notes.push(`${escapeHtml(nameOf(p))}: Meta account-level date-range views were not available, so this uses media-level post insights for content published in the selected range.`);
+    if (m.historyStart && state.rangeStart < m.historyStart) {
+      notes.push(`${escapeHtml(nameOf(p))}: metrics available from ${escapeHtml(niceDate(m.historyStart))} in the current connector.`);
+    }
   }
   if (!notes.length) {
     quality.hidden = true;

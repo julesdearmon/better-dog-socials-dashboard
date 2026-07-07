@@ -4,8 +4,8 @@
     "name": "Better Dog Supplements",
     "color": "#88cc33"
   },
-  "asOf": "2026-07-05",
-  "updatedAt": "Jul 6, 2026, 5:15 AM",
+  "asOf": "2026-07-06",
+  "updatedAt": "Jul 7, 2026, 6:20 AM",
   "source": "live",
   "generatedFrom": "Supermetrics API (Instagram, Facebook, TikTok, YouTube)",
   "directApiErrors": [],
@@ -155,6 +155,51 @@
         "views": 395753,
         "reach": 68974
       }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-01-01",
+      "end": "2026-07-06",
+      "source": "Supermetrics exact YTD range total",
+      "seriesDistribute": false,
+      "values": {
+        "views": 2506655,
+        "reach": 50276
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-01-01",
+      "end": "2026-07-06",
+      "source": "Supermetrics exact YTD range total",
+      "seriesDistribute": false,
+      "values": {
+        "views": 36740,
+        "reach": 115103,
+        "paidViews": 157513
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-01-01",
+      "end": "2026-07-06",
+      "source": "Supermetrics exact YTD range total",
+      "seriesDistribute": false,
+      "values": {
+        "views": 151561,
+        "watchTime": 73368
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-01-01",
+      "end": "2026-07-06",
+      "source": "Supermetrics exact YTD range total; TikTok metrics available from May 8",
+      "seriesDistribute": false,
+      "values": {
+        "views": 866196,
+        "reach": 842060
+      }
     }
   ],
   "metrics": {
@@ -165,8 +210,968 @@
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "asOf": "2026-07-05",
+      "asOf": "2026-07-06",
       "daily": [
+        {
+          "date": "2026-01-01",
+          "posts": 0,
+          "views": 1460,
+          "reach": 1,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-02",
+          "posts": 1,
+          "views": 1637,
+          "reach": 64,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-03",
+          "posts": 0,
+          "views": 1622,
+          "reach": 16,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-04",
+          "posts": 0,
+          "views": 1717,
+          "reach": 4,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-05",
+          "posts": 0,
+          "views": 15201,
+          "reach": 45,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-06",
+          "posts": 1,
+          "views": 26066,
+          "reach": 13287,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-07",
+          "posts": 1,
+          "views": 10483,
+          "reach": 3329,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-08",
+          "posts": 1,
+          "views": 3141,
+          "reach": 263,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-09",
+          "posts": 1,
+          "views": 2475,
+          "reach": 129,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-10",
+          "posts": 1,
+          "views": 3024,
+          "reach": 341,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-11",
+          "posts": 1,
+          "views": 2390,
+          "reach": 213,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-12",
+          "posts": 0,
+          "views": 1750,
+          "reach": 58,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-13",
+          "posts": 0,
+          "views": 34660,
+          "reach": 52,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-14",
+          "posts": 1,
+          "views": 14114,
+          "reach": 70,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-15",
+          "posts": 1,
+          "views": 4863,
+          "reach": 153,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-16",
+          "posts": 1,
+          "views": 4190,
+          "reach": 72,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-17",
+          "posts": 1,
+          "views": 4626,
+          "reach": 94,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-18",
+          "posts": 1,
+          "views": 4213,
+          "reach": 253,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-19",
+          "posts": 0,
+          "views": 27972,
+          "reach": 138,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-20",
+          "posts": 0,
+          "views": 14532,
+          "reach": 43,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-21",
+          "posts": 0,
+          "views": 3549,
+          "reach": 10,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-22",
+          "posts": 0,
+          "views": 2108,
+          "reach": 10,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-23",
+          "posts": 0,
+          "views": 1903,
+          "reach": 36,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-24",
+          "posts": 0,
+          "views": 2281,
+          "reach": 9,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-25",
+          "posts": 0,
+          "views": 2625,
+          "reach": 10,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-26",
+          "posts": 0,
+          "views": 22106,
+          "reach": 32,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-27",
+          "posts": 1,
+          "views": 24308,
+          "reach": 6545,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-28",
+          "posts": 1,
+          "views": 10971,
+          "reach": 4551,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-29",
+          "posts": 1,
+          "views": 11056,
+          "reach": 7806,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-30",
+          "posts": 1,
+          "views": 19442,
+          "reach": 14661,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-01-31",
+          "posts": 0,
+          "views": 6118,
+          "reach": 3809,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-01",
+          "posts": 0,
+          "views": 2126,
+          "reach": 21,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-02",
+          "posts": 1,
+          "views": 1651,
+          "reach": 231,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-03",
+          "posts": 0,
+          "views": 37815,
+          "reach": 19,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-04",
+          "posts": 1,
+          "views": 21047,
+          "reach": 194,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-05",
+          "posts": 1,
+          "views": 5257,
+          "reach": 204,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-06",
+          "posts": 1,
+          "views": 3088,
+          "reach": 101,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-07",
+          "posts": 0,
+          "views": 2909,
+          "reach": 32,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-08",
+          "posts": 0,
+          "views": 2768,
+          "reach": 19,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-09",
+          "posts": 0,
+          "views": 42782,
+          "reach": 18,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-10",
+          "posts": 1,
+          "views": 19800,
+          "reach": 953,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-11",
+          "posts": 1,
+          "views": 7851,
+          "reach": 321,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-12",
+          "posts": 1,
+          "views": 4835,
+          "reach": 509,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-13",
+          "posts": 1,
+          "views": 3954,
+          "reach": 262,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-14",
+          "posts": 0,
+          "views": 3645,
+          "reach": 183,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-15",
+          "posts": 0,
+          "views": 4083,
+          "reach": 210,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-16",
+          "posts": 0,
+          "views": 57951,
+          "reach": 231,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-17",
+          "posts": 1,
+          "views": 15465,
+          "reach": 286,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-18",
+          "posts": 1,
+          "views": 4649,
+          "reach": 242,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-19",
+          "posts": 1,
+          "views": 3558,
+          "reach": 338,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-20",
+          "posts": 1,
+          "views": 3461,
+          "reach": 257,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-21",
+          "posts": 0,
+          "views": 3100,
+          "reach": 157,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-22",
+          "posts": 0,
+          "views": 3025,
+          "reach": 209,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-23",
+          "posts": 0,
+          "views": 41108,
+          "reach": 235,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-24",
+          "posts": 1,
+          "views": 27947,
+          "reach": 265,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-25",
+          "posts": 1,
+          "views": 11713,
+          "reach": 331,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-26",
+          "posts": 1,
+          "views": 7047,
+          "reach": 363,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-27",
+          "posts": 1,
+          "views": 5333,
+          "reach": 460,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-02-28",
+          "posts": 0,
+          "views": 4260,
+          "reach": 327,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-01",
+          "posts": 0,
+          "views": 4137,
+          "reach": 407,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-02",
+          "posts": 0,
+          "views": 28903,
+          "reach": 407,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-03",
+          "posts": 1,
+          "views": 12499,
+          "reach": 609,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-04",
+          "posts": 1,
+          "views": 3882,
+          "reach": 381,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-05",
+          "posts": 1,
+          "views": 2956,
+          "reach": 546,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-06",
+          "posts": 1,
+          "views": 2610,
+          "reach": 483,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-07",
+          "posts": 0,
+          "views": 36495,
+          "reach": 398,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-08",
+          "posts": 0,
+          "views": 21477,
+          "reach": 322,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-09",
+          "posts": 0,
+          "views": 39204,
+          "reach": 301,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-10",
+          "posts": 1,
+          "views": 13510,
+          "reach": 377,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-11",
+          "posts": 1,
+          "views": 6632,
+          "reach": 414,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-12",
+          "posts": 1,
+          "views": 3673,
+          "reach": 439,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-13",
+          "posts": 1,
+          "views": 3034,
+          "reach": 269,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-14",
+          "posts": 0,
+          "views": 2726,
+          "reach": 51,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-15",
+          "posts": 0,
+          "views": 2920,
+          "reach": 22,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-16",
+          "posts": 1,
+          "views": 2289,
+          "reach": 40,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-17",
+          "posts": 0,
+          "views": 25250,
+          "reach": 32,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-18",
+          "posts": 0,
+          "views": 7217,
+          "reach": 26,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-19",
+          "posts": 1,
+          "views": 4415,
+          "reach": 190,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-20",
+          "posts": 1,
+          "views": 3210,
+          "reach": 217,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-21",
+          "posts": 0,
+          "views": 2664,
+          "reach": 67,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-22",
+          "posts": 0,
+          "views": 2449,
+          "reach": 45,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-23",
+          "posts": 0,
+          "views": 40824,
+          "reach": 76,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-24",
+          "posts": 1,
+          "views": 11927,
+          "reach": 99,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-25",
+          "posts": 1,
+          "views": 3341,
+          "reach": 239,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-26",
+          "posts": 1,
+          "views": 2278,
+          "reach": 517,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-27",
+          "posts": 1,
+          "views": 10271,
+          "reach": 8133,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-28",
+          "posts": 0,
+          "views": 5996,
+          "reach": 3932,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-29",
+          "posts": 0,
+          "views": 1991,
+          "reach": 46,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-30",
+          "posts": 0,
+          "views": 20345,
+          "reach": 47,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-03-31",
+          "posts": 1,
+          "views": 6323,
+          "reach": 206,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-01",
+          "posts": 1,
+          "views": 3183,
+          "reach": 355,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-02",
+          "posts": 1,
+          "views": 2608,
+          "reach": 271,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-03",
+          "posts": 1,
+          "views": 8868,
+          "reach": 6492,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-04",
+          "posts": 0,
+          "views": 7256,
+          "reach": 5052,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-05",
+          "posts": 0,
+          "views": 2187,
+          "reach": 100,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-06",
+          "posts": 0,
+          "views": 38762,
+          "reach": 140,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-07",
+          "posts": 4,
+          "views": 18543,
+          "reach": 5284,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-08",
+          "posts": 0,
+          "views": 10951,
+          "reach": 5038,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-09",
+          "posts": 2,
+          "views": 14060,
+          "reach": 7063,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-10",
+          "posts": 1,
+          "views": 7733,
+          "reach": 3913,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-11",
+          "posts": 1,
+          "views": 3086,
+          "reach": 781,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-12",
+          "posts": 2,
+          "views": 3560,
+          "reach": 940,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-13",
+          "posts": 0,
+          "views": 27742,
+          "reach": 152,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-14",
+          "posts": 1,
+          "views": 33173,
+          "reach": 21984,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-15",
+          "posts": 2,
+          "views": 9317,
+          "reach": 4532,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-16",
+          "posts": 1,
+          "views": 3386,
+          "reach": 286,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-17",
+          "posts": 1,
+          "views": 4304,
+          "reach": 998,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-18",
+          "posts": 2,
+          "views": 3972,
+          "reach": 507,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-19",
+          "posts": 1,
+          "views": 3147,
+          "reach": 142,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-20",
+          "posts": 0,
+          "views": 97680,
+          "reach": 188,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-21",
+          "posts": 1,
+          "views": 49202,
+          "reach": 206,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-22",
+          "posts": 1,
+          "views": 12874,
+          "reach": 328,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-23",
+          "posts": 1,
+          "views": 7595,
+          "reach": 3678,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-24",
+          "posts": 0,
+          "views": 5677,
+          "reach": 4588,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-25",
+          "posts": 1,
+          "views": 1104,
+          "reach": 202,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-26",
+          "posts": 1,
+          "views": 12132,
+          "reach": 9814,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-27",
+          "posts": 0,
+          "views": 49943,
+          "reach": 2634,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-28",
+          "posts": 1,
+          "views": 15614,
+          "reach": 6390,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-29",
+          "posts": 1,
+          "views": 10997,
+          "reach": 6722,
+          "watchTime": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-04-30",
+          "posts": 1,
+          "views": 9062,
+          "reach": 6375,
+          "watchTime": 0,
+          "newFollowers": null
+        },
         {
           "posts": 1,
           "date": "2026-05-01",
@@ -658,12 +1663,20 @@
           "reach": 2627,
           "watchTime": 0,
           "newFollowers": 0
+        },
+        {
+          "date": "2026-07-06",
+          "posts": 0,
+          "views": 33389,
+          "reach": 3589,
+          "watchTime": 0
         }
       ],
       "hasFollowers": true,
       "totalFollowers": 2726,
-      "followersAsOf": "2026-07-06",
-      "followersNote": "New followers are available for the last 30 days; total followers is the latest profile total."
+      "followersAsOf": "2026-07-07",
+      "followersNote": "Total followers is current from Supermetrics. Instagram new followers are only available for the last 30 days, so full-year new follower gain is not available.",
+      "hasNewFollowers": false
     },
     "facebook": {
       "platform": "facebook",
@@ -672,8 +1685,1208 @@
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "asOf": "2026-07-05",
+      "asOf": "2026-07-06",
       "daily": [
+        {
+          "date": "2026-01-01",
+          "posts": 0,
+          "views": 5,
+          "reach": 4,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 124,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-02",
+          "posts": 1,
+          "views": 41,
+          "reach": 22,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 124,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-03",
+          "posts": 0,
+          "views": 9,
+          "reach": 7,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 125,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-04",
+          "posts": 0,
+          "views": 16,
+          "reach": 6,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 124,
+          "newFollowers": -1
+        },
+        {
+          "date": "2026-01-05",
+          "posts": 0,
+          "views": 5,
+          "reach": 3,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 124,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-06",
+          "posts": 1,
+          "views": 48,
+          "reach": 26,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 124,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-07",
+          "posts": 1,
+          "views": 51,
+          "reach": 26,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 124,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-08",
+          "posts": 1,
+          "views": 41,
+          "reach": 31,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 124,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-09",
+          "posts": 1,
+          "views": 57,
+          "reach": 23,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 124,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-10",
+          "posts": 1,
+          "views": 75,
+          "reach": 54,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 123,
+          "newFollowers": -1
+        },
+        {
+          "date": "2026-01-11",
+          "posts": 1,
+          "views": 46,
+          "reach": 32,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 123,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-12",
+          "posts": 0,
+          "views": 34,
+          "reach": 17,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 124,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-13",
+          "posts": 0,
+          "views": 59,
+          "reach": 14,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 124,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-14",
+          "posts": 1,
+          "views": 48,
+          "reach": 18,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 125,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-15",
+          "posts": 1,
+          "views": 18,
+          "reach": 12,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 125,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-16",
+          "posts": 1,
+          "views": 57,
+          "reach": 14,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 126,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-17",
+          "posts": 1,
+          "views": 46,
+          "reach": 12,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 127,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-18",
+          "posts": 0,
+          "views": 28,
+          "reach": 11,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 127,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-19",
+          "posts": 1,
+          "views": 63,
+          "reach": 15,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 129,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-01-20",
+          "posts": 0,
+          "views": 39,
+          "reach": 8,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 130,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-21",
+          "posts": 0,
+          "views": 28,
+          "reach": 9,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 131,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-22",
+          "posts": 0,
+          "views": 22,
+          "reach": 10,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 131,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-23",
+          "posts": 0,
+          "views": 28,
+          "reach": 15,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 131,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-24",
+          "posts": 0,
+          "views": 14,
+          "reach": 10,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 131,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-25",
+          "posts": 0,
+          "views": 18,
+          "reach": 7,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 133,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-01-26",
+          "posts": 0,
+          "views": 13,
+          "reach": 11,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 133,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-27",
+          "posts": 1,
+          "views": 32,
+          "reach": 20,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 133,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-28",
+          "posts": 1,
+          "views": 44,
+          "reach": 18,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 133,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-29",
+          "posts": 1,
+          "views": 46,
+          "reach": 28,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 133,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-30",
+          "posts": 1,
+          "views": 34,
+          "reach": 22,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 133,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-31",
+          "posts": 0,
+          "views": 19,
+          "reach": 10,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 133,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-02-01",
+          "posts": 0,
+          "views": 48,
+          "reach": 11,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 134,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-02",
+          "posts": 1,
+          "views": 30,
+          "reach": 24,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 134,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-02-03",
+          "posts": 0,
+          "views": 18,
+          "reach": 9,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 135,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-04",
+          "posts": 1,
+          "views": 51,
+          "reach": 34,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 135,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-02-05",
+          "posts": 1,
+          "views": 40,
+          "reach": 19,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 134,
+          "newFollowers": -1
+        },
+        {
+          "date": "2026-02-06",
+          "posts": 1,
+          "views": 65,
+          "reach": 17,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 134,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-02-07",
+          "posts": 0,
+          "views": 19,
+          "reach": 13,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 134,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-02-08",
+          "posts": 0,
+          "views": 14,
+          "reach": 6,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 134,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-02-09",
+          "posts": 4,
+          "views": 61,
+          "reach": 15,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 134,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-02-10",
+          "posts": 1,
+          "views": 94,
+          "reach": 6752,
+          "watchTime": 0,
+          "paidViews": 9142,
+          "totalFollowers": 133,
+          "newFollowers": -1
+        },
+        {
+          "date": "2026-02-11",
+          "posts": 1,
+          "views": 103,
+          "reach": 2763,
+          "watchTime": 0,
+          "paidViews": 3900,
+          "totalFollowers": 134,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-12",
+          "posts": 1,
+          "views": 45,
+          "reach": 2896,
+          "watchTime": 0,
+          "paidViews": 4126,
+          "totalFollowers": 135,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-13",
+          "posts": 1,
+          "views": 57,
+          "reach": 2607,
+          "watchTime": 0,
+          "paidViews": 3762,
+          "totalFollowers": 136,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-14",
+          "posts": 0,
+          "views": 27,
+          "reach": 2258,
+          "watchTime": 0,
+          "paidViews": 2926,
+          "totalFollowers": 138,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-02-15",
+          "posts": 0,
+          "views": 15,
+          "reach": 2090,
+          "watchTime": 0,
+          "paidViews": 2889,
+          "totalFollowers": 139,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-16",
+          "posts": 1,
+          "views": 26,
+          "reach": 2182,
+          "watchTime": 0,
+          "paidViews": 2962,
+          "totalFollowers": 142,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-02-17",
+          "posts": 1,
+          "views": 28,
+          "reach": 2336,
+          "watchTime": 0,
+          "paidViews": 3243,
+          "totalFollowers": 144,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-02-18",
+          "posts": 1,
+          "views": 54,
+          "reach": 2017,
+          "watchTime": 0,
+          "paidViews": 2752,
+          "totalFollowers": 145,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-19",
+          "posts": 1,
+          "views": 83,
+          "reach": 1652,
+          "watchTime": 0,
+          "paidViews": 2222,
+          "totalFollowers": 145,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-02-20",
+          "posts": 1,
+          "views": 42,
+          "reach": 1059,
+          "watchTime": 0,
+          "paidViews": 1508,
+          "totalFollowers": 145,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-02-21",
+          "posts": 0,
+          "views": 13,
+          "reach": 809,
+          "watchTime": 0,
+          "paidViews": 1053,
+          "totalFollowers": 144,
+          "newFollowers": -1
+        },
+        {
+          "date": "2026-02-22",
+          "posts": 0,
+          "views": 25,
+          "reach": 847,
+          "watchTime": 0,
+          "paidViews": 1135,
+          "totalFollowers": 145,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-23",
+          "posts": 1,
+          "views": 78,
+          "reach": 1107,
+          "watchTime": 0,
+          "paidViews": 1516,
+          "totalFollowers": 152,
+          "newFollowers": 7
+        },
+        {
+          "date": "2026-02-24",
+          "posts": 1,
+          "views": 76,
+          "reach": 932,
+          "watchTime": 0,
+          "paidViews": 1289,
+          "totalFollowers": 152,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-02-25",
+          "posts": 1,
+          "views": 32,
+          "reach": 1155,
+          "watchTime": 0,
+          "paidViews": 1601,
+          "totalFollowers": 153,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-26",
+          "posts": 1,
+          "views": 74,
+          "reach": 1520,
+          "watchTime": 0,
+          "paidViews": 1898,
+          "totalFollowers": 155,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-02-27",
+          "posts": 1,
+          "views": 61,
+          "reach": 1148,
+          "watchTime": 0,
+          "paidViews": 1545,
+          "totalFollowers": 156,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-28",
+          "posts": 0,
+          "views": 14,
+          "reach": 1193,
+          "watchTime": 0,
+          "paidViews": 1607,
+          "totalFollowers": 155,
+          "newFollowers": -1
+        },
+        {
+          "date": "2026-03-01",
+          "posts": 0,
+          "views": 56,
+          "reach": 1424,
+          "watchTime": 0,
+          "paidViews": 3912,
+          "totalFollowers": 155,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-02",
+          "posts": 1,
+          "views": 84,
+          "reach": 1198,
+          "watchTime": 0,
+          "paidViews": 1538,
+          "totalFollowers": 156,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-03-03",
+          "posts": 1,
+          "views": 46,
+          "reach": 1345,
+          "watchTime": 0,
+          "paidViews": 1742,
+          "totalFollowers": 157,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-03-04",
+          "posts": 1,
+          "views": 49,
+          "reach": 1073,
+          "watchTime": 0,
+          "paidViews": 1486,
+          "totalFollowers": 157,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-05",
+          "posts": 1,
+          "views": 57,
+          "reach": 1231,
+          "watchTime": 0,
+          "paidViews": 1630,
+          "totalFollowers": 158,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-03-06",
+          "posts": 1,
+          "views": 139,
+          "reach": 1280,
+          "watchTime": 0,
+          "paidViews": 1702,
+          "totalFollowers": 158,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-07",
+          "posts": 0,
+          "views": 38,
+          "reach": 1448,
+          "watchTime": 0,
+          "paidViews": 2054,
+          "totalFollowers": 161,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-03-08",
+          "posts": 0,
+          "views": 25,
+          "reach": 1320,
+          "watchTime": 0,
+          "paidViews": 2060,
+          "totalFollowers": 164,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-03-09",
+          "posts": 1,
+          "views": 68,
+          "reach": 1033,
+          "watchTime": 0,
+          "paidViews": 1456,
+          "totalFollowers": 166,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-03-10",
+          "posts": 1,
+          "views": 39,
+          "reach": 1231,
+          "watchTime": 0,
+          "paidViews": 1760,
+          "totalFollowers": 167,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-03-11",
+          "posts": 1,
+          "views": 92,
+          "reach": 1414,
+          "watchTime": 0,
+          "paidViews": 1964,
+          "totalFollowers": 167,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-12",
+          "posts": 1,
+          "views": 148,
+          "reach": 1432,
+          "watchTime": 0,
+          "paidViews": 1812,
+          "totalFollowers": 168,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-03-13",
+          "posts": 1,
+          "views": 55,
+          "reach": 285,
+          "watchTime": 0,
+          "paidViews": 328,
+          "totalFollowers": 169,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-03-14",
+          "posts": 0,
+          "views": 15,
+          "reach": 11,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 171,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-03-15",
+          "posts": 0,
+          "views": 19,
+          "reach": 9,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 171,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-16",
+          "posts": 1,
+          "views": 30,
+          "reach": 18,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 171,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-17",
+          "posts": 1,
+          "views": 69,
+          "reach": 18,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 175,
+          "newFollowers": 4
+        },
+        {
+          "date": "2026-03-18",
+          "posts": 0,
+          "views": 26,
+          "reach": 30,
+          "watchTime": 0,
+          "paidViews": 22,
+          "totalFollowers": 176,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-03-19",
+          "posts": 1,
+          "views": 151,
+          "reach": 152,
+          "watchTime": 0,
+          "paidViews": 20,
+          "totalFollowers": 176,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-20",
+          "posts": 1,
+          "views": 158,
+          "reach": 144,
+          "watchTime": 0,
+          "paidViews": 11,
+          "totalFollowers": 176,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-21",
+          "posts": 0,
+          "views": 74,
+          "reach": 36,
+          "watchTime": 0,
+          "paidViews": 17,
+          "totalFollowers": 178,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-03-22",
+          "posts": 0,
+          "views": 31,
+          "reach": 36,
+          "watchTime": 0,
+          "paidViews": 33,
+          "totalFollowers": 181,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-03-23",
+          "posts": 1,
+          "views": 22,
+          "reach": 37,
+          "watchTime": 0,
+          "paidViews": 34,
+          "totalFollowers": 183,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-03-24",
+          "posts": 1,
+          "views": 54,
+          "reach": 55,
+          "watchTime": 0,
+          "paidViews": 53,
+          "totalFollowers": 183,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-25",
+          "posts": 1,
+          "views": 27,
+          "reach": 62,
+          "watchTime": 0,
+          "paidViews": 63,
+          "totalFollowers": 182,
+          "newFollowers": -1
+        },
+        {
+          "date": "2026-03-26",
+          "posts": 1,
+          "views": 127,
+          "reach": 112,
+          "watchTime": 0,
+          "paidViews": 48,
+          "totalFollowers": 184,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-03-27",
+          "posts": 1,
+          "views": 60,
+          "reach": 75,
+          "watchTime": 0,
+          "paidViews": 59,
+          "totalFollowers": 184,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-28",
+          "posts": 0,
+          "views": 230,
+          "reach": 83,
+          "watchTime": 0,
+          "paidViews": 39,
+          "totalFollowers": 187,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-03-29",
+          "posts": 0,
+          "views": 112,
+          "reach": 110,
+          "watchTime": 0,
+          "paidViews": 109,
+          "totalFollowers": 193,
+          "newFollowers": 6
+        },
+        {
+          "date": "2026-03-30",
+          "posts": 1,
+          "views": 114,
+          "reach": 98,
+          "watchTime": 0,
+          "paidViews": 94,
+          "totalFollowers": 200,
+          "newFollowers": 7
+        },
+        {
+          "date": "2026-03-31",
+          "posts": 1,
+          "views": 221,
+          "reach": 398,
+          "watchTime": 0,
+          "paidViews": 1842,
+          "totalFollowers": 207,
+          "newFollowers": 7
+        },
+        {
+          "date": "2026-04-01",
+          "posts": 1,
+          "views": 768,
+          "reach": 674,
+          "watchTime": 0,
+          "paidViews": 4986,
+          "totalFollowers": 208,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-04-02",
+          "posts": 1,
+          "views": 310,
+          "reach": 456,
+          "watchTime": 0,
+          "paidViews": 659,
+          "totalFollowers": 208,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-04-03",
+          "posts": 1,
+          "views": 323,
+          "reach": 431,
+          "watchTime": 0,
+          "paidViews": 546,
+          "totalFollowers": 214,
+          "newFollowers": 6
+        },
+        {
+          "date": "2026-04-04",
+          "posts": 0,
+          "views": 70,
+          "reach": 246,
+          "watchTime": 0,
+          "paidViews": 631,
+          "totalFollowers": 217,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-04-05",
+          "posts": 0,
+          "views": 97,
+          "reach": 321,
+          "watchTime": 0,
+          "paidViews": 895,
+          "totalFollowers": 220,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-04-06",
+          "posts": 1,
+          "views": 124,
+          "reach": 314,
+          "watchTime": 0,
+          "paidViews": 823,
+          "totalFollowers": 226,
+          "newFollowers": 6
+        },
+        {
+          "date": "2026-04-07",
+          "posts": 1,
+          "views": 90,
+          "reach": 299,
+          "watchTime": 0,
+          "paidViews": 635,
+          "totalFollowers": 227,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-04-08",
+          "posts": 1,
+          "views": 431,
+          "reach": 563,
+          "watchTime": 0,
+          "paidViews": 757,
+          "totalFollowers": 229,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-04-09",
+          "posts": 2,
+          "views": 583,
+          "reach": 778,
+          "watchTime": 0,
+          "paidViews": 972,
+          "totalFollowers": 237,
+          "newFollowers": 8
+        },
+        {
+          "date": "2026-04-10",
+          "posts": 1,
+          "views": 319,
+          "reach": 327,
+          "watchTime": 0,
+          "paidViews": 510,
+          "totalFollowers": 244,
+          "newFollowers": 7
+        },
+        {
+          "date": "2026-04-11",
+          "posts": 1,
+          "views": 275,
+          "reach": 150,
+          "watchTime": 0,
+          "paidViews": 496,
+          "totalFollowers": 247,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-04-12",
+          "posts": 2,
+          "views": 448,
+          "reach": 235,
+          "watchTime": 0,
+          "paidViews": 489,
+          "totalFollowers": 252,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-04-13",
+          "posts": 0,
+          "views": 425,
+          "reach": 194,
+          "watchTime": 0,
+          "paidViews": 489,
+          "totalFollowers": 255,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-04-14",
+          "posts": 2,
+          "views": 416,
+          "reach": 280,
+          "watchTime": 0,
+          "paidViews": 521,
+          "totalFollowers": 261,
+          "newFollowers": 6
+        },
+        {
+          "date": "2026-04-15",
+          "posts": 1,
+          "views": 307,
+          "reach": 196,
+          "watchTime": 0,
+          "paidViews": 524,
+          "totalFollowers": 271,
+          "newFollowers": 10
+        },
+        {
+          "date": "2026-04-16",
+          "posts": 1,
+          "views": 377,
+          "reach": 187,
+          "watchTime": 0,
+          "paidViews": 62,
+          "totalFollowers": 275,
+          "newFollowers": 4
+        },
+        {
+          "date": "2026-04-17",
+          "posts": 1,
+          "views": 679,
+          "reach": 237,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 285,
+          "newFollowers": 10
+        },
+        {
+          "date": "2026-04-18",
+          "posts": 2,
+          "views": 230,
+          "reach": 73,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 294,
+          "newFollowers": 9
+        },
+        {
+          "date": "2026-04-19",
+          "posts": 1,
+          "views": 511,
+          "reach": 116,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 300,
+          "newFollowers": 6
+        },
+        {
+          "date": "2026-04-20",
+          "posts": 0,
+          "views": 233,
+          "reach": 73,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 308,
+          "newFollowers": 8
+        },
+        {
+          "date": "2026-04-21",
+          "posts": 1,
+          "views": 442,
+          "reach": 198,
+          "watchTime": 0,
+          "paidViews": 106,
+          "totalFollowers": 318,
+          "newFollowers": 10
+        },
+        {
+          "date": "2026-04-22",
+          "posts": 1,
+          "views": 464,
+          "reach": 330,
+          "watchTime": 0,
+          "paidViews": 109,
+          "totalFollowers": 321,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-04-23",
+          "posts": 1,
+          "views": 504,
+          "reach": 265,
+          "watchTime": 0,
+          "paidViews": 11,
+          "totalFollowers": 327,
+          "newFollowers": 6
+        },
+        {
+          "date": "2026-04-24",
+          "posts": 1,
+          "views": 342,
+          "reach": 134,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 333,
+          "newFollowers": 6
+        },
+        {
+          "date": "2026-04-25",
+          "posts": 1,
+          "views": 405,
+          "reach": 92,
+          "watchTime": 0,
+          "paidViews": 2,
+          "totalFollowers": 340,
+          "newFollowers": 7
+        },
+        {
+          "date": "2026-04-26",
+          "posts": 1,
+          "views": 529,
+          "reach": 123,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 351,
+          "newFollowers": 11
+        },
+        {
+          "date": "2026-04-27",
+          "posts": 0,
+          "views": 405,
+          "reach": 204,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 362,
+          "newFollowers": 11
+        },
+        {
+          "date": "2026-04-28",
+          "posts": 1,
+          "views": 633,
+          "reach": 362,
+          "watchTime": 0,
+          "paidViews": 1,
+          "totalFollowers": 367,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-04-29",
+          "posts": 0,
+          "views": 446,
+          "reach": 68,
+          "watchTime": 0,
+          "paidViews": 1,
+          "totalFollowers": 372,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-04-30",
+          "posts": 1,
+          "views": 382,
+          "reach": 120,
+          "watchTime": 0,
+          "paidViews": 1,
+          "totalFollowers": 375,
+          "newFollowers": 3
+        },
         {
           "posts": 1,
           "date": "2026-05-01",
@@ -681,7 +2894,7 @@
           "reach": 189,
           "watchTime": 0,
           "totalFollowers": 382,
-          "newFollowers": null
+          "newFollowers": 7
         },
         {
           "posts": 1,
@@ -1267,16 +3480,27 @@
           "watchTime": 0,
           "totalFollowers": 750,
           "newFollowers": 12
+        },
+        {
+          "date": "2026-07-06",
+          "posts": 1,
+          "views": 372,
+          "reach": 155,
+          "watchTime": 0,
+          "paidViews": 0,
+          "totalFollowers": 758,
+          "newFollowers": 8
         }
       ],
       "reachLabel": "Page media views unique",
       "reachNote": "Facebook reach uses Page media views unique, not an organic-only reach split.",
       "hasFollowers": true,
-      "totalFollowers": 750,
+      "totalFollowers": 758,
       "followersAsOf": "2026-07-06",
-      "followersNote": "New followers are derived from daily Page follower count changes; total followers is the latest Page total.",
+      "followersNote": "Total followers is the latest Page followers count from Supermetrics; new followers are net daily changes.",
       "viewsLabel": "Organic media views",
-      "viewsNote": "Facebook views use Page media views organic from Supermetrics. Reach uses Page media views unique and is not an organic-only reach split."
+      "viewsNote": "Facebook views use Page media views organic from Supermetrics. Reach uses Page media views unique and is not an organic-only reach split.",
+      "hasNewFollowers": true
     },
     "youtube": {
       "platform": "youtube",
@@ -1285,8 +3509,968 @@
       "provider": "supermetrics",
       "hasWatchTime": true,
       "hasReach": false,
-      "asOf": "2026-07-05",
+      "asOf": "2026-07-06",
       "daily": [
+        {
+          "date": "2026-01-01",
+          "posts": 0,
+          "views": 14,
+          "reach": 0,
+          "watchTime": 34,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-02",
+          "posts": 0,
+          "views": 29,
+          "reach": 0,
+          "watchTime": 35,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-03",
+          "posts": 0,
+          "views": 32,
+          "reach": 0,
+          "watchTime": 38,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-04",
+          "posts": 0,
+          "views": 20,
+          "reach": 0,
+          "watchTime": 29,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-01-05",
+          "posts": 0,
+          "views": 25,
+          "reach": 0,
+          "watchTime": 21,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-01-06",
+          "posts": 1,
+          "views": 125,
+          "reach": 0,
+          "watchTime": 26,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-01-07",
+          "posts": 1,
+          "views": 307,
+          "reach": 0,
+          "watchTime": 95,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-08",
+          "posts": 1,
+          "views": 1624,
+          "reach": 0,
+          "watchTime": 428,
+          "newFollowers": 4
+        },
+        {
+          "date": "2026-01-09",
+          "posts": 1,
+          "views": 265,
+          "reach": 0,
+          "watchTime": 23,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-10",
+          "posts": 1,
+          "views": 1883,
+          "reach": 0,
+          "watchTime": 194,
+          "newFollowers": 7
+        },
+        {
+          "date": "2026-01-11",
+          "posts": 1,
+          "views": 370,
+          "reach": 0,
+          "watchTime": 80,
+          "newFollowers": -1
+        },
+        {
+          "date": "2026-01-12",
+          "posts": 0,
+          "views": 38,
+          "reach": 0,
+          "watchTime": 56,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-13",
+          "posts": 0,
+          "views": 24,
+          "reach": 0,
+          "watchTime": 21,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-14",
+          "posts": 0,
+          "views": 39,
+          "reach": 0,
+          "watchTime": 39,
+          "newFollowers": 4
+        },
+        {
+          "date": "2026-01-15",
+          "posts": 1,
+          "views": 1408,
+          "reach": 0,
+          "watchTime": 147,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-01-16",
+          "posts": 0,
+          "views": 21,
+          "reach": 0,
+          "watchTime": 26,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-17",
+          "posts": 1,
+          "views": 486,
+          "reach": 0,
+          "watchTime": 36,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-18",
+          "posts": 1,
+          "views": 45,
+          "reach": 0,
+          "watchTime": 16,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-19",
+          "posts": 0,
+          "views": 100,
+          "reach": 0,
+          "watchTime": 49,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-01-20",
+          "posts": 0,
+          "views": 689,
+          "reach": 0,
+          "watchTime": 138,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-01-21",
+          "posts": 0,
+          "views": 50,
+          "reach": 0,
+          "watchTime": 19,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-22",
+          "posts": 0,
+          "views": 24,
+          "reach": 0,
+          "watchTime": 37,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-23",
+          "posts": 0,
+          "views": 17,
+          "reach": 0,
+          "watchTime": 17,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-01-24",
+          "posts": 0,
+          "views": 21,
+          "reach": 0,
+          "watchTime": 28,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-25",
+          "posts": 0,
+          "views": 28,
+          "reach": 0,
+          "watchTime": 18,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-26",
+          "posts": 0,
+          "views": 19,
+          "reach": 0,
+          "watchTime": 20,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-01-27",
+          "posts": 1,
+          "views": 118,
+          "reach": 0,
+          "watchTime": 42,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-28",
+          "posts": 0,
+          "views": 303,
+          "reach": 0,
+          "watchTime": 56,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-29",
+          "posts": 1,
+          "views": 488,
+          "reach": 0,
+          "watchTime": 64,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-01-30",
+          "posts": 1,
+          "views": 391,
+          "reach": 0,
+          "watchTime": 77,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-01-31",
+          "posts": 0,
+          "views": 65,
+          "reach": 0,
+          "watchTime": 39,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-02-01",
+          "posts": 0,
+          "views": 207,
+          "reach": 0,
+          "watchTime": 55,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-02-02",
+          "posts": 1,
+          "views": 1421,
+          "reach": 0,
+          "watchTime": 124,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-02-03",
+          "posts": 0,
+          "views": 256,
+          "reach": 0,
+          "watchTime": 55,
+          "newFollowers": 7
+        },
+        {
+          "date": "2026-02-04",
+          "posts": 1,
+          "views": 399,
+          "reach": 0,
+          "watchTime": 133,
+          "newFollowers": 4
+        },
+        {
+          "date": "2026-02-05",
+          "posts": 1,
+          "views": 763,
+          "reach": 0,
+          "watchTime": 225,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-06",
+          "posts": 0,
+          "views": 148,
+          "reach": 0,
+          "watchTime": 49,
+          "newFollowers": 4
+        },
+        {
+          "date": "2026-02-07",
+          "posts": 0,
+          "views": 93,
+          "reach": 0,
+          "watchTime": 32,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-02-08",
+          "posts": 0,
+          "views": 37,
+          "reach": 0,
+          "watchTime": 35,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-09",
+          "posts": 0,
+          "views": 44,
+          "reach": 0,
+          "watchTime": 28,
+          "newFollowers": 8
+        },
+        {
+          "date": "2026-02-10",
+          "posts": 0,
+          "views": 168,
+          "reach": 0,
+          "watchTime": 44,
+          "newFollowers": 8
+        },
+        {
+          "date": "2026-02-11",
+          "posts": 0,
+          "views": 24,
+          "reach": 0,
+          "watchTime": 9,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-12",
+          "posts": 1,
+          "views": 223,
+          "reach": 0,
+          "watchTime": 60,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-02-13",
+          "posts": 0,
+          "views": 64,
+          "reach": 0,
+          "watchTime": 39,
+          "newFollowers": 4
+        },
+        {
+          "date": "2026-02-14",
+          "posts": 0,
+          "views": 70,
+          "reach": 0,
+          "watchTime": 42,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-02-15",
+          "posts": 0,
+          "views": 41,
+          "reach": 0,
+          "watchTime": 32,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-16",
+          "posts": 0,
+          "views": 53,
+          "reach": 0,
+          "watchTime": 33,
+          "newFollowers": 7
+        },
+        {
+          "date": "2026-02-17",
+          "posts": 0,
+          "views": 60,
+          "reach": 0,
+          "watchTime": 35,
+          "newFollowers": 8
+        },
+        {
+          "date": "2026-02-18",
+          "posts": 0,
+          "views": 86,
+          "reach": 0,
+          "watchTime": 26,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-19",
+          "posts": 1,
+          "views": 154,
+          "reach": 0,
+          "watchTime": 24,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-02-20",
+          "posts": 0,
+          "views": 46,
+          "reach": 0,
+          "watchTime": 27,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-02-21",
+          "posts": 0,
+          "views": 151,
+          "reach": 0,
+          "watchTime": 51,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-22",
+          "posts": 0,
+          "views": 48,
+          "reach": 0,
+          "watchTime": 33,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-02-23",
+          "posts": 0,
+          "views": 39,
+          "reach": 0,
+          "watchTime": 29,
+          "newFollowers": 7
+        },
+        {
+          "date": "2026-02-24",
+          "posts": 0,
+          "views": 20,
+          "reach": 0,
+          "watchTime": 26,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-02-25",
+          "posts": 1,
+          "views": 353,
+          "reach": 0,
+          "watchTime": 55,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-02-26",
+          "posts": 0,
+          "views": 437,
+          "reach": 0,
+          "watchTime": 172,
+          "newFollowers": 4
+        },
+        {
+          "date": "2026-02-27",
+          "posts": 0,
+          "views": 359,
+          "reach": 0,
+          "watchTime": 116,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-02-28",
+          "posts": 0,
+          "views": 202,
+          "reach": 0,
+          "watchTime": 61,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-01",
+          "posts": 0,
+          "views": 24,
+          "reach": 0,
+          "watchTime": 31,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-02",
+          "posts": 0,
+          "views": 19,
+          "reach": 0,
+          "watchTime": 16,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-03-03",
+          "posts": 1,
+          "views": 14,
+          "reach": 0,
+          "watchTime": 19,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-03-04",
+          "posts": 0,
+          "views": 16,
+          "reach": 0,
+          "watchTime": 24,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-05",
+          "posts": 0,
+          "views": 30,
+          "reach": 0,
+          "watchTime": 28,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-06",
+          "posts": 0,
+          "views": 238,
+          "reach": 0,
+          "watchTime": 40,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-03-07",
+          "posts": 0,
+          "views": 52,
+          "reach": 0,
+          "watchTime": 122,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-03-08",
+          "posts": 0,
+          "views": 32,
+          "reach": 0,
+          "watchTime": 27,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-03-09",
+          "posts": 0,
+          "views": 21,
+          "reach": 0,
+          "watchTime": 12,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-03-10",
+          "posts": 0,
+          "views": 28,
+          "reach": 0,
+          "watchTime": 24,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-03-11",
+          "posts": 1,
+          "views": 957,
+          "reach": 0,
+          "watchTime": 139,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-03-12",
+          "posts": 1,
+          "views": 370,
+          "reach": 0,
+          "watchTime": 49,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-13",
+          "posts": 1,
+          "views": 56,
+          "reach": 0,
+          "watchTime": 36,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-03-14",
+          "posts": 0,
+          "views": 880,
+          "reach": 0,
+          "watchTime": 314,
+          "newFollowers": 8
+        },
+        {
+          "date": "2026-03-15",
+          "posts": 0,
+          "views": 65,
+          "reach": 0,
+          "watchTime": 49,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-16",
+          "posts": 1,
+          "views": 611,
+          "reach": 0,
+          "watchTime": 76,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-17",
+          "posts": 1,
+          "views": 272,
+          "reach": 0,
+          "watchTime": 56,
+          "newFollowers": 6
+        },
+        {
+          "date": "2026-03-18",
+          "posts": 0,
+          "views": 168,
+          "reach": 0,
+          "watchTime": 73,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-03-19",
+          "posts": 1,
+          "views": 503,
+          "reach": 0,
+          "watchTime": 83,
+          "newFollowers": 4
+        },
+        {
+          "date": "2026-03-20",
+          "posts": 2,
+          "views": 54,
+          "reach": 0,
+          "watchTime": 36,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-03-21",
+          "posts": 0,
+          "views": 556,
+          "reach": 0,
+          "watchTime": 135,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-03-22",
+          "posts": 0,
+          "views": 888,
+          "reach": 0,
+          "watchTime": 211,
+          "newFollowers": 3
+        },
+        {
+          "date": "2026-03-23",
+          "posts": 1,
+          "views": 182,
+          "reach": 0,
+          "watchTime": 34,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-24",
+          "posts": 2,
+          "views": 122,
+          "reach": 0,
+          "watchTime": 43,
+          "newFollowers": 4
+        },
+        {
+          "date": "2026-03-25",
+          "posts": 1,
+          "views": 1734,
+          "reach": 0,
+          "watchTime": 603,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-26",
+          "posts": 1,
+          "views": 994,
+          "reach": 0,
+          "watchTime": 223,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-03-27",
+          "posts": 1,
+          "views": 2071,
+          "reach": 0,
+          "watchTime": 833,
+          "newFollowers": 16
+        },
+        {
+          "date": "2026-03-28",
+          "posts": 0,
+          "views": 1919,
+          "reach": 0,
+          "watchTime": 892,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-03-29",
+          "posts": 0,
+          "views": 57,
+          "reach": 0,
+          "watchTime": 29,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-03-30",
+          "posts": 0,
+          "views": 31,
+          "reach": 0,
+          "watchTime": 25,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-03-31",
+          "posts": 0,
+          "views": 35,
+          "reach": 0,
+          "watchTime": 16,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-04-01",
+          "posts": 1,
+          "views": 1482,
+          "reach": 0,
+          "watchTime": 130,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-04-02",
+          "posts": 1,
+          "views": 409,
+          "reach": 0,
+          "watchTime": 47,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-04-03",
+          "posts": 1,
+          "views": 416,
+          "reach": 0,
+          "watchTime": 63,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-04-04",
+          "posts": 0,
+          "views": 48,
+          "reach": 0,
+          "watchTime": 21,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-04-05",
+          "posts": 0,
+          "views": 27,
+          "reach": 0,
+          "watchTime": 19,
+          "newFollowers": 0
+        },
+        {
+          "date": "2026-04-06",
+          "posts": 0,
+          "views": 78,
+          "reach": 0,
+          "watchTime": 40,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-04-07",
+          "posts": 1,
+          "views": 41,
+          "reach": 0,
+          "watchTime": 34,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-04-08",
+          "posts": 2,
+          "views": 2554,
+          "reach": 0,
+          "watchTime": 196,
+          "newFollowers": 11
+        },
+        {
+          "date": "2026-04-09",
+          "posts": 1,
+          "views": 777,
+          "reach": 0,
+          "watchTime": 532,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-04-10",
+          "posts": 1,
+          "views": 1247,
+          "reach": 0,
+          "watchTime": 397,
+          "newFollowers": 5
+        },
+        {
+          "date": "2026-04-11",
+          "posts": 0,
+          "views": 1383,
+          "reach": 0,
+          "watchTime": 383,
+          "newFollowers": 9
+        },
+        {
+          "date": "2026-04-12",
+          "posts": 0,
+          "views": 127,
+          "reach": 0,
+          "watchTime": 45,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-04-13",
+          "posts": 0,
+          "views": 109,
+          "reach": 0,
+          "watchTime": 61,
+          "newFollowers": 27
+        },
+        {
+          "date": "2026-04-14",
+          "posts": 4,
+          "views": 2574,
+          "reach": 0,
+          "watchTime": 983,
+          "newFollowers": 14
+        },
+        {
+          "date": "2026-04-15",
+          "posts": 0,
+          "views": 447,
+          "reach": 0,
+          "watchTime": 379,
+          "newFollowers": 1
+        },
+        {
+          "date": "2026-04-16",
+          "posts": 0,
+          "views": 798,
+          "reach": 0,
+          "watchTime": 814,
+          "newFollowers": 2
+        },
+        {
+          "date": "2026-04-17",
+          "posts": 0,
+          "views": 3550,
+          "reach": 0,
+          "watchTime": 1101,
+          "newFollowers": 4
+        },
+        {
+          "date": "2026-04-18",
+          "posts": 0,
+          "views": 2117,
+          "reach": 0,
+          "watchTime": 1065,
+          "newFollowers": 4
+        },
+        {
+          "date": "2026-04-19",
+          "posts": 0,
+          "views": 1907,
+          "reach": 0,
+          "watchTime": 993,
+          "newFollowers": 8
+        },
+        {
+          "date": "2026-04-20",
+          "posts": 0,
+          "views": 2786,
+          "reach": 0,
+          "watchTime": 1388,
+          "newFollowers": 27
+        },
+        {
+          "date": "2026-04-21",
+          "posts": 0,
+          "views": 2793,
+          "reach": 0,
+          "watchTime": 1439,
+          "newFollowers": 27
+        },
+        {
+          "date": "2026-04-22",
+          "posts": 4,
+          "views": 8795,
+          "reach": 0,
+          "watchTime": 4849,
+          "newFollowers": 28
+        },
+        {
+          "date": "2026-04-23",
+          "posts": 0,
+          "views": 13399,
+          "reach": 0,
+          "watchTime": 8506,
+          "newFollowers": 19
+        },
+        {
+          "date": "2026-04-24",
+          "posts": 0,
+          "views": 10094,
+          "reach": 0,
+          "watchTime": 6912,
+          "newFollowers": 23
+        },
+        {
+          "date": "2026-04-25",
+          "posts": 0,
+          "views": 656,
+          "reach": 0,
+          "watchTime": 199,
+          "newFollowers": 38
+        },
+        {
+          "date": "2026-04-26",
+          "posts": 0,
+          "views": 251,
+          "reach": 0,
+          "watchTime": 218,
+          "newFollowers": 24
+        },
+        {
+          "date": "2026-04-27",
+          "posts": 0,
+          "views": 288,
+          "reach": 0,
+          "watchTime": 180,
+          "newFollowers": 24
+        },
+        {
+          "date": "2026-04-28",
+          "posts": 1,
+          "views": 801,
+          "reach": 0,
+          "watchTime": 315,
+          "newFollowers": 36
+        },
+        {
+          "date": "2026-04-29",
+          "posts": 0,
+          "views": 258,
+          "reach": 0,
+          "watchTime": 174,
+          "newFollowers": 13
+        },
+        {
+          "date": "2026-04-30",
+          "posts": 2,
+          "views": 477,
+          "reach": 0,
+          "watchTime": 344,
+          "newFollowers": 10
+        },
         {
           "posts": 0,
           "date": "2026-05-01",
@@ -1729,7 +4913,7 @@
         },
         {
           "date": "2026-06-25",
-          "posts": 1,
+          "posts": 4,
           "views": 735,
           "reach": 0,
           "watchTime": 206,
@@ -1737,7 +4921,7 @@
         },
         {
           "date": "2026-06-26",
-          "posts": 1,
+          "posts": 0,
           "views": 296,
           "reach": 0,
           "watchTime": 100,
@@ -1745,7 +4929,7 @@
         },
         {
           "date": "2026-06-27",
-          "posts": 1,
+          "posts": 0,
           "views": 1036,
           "reach": 0,
           "watchTime": 223,
@@ -1753,7 +4937,7 @@
         },
         {
           "date": "2026-06-28",
-          "posts": 1,
+          "posts": 0,
           "views": 438,
           "reach": 0,
           "watchTime": 144,
@@ -1761,7 +4945,7 @@
         },
         {
           "date": "2026-06-29",
-          "posts": 0,
+          "posts": 3,
           "views": 611,
           "reach": 0,
           "watchTime": 218,
@@ -1785,7 +4969,7 @@
         },
         {
           "date": "2026-07-02",
-          "posts": 1,
+          "posts": 0,
           "views": 0,
           "reach": 0,
           "watchTime": 0,
@@ -1814,13 +4998,22 @@
           "reach": 0,
           "watchTime": 0,
           "newFollowers": 0
+        },
+        {
+          "date": "2026-07-06",
+          "posts": 0,
+          "views": 0,
+          "reach": 0,
+          "watchTime": 0,
+          "newFollowers": 0
         }
       ],
-      "reachUnavailableReason": "YouTube Unique viewers is not available in the current Supermetrics YouTube connector.",
+      "reachUnavailableReason": "YouTube reach/unique viewers is not available in the current Supermetrics connector.",
       "hasFollowers": true,
-      "totalFollowers": 1130,
+      "totalFollowers": 1150,
       "followersAsOf": "2026-07-06",
-      "followersNote": "New followers are subscribers gained minus subscribers lost; total subscribers is rounded by Supermetrics."
+      "followersNote": "Total subscribers is rounded by the YouTube connector; new followers use gained subscribers minus lost subscribers.",
+      "hasNewFollowers": true
     },
     "tiktok": {
       "platform": "tiktok",
@@ -1830,628 +5023,703 @@
       "hasWatchTime": false,
       "hasReach": true,
       "hasTopContent": true,
-      "asOf": "2026-07-05",
+      "asOf": "2026-07-06",
       "daily": [
         {
-          "posts": 0,
-          "date": "2026-05-04",
-          "views": 29,
-          "reach": 3948,
-          "profileViews": 2,
-          "watchTime": 0
-        },
-        {
-          "posts": 0,
-          "date": "2026-05-05",
-          "views": 61,
-          "reach": 0,
-          "profileViews": 2,
-          "watchTime": 0
-        },
-        {
-          "posts": 0,
-          "date": "2026-05-06",
-          "views": 1279,
-          "reach": 0,
-          "profileViews": 9,
-          "watchTime": 0
-        },
-        {
-          "posts": 0,
-          "date": "2026-05-07",
-          "views": 1654,
-          "reach": 0,
-          "profileViews": 14,
-          "watchTime": 0
-        },
-        {
-          "posts": 0,
           "date": "2026-05-08",
+          "posts": 1,
           "views": 1166,
-          "reach": 0,
-          "profileViews": 5,
+          "reach": 6295,
           "watchTime": 0,
-          "newFollowers": 3
+          "profileViews": 5,
+          "totalFollowers": 2040,
+          "newFollowers": 142
         },
         {
-          "posts": 0,
           "date": "2026-05-09",
+          "posts": 0,
           "views": 195,
           "reach": 0,
-          "profileViews": 8,
           "watchTime": 0,
+          "profileViews": 8,
+          "totalFollowers": 2040,
           "newFollowers": 6
         },
         {
-          "posts": 0,
           "date": "2026-05-10",
+          "posts": 0,
           "views": 235,
           "reach": 0,
+          "watchTime": 0,
           "profileViews": 6,
-          "watchTime": 0,
+          "totalFollowers": 2040,
           "newFollowers": 2
         },
         {
-          "posts": 0,
           "date": "2026-05-11",
+          "posts": 0,
           "views": 708,
-          "reach": 6067,
-          "profileViews": 5,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 5,
+          "totalFollowers": 2040,
           "newFollowers": 2
         },
         {
-          "posts": 0,
           "date": "2026-05-12",
+          "posts": 1,
           "views": 3228,
           "reach": 0,
-          "profileViews": 27,
           "watchTime": 0,
+          "profileViews": 27,
+          "totalFollowers": 2040,
           "newFollowers": 7
         },
         {
-          "posts": 0,
           "date": "2026-05-13",
+          "posts": 1,
           "views": 1094,
           "reach": 0,
-          "profileViews": 9,
           "watchTime": 0,
+          "profileViews": 9,
+          "totalFollowers": 2040,
           "newFollowers": 5
         },
         {
-          "posts": 0,
           "date": "2026-05-14",
+          "posts": 0,
           "views": 676,
           "reach": 0,
-          "profileViews": 4,
           "watchTime": 0,
+          "profileViews": 4,
+          "totalFollowers": 2040,
           "newFollowers": 2
         },
         {
-          "posts": 0,
           "date": "2026-05-15",
+          "posts": 0,
           "views": 837,
-          "reach": 0,
-          "profileViews": 2,
+          "reach": 6705,
           "watchTime": 0,
+          "profileViews": 2,
+          "totalFollowers": 2040,
           "newFollowers": 1
         },
         {
-          "posts": 0,
           "date": "2026-05-16",
+          "posts": 0,
           "views": 288,
           "reach": 0,
-          "profileViews": 0,
           "watchTime": 0,
+          "profileViews": 0,
+          "totalFollowers": 2040,
           "newFollowers": 5
         },
         {
-          "posts": 0,
           "date": "2026-05-17",
+          "posts": 0,
           "views": 322,
           "reach": 0,
-          "profileViews": 1,
           "watchTime": 0,
+          "profileViews": 1,
+          "totalFollowers": 2040,
           "newFollowers": 2
         },
         {
-          "posts": 0,
           "date": "2026-05-18",
+          "posts": 0,
           "views": 1246,
-          "reach": 914,
-          "profileViews": 9,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 9,
+          "totalFollowers": 2040,
           "newFollowers": 4
         },
         {
           "date": "2026-05-19",
           "posts": 1,
           "views": 619,
-          "reach": 537,
-          "profileViews": 10,
-          "followers": 185,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 10,
+          "totalFollowers": 2040,
           "newFollowers": 7
         },
         {
           "date": "2026-05-20",
           "posts": 1,
           "views": 1049,
-          "reach": 966,
-          "profileViews": 13,
-          "followers": 189,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 13,
+          "totalFollowers": 2040,
           "newFollowers": 4
         },
         {
           "date": "2026-05-21",
           "posts": 1,
           "views": 3360,
-          "reach": 3239,
-          "profileViews": 23,
-          "followers": 201,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 23,
+          "totalFollowers": 2040,
           "newFollowers": 12
         },
         {
           "date": "2026-05-22",
           "posts": 0,
           "views": 11288,
-          "reach": 11118,
-          "profileViews": 36,
-          "followers": 227,
+          "reach": 108629,
           "watchTime": 0,
+          "profileViews": 36,
+          "totalFollowers": 2040,
           "newFollowers": 26
         },
         {
           "date": "2026-05-23",
           "posts": 1,
           "views": 4021,
-          "reach": 3945,
-          "profileViews": 11,
-          "followers": 235,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 11,
+          "totalFollowers": 2040,
           "newFollowers": 8
         },
         {
           "date": "2026-05-24",
           "posts": 1,
           "views": 5468,
-          "reach": 5371,
-          "profileViews": 20,
-          "followers": 240,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 20,
+          "totalFollowers": 2040,
           "newFollowers": 5
         },
         {
           "date": "2026-05-25",
           "posts": 1,
           "views": 9027,
-          "reach": 8882,
-          "profileViews": 34,
-          "followers": 261,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 34,
+          "totalFollowers": 2040,
           "newFollowers": 21
         },
         {
           "date": "2026-05-26",
           "posts": 1,
           "views": 13682,
-          "reach": 13522,
-          "profileViews": 52,
-          "followers": 290,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 52,
+          "totalFollowers": 2040,
           "newFollowers": 29
         },
         {
           "date": "2026-05-27",
           "posts": 1,
           "views": 23520,
-          "reach": 23378,
-          "profileViews": 93,
-          "followers": 345,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 93,
+          "totalFollowers": 2040,
           "newFollowers": 55
         },
         {
           "date": "2026-05-28",
-          "posts": 8,
+          "posts": 1,
           "views": 42715,
-          "reach": 42413,
-          "profileViews": 235,
-          "followers": 491,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 235,
+          "totalFollowers": 2040,
           "newFollowers": 146
         },
         {
           "date": "2026-05-29",
-          "posts": 23,
+          "posts": 1,
           "views": 27591,
-          "reach": 27403,
-          "profileViews": 100,
-          "followers": 552,
+          "reach": 126107,
           "watchTime": 0,
+          "profileViews": 100,
+          "totalFollowers": 2040,
           "newFollowers": 61
         },
         {
           "date": "2026-05-30",
-          "posts": 12,
+          "posts": 1,
           "views": 17284,
-          "reach": 16649,
-          "profileViews": 67,
-          "followers": 586,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 67,
+          "totalFollowers": 2040,
           "newFollowers": 34
         },
         {
           "date": "2026-05-31",
-          "posts": 7,
+          "posts": 1,
           "views": 27883,
-          "reach": 26952,
-          "profileViews": 94,
-          "followers": 648,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 94,
+          "totalFollowers": 2040,
           "newFollowers": 62
         },
         {
           "date": "2026-06-01",
-          "posts": 5,
+          "posts": 1,
           "views": 16485,
-          "reach": 15807,
-          "profileViews": 70,
-          "followers": 699,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 70,
+          "totalFollowers": 2040,
           "newFollowers": 51
         },
         {
           "date": "2026-06-02",
-          "posts": 5,
+          "posts": 1,
           "views": 14587,
-          "reach": 13850,
-          "profileViews": 44,
-          "followers": 729,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 44,
+          "totalFollowers": 2040,
           "newFollowers": 30
         },
         {
           "date": "2026-06-03",
           "posts": 1,
           "views": 9775,
-          "reach": 9132,
-          "profileViews": 42,
-          "followers": 757,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 42,
+          "totalFollowers": 2040,
           "newFollowers": 28
         },
         {
           "date": "2026-06-04",
           "posts": 0,
           "views": 16547,
-          "reach": 16314,
-          "profileViews": 50,
-          "followers": 783,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 50,
+          "totalFollowers": 2040,
           "newFollowers": 26
         },
         {
           "date": "2026-06-05",
           "posts": 1,
           "views": 16430,
-          "reach": 16058,
-          "profileViews": 67,
-          "followers": 820,
+          "reach": 95319,
           "watchTime": 0,
+          "profileViews": 67,
+          "totalFollowers": 2040,
           "newFollowers": 37
         },
         {
           "date": "2026-06-06",
           "posts": 0,
           "views": 12569,
-          "reach": 12254,
-          "profileViews": 53,
-          "followers": 847,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 53,
+          "totalFollowers": 2040,
           "newFollowers": 27
         },
         {
           "date": "2026-06-07",
           "posts": 1,
           "views": 9897,
-          "reach": 9551,
-          "profileViews": 62,
-          "followers": 876,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 62,
+          "totalFollowers": 2040,
           "newFollowers": 29
         },
         {
           "date": "2026-06-08",
           "posts": 0,
           "views": 6729,
-          "reach": 6316,
-          "profileViews": 23,
-          "followers": 892,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 23,
+          "totalFollowers": 2040,
           "newFollowers": 16
         },
         {
           "date": "2026-06-09",
           "posts": 1,
           "views": 14425,
-          "reach": 14031,
-          "profileViews": 56,
-          "followers": 930,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 56,
+          "totalFollowers": 2040,
           "newFollowers": 38
         },
         {
           "date": "2026-06-10",
           "posts": 1,
           "views": 12588,
-          "reach": 12047,
-          "profileViews": 46,
-          "followers": 963,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 46,
+          "totalFollowers": 2040,
           "newFollowers": 33
         },
         {
           "date": "2026-06-11",
-          "posts": 3,
+          "posts": 1,
           "views": 25359,
-          "reach": 25062,
-          "profileViews": 93,
-          "followers": 1020,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 93,
+          "totalFollowers": 2040,
           "newFollowers": 57
         },
         {
           "date": "2026-06-12",
-          "posts": 5,
+          "posts": 1,
           "views": 35838,
-          "reach": 35532,
-          "profileViews": 103,
-          "followers": 1073,
+          "reach": 157970,
           "watchTime": 0,
+          "profileViews": 103,
+          "totalFollowers": 2040,
           "newFollowers": 53
         },
         {
           "date": "2026-06-13",
-          "posts": 2,
+          "posts": 1,
           "views": 12486,
-          "reach": 12198,
-          "profileViews": 40,
-          "followers": 1094,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 40,
+          "totalFollowers": 2040,
           "newFollowers": 21
         },
         {
           "date": "2026-06-14",
-          "posts": 2,
+          "posts": 1,
           "views": 20779,
-          "reach": 20463,
-          "profileViews": 56,
-          "followers": 1128,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 56,
+          "totalFollowers": 2040,
           "newFollowers": 34
         },
         {
           "date": "2026-06-15",
-          "posts": 5,
+          "posts": 1,
           "views": 21194,
-          "reach": 20665,
-          "profileViews": 83,
-          "followers": 1184,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 83,
+          "totalFollowers": 2040,
           "newFollowers": 56
         },
         {
           "date": "2026-06-16",
-          "posts": 5,
+          "posts": 1,
           "views": 15111,
-          "reach": 14787,
-          "profileViews": 53,
-          "followers": 1212,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 53,
+          "totalFollowers": 2040,
           "newFollowers": 28
         },
         {
           "date": "2026-06-17",
-          "posts": 5,
+          "posts": 1,
           "views": 28381,
-          "reach": 28059,
-          "profileViews": 78,
-          "followers": 1261,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 78,
+          "totalFollowers": 2040,
           "newFollowers": 49
         },
         {
           "date": "2026-06-18",
-          "posts": 7,
+          "posts": 1,
           "views": 26836,
-          "reach": 26266,
-          "profileViews": 81,
-          "followers": 1318,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 81,
+          "totalFollowers": 2040,
           "newFollowers": 57
         },
         {
           "date": "2026-06-19",
-          "posts": 6,
+          "posts": 1,
           "views": 23032,
-          "reach": 22221,
-          "profileViews": 71,
-          "followers": 1372,
+          "reach": 142955,
           "watchTime": 0,
+          "profileViews": 71,
+          "totalFollowers": 2040,
           "newFollowers": 54
         },
         {
           "date": "2026-06-20",
-          "posts": 6,
+          "posts": 1,
           "views": 23510,
-          "reach": 22640,
-          "profileViews": 92,
-          "followers": 1437,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 92,
+          "totalFollowers": 2040,
           "newFollowers": 65
         },
         {
           "date": "2026-06-21",
-          "posts": 3,
+          "posts": 1,
           "views": 22003,
-          "reach": 20849,
-          "profileViews": 74,
-          "followers": 1488,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 74,
+          "totalFollowers": 2040,
           "newFollowers": 51
         },
         {
           "date": "2026-06-22",
-          "posts": 4,
+          "posts": 1,
           "views": 15398,
-          "reach": 14805,
-          "profileViews": 52,
-          "followers": 1526,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 52,
+          "totalFollowers": 2040,
           "newFollowers": 38
         },
         {
           "date": "2026-06-23",
-          "posts": 6,
+          "posts": 1,
           "views": 18394,
-          "reach": 17371,
-          "profileViews": 68,
-          "followers": 1568,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 68,
+          "totalFollowers": 2040,
           "newFollowers": 42
         },
         {
           "date": "2026-06-24",
-          "posts": 5,
+          "posts": 1,
           "views": 24917,
-          "reach": 24490,
-          "profileViews": 89,
-          "followers": 1603,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 89,
+          "totalFollowers": 2040,
           "newFollowers": 35
         },
         {
           "date": "2026-06-25",
-          "posts": 6,
+          "posts": 1,
           "views": 21325,
-          "reach": 20579,
-          "profileViews": 66,
-          "followers": 1621,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 66,
+          "totalFollowers": 2040,
           "newFollowers": 18
         },
         {
           "date": "2026-06-26",
-          "posts": 5,
+          "posts": 1,
           "views": 41185,
-          "reach": 40275,
-          "profileViews": 120,
-          "followers": 1698,
+          "reach": 176694,
           "watchTime": 0,
+          "profileViews": 120,
+          "totalFollowers": 2040,
           "newFollowers": 77
         },
         {
           "date": "2026-06-27",
-          "posts": 6,
+          "posts": 1,
           "views": 38527,
-          "reach": 37940,
-          "profileViews": 116,
-          "followers": 1753,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 116,
+          "totalFollowers": 2040,
           "newFollowers": 55
         },
         {
           "date": "2026-06-28",
-          "posts": 6,
+          "posts": 1,
           "views": 23290,
-          "reach": 22568,
-          "profileViews": 84,
-          "followers": 1790,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 84,
+          "totalFollowers": 2040,
           "newFollowers": 37
         },
         {
           "date": "2026-06-29",
-          "posts": 5,
+          "posts": 1,
           "views": 34125,
-          "reach": 33291,
-          "profileViews": 112,
-          "followers": 1858,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 112,
+          "totalFollowers": 2040,
           "newFollowers": 68
         },
         {
           "date": "2026-06-30",
-          "posts": 6,
+          "posts": 1,
           "views": 11657,
-          "reach": 11064,
-          "profileViews": 39,
-          "followers": 1878,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 39,
+          "totalFollowers": 2040,
           "newFollowers": 20
         },
         {
           "date": "2026-07-01",
-          "posts": 5,
+          "posts": 1,
           "views": 14500,
-          "reach": 14179,
-          "profileViews": 52,
-          "followers": 1915,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 52,
+          "totalFollowers": 2040,
           "newFollowers": 37
         },
         {
           "date": "2026-07-02",
-          "posts": 6,
+          "posts": 1,
           "views": 18005,
-          "reach": 17377,
-          "profileViews": 78,
-          "followers": 0,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 78,
+          "totalFollowers": 2040,
           "newFollowers": 56
         },
         {
           "date": "2026-07-03",
-          "posts": 6,
+          "posts": 1,
           "views": 9667,
-          "reach": 9314,
-          "profileViews": 38,
-          "followers": 0,
+          "reach": 21386,
           "watchTime": 0,
+          "profileViews": 38,
+          "totalFollowers": 2040,
           "newFollowers": 22
         },
         {
           "date": "2026-07-04",
           "posts": 1,
           "views": 7167,
-          "reach": 6791,
-          "profileViews": 24,
-          "followers": 0,
+          "reach": 0,
           "watchTime": 0,
+          "profileViews": 24,
+          "totalFollowers": 2040,
           "newFollowers": 17
         },
         {
           "date": "2026-07-05",
           "posts": 1,
+          "views": 5976,
+          "reach": 0,
+          "watchTime": 0,
+          "profileViews": 19,
+          "totalFollowers": 2040,
+          "newFollowers": 15
+        },
+        {
+          "date": "2026-07-06",
+          "posts": 1,
           "views": 0,
           "reach": 0,
+          "watchTime": 0,
           "profileViews": 0,
-          "followers": 0,
-          "watchTime": 0
+          "totalFollowers": 2040,
+          "newFollowers": 0
         }
       ],
       "reachLabel": "Reached audience",
-      "postProvider": "supermetrics-tiktok-organic-videos-filtered",
+      "postProvider": "supermetrics",
       "hasFollowers": true,
-      "totalFollowers": 2032,
+      "totalFollowers": 2040,
       "followersAsOf": "2026-07-06",
-      "followersNote": "New followers are derived from day-to-day TikTok Organic follower-count changes; July 5 growth is unavailable because the running field returned zero."
+      "followersNote": "TikTok profile metrics are available from May 8, 2026 in the current Supermetrics connector.",
+      "historyStart": "2026-05-08",
+      "hasNewFollowers": true
     }
   },
   "content": [
+    {
+      "platform": "instagram",
+      "date": "2026-01-06",
+      "url": "https://www.instagram.com/reel/DTLOMP6icRv/",
+      "title": "When your dog reacts to everything, Allergy Balance helps soothe irritation.",
+      "type": "Short Form Clip",
+      "views": 17463,
+      "reach": 15866,
+      "eng": 28
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-01-19",
+      "url": "https://www.facebook.com/674626722402999_1427510145397945",
+      "title": "Calm confidence is the foundation of balance.",
+      "type": "Short Form Clip",
+      "views": 58780,
+      "reach": null,
+      "eng": 857
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-01-30",
+      "url": "https://www.instagram.com/reel/DUJBgwSEwpl/",
+      "title": "You are gone for minutes, but your dog feels it deeply.",
+      "type": "Short Form Clip",
+      "views": 15585,
+      "reach": 15058,
+      "eng": 19
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-02-09",
+      "url": "https://www.facebook.com/674626722402999_1439785757503717",
+      "title": "Some energy creates motion. Other energy creates understanding.",
+      "type": "Short Form Clip",
+      "views": 136258,
+      "reach": null,
+      "eng": 3959
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-03-26",
+      "url": "https://www.youtube.com/watch?v=gxJE2SRcQ04",
+      "title": "These Foods Can HELP or HARM Your Dog Digestion!",
+      "type": "Short Form Clip",
+      "views": 3038,
+      "watchTime": 1349,
+      "reach": null,
+      "eng": 97
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-04-08",
+      "url": "https://www.youtube.com/watch?v=lZu6A0kg2es",
+      "title": "Does your dog have any of these signs of allergies?",
+      "type": "Short Form Clip",
+      "views": 2569,
+      "watchTime": 145,
+      "reach": null,
+      "eng": 27
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-04-14",
+      "url": "https://www.instagram.com/reel/DXHclY4jb6y/",
+      "title": "Are you making this mistake?",
+      "type": "Short Form Clip",
+      "views": 29438,
+      "reach": 26227,
+      "eng": 30
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-04-14",
+      "url": "https://www.youtube.com/watch?v=Rd4qOerZFHs",
+      "title": "Nature?s Armor | Cesar Millan?s Natural Protection for Dogs Against Fleas, Ticks, and Insects",
+      "type": "Video",
+      "views": 3684,
+      "watchTime": 4081,
+      "reach": null,
+      "eng": 108
+    },
     {
       "platform": "facebook",
       "date": "2026-05-01",
@@ -3985,17 +7253,6 @@
     },
     {
       "platform": "youtube",
-      "date": "2026-06-27",
-      "url": "https://www.youtube.com/watch?v=DGNuvoDyQ34",
-      "title": "Why would a dog slow down?",
-      "type": "Short Form Clip",
-      "views": 897,
-      "watchTime": 179,
-      "reach": null,
-      "eng": 29
-    },
-    {
-      "platform": "youtube",
       "date": "2026-06-25",
       "url": "https://www.youtube.com/watch?v=HykvhGw1ccQ",
       "title": "Ever look at your dog and think something just feels off?",
@@ -4004,28 +7261,6 @@
       "watchTime": 182,
       "reach": null,
       "eng": 33
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-28",
-      "url": "https://www.youtube.com/watch?v=dNEw9lhX4MA",
-      "title": "What causes tear stains in dogs?",
-      "type": "Short Form Clip",
-      "views": 740,
-      "watchTime": 183,
-      "reach": null,
-      "eng": 24
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-26",
-      "url": "https://www.youtube.com/watch?v=Zxckh4AcxEQ",
-      "title": "What does healthy skin look like?",
-      "type": "Short Form Clip",
-      "views": 267,
-      "watchTime": 27,
-      "reach": null,
-      "eng": 10
     },
     {
       "platform": "facebook",
@@ -4069,6 +7304,17 @@
       "sourceId": "7655053656722558238"
     },
     {
+      "platform": "youtube",
+      "date": "2026-06-26",
+      "url": "https://www.youtube.com/watch?v=Zxckh4AcxEQ",
+      "title": "What does healthy skin look like?",
+      "type": "Short Form Clip",
+      "views": 267,
+      "watchTime": 27,
+      "reach": null,
+      "eng": 10
+    },
+    {
       "platform": "facebook",
       "date": "2026-06-27",
       "url": "https://www.facebook.com/674626722402999_122179661126906904",
@@ -4087,6 +7333,17 @@
       "views": 7110,
       "reach": 6591,
       "eng": 403
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-27",
+      "url": "https://www.youtube.com/watch?v=DGNuvoDyQ34",
+      "title": "Why would a dog slow down?",
+      "type": "Short Form Clip",
+      "views": 897,
+      "watchTime": 179,
+      "reach": null,
+      "eng": 29
     },
     {
       "platform": "facebook",
@@ -4131,6 +7388,17 @@
       "sourceId": "7655822148065430814"
     },
     {
+      "platform": "youtube",
+      "date": "2026-06-28",
+      "url": "https://www.youtube.com/watch?v=dNEw9lhX4MA",
+      "title": "What causes tear stains in dogs?",
+      "type": "Short Form Clip",
+      "views": 740,
+      "watchTime": 183,
+      "reach": null,
+      "eng": 24
+    },
+    {
       "platform": "tiktok",
       "date": "2026-06-29",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7656865433806507294",
@@ -4151,28 +7419,6 @@
       "reach": 958,
       "eng": 0,
       "sourceId": "7656865581311741215"
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-07-02",
-      "url": "https://www.youtube.com/watch?v=u_xMBbUWhCk",
-      "title": "What does \"happy-go-lucky\" look like in a dog?",
-      "type": "Short Form Clip",
-      "views": 1049,
-      "watchTime": 204,
-      "reach": null,
-      "eng": 32
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-06-30",
-      "url": "https://www.youtube.com/watch?v=iCBrktyNzZU",
-      "title": "Some dogs come with no brakes, just a gas pedal.",
-      "type": "Short Form Clip",
-      "views": 1003,
-      "watchTime": 182,
-      "reach": null,
-      "eng": 20
     },
     {
       "platform": "facebook",
@@ -4204,6 +7450,17 @@
       "reach": 1017,
       "eng": 0,
       "sourceId": "7657256113506684191"
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-06-30",
+      "url": "https://www.youtube.com/watch?v=iCBrktyNzZU",
+      "title": "Some dogs come with no brakes, just a gas pedal.",
+      "type": "Short Form Clip",
+      "views": 1003,
+      "watchTime": 182,
+      "reach": null,
+      "eng": 20
     },
     {
       "platform": "instagram",
@@ -4355,6 +7612,17 @@
       "reach": 191,
       "eng": 1,
       "sourceId": "7658040601652350239"
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-07-02",
+      "url": "https://www.youtube.com/watch?v=u_xMBbUWhCk",
+      "title": "What does \"happy-go-lucky\" look like in a dog?",
+      "type": "Short Form Clip",
+      "views": 1049,
+      "watchTime": 204,
+      "reach": null,
+      "eng": 32
     },
     {
       "platform": "facebook",
