@@ -278,31 +278,37 @@ function viewsContextSummary() {
 }
 
 function renderMetricNotes() {
-  const priorText = (metricKey) => hasPriorChartData(metricKey) ? 'Dotted line = prior period.' : 'Dotted line = prior period when available.';
+  const setPriorLegend = (selector, metricKey, cardSelector) => {
+    const el = $(selector);
+    if (!el) return;
+    const show = hasPriorChartData(metricKey) && !$(cardSelector)?.hidden;
+    el.innerHTML = show ? '<span class="legend-dash" aria-hidden="true"></span><span>Prior period</span>' : '';
+    el.hidden = !show;
+  };
   const join = (...parts) => parts.filter(Boolean).join(' ');
+  setPriorLegend('#viewsLegend', 'views', '#viewsCard');
+  setPriorLegend('#postsLegend', 'posts', '#postsCard');
+  setPriorLegend('#reachLegend', 'reach', '#reachCard');
+  setPriorLegend('#watchLegend', 'watchTime', '#watchCard');
   const viewsNote = $('#viewsNote');
   if (viewsNote) {
-    const note = join(viewsContextSummary(), priorText('views'));
+    const note = viewsContextSummary();
     viewsNote.textContent = note;
     viewsNote.hidden = !note || $('#viewsCard')?.hidden;
   }
   const postsNote = $('#postsNote');
   if (postsNote) {
-    const note = priorText('posts');
-    postsNote.textContent = note;
-    postsNote.hidden = !note || $('#postsCard')?.hidden;
+    postsNote.textContent = '';
+    postsNote.hidden = true;
   }
   const reachNote = $('#reachNote');
   if (!reachNote) return;
-  const note = join(reachContextSummary(), priorText('reach'));
+  const note = reachContextSummary();
   reachNote.textContent = note;
   reachNote.hidden = !note || $('#reachCard')?.hidden;
   const watchNote = $('#watchNote');
   if (watchNote) {
-    const watchText = join(
-      platforms().includes('youtube') ? 'YouTube ad-driven watch time is checked separately in analysis.' : '',
-      priorText('watchTime')
-    );
+    const watchText = join(platforms().includes('youtube') ? 'YouTube ad-driven watch time is checked separately in analysis.' : '');
     watchNote.textContent = watchText;
     watchNote.hidden = !watchText || $('#watchCard')?.hidden;
   }
@@ -755,7 +761,7 @@ function render() {
   $('#postsTitle').textContent = `Posts per ${noun}`;
   $('#viewsTitle').textContent = `Views per ${noun}`;
   $('#reachTitle').textContent = `Reach per ${noun}`;
-  $('#watchSub').textContent = `hours per ${noun}`;
+  $('#watchTitle').textContent = `YouTube watch time per ${noun}`;
   renderPlatformFilter();
   renderChartVisibility();
   renderMetricNotes();
