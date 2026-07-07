@@ -25,7 +25,7 @@ const state = {
   selectedPlatforms: [],   // one or more toggled platform chips
   totalOnly: true,         // true = charts show only the combined Total line
   contentSort: 'views',
-  data: null, periods: [], series: {}, curTotals: {}, priorTotals: {}
+  data: null, periods: [], priorPeriods: [], series: {}, priorSeries: {}, curTotals: {}, priorTotals: {}
 };
 const charts = {};
 let offline = false;
@@ -90,6 +90,7 @@ async function getJson(url) {
 // ---------------------------------------------------------------------------
 function iso(ms) { return new Date(ms).toISOString().slice(0, 10); }
 function midnightUTC(ms) { const d = new Date(ms); return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()); }
+function shiftIsoDate(isoDate, days) { return iso(Date.parse(isoDate + 'T00:00:00Z') + days * DAY); }
 function weekLabel(s, e) {
   return s.getUTCMonth() === e.getUTCMonth()
     ? `${MONTHS[s.getUTCMonth()]} ${s.getUTCDate()}–${e.getUTCDate()}`
@@ -174,12 +175,12 @@ function applyBusinessSuiteOverride(platform, totals, startIso, endIso) {
   return next;
 }
 
-function applyBusinessSuiteSeriesOverrides() {
-  for (const p of Object.keys(state.series || {})) {
-    const override = businessSuiteOverride(p, state.rangeStart, state.rangeEnd);
+function applyBusinessSuiteSeriesOverrides(seriesMap = state.series, startIso = state.rangeStart, endIso = state.rangeEnd) {
+  for (const p of Object.keys(seriesMap || {})) {
+    const override = businessSuiteOverride(p, startIso, endIso);
     if (!override || override.seriesDistribute === false) continue;
     for (const [metric, target] of Object.entries(override.values || {})) {
-      const rows = state.series[p] || [];
+      const rows = seriesMap[p] || [];
       if (!rows.length || !Number.isFinite(Number(target))) continue;
       const current = rows.reduce((sum, row) => sum + (row[metric] || 0), 0);
       if (current > 0) {
@@ -277,20 +278,31 @@ function viewsContextSummary() {
 }
 
 function renderMetricNotes() {
+  const priorText = (metricKey) => hasPriorChartData(metricKey) ? 'Dotted line = prior period.' : 'Dotted line = prior period when available.';
+  const join = (...parts) => parts.filter(Boolean).join(' ');
   const viewsNote = $('#viewsNote');
   if (viewsNote) {
-    const note = viewsContextSummary();
+    const note = join(viewsContextSummary(), priorText('views'));
     viewsNote.textContent = note;
     viewsNote.hidden = !note || $('#viewsCard')?.hidden;
   }
+  const postsNote = $('#postsNote');
+  if (postsNote) {
+    const note = priorText('posts');
+    postsNote.textContent = note;
+    postsNote.hidden = !note || $('#postsCard')?.hidden;
+  }
   const reachNote = $('#reachNote');
   if (!reachNote) return;
-  const note = reachContextSummary();
+  const note = join(reachContextSummary(), priorText('reach'));
   reachNote.textContent = note;
   reachNote.hidden = !note || $('#reachCard')?.hidden;
   const watchNote = $('#watchNote');
   if (watchNote) {
-    const watchText = platforms().includes('youtube') ? 'YouTube ad-driven watch time is checked separately in analysis.' : '';
+    const watchText = join(
+      platforms().includes('youtube') ? 'YouTube ad-driven watch time is checked separately in analysis.' : '',
+      priorText('watchTime')
+    );
     watchNote.textContent = watchText;
     watchNote.hidden = !watchText || $('#watchCard')?.hidden;
   }
@@ -389,7 +401,7 @@ function setupCalendar() {
 // Sum a platform's daily rows into the period buckets.
 function bucket(daily, periods) {
   if (!periods.length) return [];
-  const out = periods.map((p) => ({ ...p, posts: 0, views: 0, reach: 0, watchTime: null, paidViews: 0, adViews: 0, adWatchTime: 0, newFollowers: null, totalFollowers: null }));
+  const out = periods.map((p) => ({ ...p, _rowCount: 0, posts: 0, views: 0, reach: 0, watchTime: null, paidViews: 0, adViews: 0, adWatchTime: 0, newFollowers: null, totalFollowers: null }));
   // periods are contiguous & sorted; walk with a moving cursor for efficiency.
   let pi = 0;
   for (const row of daily) {
@@ -398,6 +410,7 @@ function bucket(daily, periods) {
     if (pi >= periods.length) break;
     if (row.date < periods[pi].start) continue; // gap between periods
     const b = out[pi];
+    b._rowCount += 1;
     b.posts += row.posts || 0;
     b.views += row.views || 0;
     b.reach += row.reach || 0;
@@ -691,14 +704,24 @@ function buildSeries() {
   // Chart buckets within the range.
   state.periods = periodsInRange(chartGran, startMs, endMs);
   if (!state.periods.length && startMs <= endMs) state.periods = periodsInRange('daily', startMs, endMs);
-  state.series = {};
-  for (const p of platforms()) state.series[p] = bucket(state.data.metrics[p].daily, state.periods);
-  applyBusinessSuiteSeriesOverrides();
   // Headline totals: exact picked dates, vs the equal-length window right before.
   const lenDays = Math.round((endMs - startMs) / DAY) + 1;
   const priorEndMs = startMs - DAY;
   const priorStartMs = priorEndMs - (lenDays - 1) * DAY;
   state.priorRange = { start: iso(priorStartMs), end: iso(priorEndMs) };
+  state.priorPeriods = state.periods.map((p) => ({
+    ...p,
+    start: shiftIsoDate(p.start, -lenDays),
+    end: shiftIsoDate(p.end, -lenDays)
+  }));
+  state.series = {};
+  state.priorSeries = {};
+  for (const p of platforms()) {
+    state.series[p] = bucket(state.data.metrics[p].daily, state.periods);
+    state.priorSeries[p] = bucket(state.data.metrics[p].daily, state.priorPeriods);
+  }
+  applyBusinessSuiteSeriesOverrides(state.series, state.rangeStart, state.rangeEnd);
+  applyBusinessSuiteSeriesOverrides(state.priorSeries, state.priorRange.start, state.priorRange.end);
   state.curTotals = {}; state.priorTotals = {};
   for (const p of allPlatforms()) {
     state.curTotals[p] = applyBusinessSuiteOverride(p, sumRange(state.data.metrics[p], state.rangeStart, state.rangeEnd), state.rangeStart, state.rangeEnd);
@@ -1535,9 +1558,16 @@ function renderKpis() {
 function isolateLegend(e, item, legend) {
   const ch = legend.chart;
   const idx = item.datasetIndex;
+  const clicked = ch.data.datasets[idx] || {};
+  const key = clicked.pairKey || clicked.label;
   const visible = ch.data.datasets.map((_, i) => ch.isDatasetVisible(i));
-  const onlyThis = visible[idx] && visible.filter(Boolean).length === 1;
-  ch.data.datasets.forEach((_, i) => ch.setDatasetVisibility(i, onlyThis ? true : i === idx));
+  const pairIndexes = ch.data.datasets
+    .map((d, i) => ((d.pairKey || d.label) === key ? i : null))
+    .filter((i) => i != null);
+  const onlyPair = pairIndexes.length
+    && pairIndexes.every((i) => visible[i])
+    && visible.filter(Boolean).length === pairIndexes.length;
+  ch.data.datasets.forEach((d, i) => ch.setDatasetVisibility(i, onlyPair ? true : (d.pairKey || d.label) === key));
   ch.update();
 }
 
@@ -1563,6 +1593,7 @@ function lineChart(canvasId, labels, datasets) {
   const opts = JSON.parse(JSON.stringify(COMMON_OPTS));
   opts.plugins.tooltip = COMMON_OPTS.plugins.tooltip;
   opts.plugins.legend.onClick = isolateLegend; // function lost in JSON clone
+  opts.plugins.legend.labels.filter = (item, data) => !data.datasets[item.datasetIndex]?.isPrior;
   opts.scales.y.ticks.callback = COMMON_OPTS.scales.y.ticks.callback;
   // Click a point → spike insight for that line + period.
   opts.onClick = (evt, _els, chart) => {
@@ -1573,27 +1604,88 @@ function lineChart(canvasId, labels, datasets) {
   charts[canvasId] = new Chart($('#' + canvasId), { type: 'line', data: { labels, datasets }, options: opts });
 }
 
+function hexToRgba(hex, alpha) {
+  const raw = String(hex || '').replace('#', '');
+  if (raw.length !== 6) return `rgba(75, 80, 67, ${alpha})`;
+  const n = parseInt(raw, 16);
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
+}
+
+function hasValues(values) {
+  return values.some((v) => v != null);
+}
+
+function priorValuesForPlatform(p, metricKey, scale = 1) {
+  return (state.priorSeries[p] || []).map((row) => {
+    if (!row || !row._rowCount) return null;
+    const value = row[metricKey];
+    return value == null ? null : Math.round((value || 0) / scale);
+  });
+}
+
+function priorTotalValues(ps, metricKey, scale = 1) {
+  return state.periods.map((_, i) => {
+    let saw = false;
+    let sum = 0;
+    for (const p of ps) {
+      const row = state.priorSeries[p]?.[i];
+      if (!row || !row._rowCount) continue;
+      const value = row[metricKey];
+      if (value == null) continue;
+      saw = true;
+      sum += value || 0;
+    }
+    return saw ? Math.round(sum / scale) : null;
+  });
+}
+
+function hasPriorChartData(metricKey) {
+  const ps = platforms().filter((p) => supports(p, metricKey));
+  if (!ps.length) return false;
+  const scale = metricKey === 'watchTime' ? 60 : 1;
+  const values = state.totalOnly
+    ? priorTotalValues(ps, metricKey, scale)
+    : ps.flatMap((p) => priorValuesForPlatform(p, metricKey, scale));
+  return hasValues(values);
+}
+
+function currentDataset(label, data, color, width = 2, fill = false) {
+  return {
+    label, data, pairKey: label,
+    borderColor: color, backgroundColor: color + '22',
+    tension: 0.3, pointRadius: 2, borderWidth: width, fill
+  };
+}
+
+function priorDataset(label, data, color) {
+  if (!hasValues(data)) return null;
+  return {
+    label: `${label} prior`, data, pairKey: label, isPrior: true,
+    borderColor: hexToRgba(color, 0.38), backgroundColor: 'transparent',
+    borderDash: [5, 5], tension: 0.3, pointRadius: 0, pointHoverRadius: 3,
+    borderWidth: 2, fill: false
+  };
+}
+
 function renderTrend(canvasId, metricKey) {
   const labels = state.periods.map((p) => p.label);
   const ps = platforms().filter((p) => supports(p, metricKey));
   // "Total" focus: draw only the combined line, nothing else.
   if (state.totalOnly) {
-    lineChart(canvasId, labels, [{
-      label: 'Total',
-      data: labels.map((_, i) => ps.reduce((s, p) => s + (state.series[p][i]?.[metricKey] || 0), 0)),
-      borderColor: TOTAL_COLOR, backgroundColor: TOTAL_COLOR + '22',
-      tension: 0.3, pointRadius: 2, borderWidth: 3, fill: false
-    }]);
+    const data = labels.map((_, i) => ps.reduce((s, p) => s + (state.series[p][i]?.[metricKey] || 0), 0));
+    const datasets = [currentDataset('Total', data, TOTAL_COLOR, 3, false)];
+    const priorLine = priorDataset('Total', priorTotalValues(ps, metricKey), TOTAL_COLOR);
+    if (priorLine) datasets.push(priorLine);
+    lineChart(canvasId, labels, datasets);
     return;
   }
   const datasets = [];
-  datasets.push(...ps.map((p) => ({
-    label: nameOf(p),
-    data: state.series[p].map((x) => x[metricKey] || 0),
-    borderColor: PLATFORM_COLORS[p],
-    backgroundColor: PLATFORM_COLORS[p] + '22',
-    tension: 0.3, pointRadius: 2, borderWidth: 2, fill: false
-  })));
+  for (const p of ps) {
+    const label = nameOf(p);
+    datasets.push(currentDataset(label, state.series[p].map((x) => x[metricKey] || 0), PLATFORM_COLORS[p], 2, false));
+    const priorLine = priorDataset(label, priorValuesForPlatform(p, metricKey), PLATFORM_COLORS[p]);
+    if (priorLine) datasets.push(priorLine);
+  }
   lineChart(canvasId, labels, datasets);
 }
 
@@ -1601,11 +1693,10 @@ function renderWatchChart() {
   const labels = state.periods.map((p) => p.label);
   const yt = platforms().includes('youtube') ? state.series.youtube : null;
   const data = yt ? yt.map((x) => Math.round((x.watchTime || 0) / 60)) : [];
-  lineChart('watchChart', labels, [{
-    label: 'Watch time (hrs)', data,
-    borderColor: PLATFORM_COLORS.youtube, backgroundColor: PLATFORM_COLORS.youtube + '22',
-    tension: 0.3, pointRadius: 2, borderWidth: 3, fill: true
-  }]);
+  const datasets = [currentDataset('Watch time (hrs)', data, PLATFORM_COLORS.youtube, 3, true)];
+  const priorLine = priorDataset('Watch time (hrs)', priorValuesForPlatform('youtube', 'watchTime', 60), PLATFORM_COLORS.youtube);
+  if (priorLine) datasets.push(priorLine);
+  lineChart('watchChart', labels, datasets);
 }
 
 function renderTable() {
@@ -1649,7 +1740,9 @@ function platformByName(name) { return allPlatforms().find((p) => nameOf(p) === 
 function onPointClick(canvasId, datasetIndex, periodIndex, chart) {
   const metricKey = CHART_METRIC[canvasId];
   if (!metricKey) return;
-  const label = (chart.data.datasets[datasetIndex] || {}).label || '';
+  const dataset = chart.data.datasets[datasetIndex] || {};
+  if (dataset.isPrior) return;
+  const label = dataset.label || '';
   let platform;
   if (canvasId === 'watchChart') platform = 'youtube';
   else if (label === 'Total') platform = 'total';
