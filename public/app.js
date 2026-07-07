@@ -8,6 +8,7 @@ const PLATFORM_COLORS = {
 };
 const TOTAL_COLOR = '#222322'; // Better Dog brand near-black
 const DISPLAY_NAMES = { instagram: 'Instagram', facebook: 'Facebook', tiktok: 'TikTok', youtube: 'YouTube' };
+const PLATFORM_ORDER = ['instagram', 'facebook', 'youtube', 'tiktok'];
 const PAID_CONTEXT = {
   instagram: 'Instagram totals include organic plus paid/promoted distribution. Supermetrics does not expose an organic-only Instagram split here.',
   facebook: 'Facebook views use organic media views. Reach uses Page media views unique, not an organic-only reach split.',
@@ -27,8 +28,8 @@ const state = {
   priorRange: null,                 // equal-length window immediately before the range
   calMonth: null, calPick: null, calHover: null, // calendar popover state
   insightKey: null,        // which chart point's insight is currently open (for click-to-toggle)
-  selectedPlatforms: null, // null = all; otherwise a single focused platform [p]
-  totalOnly: false,        // true = charts show only the combined Total line
+  selectedPlatforms: [],   // one or more toggled platform chips
+  totalOnly: true,         // true = charts show only the combined Total line
   contentSort: 'views',
   data: null, periods: [], series: {}, curTotals: {}, priorTotals: {}
 };
@@ -450,6 +451,10 @@ function allPlatforms() {
   return Object.keys(state.data.metrics).filter((p) => {
     const m = state.data.metrics[p];
     return m && m.daily && m.daily.length;
+  }).sort((a, b) => {
+    const ai = PLATFORM_ORDER.indexOf(a);
+    const bi = PLATFORM_ORDER.indexOf(b);
+    return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
   });
 }
 // Platforms currently shown (respects the platform filter; never empty).
@@ -457,8 +462,8 @@ function platforms() {
   const all = allPlatforms();
   const active = all.filter((p) => !isPendingPlatform(p));
   if (state.totalOnly) return active.length ? active : all;
-  if (!state.selectedPlatforms) return active.length ? active : all;
-  const sel = all.filter((p) => state.selectedPlatforms.includes(p));
+  const selected = Array.isArray(state.selectedPlatforms) ? state.selectedPlatforms : [];
+  const sel = all.filter((p) => selected.includes(p));
   return sel.length ? sel : (active.length ? active : all);
 }
 function focusedPlatform() {
@@ -1312,32 +1317,41 @@ function renderContent() {
   `).join('');
 }
 
-// The platform selector is a single-choice "focus": show All lines, one
-// platform's line, or only the combined Total line.
+// The platform selector is a toggle group: Total is a single combined line;
+// platform chips can be selected together.
 function currentFocus() {
   if (state.totalOnly) return 'total';
   if (state.selectedPlatforms && state.selectedPlatforms.length === 1) return state.selectedPlatforms[0];
-  return 'all';
+  return 'selected';
 }
 function setFocus(v) {
-  if (v === 'total') { state.selectedPlatforms = null; state.totalOnly = true; }
-  else if (v === 'all') { state.selectedPlatforms = null; state.totalOnly = false; }
-  else { state.selectedPlatforms = [v]; state.totalOnly = false; }
+  if (v === 'total') {
+    state.selectedPlatforms = [];
+    state.totalOnly = true;
+    render();
+    return;
+  }
+  const selected = new Set(Array.isArray(state.selectedPlatforms) ? state.selectedPlatforms : []);
+  if (state.totalOnly) selected.clear();
+  if (selected.has(v)) selected.delete(v);
+  else selected.add(v);
+  const all = allPlatforms().filter((p) => !isPendingPlatform(p));
+  state.selectedPlatforms = all.filter((p) => selected.has(p));
+  state.totalOnly = state.selectedPlatforms.length === 0;
   render();
 }
 
 function renderPlatformFilter() {
   const all = allPlatforms();
   if (all.length <= 1) { $('#platformFilter').innerHTML = ''; return; }
-  const focus = currentFocus();
-  const chip = (val, label, dot) =>
-    `<button type="button" class="pf-chip ${focus === val ? 'on' : ''}" data-focus="${val}">` +
+  const selected = new Set(Array.isArray(state.selectedPlatforms) ? state.selectedPlatforms : []);
+  const chip = (val, label, dot, on) =>
+    `<button type="button" class="pf-chip ${on ? 'on' : ''}" data-focus="${val}" aria-pressed="${on ? 'true' : 'false'}">` +
     (dot != null ? `<span class="pf-dot" style="background:${dot}"></span>` : '') + `${label}</button>`;
-  // [ All + Total ] [ ...each platform... ] [ Total only ] - pending platforms stay visible but are excluded from totals.
+  // [ Total ] [ Instagram ] [ Facebook ] [ YouTube ] [ TikTok ]
   $('#platformFilter').innerHTML = '<span class="pf-label">Show:</span>' +
-    chip('all', 'All + Total', null) +
-    all.map((p) => chip(p, nameOf(p), PLATFORM_COLORS[p] || '#888')).join('') +
-    chip('total', 'Total only', null);
+    chip('total', 'Total', null, state.totalOnly) +
+    all.map((p) => chip(p, nameOf(p), PLATFORM_COLORS[p] || '#888', !state.totalOnly && selected.has(p))).join('');
   for (const p of all) {
     if (!isCarriedForward(p)) continue;
     const btn = $(`#platformFilter [data-focus="${p}"]`);
@@ -1346,23 +1360,19 @@ function renderPlatformFilter() {
 }
 
 function renderChartVisibility() {
-  const focus = focusedPlatform();
   $('#viewsCard').hidden = false;
   $('#postsCard').hidden = false;
   $('#reachCard').hidden = !platforms().some((p) => supports(p, 'reach'));
-  $('#watchCard').hidden = focus !== 'youtube';
+  $('#watchCard').hidden = state.totalOnly || !platforms().includes('youtube');
 }
 
 function renderKpis() {
   const noun = GRAN_NOUN[state.granularity];
 
   // Heading reflects the actual scope (all platforms, or the filtered subset).
-  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
   const showing = platforms();
   const pendingOnly = showing.length > 0 && showing.every(isPendingPlatform);
-  const scope = currentFocus() === 'all' || state.totalOnly
-    ? 'Active Platforms'
-    : showing.map(cap).join(', ');
+  const scope = state.totalOnly ? 'Total' : showing.map(nameOf).join(', ');
   $('#kpisTitle').innerHTML = `Metric Totals <span class="scope">(${scope})</span>`;
 
   $('#kpis').innerHTML = visibleMetrics().map((m) => {
@@ -1439,15 +1449,6 @@ function renderTrend(canvasId, metricKey) {
     return;
   }
   const datasets = [];
-  if (!focusedPlatform() && ['views', 'posts', 'reach'].includes(metricKey) && ps.length > 1) {
-    datasets.push({
-      label: 'Total',
-      data: labels.map((_, i) => ps.reduce((s, p) => s + (state.series[p][i]?.[metricKey] || 0), 0)),
-      borderColor: TOTAL_COLOR,
-      backgroundColor: TOTAL_COLOR + '22',
-      tension: 0.3, pointRadius: 2, borderWidth: 3, fill: false
-    });
-  }
   datasets.push(...ps.map((p) => ({
     label: nameOf(p),
     data: state.series[p].map((x) => x[metricKey] || 0),
