@@ -985,14 +985,6 @@ function itemViews(items) {
   return items.reduce((sum, item) => sum + (item.views || 0), 0);
 }
 
-function itemEngagement(items) {
-  return items.reduce((sum, item) => sum + (item.eng || 0), 0);
-}
-
-function avgViews(items) {
-  return items.length ? itemViews(items) / items.length : 0;
-}
-
 function classifyCreativeTheme(item) {
   const text = `${item?.title || ''} ${item?.type || ''}`.toLowerCase();
   const has = (terms) => terms.some((term) => text.includes(term));
@@ -1081,9 +1073,9 @@ function paidImpactItems(ps, start, end) {
     const paid = sumField(current, 'paidViews');
     const priorPaid = sumField(prior, 'paidViews');
     if (paid > 0) {
-      items.push(`Facebook paid media ran in this range: ${fmtFull(paid)} paid views (${analysisDeltaWords(deltaPct(paid, priorPaid))} vs prior). The Views KPI still uses organic media views.`);
+      items.push(`Facebook paid traffic changed from ${fmtFull(priorPaid)} to ${fmtFull(paid)} paid views. The dashboard Views line still uses organic media views.`);
     } else if (priorPaid > 0) {
-      items.push(`Facebook paid media was off in this range: 0 paid views after ${fmtFull(priorPaid)} in the prior range. Facebook Views are organic for this period.`);
+      items.push(`Facebook paid traffic dropped from ${fmtFull(priorPaid)} paid views to 0. Facebook Views are organic here, so that change is context rather than the KPI source.`);
     }
   }
 
@@ -1096,31 +1088,26 @@ function paidImpactItems(ps, start, end) {
     if (adViews > 0) {
       const active = activeDateSummary(current, 'adViews');
       const zeroSummary = zeroDateSummary(current, 'adViews');
-      let line = `YouTube ads ran${active ? ` on ${active}` : ''}: ${fmtFull(adViews)} ad views`;
+      let line = `YouTube advertising traffic changed from ${fmtFull(priorAdViews)} to ${fmtFull(adViews)} ad views`;
+      if (active) line += `, active on ${active}`;
       if (adWatch > 0) line += ` and ${fmtFull(adWatch)} watched minutes`;
       if (zeroSummary) line += `; ad traffic was ${zeroSummary}`;
       line += '. Dashboard YouTube views are kept separate from ADVERTISING traffic.';
       items.push(line);
     } else if (priorAdViews > 0) {
-      items.push(`YouTube ads were off in this range: 0 ad views after ${fmtFull(priorAdViews)} ad views in the prior range.`);
+      items.push(`YouTube advertising traffic dropped from ${fmtFull(priorAdViews)} ad views to 0.`);
     }
   }
 
   return items;
 }
 
-function paidImpactHtml(ps, start, end) {
-  const items = paidImpactItems(ps, start, end);
-  if (!items.length) return '';
-  return analysisRowHtml('Paid impact', analysisListHtml(items), 'paid-impact-row');
-}
-
 function analysisRowHtml(label, bodyHtml, cls = '') {
   return `<div class="analysis-row${cls ? ` ${cls}` : ''}"><div class="analysis-label">${escapeHtml(label)}</div><div class="analysis-copy">${bodyHtml}</div></div>`;
 }
 
-function analysisListHtml(items) {
-  return `<ul class="analysis-mini-list">${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+function analysisBulletListHtml(items) {
+  return `<ul class="analysis-mini-list">${items.map((item) => `<li>${item}</li>`).join('')}</ul>`;
 }
 
 function signedFull(n) {
@@ -1134,21 +1121,22 @@ function movementWord(n) {
   return `was ${analysisDeltaWords(n)}`;
 }
 
-function totalMovementHtml(rows, totalViews, priorViews, info) {
+function totalMovementHtml(rows, totalViews, priorViews, info, ps, start, end) {
   const dTotal = deltaPct(totalViews, priorViews);
+  const bullets = [];
   if (dTotal == null) {
     const leader = rows
       .filter((row) => row.views != null)
       .sort((a, b) => (b.views || 0) - (a.views || 0))[0];
-    let copy = `No prior comparison is available for this ${info.word}.`;
-    if (leader && totalViews) copy += ` Current views are led by <strong>${nameOf(leader.p)}</strong> at ${Math.round((leader.views || 0) / totalViews * 100)}% of total views.`;
-    return analysisRowHtml('Quick read', copy);
+    bullets.push(`No prior comparison is available for this ${info.word}.`);
+    if (leader && totalViews) bullets.push(`Current views are led by <strong>${nameOf(leader.p)}</strong>.`);
+    return analysisRowHtml('Performance drivers', analysisBulletListHtml(bullets));
   }
   const movers = rows
     .filter((row) => row.views != null && row.priorViews != null && row.viewChange)
     .sort((a, b) => Math.abs(b.viewChange) - Math.abs(a.viewChange));
 
-  let copy = `Total views ${movementWord(dTotal)} vs the previous ${info.word}.`;
+  bullets.push(`Total views ${movementWord(dTotal)} vs the previous ${info.word}.`);
   if (movers.length) {
     const primary = dTotal != null && dTotal < 0
       ? movers.filter((row) => row.viewChange < 0).sort((a, b) => a.viewChange - b.viewChange)[0] || movers[0]
@@ -1156,48 +1144,33 @@ function totalMovementHtml(rows, totalViews, priorViews, info) {
     const offset = dTotal != null && dTotal < 0
       ? movers.filter((row) => row.viewChange > 0).sort((a, b) => b.viewChange - a.viewChange)[0]
       : movers.filter((row) => row.viewChange < 0).sort((a, b) => a.viewChange - b.viewChange)[0];
-    copy += ` Main driver: <strong>${nameOf(primary.p)}</strong> ${signedFull(primary.viewChange)} views (${analysisDeltaWords(primary.dViews)}).`;
-    if (offset) copy += ` Offset: <strong>${nameOf(offset.p)}</strong> ${signedFull(offset.viewChange)} views.`;
+    bullets.push(`Largest platform shift: <strong>${nameOf(primary.p)}</strong> ${signedFull(primary.viewChange)} views (${analysisDeltaWords(primary.dViews)}).`);
+    if (offset) bullets.push(`Offset: <strong>${nameOf(offset.p)}</strong> ${signedFull(offset.viewChange)} views.`);
   }
-  return analysisRowHtml('Why it moved', copy);
+  for (const item of paidImpactItems(ps, start, end)) bullets.push(`<strong>Paid/ad context:</strong> ${escapeHtml(item)}`);
+  return analysisRowHtml('Performance drivers', analysisBulletListHtml(bullets));
 }
 
 function platformMovementHtml(p, cur, prv, start, end, info) {
-  const lines = [];
+  const bullets = [];
   if (supports(p, 'views')) {
     const views = cur.views || 0;
     const priorViews = prv.views || 0;
-    lines.push(`Views ${movementWord(deltaPct(views, priorViews))} (${signedFull(views - priorViews)} views) vs the previous ${info.word}.`);
-  }
-  if (supports(p, 'reach')) {
-    const reach = cur.reach || 0;
-    const priorReach = prv.reach || 0;
-    lines.push(`Reach ${movementWord(deltaPct(reach, priorReach))} (${signedFull(reach - priorReach)}).`);
-  }
-  if (supports(p, 'newFollowers') && cur.newFollowers != null) {
-    const priorFollowers = prv.newFollowers || 0;
-    lines.push(`New followers ${movementWord(deltaPct(cur.newFollowers, priorFollowers))} (${signedFull(cur.newFollowers - priorFollowers)}).`);
+    bullets.push(`Views ${movementWord(deltaPct(views, priorViews))} vs the previous ${info.word}.`);
   }
   const posts = cur.posts || 0;
   const priorPosts = prv.posts || 0;
-  lines.push(`${fmtFull(posts)} posts vs ${fmtFull(priorPosts)} prior.`);
-  const top = contentIn(p, start, end).slice().sort((a, b) => (b.views || 0) - (a.views || 0))[0];
-  if (top) lines.push(`Top post: ${contentInlineLink(top)}.`);
-  return analysisRowHtml('Why it moved', lines.join(' '));
-}
-
-function platformReadHtml(rows) {
-  const active = rows.filter((row) => (row.views || 0) > 0 || (row.reach || 0) > 0 || (row.watch || 0) > 0 || (row.newFollowers || 0) > 0);
-  if (!active.length) return '';
-  const items = active.map((row) => {
-    const bits = [];
-    if (row.views != null) bits.push(`${fmt(row.views)} views ${analysisDeltaHtml(row.dViews)}`);
-    if (row.reach != null) bits.push(`${fmt(row.reach)} reach ${analysisDeltaHtml(row.dReach)}`);
-    if (row.watch != null) bits.push(`${fmt(row.watch / 60)} hrs watch ${analysisDeltaHtml(row.dWatch)}`);
-    if (row.newFollowers != null) bits.push(`${fmtFull(row.newFollowers)} new followers ${analysisDeltaHtml(row.dFollowers)}`);
-    return `<li><span class="ov-dot" style="background:${PLATFORM_COLORS[row.p] || '#888'}"></span><strong>${nameOf(row.p)}</strong>: ${bits.join(', ')}.</li>`;
-  }).join('');
-  return analysisRowHtml('Platform read', `<ul class="analysis-platform-list">${items}</ul>`);
+  if (posts || priorPosts) {
+    bullets.push(`Posting volume: ${fmtFull(posts)} posts vs ${fmtFull(priorPosts)} in the prior ${info.word}.`);
+    if (posts && priorPosts && supports(p, 'views')) {
+      const avg = (cur.views || 0) / posts;
+      const priorAvg = (prv.views || 0) / priorPosts;
+      const avgDelta = deltaPct(avg, priorAvg);
+      if (avgDelta != null && Math.abs(avgDelta) >= 0.15) bullets.push(`Average views per post ${analysisDeltaWords(avgDelta)}.`);
+    }
+  }
+  for (const item of paidImpactItems([p], start, end)) bullets.push(`<strong>Paid/ad context:</strong> ${escapeHtml(item)}`);
+  return analysisRowHtml('Performance drivers', analysisBulletListHtml(bullets));
 }
 
 function themeTakeaway(theme) {
@@ -1287,39 +1260,35 @@ function platformReadRows(ps, start, end) {
 
 function creativeAnalysisHtml(ps, start, end, info) {
   const items = (state.data.content || []).filter((c) => ps.includes(c.platform) && c.date >= start && c.date <= end);
-  const prevItems = (state.data.content || []).filter((c) => ps.includes(c.platform) && c.date >= state.priorRange.start && c.date <= state.priorRange.end);
   if (!items.length) {
-    return analysisRowHtml('Content read', 'No posted content is available in this range, so there is not enough creative data to analyze.');
+    return analysisRowHtml('Creative signal', 'No posted content is available in this range, so there is not enough creative data to analyze.');
   }
 
-  const curAvg = avgViews(items);
-  const prevAvg = avgViews(prevItems);
-  const avgDelta = deltaPct(curAvg, prevAvg);
   const themes = creativeThemeStats(items);
   const winner = bestTheme(themes, items.length);
   const weak = weakTheme(themes, winner);
-  const engRate = itemViews(items) ? itemEngagement(items) / itemViews(items) : null;
   const winnerExamples = themeExamples(items, winner, 2);
   const weakExamples = themeExamples(items, weak, 1, true);
   const actions = creativeActionsFor(winner, weak, ps);
 
   const rows = [];
-  let creativeRead = `${items.length} posts averaged <strong>${fmt(Math.round(curAvg))}</strong> views each ${analysisDeltaHtml(avgDelta)}.`;
-  if (engRate != null) creativeRead += ` Posted-content engagement rate was <strong>${(engRate * 100).toFixed(1)}%</strong>.`;
-  rows.push(analysisRowHtml('Content read', creativeRead));
+  if (items.length < 4) {
+    rows.push(analysisRowHtml('Signal quality', `Only ${items.length} post${items.length === 1 ? '' : 's'} had post-level data in this range, so treat the pattern as directional.`));
+  }
 
   if (winner) {
-    let body = `${escapeHtml(winner.label)} is strongest in this ${info.word}: <strong>${fmt(Math.round(winner.avg))}</strong> avg views across ${winner.n} ${winner.n === 1 ? 'post' : 'posts'}, accounting for ${Math.round(winner.share * 100)}% of posted-content views. ${escapeHtml(themeTakeaway(winner))}`;
-    if (winnerExamples.length) body += `<div class="analysis-examples">Examples: ${inlineExamples(winnerExamples)}.</div>`;
-    rows.push(analysisRowHtml('Working', body));
+    let body = `<p>${escapeHtml(winner.label)} is the strongest pattern in this ${info.word}. It had the best average post performance in the selected range.</p>`;
+    body += `<p>${escapeHtml(themeTakeaway(winner))}</p>`;
+    if (winnerExamples.length) body += `<div class="analysis-examples"><strong>Examples:</strong> ${inlineExamples(winnerExamples)}.</div>`;
+    rows.push(analysisRowHtml('What is working', body));
   }
   if (weak) {
-    let body = `${escapeHtml(weak.label)} is trailing at <strong>${fmt(Math.round(weak.avg))}</strong> avg views. Rebuild the opening before using that lane as the lead.`;
-    if (weakExamples.length) body += `<div class="analysis-examples">Example to rebuild: ${inlineExamples(weakExamples)}.</div>`;
-    rows.push(analysisRowHtml('Needs work', body));
+    let body = `<p>${escapeHtml(weak.label)} is trailing the strongest pattern. Rebuild the opening before using that lane as the lead.</p>`;
+    if (weakExamples.length) body += `<div class="analysis-examples"><strong>Example to rebuild:</strong> ${inlineExamples(weakExamples)}.</div>`;
+    rows.push(analysisRowHtml('What to improve', body));
   }
 
-  rows.push(analysisRowHtml('Do next', `<ol class="ov-action-list">${actions.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ol>`, 'analysis-actions-row'));
+  rows.push(analysisRowHtml('Data-backed next moves', `<p class="analysis-basis">Based on the winning/trailing creative patterns above and the content sources available.</p><ol class="ov-action-list">${actions.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ol>`, 'analysis-actions-row'));
   return rows.join('');
 }
 
@@ -1327,25 +1296,10 @@ function renderCreativeFocusedOverview(p, start, end, info) {
   const el = $('#overview');
   const cur = state.curTotals[p] || {};
   const prv = state.priorTotals[p] || {};
-  const views = supports(p, 'views') ? (cur.views || 0) : null;
-  const reach = supports(p, 'reach') ? (cur.reach || 0) : null;
-  const watch = supports(p, 'watchTime') ? (cur.watchTime || 0) : null;
-  const newFollowers = supports(p, 'newFollowers') ? cur.newFollowers : null;
-  const totalFollowers = supports(p, 'totalFollowers') ? cur.totalFollowers : null;
 
   $('#overviewTitle').textContent = `Content analysis - ${nameOf(p)} - ${info.title}`;
-  let html = `<p class="ov-headline"><strong>${nameOf(p)}</strong>: `;
-  const parts = [];
-  if (views != null) parts.push(`${fmt(views)} views ${analysisDeltaHtml(deltaPct(views, prv.views || 0))}`);
-  if (reach != null) parts.push(`${fmt(reach)} reach ${analysisDeltaHtml(deltaPct(reach, prv.reach || 0))}`);
-  if (watch != null) parts.push(`${fmt(watch / 60)} hrs watch time ${analysisDeltaHtml(deltaPct(watch, prv.watchTime || 0))}`);
-  if (newFollowers != null) parts.push(`${fmtFull(newFollowers)} new followers ${analysisDeltaHtml(deltaPct(newFollowers, prv.newFollowers || 0))}`);
-  if (totalFollowers != null) parts.push(`${fmtFull(totalFollowers)} total followers`);
-  html += `${parts.join(', ')} vs the previous ${info.word}.</p>`;
-
-  html += '<div class="analysis-quick">';
+  let html = '<div class="analysis-quick">';
   html += platformMovementHtml(p, cur, prv, start, end, info);
-  html += paidImpactHtml([p], start, end);
   html += creativeAnalysisHtml([p], start, end, info);
   html += '</div>';
   el.innerHTML = html;
@@ -1366,19 +1320,11 @@ function renderCreativeOverview() {
   $('#overviewTitle').textContent = `Content analysis - ${info.title}`;
   const totalViews = totalAt('views', 0);
   const priorViews = totalAt('views', 1);
-  const totalReach = totalAt('reach', 0);
-  const priorReach = totalAt('reach', 1);
   const rows = platformReadRows(ps, start, end);
 
-  let html = `<p class="ov-headline"><strong>${fmt(totalViews)}</strong> total views ${analysisDeltaHtml(deltaPct(totalViews, priorViews))}`;
-  if (totalReach != null) html += `, <strong>${fmt(totalReach)}</strong> total reach ${analysisDeltaHtml(deltaPct(totalReach, priorReach))}`;
-  html += ` vs the previous ${info.word}.</p>`;
-
-  html += '<div class="analysis-quick">';
-  html += totalMovementHtml(rows, totalViews, priorViews, info);
-  html += paidImpactHtml(ps, start, end);
+  let html = '<div class="analysis-quick">';
+  html += totalMovementHtml(rows, totalViews, priorViews, info, ps, start, end);
   html += creativeAnalysisHtml(ps, start, end, info);
-  html += platformReadHtml(rows);
   html += '</div>';
 
   el.innerHTML = html;
