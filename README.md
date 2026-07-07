@@ -48,8 +48,8 @@ you're on mock data.
 ## Going live with real data
 
 For the current private client-hosting plan, use
-**[docs/PRIVATE_HOSTING.md](docs/PRIVATE_HOSTING.md)**. It covers Cloudflare Pages,
-Cloudflare Access, the `betterdog-dashboard.agmagency.com` subdomain, and the
+**[docs/VERCEL_HOSTING.md](docs/VERCEL_HOSTING.md)**. It covers Vercel hosting,
+the `betterdog-dashboard.agmagency.com` subdomain, passcode protection, and the
 GoHighLevel portal link.
 
 1. `copy .env.example .env`
