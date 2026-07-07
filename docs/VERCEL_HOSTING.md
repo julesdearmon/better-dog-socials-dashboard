@@ -22,7 +22,7 @@ The passcode is not stored in the repo. Add it in Vercel as an environment varia
 1. Vercel -> Add New -> Project.
 2. Import `julesdearmon/better-dog-socials-dashboard`.
 3. Framework preset: Other.
-4. Build command: `npm run build`.
+4. Build command: `pnpm run build`.
 5. Output directory: `public`.
 6. Environment variable: `DASHBOARD_PASSCODE`.
 7. Deploy.
