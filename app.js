@@ -270,24 +270,20 @@ function freshnessSummary() {
 function reachContextSummary() {
   const ps = platforms().filter((p) => supports(p, 'reach'));
   if (!ps.length) return '';
-  if (state.totalOnly || ps.length > 1) {
-    const parts = [];
-    if (allPlatforms().includes('youtube')) parts.push('Reach excludes YouTube.');
-    if (ps.includes('instagram')) parts.push('Instagram includes paid/promoted distribution.');
-    return parts.join(' ');
-  }
-  const p = ps[0];
-  if (p === 'instagram') return 'Instagram reach includes paid/promoted distribution.';
-  if (p === 'facebook') return 'Facebook reach uses total unique media views.';
-  if (p === 'tiktok') return 'TikTok reach uses Reached audience from TikTok Organic.';
-  return '';
+  const parts = [];
+  if (platforms().includes('youtube')) parts.push('Reach excludes YouTube.');
+  if (ps.includes('instagram')) parts.push('Instagram reach includes paid/promoted distribution.');
+  if (ps.includes('facebook')) parts.push('Facebook reach uses total unique media views and may include paid distribution.');
+  return parts.join(' ');
 }
 
 function viewsContextSummary() {
   const ps = platforms().filter((p) => supports(p, 'views'));
-  if (!ps.includes('facebook')) return '';
-  if (ps.length === 1) return 'Facebook views are organic media views.';
-  return 'Facebook views are organic. Instagram includes paid/promoted distribution.';
+  const parts = [];
+  if (ps.includes('instagram')) parts.push('Instagram views include paid/promoted distribution.');
+  if (ps.includes('facebook')) parts.push('Facebook views are organic media views.');
+  if (ps.includes('youtube')) parts.push('YouTube views may include advertising traffic.');
+  return parts.join(' ');
 }
 
 function renderMetricNotes() {
@@ -302,13 +298,21 @@ function renderMetricNotes() {
   const note = reachContextSummary();
   reachNote.textContent = note;
   reachNote.hidden = !note || $('#reachCard')?.hidden;
+  const watchNote = $('#watchNote');
+  if (watchNote) {
+    const watchText = platforms().includes('youtube') ? 'YouTube watch time may include advertising traffic.' : '';
+    watchNote.textContent = watchText;
+    watchNote.hidden = !watchText || $('#watchCard')?.hidden;
+  }
 }
 
 function kpiContextFor(key, ps = platforms()) {
   const parts = [];
   if ((key === 'views' || key === 'reach') && ps.includes('instagram')) parts.push('Instagram includes paid/promoted.');
   if (key === 'views' && ps.includes('facebook')) parts.push('Facebook organic views.');
+  if (key === 'reach' && ps.includes('facebook')) parts.push('Facebook reach may include paid distribution.');
   if (key === 'views' && ps.length === 1 && ps[0] === 'youtube') parts.push('Ad traffic can be checked separately.');
+  if (key === 'watchTime' && ps.includes('youtube')) parts.push('May include ad-driven watch time.');
   if (key === 'views' && ps.length === 1 && ps[0] === 'tiktok') parts.push('TikTok Organic source.');
   if (key === 'reach' && allPlatforms().includes('youtube') && ps.length > 1) parts.push('Excludes YouTube.');
   if (key === 'newFollowers') {
@@ -413,7 +417,7 @@ function setupCalendar() {
 // Sum a platform's daily rows into the period buckets.
 function bucket(daily, periods) {
   if (!periods.length) return [];
-  const out = periods.map((p) => ({ ...p, posts: 0, views: 0, reach: 0, watchTime: null, newFollowers: null, totalFollowers: null }));
+  const out = periods.map((p) => ({ ...p, posts: 0, views: 0, reach: 0, watchTime: null, paidViews: 0, adViews: 0, adWatchTime: 0, newFollowers: null, totalFollowers: null }));
   // periods are contiguous & sorted; walk with a moving cursor for efficiency.
   let pi = 0;
   for (const row of daily) {
@@ -426,6 +430,9 @@ function bucket(daily, periods) {
     b.views += row.views || 0;
     b.reach += row.reach || 0;
     if (row.watchTime != null) b.watchTime = (b.watchTime || 0) + row.watchTime;
+    if (row.paidViews != null) b.paidViews += row.paidViews || 0;
+    if (row.adViews != null) b.adViews += row.adViews || 0;
+    if (row.adWatchTime != null) b.adWatchTime += row.adWatchTime || 0;
     if (row.newFollowers != null) b.newFollowers = (b.newFollowers || 0) + row.newFollowers;
     if (row.totalFollowers != null) b.totalFollowers = row.totalFollowers;
   }
@@ -1536,6 +1543,62 @@ function fmtMetricVal(key, v) {
   return fmt(v);
 }
 
+function periodFieldTotal(ps, idx, field) {
+  return ps.reduce((sum, p) => sum + ((state.series[p] && state.series[p][idx]) ? (state.series[p][idx][field] || 0) : 0), 0);
+}
+
+function movementText(wow, factor) {
+  if (wow != null && Math.abs(wow) >= 0.15) return wow > 0 ? 'spike' : 'drop';
+  if (factor != null && factor >= 1.4) return 'spike';
+  if (factor != null && factor <= 0.7) return 'drop';
+  return 'normal range';
+}
+
+function fmtAdMinutes(minutes) {
+  return `${fmt(minutes / 60)} hrs`;
+}
+
+function deltaWords(curr, prev) {
+  if (!prev && !curr) return '';
+  if (!prev && curr) return 'new vs prior period';
+  const d = (curr - prev) / prev;
+  if (Math.abs(d) < 0.05) return 'about flat vs prior period';
+  return `${d > 0 ? 'up' : 'down'} ${(Math.abs(d) * 100).toFixed(0)}% vs prior period`;
+}
+
+function adContextHtml(scopePlatforms, metricKey, idx, movement) {
+  if (!['views', 'reach', 'watchTime'].includes(metricKey)) return '';
+  const prevIdx = idx > 0 ? idx - 1 : null;
+  const lines = [];
+
+  if (scopePlatforms.includes('instagram') && (metricKey === 'views' || metricKey === 'reach')) {
+    lines.push(`Instagram ${METRIC_NOUN[metricKey]} includes organic plus paid/promoted distribution, so this ${movement} cannot be read as purely organic from the dashboard data.`);
+  }
+
+  if (scopePlatforms.includes('facebook') && (metricKey === 'views' || metricKey === 'reach')) {
+    const paid = periodFieldTotal(['facebook'], idx, 'paidViews');
+    const prevPaid = prevIdx == null ? 0 : periodFieldTotal(['facebook'], prevIdx, 'paidViews');
+    if (metricKey === 'views') {
+      lines.push(`Facebook views shown here are organic media views. Separate Facebook paid media views were ${fmt(paid)} this period${prevIdx == null ? '' : ` (${deltaWords(paid, prevPaid)})`}.`);
+    } else {
+      lines.push(`Facebook reach may be affected by paid distribution. Facebook paid media views were ${fmt(paid)} this period${prevIdx == null ? '' : ` (${deltaWords(paid, prevPaid)})`}.`);
+    }
+  }
+
+  if (scopePlatforms.includes('youtube') && (metricKey === 'views' || metricKey === 'watchTime')) {
+    const field = metricKey === 'watchTime' ? 'adWatchTime' : 'adViews';
+    const adValue = periodFieldTotal(['youtube'], idx, field);
+    const prevAd = prevIdx == null ? 0 : periodFieldTotal(['youtube'], prevIdx, field);
+    const ytValue = periodFieldTotal(['youtube'], idx, metricKey);
+    const share = ytValue > 0 ? `, about ${Math.round(adValue / ytValue * 100)}% of YouTube ${METRIC_NOUN[metricKey]}` : '';
+    const formatted = metricKey === 'watchTime' ? fmtAdMinutes(adValue) : fmt(adValue);
+    lines.push(`YouTube advertising traffic contributed ${formatted}${share}${prevIdx == null ? '' : ` (${deltaWords(adValue, prevAd)})`}.`);
+  }
+
+  if (!lines.length) return '';
+  return `<p class="insight-caveat"><strong>Ad context:</strong> ${lines.map(escapeHtml).join('<br>')}</p>`;
+}
+
 function showInsight(platform, metricKey, idx) {
   const panel = $('#insightPanel');
   const period = state.periods[idx];
@@ -1562,6 +1625,7 @@ function buildInsight(platform, metricKey, idx) {
   const prev = idx > 0 ? vals[idx - 1] : null;
   const wow = (prev != null && prev !== 0) ? (value - prev) / prev : null;
   const isPeak = value > 0 && value === Math.max(...vals);
+  const movement = movementText(wow, factor);
 
   const scopeLabel = platform === 'total' ? 'All platforms' : nameOf(platform);
   const metricName = METRIC_NOUN[metricKey];
@@ -1581,6 +1645,8 @@ function buildInsight(platform, metricKey, idx) {
   const wowBits = [];
   if (wow != null) wowBits.push(`${wow >= 0 ? '▲' : '▼'} ${(Math.abs(wow) * 100).toFixed(0)}% vs prior ${noun}`);
   if (isPeak) wowBits.push('highest in the current view');
+  html += `<p class="insight-sub">This point reads as a <strong>${escapeHtml(movement)}</strong>${wow != null ? ` (${wow >= 0 ? 'up' : 'down'} ${(Math.abs(wow) * 100).toFixed(0)}% vs prior ${noun})` : ''}.</p>`;
+  html += adContextHtml(scopePlatforms, metricKey, idx, movement);
   if (wowBits.length) html += `<div class="insight-wow">${wowBits.join(' · ')}</div>`;
 
   // Posts in this window, ranked by the relevant field.
@@ -1630,10 +1696,6 @@ function buildInsight(platform, metricKey, idx) {
   const ytInScope = platform === 'youtube' || (platform === 'total' && scopePlatforms.includes('youtube'));
   if (ytInScope && (metricKey === 'views' || metricKey === 'watchTime') && !shareValid) {
     caveats.push(`YouTube ${metricName} reflects channel-wide viewing during this ${noun} (across all videos, old and new), so it can't be tied to a single upload. The posts above are what was published in the window.`);
-  }
-  const igInScope = platform === 'instagram' || (platform === 'total' && scopePlatforms.includes('instagram'));
-  if (igInScope && (metricKey === 'views' || metricKey === 'reach')) {
-    caveats.push('Instagram totals include organic plus paid/promoted distribution; organic-only Instagram split is not available in the current Supermetrics connector.');
   }
   if (caveats.length) html += `<p class="insight-caveat">${caveats.map(escapeHtml).join('<br>')}</p>`;
 

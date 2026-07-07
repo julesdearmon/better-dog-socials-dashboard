@@ -3518,7 +3518,9 @@ window.REAL_DATA = {
           "views": 14,
           "reach": 0,
           "watchTime": 34,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-02",
@@ -3526,7 +3528,9 @@ window.REAL_DATA = {
           "views": 29,
           "reach": 0,
           "watchTime": 35,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-03",
@@ -3534,7 +3538,9 @@ window.REAL_DATA = {
           "views": 32,
           "reach": 0,
           "watchTime": 38,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-04",
@@ -3542,7 +3548,9 @@ window.REAL_DATA = {
           "views": 20,
           "reach": 0,
           "watchTime": 29,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-05",
@@ -3550,7 +3558,9 @@ window.REAL_DATA = {
           "views": 25,
           "reach": 0,
           "watchTime": 21,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-06",
@@ -3558,7 +3568,9 @@ window.REAL_DATA = {
           "views": 125,
           "reach": 0,
           "watchTime": 26,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-07",
@@ -3566,7 +3578,9 @@ window.REAL_DATA = {
           "views": 307,
           "reach": 0,
           "watchTime": 95,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-08",
@@ -3574,7 +3588,9 @@ window.REAL_DATA = {
           "views": 1624,
           "reach": 0,
           "watchTime": 428,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-09",
@@ -3582,7 +3598,9 @@ window.REAL_DATA = {
           "views": 265,
           "reach": 0,
           "watchTime": 23,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-10",
@@ -3590,7 +3608,9 @@ window.REAL_DATA = {
           "views": 1883,
           "reach": 0,
           "watchTime": 194,
-          "newFollowers": 7
+          "newFollowers": 7,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-11",
@@ -3598,7 +3618,9 @@ window.REAL_DATA = {
           "views": 370,
           "reach": 0,
           "watchTime": 80,
-          "newFollowers": -1
+          "newFollowers": -1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-12",
@@ -3606,7 +3628,9 @@ window.REAL_DATA = {
           "views": 38,
           "reach": 0,
           "watchTime": 56,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-13",
@@ -3614,7 +3638,9 @@ window.REAL_DATA = {
           "views": 24,
           "reach": 0,
           "watchTime": 21,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-14",
@@ -3622,7 +3648,9 @@ window.REAL_DATA = {
           "views": 39,
           "reach": 0,
           "watchTime": 39,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-15",
@@ -3630,7 +3658,9 @@ window.REAL_DATA = {
           "views": 1408,
           "reach": 0,
           "watchTime": 147,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-16",
@@ -3638,7 +3668,9 @@ window.REAL_DATA = {
           "views": 21,
           "reach": 0,
           "watchTime": 26,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-17",
@@ -3646,7 +3678,9 @@ window.REAL_DATA = {
           "views": 486,
           "reach": 0,
           "watchTime": 36,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-18",
@@ -3654,7 +3688,9 @@ window.REAL_DATA = {
           "views": 45,
           "reach": 0,
           "watchTime": 16,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-19",
@@ -3662,7 +3698,9 @@ window.REAL_DATA = {
           "views": 100,
           "reach": 0,
           "watchTime": 49,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-20",
@@ -3670,7 +3708,9 @@ window.REAL_DATA = {
           "views": 689,
           "reach": 0,
           "watchTime": 138,
-          "newFollowers": 3
+          "newFollowers": 3,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-21",
@@ -3678,7 +3718,9 @@ window.REAL_DATA = {
           "views": 50,
           "reach": 0,
           "watchTime": 19,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-22",
@@ -3686,7 +3728,9 @@ window.REAL_DATA = {
           "views": 24,
           "reach": 0,
           "watchTime": 37,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-23",
@@ -3694,7 +3738,9 @@ window.REAL_DATA = {
           "views": 17,
           "reach": 0,
           "watchTime": 17,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-24",
@@ -3702,7 +3748,9 @@ window.REAL_DATA = {
           "views": 21,
           "reach": 0,
           "watchTime": 28,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-25",
@@ -3710,7 +3758,9 @@ window.REAL_DATA = {
           "views": 28,
           "reach": 0,
           "watchTime": 18,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-26",
@@ -3718,7 +3768,9 @@ window.REAL_DATA = {
           "views": 19,
           "reach": 0,
           "watchTime": 20,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-27",
@@ -3726,7 +3778,9 @@ window.REAL_DATA = {
           "views": 118,
           "reach": 0,
           "watchTime": 42,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-28",
@@ -3734,7 +3788,9 @@ window.REAL_DATA = {
           "views": 303,
           "reach": 0,
           "watchTime": 56,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-29",
@@ -3742,7 +3798,9 @@ window.REAL_DATA = {
           "views": 488,
           "reach": 0,
           "watchTime": 64,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-30",
@@ -3750,7 +3808,9 @@ window.REAL_DATA = {
           "views": 391,
           "reach": 0,
           "watchTime": 77,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-01-31",
@@ -3758,7 +3818,9 @@ window.REAL_DATA = {
           "views": 65,
           "reach": 0,
           "watchTime": 39,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-01",
@@ -3766,7 +3828,9 @@ window.REAL_DATA = {
           "views": 207,
           "reach": 0,
           "watchTime": 55,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-02",
@@ -3774,7 +3838,9 @@ window.REAL_DATA = {
           "views": 1421,
           "reach": 0,
           "watchTime": 124,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-03",
@@ -3782,7 +3848,9 @@ window.REAL_DATA = {
           "views": 256,
           "reach": 0,
           "watchTime": 55,
-          "newFollowers": 7
+          "newFollowers": 7,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-04",
@@ -3790,7 +3858,9 @@ window.REAL_DATA = {
           "views": 399,
           "reach": 0,
           "watchTime": 133,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-05",
@@ -3798,7 +3868,9 @@ window.REAL_DATA = {
           "views": 763,
           "reach": 0,
           "watchTime": 225,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-06",
@@ -3806,7 +3878,9 @@ window.REAL_DATA = {
           "views": 148,
           "reach": 0,
           "watchTime": 49,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-07",
@@ -3814,7 +3888,9 @@ window.REAL_DATA = {
           "views": 93,
           "reach": 0,
           "watchTime": 32,
-          "newFollowers": 3
+          "newFollowers": 3,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-08",
@@ -3822,7 +3898,9 @@ window.REAL_DATA = {
           "views": 37,
           "reach": 0,
           "watchTime": 35,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-09",
@@ -3830,7 +3908,9 @@ window.REAL_DATA = {
           "views": 44,
           "reach": 0,
           "watchTime": 28,
-          "newFollowers": 8
+          "newFollowers": 8,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-10",
@@ -3838,7 +3918,9 @@ window.REAL_DATA = {
           "views": 168,
           "reach": 0,
           "watchTime": 44,
-          "newFollowers": 8
+          "newFollowers": 8,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-11",
@@ -3846,7 +3928,9 @@ window.REAL_DATA = {
           "views": 24,
           "reach": 0,
           "watchTime": 9,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-12",
@@ -3854,7 +3938,9 @@ window.REAL_DATA = {
           "views": 223,
           "reach": 0,
           "watchTime": 60,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-13",
@@ -3862,7 +3948,9 @@ window.REAL_DATA = {
           "views": 64,
           "reach": 0,
           "watchTime": 39,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-14",
@@ -3870,7 +3958,9 @@ window.REAL_DATA = {
           "views": 70,
           "reach": 0,
           "watchTime": 42,
-          "newFollowers": 3
+          "newFollowers": 3,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-15",
@@ -3878,7 +3968,9 @@ window.REAL_DATA = {
           "views": 41,
           "reach": 0,
           "watchTime": 32,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-16",
@@ -3886,7 +3978,9 @@ window.REAL_DATA = {
           "views": 53,
           "reach": 0,
           "watchTime": 33,
-          "newFollowers": 7
+          "newFollowers": 7,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-17",
@@ -3894,7 +3988,9 @@ window.REAL_DATA = {
           "views": 60,
           "reach": 0,
           "watchTime": 35,
-          "newFollowers": 8
+          "newFollowers": 8,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-18",
@@ -3902,7 +3998,9 @@ window.REAL_DATA = {
           "views": 86,
           "reach": 0,
           "watchTime": 26,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-19",
@@ -3910,7 +4008,9 @@ window.REAL_DATA = {
           "views": 154,
           "reach": 0,
           "watchTime": 24,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-20",
@@ -3918,7 +4018,9 @@ window.REAL_DATA = {
           "views": 46,
           "reach": 0,
           "watchTime": 27,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-21",
@@ -3926,7 +4028,9 @@ window.REAL_DATA = {
           "views": 151,
           "reach": 0,
           "watchTime": 51,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-22",
@@ -3934,7 +4038,9 @@ window.REAL_DATA = {
           "views": 48,
           "reach": 0,
           "watchTime": 33,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-23",
@@ -3942,7 +4048,9 @@ window.REAL_DATA = {
           "views": 39,
           "reach": 0,
           "watchTime": 29,
-          "newFollowers": 7
+          "newFollowers": 7,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-24",
@@ -3950,7 +4058,9 @@ window.REAL_DATA = {
           "views": 20,
           "reach": 0,
           "watchTime": 26,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-25",
@@ -3958,7 +4068,9 @@ window.REAL_DATA = {
           "views": 353,
           "reach": 0,
           "watchTime": 55,
-          "newFollowers": 3
+          "newFollowers": 3,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-26",
@@ -3966,7 +4078,9 @@ window.REAL_DATA = {
           "views": 437,
           "reach": 0,
           "watchTime": 172,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-27",
@@ -3974,7 +4088,9 @@ window.REAL_DATA = {
           "views": 359,
           "reach": 0,
           "watchTime": 116,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-02-28",
@@ -3982,7 +4098,9 @@ window.REAL_DATA = {
           "views": 202,
           "reach": 0,
           "watchTime": 61,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-01",
@@ -3990,7 +4108,9 @@ window.REAL_DATA = {
           "views": 24,
           "reach": 0,
           "watchTime": 31,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-02",
@@ -3998,7 +4118,9 @@ window.REAL_DATA = {
           "views": 19,
           "reach": 0,
           "watchTime": 16,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-03",
@@ -4006,7 +4128,9 @@ window.REAL_DATA = {
           "views": 14,
           "reach": 0,
           "watchTime": 19,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-04",
@@ -4014,7 +4138,9 @@ window.REAL_DATA = {
           "views": 16,
           "reach": 0,
           "watchTime": 24,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-05",
@@ -4022,7 +4148,9 @@ window.REAL_DATA = {
           "views": 30,
           "reach": 0,
           "watchTime": 28,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-06",
@@ -4030,7 +4158,9 @@ window.REAL_DATA = {
           "views": 238,
           "reach": 0,
           "watchTime": 40,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-07",
@@ -4038,7 +4168,9 @@ window.REAL_DATA = {
           "views": 52,
           "reach": 0,
           "watchTime": 122,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-08",
@@ -4046,7 +4178,9 @@ window.REAL_DATA = {
           "views": 32,
           "reach": 0,
           "watchTime": 27,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-09",
@@ -4054,7 +4188,9 @@ window.REAL_DATA = {
           "views": 21,
           "reach": 0,
           "watchTime": 12,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-10",
@@ -4062,7 +4198,9 @@ window.REAL_DATA = {
           "views": 28,
           "reach": 0,
           "watchTime": 24,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-11",
@@ -4070,7 +4208,9 @@ window.REAL_DATA = {
           "views": 957,
           "reach": 0,
           "watchTime": 139,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-12",
@@ -4078,7 +4218,9 @@ window.REAL_DATA = {
           "views": 370,
           "reach": 0,
           "watchTime": 49,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-13",
@@ -4086,7 +4228,9 @@ window.REAL_DATA = {
           "views": 56,
           "reach": 0,
           "watchTime": 36,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-14",
@@ -4094,7 +4238,9 @@ window.REAL_DATA = {
           "views": 880,
           "reach": 0,
           "watchTime": 314,
-          "newFollowers": 8
+          "newFollowers": 8,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-15",
@@ -4102,7 +4248,9 @@ window.REAL_DATA = {
           "views": 65,
           "reach": 0,
           "watchTime": 49,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-16",
@@ -4110,7 +4258,9 @@ window.REAL_DATA = {
           "views": 611,
           "reach": 0,
           "watchTime": 76,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-17",
@@ -4118,7 +4268,9 @@ window.REAL_DATA = {
           "views": 272,
           "reach": 0,
           "watchTime": 56,
-          "newFollowers": 6
+          "newFollowers": 6,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-18",
@@ -4126,7 +4278,9 @@ window.REAL_DATA = {
           "views": 168,
           "reach": 0,
           "watchTime": 73,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-19",
@@ -4134,7 +4288,9 @@ window.REAL_DATA = {
           "views": 503,
           "reach": 0,
           "watchTime": 83,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-20",
@@ -4142,7 +4298,9 @@ window.REAL_DATA = {
           "views": 54,
           "reach": 0,
           "watchTime": 36,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-21",
@@ -4150,7 +4308,9 @@ window.REAL_DATA = {
           "views": 556,
           "reach": 0,
           "watchTime": 135,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-22",
@@ -4158,7 +4318,9 @@ window.REAL_DATA = {
           "views": 888,
           "reach": 0,
           "watchTime": 211,
-          "newFollowers": 3
+          "newFollowers": 3,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-23",
@@ -4166,7 +4328,9 @@ window.REAL_DATA = {
           "views": 182,
           "reach": 0,
           "watchTime": 34,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-24",
@@ -4174,7 +4338,9 @@ window.REAL_DATA = {
           "views": 122,
           "reach": 0,
           "watchTime": 43,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-25",
@@ -4182,7 +4348,9 @@ window.REAL_DATA = {
           "views": 1734,
           "reach": 0,
           "watchTime": 603,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-26",
@@ -4190,7 +4358,9 @@ window.REAL_DATA = {
           "views": 994,
           "reach": 0,
           "watchTime": 223,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-27",
@@ -4198,7 +4368,9 @@ window.REAL_DATA = {
           "views": 2071,
           "reach": 0,
           "watchTime": 833,
-          "newFollowers": 16
+          "newFollowers": 16,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-28",
@@ -4206,7 +4378,9 @@ window.REAL_DATA = {
           "views": 1919,
           "reach": 0,
           "watchTime": 892,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-29",
@@ -4214,7 +4388,9 @@ window.REAL_DATA = {
           "views": 57,
           "reach": 0,
           "watchTime": 29,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-30",
@@ -4222,7 +4398,9 @@ window.REAL_DATA = {
           "views": 31,
           "reach": 0,
           "watchTime": 25,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-03-31",
@@ -4230,7 +4408,9 @@ window.REAL_DATA = {
           "views": 35,
           "reach": 0,
           "watchTime": 16,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-01",
@@ -4238,7 +4418,9 @@ window.REAL_DATA = {
           "views": 1482,
           "reach": 0,
           "watchTime": 130,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-02",
@@ -4246,7 +4428,9 @@ window.REAL_DATA = {
           "views": 409,
           "reach": 0,
           "watchTime": 47,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-03",
@@ -4254,7 +4438,9 @@ window.REAL_DATA = {
           "views": 416,
           "reach": 0,
           "watchTime": 63,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-04",
@@ -4262,7 +4448,9 @@ window.REAL_DATA = {
           "views": 48,
           "reach": 0,
           "watchTime": 21,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-05",
@@ -4270,7 +4458,9 @@ window.REAL_DATA = {
           "views": 27,
           "reach": 0,
           "watchTime": 19,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-06",
@@ -4278,7 +4468,9 @@ window.REAL_DATA = {
           "views": 78,
           "reach": 0,
           "watchTime": 40,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-07",
@@ -4286,7 +4478,9 @@ window.REAL_DATA = {
           "views": 41,
           "reach": 0,
           "watchTime": 34,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-08",
@@ -4294,7 +4488,9 @@ window.REAL_DATA = {
           "views": 2554,
           "reach": 0,
           "watchTime": 196,
-          "newFollowers": 11
+          "newFollowers": 11,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-09",
@@ -4302,7 +4498,9 @@ window.REAL_DATA = {
           "views": 777,
           "reach": 0,
           "watchTime": 532,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-10",
@@ -4310,7 +4508,9 @@ window.REAL_DATA = {
           "views": 1247,
           "reach": 0,
           "watchTime": 397,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-11",
@@ -4318,7 +4518,9 @@ window.REAL_DATA = {
           "views": 1383,
           "reach": 0,
           "watchTime": 383,
-          "newFollowers": 9
+          "newFollowers": 9,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-12",
@@ -4326,7 +4528,9 @@ window.REAL_DATA = {
           "views": 127,
           "reach": 0,
           "watchTime": 45,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-13",
@@ -4334,7 +4538,9 @@ window.REAL_DATA = {
           "views": 109,
           "reach": 0,
           "watchTime": 61,
-          "newFollowers": 27
+          "newFollowers": 27,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-14",
@@ -4342,7 +4548,9 @@ window.REAL_DATA = {
           "views": 2574,
           "reach": 0,
           "watchTime": 983,
-          "newFollowers": 14
+          "newFollowers": 14,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-15",
@@ -4350,7 +4558,9 @@ window.REAL_DATA = {
           "views": 447,
           "reach": 0,
           "watchTime": 379,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-04-16",
@@ -4358,7 +4568,9 @@ window.REAL_DATA = {
           "views": 798,
           "reach": 0,
           "watchTime": 814,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 558,
+          "adWatchTime": 653
         },
         {
           "date": "2026-04-17",
@@ -4366,7 +4578,9 @@ window.REAL_DATA = {
           "views": 3550,
           "reach": 0,
           "watchTime": 1101,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 1599,
+          "adWatchTime": 808
         },
         {
           "date": "2026-04-18",
@@ -4374,7 +4588,9 @@ window.REAL_DATA = {
           "views": 2117,
           "reach": 0,
           "watchTime": 1065,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 1927,
+          "adWatchTime": 924
         },
         {
           "date": "2026-04-19",
@@ -4382,7 +4598,9 @@ window.REAL_DATA = {
           "views": 1907,
           "reach": 0,
           "watchTime": 993,
-          "newFollowers": 8
+          "newFollowers": 8,
+          "adViews": 1715,
+          "adWatchTime": 877
         },
         {
           "date": "2026-04-20",
@@ -4390,7 +4608,9 @@ window.REAL_DATA = {
           "views": 2786,
           "reach": 0,
           "watchTime": 1388,
-          "newFollowers": 27
+          "newFollowers": 27,
+          "adViews": 2464,
+          "adWatchTime": 1236
         },
         {
           "date": "2026-04-21",
@@ -4398,7 +4618,9 @@ window.REAL_DATA = {
           "views": 2793,
           "reach": 0,
           "watchTime": 1439,
-          "newFollowers": 27
+          "newFollowers": 27,
+          "adViews": 2553,
+          "adWatchTime": 1312
         },
         {
           "date": "2026-04-22",
@@ -4406,7 +4628,9 @@ window.REAL_DATA = {
           "views": 8795,
           "reach": 0,
           "watchTime": 4849,
-          "newFollowers": 28
+          "newFollowers": 28,
+          "adViews": 8360,
+          "adWatchTime": 4700
         },
         {
           "date": "2026-04-23",
@@ -4414,7 +4638,9 @@ window.REAL_DATA = {
           "views": 13399,
           "reach": 0,
           "watchTime": 8506,
-          "newFollowers": 19
+          "newFollowers": 19,
+          "adViews": 11982,
+          "adWatchTime": 8089
         },
         {
           "date": "2026-04-24",
@@ -4422,7 +4648,9 @@ window.REAL_DATA = {
           "views": 10094,
           "reach": 0,
           "watchTime": 6912,
-          "newFollowers": 23
+          "newFollowers": 23,
+          "adViews": 9173,
+          "adWatchTime": 6625
         },
         {
           "date": "2026-04-25",
@@ -4430,7 +4658,9 @@ window.REAL_DATA = {
           "views": 656,
           "reach": 0,
           "watchTime": 199,
-          "newFollowers": 38
+          "newFollowers": 38,
+          "adViews": 15,
+          "adWatchTime": 22
         },
         {
           "date": "2026-04-26",
@@ -4438,7 +4668,9 @@ window.REAL_DATA = {
           "views": 251,
           "reach": 0,
           "watchTime": 218,
-          "newFollowers": 24
+          "newFollowers": 24,
+          "adViews": 54,
+          "adWatchTime": 57
         },
         {
           "date": "2026-04-27",
@@ -4446,7 +4678,9 @@ window.REAL_DATA = {
           "views": 288,
           "reach": 0,
           "watchTime": 180,
-          "newFollowers": 24
+          "newFollowers": 24,
+          "adViews": 36,
+          "adWatchTime": 35
         },
         {
           "date": "2026-04-28",
@@ -4454,7 +4688,9 @@ window.REAL_DATA = {
           "views": 801,
           "reach": 0,
           "watchTime": 315,
-          "newFollowers": 36
+          "newFollowers": 36,
+          "adViews": 95,
+          "adWatchTime": 65
         },
         {
           "date": "2026-04-29",
@@ -4462,7 +4698,9 @@ window.REAL_DATA = {
           "views": 258,
           "reach": 0,
           "watchTime": 174,
-          "newFollowers": 13
+          "newFollowers": 13,
+          "adViews": 123,
+          "adWatchTime": 82
         },
         {
           "date": "2026-04-30",
@@ -4470,7 +4708,9 @@ window.REAL_DATA = {
           "views": 477,
           "reach": 0,
           "watchTime": 344,
-          "newFollowers": 10
+          "newFollowers": 10,
+          "adViews": 282,
+          "adWatchTime": 195
         },
         {
           "posts": 0,
@@ -4478,7 +4718,9 @@ window.REAL_DATA = {
           "views": 316,
           "reach": 0,
           "watchTime": 235,
-          "newFollowers": 6
+          "newFollowers": 6,
+          "adViews": 232,
+          "adWatchTime": 154
         },
         {
           "posts": 0,
@@ -4486,7 +4728,9 @@ window.REAL_DATA = {
           "views": 353,
           "reach": 0,
           "watchTime": 299,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 232,
+          "adWatchTime": 201
         },
         {
           "posts": 0,
@@ -4494,7 +4738,9 @@ window.REAL_DATA = {
           "views": 289,
           "reach": 0,
           "watchTime": 251,
-          "newFollowers": 6
+          "newFollowers": 6,
+          "adViews": 174,
+          "adWatchTime": 133
         },
         {
           "posts": 0,
@@ -4502,7 +4748,9 @@ window.REAL_DATA = {
           "views": 288,
           "reach": 0,
           "watchTime": 252,
-          "newFollowers": 15
+          "newFollowers": 15,
+          "adViews": 142,
+          "adWatchTime": 114
         },
         {
           "posts": 4,
@@ -4510,7 +4758,9 @@ window.REAL_DATA = {
           "views": 335,
           "reach": 0,
           "watchTime": 213,
-          "newFollowers": 7
+          "newFollowers": 7,
+          "adViews": 196,
+          "adWatchTime": 123
         },
         {
           "posts": 0,
@@ -4518,7 +4768,9 @@ window.REAL_DATA = {
           "views": 442,
           "reach": 0,
           "watchTime": 265,
-          "newFollowers": 10
+          "newFollowers": 10,
+          "adViews": 161,
+          "adWatchTime": 112
         },
         {
           "posts": 0,
@@ -4526,7 +4778,9 @@ window.REAL_DATA = {
           "views": 536,
           "reach": 0,
           "watchTime": 244,
-          "newFollowers": 12
+          "newFollowers": 12,
+          "adViews": 182,
+          "adWatchTime": 127
         },
         {
           "posts": 0,
@@ -4534,7 +4788,9 @@ window.REAL_DATA = {
           "views": 5380,
           "reach": 0,
           "watchTime": 2834,
-          "newFollowers": 7
+          "newFollowers": 7,
+          "adViews": 5148,
+          "adWatchTime": 2739
         },
         {
           "posts": 0,
@@ -4542,7 +4798,9 @@ window.REAL_DATA = {
           "views": 8514,
           "reach": 0,
           "watchTime": 5502,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 8056,
+          "adWatchTime": 5357
         },
         {
           "posts": 0,
@@ -4550,7 +4808,9 @@ window.REAL_DATA = {
           "views": 11448,
           "reach": 0,
           "watchTime": 7864,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 11246,
+          "adWatchTime": 7759
         },
         {
           "posts": 0,
@@ -4558,7 +4818,9 @@ window.REAL_DATA = {
           "views": 4502,
           "reach": 0,
           "watchTime": 3108,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 4418,
+          "adWatchTime": 3050
         },
         {
           "posts": 6,
@@ -4566,7 +4828,9 @@ window.REAL_DATA = {
           "views": 3269,
           "reach": 0,
           "watchTime": 1512,
-          "newFollowers": 3
+          "newFollowers": 3,
+          "adViews": 1282,
+          "adWatchTime": 991
         },
         {
           "posts": 0,
@@ -4574,7 +4838,9 @@ window.REAL_DATA = {
           "views": 1415,
           "reach": 0,
           "watchTime": 808,
-          "newFollowers": 3
+          "newFollowers": 3,
+          "adViews": 865,
+          "adWatchTime": 654
         },
         {
           "posts": 0,
@@ -4582,7 +4848,9 @@ window.REAL_DATA = {
           "views": 1286,
           "reach": 0,
           "watchTime": 658,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 812,
+          "adWatchTime": 525
         },
         {
           "posts": 0,
@@ -4590,7 +4858,9 @@ window.REAL_DATA = {
           "views": 1141,
           "reach": 0,
           "watchTime": 671,
-          "newFollowers": 6
+          "newFollowers": 6,
+          "adViews": 904,
+          "adWatchTime": 580
         },
         {
           "posts": 0,
@@ -4598,7 +4868,9 @@ window.REAL_DATA = {
           "views": 2665,
           "reach": 0,
           "watchTime": 646,
-          "newFollowers": 9
+          "newFollowers": 9,
+          "adViews": 725,
+          "adWatchTime": 508
         },
         {
           "posts": 0,
@@ -4606,7 +4878,9 @@ window.REAL_DATA = {
           "views": 862,
           "reach": 0,
           "watchTime": 520,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 738,
+          "adWatchTime": 448
         },
         {
           "posts": 0,
@@ -4614,7 +4888,9 @@ window.REAL_DATA = {
           "views": 702,
           "reach": 0,
           "watchTime": 427,
-          "newFollowers": 7
+          "newFollowers": 7,
+          "adViews": 583,
+          "adWatchTime": 353
         },
         {
           "date": "2026-05-19",
@@ -4622,7 +4898,9 @@ window.REAL_DATA = {
           "views": 302,
           "reach": 0,
           "watchTime": 118,
-          "newFollowers": 3
+          "newFollowers": 3,
+          "adViews": 85,
+          "adWatchTime": 63
         },
         {
           "date": "2026-05-20",
@@ -4630,7 +4908,9 @@ window.REAL_DATA = {
           "views": 196,
           "reach": 0,
           "watchTime": 49,
-          "newFollowers": 7
+          "newFollowers": 7,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-05-21",
@@ -4638,7 +4918,9 @@ window.REAL_DATA = {
           "views": 165,
           "reach": 0,
           "watchTime": 53,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-05-22",
@@ -4646,7 +4928,9 @@ window.REAL_DATA = {
           "views": 63,
           "reach": 0,
           "watchTime": 44,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-05-23",
@@ -4654,7 +4938,9 @@ window.REAL_DATA = {
           "views": 205,
           "reach": 0,
           "watchTime": 102,
-          "newFollowers": 3
+          "newFollowers": 3,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-05-24",
@@ -4662,7 +4948,9 @@ window.REAL_DATA = {
           "views": 222,
           "reach": 0,
           "watchTime": 83,
-          "newFollowers": 6
+          "newFollowers": 6,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-05-25",
@@ -4670,7 +4958,9 @@ window.REAL_DATA = {
           "views": 638,
           "reach": 0,
           "watchTime": 491,
-          "newFollowers": 9
+          "newFollowers": 9,
+          "adViews": 493,
+          "adWatchTime": 415
         },
         {
           "date": "2026-05-26",
@@ -4678,7 +4968,9 @@ window.REAL_DATA = {
           "views": 539,
           "reach": 0,
           "watchTime": 274,
-          "newFollowers": 3
+          "newFollowers": 3,
+          "adViews": 198,
+          "adWatchTime": 185
         },
         {
           "date": "2026-05-27",
@@ -4686,7 +4978,9 @@ window.REAL_DATA = {
           "views": 484,
           "reach": 0,
           "watchTime": 338,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 133,
+          "adWatchTime": 195
         },
         {
           "date": "2026-05-28",
@@ -4694,7 +4988,9 @@ window.REAL_DATA = {
           "views": 142,
           "reach": 0,
           "watchTime": 97,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 33,
+          "adWatchTime": 27
         },
         {
           "date": "2026-05-29",
@@ -4702,7 +4998,9 @@ window.REAL_DATA = {
           "views": 614,
           "reach": 0,
           "watchTime": 150,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 43,
+          "adWatchTime": 44
         },
         {
           "date": "2026-05-30",
@@ -4710,7 +5008,9 @@ window.REAL_DATA = {
           "views": 579,
           "reach": 0,
           "watchTime": 132,
-          "newFollowers": 3
+          "newFollowers": 3,
+          "adViews": 12,
+          "adWatchTime": 16
         },
         {
           "date": "2026-05-31",
@@ -4718,7 +5018,9 @@ window.REAL_DATA = {
           "views": 593,
           "reach": 0,
           "watchTime": 147,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 10,
+          "adWatchTime": 8
         },
         {
           "date": "2026-06-01",
@@ -4726,7 +5028,9 @@ window.REAL_DATA = {
           "views": 226,
           "reach": 0,
           "watchTime": 97,
-          "newFollowers": 14
+          "newFollowers": 14,
+          "adViews": 26,
+          "adWatchTime": 27
         },
         {
           "date": "2026-06-02",
@@ -4734,7 +5038,9 @@ window.REAL_DATA = {
           "views": 189,
           "reach": 0,
           "watchTime": 115,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 48,
+          "adWatchTime": 42
         },
         {
           "date": "2026-06-03",
@@ -4742,7 +5048,9 @@ window.REAL_DATA = {
           "views": 179,
           "reach": 0,
           "watchTime": 138,
-          "newFollowers": 7
+          "newFollowers": 7,
+          "adViews": 94,
+          "adWatchTime": 84
         },
         {
           "date": "2026-06-04",
@@ -4750,7 +5058,9 @@ window.REAL_DATA = {
           "views": 345,
           "reach": 0,
           "watchTime": 149,
-          "newFollowers": 6
+          "newFollowers": 6,
+          "adViews": 63,
+          "adWatchTime": 46
         },
         {
           "date": "2026-06-05",
@@ -4758,7 +5068,9 @@ window.REAL_DATA = {
           "views": 434,
           "reach": 0,
           "watchTime": 183,
-          "newFollowers": 3
+          "newFollowers": 3,
+          "adViews": 82,
+          "adWatchTime": 91
         },
         {
           "date": "2026-06-06",
@@ -4766,7 +5078,9 @@ window.REAL_DATA = {
           "views": 231,
           "reach": 0,
           "watchTime": 205,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 97,
+          "adWatchTime": 89
         },
         {
           "date": "2026-06-07",
@@ -4774,7 +5088,9 @@ window.REAL_DATA = {
           "views": 211,
           "reach": 0,
           "watchTime": 118,
-          "newFollowers": 6
+          "newFollowers": 6,
+          "adViews": 34,
+          "adWatchTime": 70
         },
         {
           "date": "2026-06-08",
@@ -4782,7 +5098,9 @@ window.REAL_DATA = {
           "views": 118,
           "reach": 0,
           "watchTime": 130,
-          "newFollowers": 7
+          "newFollowers": 7,
+          "adViews": 49,
+          "adWatchTime": 66
         },
         {
           "date": "2026-06-09",
@@ -4790,7 +5108,9 @@ window.REAL_DATA = {
           "views": 859,
           "reach": 0,
           "watchTime": 193,
-          "newFollowers": 3
+          "newFollowers": 3,
+          "adViews": 35,
+          "adWatchTime": 33
         },
         {
           "date": "2026-06-10",
@@ -4798,7 +5118,9 @@ window.REAL_DATA = {
           "views": 90,
           "reach": 0,
           "watchTime": 54,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 28,
+          "adWatchTime": 26
         },
         {
           "date": "2026-06-11",
@@ -4806,7 +5128,9 @@ window.REAL_DATA = {
           "views": 123,
           "reach": 0,
           "watchTime": 92,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 7,
+          "adWatchTime": 10
         },
         {
           "date": "2026-06-12",
@@ -4814,7 +5138,9 @@ window.REAL_DATA = {
           "views": 334,
           "reach": 0,
           "watchTime": 133,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-06-13",
@@ -4822,7 +5148,9 @@ window.REAL_DATA = {
           "views": 357,
           "reach": 0,
           "watchTime": 103,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-06-14",
@@ -4830,7 +5158,9 @@ window.REAL_DATA = {
           "views": 185,
           "reach": 0,
           "watchTime": 74,
-          "newFollowers": 3
+          "newFollowers": 3,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-06-15",
@@ -4838,7 +5168,9 @@ window.REAL_DATA = {
           "views": 135,
           "reach": 0,
           "watchTime": 102,
-          "newFollowers": 9
+          "newFollowers": 9,
+          "adViews": 21,
+          "adWatchTime": 19
         },
         {
           "date": "2026-06-16",
@@ -4846,7 +5178,9 @@ window.REAL_DATA = {
           "views": 171,
           "reach": 0,
           "watchTime": 106,
-          "newFollowers": 11
+          "newFollowers": 11,
+          "adViews": 7,
+          "adWatchTime": 5
         },
         {
           "date": "2026-06-17",
@@ -4854,7 +5188,9 @@ window.REAL_DATA = {
           "views": 114,
           "reach": 0,
           "watchTime": 85,
-          "newFollowers": 6
+          "newFollowers": 6,
+          "adViews": 21,
+          "adWatchTime": 19
         },
         {
           "date": "2026-06-18",
@@ -4862,7 +5198,9 @@ window.REAL_DATA = {
           "views": 179,
           "reach": 0,
           "watchTime": 83,
-          "newFollowers": 9
+          "newFollowers": 9,
+          "adViews": 24,
+          "adWatchTime": 17
         },
         {
           "date": "2026-06-19",
@@ -4870,7 +5208,9 @@ window.REAL_DATA = {
           "views": 917,
           "reach": 0,
           "watchTime": 154,
-          "newFollowers": 13
+          "newFollowers": 13,
+          "adViews": 15,
+          "adWatchTime": 14
         },
         {
           "date": "2026-06-20",
@@ -4878,7 +5218,9 @@ window.REAL_DATA = {
           "views": 638,
           "reach": 0,
           "watchTime": 95,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "adViews": 15,
+          "adWatchTime": 19
         },
         {
           "date": "2026-06-21",
@@ -4886,7 +5228,9 @@ window.REAL_DATA = {
           "views": 124,
           "reach": 0,
           "watchTime": 86,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 34,
+          "adWatchTime": 41
         },
         {
           "date": "2026-06-22",
@@ -4894,7 +5238,9 @@ window.REAL_DATA = {
           "views": 181,
           "reach": 0,
           "watchTime": 75,
-          "newFollowers": 13
+          "newFollowers": 13,
+          "adViews": 28,
+          "adWatchTime": 28
         },
         {
           "date": "2026-06-23",
@@ -4902,7 +5248,9 @@ window.REAL_DATA = {
           "views": 1196,
           "reach": 0,
           "watchTime": 219,
-          "newFollowers": 10
+          "newFollowers": 10,
+          "adViews": 19,
+          "adWatchTime": 16
         },
         {
           "date": "2026-06-24",
@@ -4910,7 +5258,9 @@ window.REAL_DATA = {
           "views": 110,
           "reach": 0,
           "watchTime": 76,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "adViews": 35,
+          "adWatchTime": 37
         },
         {
           "date": "2026-06-25",
@@ -4918,7 +5268,9 @@ window.REAL_DATA = {
           "views": 735,
           "reach": 0,
           "watchTime": 206,
-          "newFollowers": 11
+          "newFollowers": 11,
+          "adViews": 18,
+          "adWatchTime": 15
         },
         {
           "date": "2026-06-26",
@@ -4926,7 +5278,9 @@ window.REAL_DATA = {
           "views": 296,
           "reach": 0,
           "watchTime": 100,
-          "newFollowers": 9
+          "newFollowers": 9,
+          "adViews": 14,
+          "adWatchTime": 15
         },
         {
           "date": "2026-06-27",
@@ -4934,7 +5288,9 @@ window.REAL_DATA = {
           "views": 1036,
           "reach": 0,
           "watchTime": 223,
-          "newFollowers": 9
+          "newFollowers": 9,
+          "adViews": 23,
+          "adWatchTime": 29
         },
         {
           "date": "2026-06-28",
@@ -4942,7 +5298,9 @@ window.REAL_DATA = {
           "views": 438,
           "reach": 0,
           "watchTime": 144,
-          "newFollowers": 9
+          "newFollowers": 9,
+          "adViews": 16,
+          "adWatchTime": 19
         },
         {
           "date": "2026-06-29",
@@ -4950,7 +5308,9 @@ window.REAL_DATA = {
           "views": 611,
           "reach": 0,
           "watchTime": 218,
-          "newFollowers": 15
+          "newFollowers": 15,
+          "adViews": 17,
+          "adWatchTime": 11
         },
         {
           "date": "2026-06-30",
@@ -4958,7 +5318,9 @@ window.REAL_DATA = {
           "views": 953,
           "reach": 0,
           "watchTime": 261,
-          "newFollowers": 10
+          "newFollowers": 10,
+          "adViews": 23,
+          "adWatchTime": 31
         },
         {
           "date": "2026-07-01",
@@ -4966,7 +5328,9 @@ window.REAL_DATA = {
           "views": 0,
           "reach": 0,
           "watchTime": 0,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "adViews": 14,
+          "adWatchTime": 14
         },
         {
           "date": "2026-07-02",
@@ -4974,7 +5338,9 @@ window.REAL_DATA = {
           "views": 0,
           "reach": 0,
           "watchTime": 0,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 142,
+          "adWatchTime": 126
         },
         {
           "date": "2026-07-03",
@@ -4982,7 +5348,9 @@ window.REAL_DATA = {
           "views": 0,
           "reach": 0,
           "watchTime": 0,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 314,
+          "adWatchTime": 201
         },
         {
           "date": "2026-07-04",
@@ -4990,7 +5358,9 @@ window.REAL_DATA = {
           "views": 0,
           "reach": 0,
           "watchTime": 0,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 147,
+          "adWatchTime": 125
         },
         {
           "date": "2026-07-05",
@@ -4998,7 +5368,9 @@ window.REAL_DATA = {
           "views": 0,
           "reach": 0,
           "watchTime": 0,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         },
         {
           "date": "2026-07-06",
@@ -5006,7 +5378,9 @@ window.REAL_DATA = {
           "views": 0,
           "reach": 0,
           "watchTime": 0,
-          "newFollowers": 0
+          "newFollowers": 0,
+          "adViews": 0,
+          "adWatchTime": 0
         }
       ],
       "reachUnavailableReason": "YouTube reach/unique viewers is not available in the current Supermetrics connector.",
@@ -5014,7 +5388,8 @@ window.REAL_DATA = {
       "totalFollowers": 1150,
       "followersAsOf": "2026-07-06",
       "followersNote": "Total subscribers is rounded by the YouTube connector; new followers use gained subscribers minus lost subscribers.",
-      "hasNewFollowers": true
+      "hasNewFollowers": true,
+      "adTrafficNote": "YouTube ad traffic is tracked from Supermetrics Traffic source type = ADVERTISING."
     },
     "tiktok": {
       "platform": "tiktok",
