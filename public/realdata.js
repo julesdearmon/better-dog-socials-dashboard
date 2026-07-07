@@ -5404,7 +5404,7 @@ window.REAL_DATA = {
       "daily": [
         {
           "date": "2026-05-08",
-          "posts": 1,
+          "posts": 6,
           "views": 1166,
           "reach": 6295,
           "watchTime": 0,
@@ -5444,7 +5444,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-12",
-          "posts": 1,
+          "posts": 21,
           "views": 3228,
           "reach": 0,
           "watchTime": 0,
@@ -5454,7 +5454,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-13",
-          "posts": 1,
+          "posts": 8,
           "views": 1094,
           "reach": 0,
           "watchTime": 0,
@@ -5604,7 +5604,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-28",
-          "posts": 1,
+          "posts": 8,
           "views": 42715,
           "reach": 0,
           "watchTime": 0,
@@ -5614,7 +5614,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-29",
-          "posts": 1,
+          "posts": 23,
           "views": 27591,
           "reach": 126107,
           "watchTime": 0,
@@ -5624,7 +5624,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-30",
-          "posts": 1,
+          "posts": 12,
           "views": 17284,
           "reach": 0,
           "watchTime": 0,
@@ -5634,7 +5634,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-05-31",
-          "posts": 1,
+          "posts": 7,
           "views": 27883,
           "reach": 0,
           "watchTime": 0,
@@ -5644,7 +5644,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-01",
-          "posts": 1,
+          "posts": 5,
           "views": 16485,
           "reach": 0,
           "watchTime": 0,
@@ -5654,7 +5654,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-02",
-          "posts": 1,
+          "posts": 5,
           "views": 14587,
           "reach": 0,
           "watchTime": 0,
@@ -5744,7 +5744,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-11",
-          "posts": 1,
+          "posts": 3,
           "views": 25359,
           "reach": 0,
           "watchTime": 0,
@@ -5754,7 +5754,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-12",
-          "posts": 1,
+          "posts": 5,
           "views": 35838,
           "reach": 157970,
           "watchTime": 0,
@@ -5764,7 +5764,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-13",
-          "posts": 1,
+          "posts": 2,
           "views": 12486,
           "reach": 0,
           "watchTime": 0,
@@ -5774,7 +5774,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-14",
-          "posts": 1,
+          "posts": 2,
           "views": 20779,
           "reach": 0,
           "watchTime": 0,
@@ -5784,7 +5784,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-15",
-          "posts": 1,
+          "posts": 5,
           "views": 21194,
           "reach": 0,
           "watchTime": 0,
@@ -5794,7 +5794,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-16",
-          "posts": 1,
+          "posts": 5,
           "views": 15111,
           "reach": 0,
           "watchTime": 0,
@@ -5804,7 +5804,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-17",
-          "posts": 1,
+          "posts": 5,
           "views": 28381,
           "reach": 0,
           "watchTime": 0,
@@ -5814,7 +5814,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-18",
-          "posts": 1,
+          "posts": 7,
           "views": 26836,
           "reach": 0,
           "watchTime": 0,
@@ -5824,7 +5824,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-19",
-          "posts": 1,
+          "posts": 6,
           "views": 23032,
           "reach": 142955,
           "watchTime": 0,
@@ -5834,7 +5834,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-20",
-          "posts": 1,
+          "posts": 6,
           "views": 23510,
           "reach": 0,
           "watchTime": 0,
@@ -5844,7 +5844,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-21",
-          "posts": 1,
+          "posts": 3,
           "views": 22003,
           "reach": 0,
           "watchTime": 0,
@@ -5854,7 +5854,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-22",
-          "posts": 1,
+          "posts": 4,
           "views": 15398,
           "reach": 0,
           "watchTime": 0,
@@ -5864,7 +5864,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-23",
-          "posts": 1,
+          "posts": 6,
           "views": 18394,
           "reach": 0,
           "watchTime": 0,
@@ -5874,7 +5874,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-24",
-          "posts": 1,
+          "posts": 5,
           "views": 24917,
           "reach": 0,
           "watchTime": 0,
@@ -5884,7 +5884,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-25",
-          "posts": 1,
+          "posts": 6,
           "views": 21325,
           "reach": 0,
           "watchTime": 0,
@@ -5894,7 +5894,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-26",
-          "posts": 1,
+          "posts": 5,
           "views": 41185,
           "reach": 176694,
           "watchTime": 0,
@@ -5904,7 +5904,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-27",
-          "posts": 1,
+          "posts": 6,
           "views": 38527,
           "reach": 0,
           "watchTime": 0,
@@ -5914,7 +5914,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-28",
-          "posts": 1,
+          "posts": 6,
           "views": 23290,
           "reach": 0,
           "watchTime": 0,
@@ -5924,7 +5924,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-29",
-          "posts": 1,
+          "posts": 5,
           "views": 34125,
           "reach": 0,
           "watchTime": 0,
@@ -5934,7 +5934,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-06-30",
-          "posts": 1,
+          "posts": 6,
           "views": 11657,
           "reach": 0,
           "watchTime": 0,
@@ -5944,7 +5944,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-07-01",
-          "posts": 1,
+          "posts": 5,
           "views": 14500,
           "reach": 0,
           "watchTime": 0,
@@ -5954,7 +5954,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-07-02",
-          "posts": 1,
+          "posts": 6,
           "views": 18005,
           "reach": 0,
           "watchTime": 0,
@@ -5964,7 +5964,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-07-03",
-          "posts": 1,
+          "posts": 6,
           "views": 9667,
           "reach": 21386,
           "watchTime": 0,
@@ -5994,7 +5994,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-07-06",
-          "posts": 1,
+          "posts": 5,
           "views": 0,
           "reach": 0,
           "watchTime": 0,
@@ -6004,13 +6004,15 @@ window.REAL_DATA = {
         }
       ],
       "reachLabel": "Reached audience",
-      "postProvider": "supermetrics",
+      "postProvider": "supermetrics-tiktok-organic-video-ids",
       "hasFollowers": true,
       "totalFollowers": 2040,
       "followersAsOf": "2026-07-06",
       "followersNote": "TikTok profile metrics are available from May 8, 2026 in the current Supermetrics connector.",
       "historyStart": "2026-05-08",
-      "hasNewFollowers": true
+      "hasNewFollowers": true,
+      "postDefinition": "TikTok videos published, counted from Supermetrics TikTok Organic video IDs by create date.",
+      "postCountNote": "Daily post counts use the TikTok Organic videos report because profile rows do not represent publish count."
     }
   },
   "content": [

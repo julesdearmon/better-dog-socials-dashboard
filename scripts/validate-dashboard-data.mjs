@@ -41,6 +41,15 @@ for (const platform of requiredPlatforms) {
   if (platform === 'tiktok' && metric?.hasTopContent === false && !metric?.topContentUnavailableReason) {
     problems.push('tiktok: top content is disabled without an explanation');
   }
+  if (platform === 'tiktok') {
+    if (metric?.postProvider !== 'supermetrics-tiktok-organic-video-ids') {
+      problems.push('tiktok: post counts must come from Supermetrics TikTok Organic video IDs');
+    }
+    const recentNonZeroPostRows = (metric?.daily || []).slice(-14).filter((row) => Number(row.posts || 0) > 0);
+    if (recentNonZeroPostRows.length >= 10 && recentNonZeroPostRows.every((row) => Number(row.posts || 0) === 1)) {
+      problems.push('tiktok: recent post counts look like profile rows; verify against TikTok video IDs');
+    }
+  }
 }
 
 if ((data.directApiErrors || []).length) problems.push(`directApiErrors is not empty: ${data.directApiErrors.length}`);

@@ -17,7 +17,7 @@
     "tiktok": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Profile metrics are available from May 8, 2026; top-content rows can still timeout."
+      "note": "Profile metrics are available from May 8, 2026. Daily post counts were corrected from Supermetrics TikTok Organic video IDs; top-content metric rows can still timeout."
     },
     "youtube": {
       "status": "live",
@@ -33,6 +33,12 @@
       "platform": "youtube",
       "source": "YouTube public channel feed/page supplement",
       "posts": 2
+    },
+    {
+      "key": "tiktok-video-id-post-counts-2026-05-08-2026-07-06",
+      "platform": "tiktok",
+      "source": "Supermetrics TikTok Organic videos report",
+      "posts": 230
     }
   ]
 }
