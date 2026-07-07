@@ -9,12 +9,6 @@ const PLATFORM_COLORS = {
 const TOTAL_COLOR = '#222322'; // Better Dog brand near-black
 const DISPLAY_NAMES = { instagram: 'Instagram', facebook: 'Facebook', tiktok: 'TikTok', youtube: 'YouTube' };
 const PLATFORM_ORDER = ['instagram', 'facebook', 'youtube', 'tiktok'];
-const PAID_CONTEXT = {
-  instagram: 'Instagram totals include organic plus paid/promoted distribution. Supermetrics does not expose an organic-only Instagram split here.',
-  facebook: 'Facebook views use organic media views. Reach uses Page media views unique, not an organic-only reach split.',
-  tiktok: 'TikTok is from the TikTok Organic source.',
-  youtube: 'YouTube advertising traffic can be separated through Traffic Sources.'
-};
 const nameOf = (p) => DISPLAY_NAMES[p] || capWord(p);
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -148,22 +142,18 @@ function sumRange(metric, startIso, endIso) {
   const t = { posts: 0, views: 0, reach: 0, watchTime: null, newFollowers: null, totalFollowers: latestTotalFollowers(metric) };
   let followerSum = 0;
   let followerSeen = false;
-  let followerMissing = false;
   for (const row of daily) {
     if (row.date < startIso || row.date > endIso) continue;
     t.posts += row.posts || 0;
     t.views += row.views || 0;
     t.reach += row.reach || 0;
     if (row.watchTime != null) t.watchTime = (t.watchTime || 0) + row.watchTime;
-    if (hasFollowers) {
-      if (row.newFollowers == null) followerMissing = true;
-      else {
-        followerSeen = true;
-        followerSum += row.newFollowers || 0;
-      }
+    if (hasFollowers && row.newFollowers != null) {
+      followerSeen = true;
+      followerSum += row.newFollowers || 0;
     }
   }
-  if (hasFollowers) t.newFollowers = followerMissing ? null : (followerSeen ? followerSum : 0);
+  if (hasFollowers) t.newFollowers = followerSeen ? followerSum : null;
   return t;
 }
 
@@ -282,7 +272,7 @@ function viewsContextSummary() {
   const parts = [];
   if (ps.includes('instagram')) parts.push('Instagram views include paid/promoted distribution.');
   if (ps.includes('facebook')) parts.push('Facebook views are organic media views.');
-  if (ps.includes('youtube')) parts.push('YouTube views may include advertising traffic.');
+  if (ps.includes('youtube')) parts.push('YouTube ADVERTISING traffic is tracked separately in analysis.');
   return parts.join(' ');
 }
 
@@ -300,28 +290,10 @@ function renderMetricNotes() {
   reachNote.hidden = !note || $('#reachCard')?.hidden;
   const watchNote = $('#watchNote');
   if (watchNote) {
-    const watchText = platforms().includes('youtube') ? 'YouTube watch time may include advertising traffic.' : '';
+    const watchText = platforms().includes('youtube') ? 'YouTube ad-driven watch time is checked separately in analysis.' : '';
     watchNote.textContent = watchText;
     watchNote.hidden = !watchText || $('#watchCard')?.hidden;
   }
-}
-
-function kpiContextFor(key, ps = platforms()) {
-  const parts = [];
-  if ((key === 'views' || key === 'reach') && ps.includes('instagram')) parts.push('Instagram includes paid/promoted.');
-  if (key === 'views' && ps.includes('facebook')) parts.push('Facebook organic views.');
-  if (key === 'reach' && ps.includes('facebook')) parts.push('Facebook reach may include paid distribution.');
-  if (key === 'views' && ps.length === 1 && ps[0] === 'youtube') parts.push('Ad traffic can be checked separately.');
-  if (key === 'watchTime' && ps.includes('youtube')) parts.push('May include ad-driven watch time.');
-  if (key === 'views' && ps.length === 1 && ps[0] === 'tiktok') parts.push('TikTok Organic source.');
-  if (key === 'reach' && allPlatforms().includes('youtube') && ps.length > 1) parts.push('Excludes YouTube.');
-  if (key === 'newFollowers') {
-    parts.push('Selected range.');
-    const excluded = ps.filter((p) => state.data.metrics[p]?.hasNewFollowers === false).map(nameOf);
-    if (excluded.length) parts.push(`Excludes ${excluded.join(', ')}.`);
-  }
-  if (key === 'totalFollowers') parts.push('Latest available total.');
-  return parts.join(' ');
 }
 
 // ---------------------------------------------------------------------------
@@ -492,6 +464,11 @@ function visibleMetrics() {
   const keys = visibleMetricKeys();
   return keys.map((key) => METRICS.find((m) => m.key === key)).filter(Boolean);
 }
+function hasNewFollowerRows(p, startIso = state.rangeStart, endIso = state.rangeEnd) {
+  return (state.data?.metrics?.[p]?.daily || []).some((row) => (
+    row.date >= startIso && row.date <= endIso && row.newFollowers != null
+  ));
+}
 // Whether a platform reports a given metric (e.g. YouTube has no reach metric,
 // only YouTube has watch time).
 function supports(p, key) {
@@ -502,7 +479,7 @@ function supports(p, key) {
   if (key === 'views') return m.hasViews !== false;
   if (key === 'watchTime') return !!m.hasWatchTime;
   if (key === 'reach') return m.hasReach !== false;
-  if (key === 'newFollowers') return !!m.hasFollowers && m.hasNewFollowers !== false;
+  if (key === 'newFollowers') return !!m.hasFollowers && (m.hasNewFollowers !== false || hasNewFollowerRows(p));
   if (key === 'totalFollowers') return !!m.hasFollowers;
   return true;
 }
@@ -1046,6 +1023,86 @@ function inlineExamples(items) {
   return items.map(contentInlineLink).filter(Boolean).join('; ');
 }
 
+function rowsInRange(p, start, end) {
+  return (state.data?.metrics?.[p]?.daily || []).filter((row) => row.date >= start && row.date <= end);
+}
+
+function sumField(rows, key) {
+  return rows.reduce((sum, row) => sum + (Number(row[key]) || 0), 0);
+}
+
+function shortDate(isoDate) {
+  const d = new Date(isoDate + 'T00:00:00Z');
+  return `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}`;
+}
+
+function activeDateRange(rows, key) {
+  const dates = rows.filter((row) => Number(row[key]) > 0).map((row) => row.date);
+  if (!dates.length) return '';
+  if (dates.length === 1) return shortDate(dates[0]);
+  return `${shortDate(dates[0])}-${shortDate(dates[dates.length - 1])}`;
+}
+
+function paidImpactItems(ps, start, end) {
+  const items = [];
+
+  if (ps.includes('instagram')) {
+    items.push('Instagram paid/promoted distribution is included in the totals, but the current connector does not expose a paid-vs-organic split. No verified Instagram ad contribution is shown.');
+  }
+
+  if (ps.includes('facebook')) {
+    const current = rowsInRange('facebook', start, end);
+    const prior = rowsInRange('facebook', state.priorRange.start, state.priorRange.end);
+    const paid = sumField(current, 'paidViews');
+    const priorPaid = sumField(prior, 'paidViews');
+    if (paid > 0) {
+      items.push(`Facebook recorded ${fmtFull(paid)} paid media views in this range (${analysisDeltaWords(deltaPct(paid, priorPaid))} vs prior), but the dashboard Views KPI uses organic media views.`);
+    } else if (priorPaid > 0) {
+      items.push(`Facebook paid media views were 0 in this range after ${fmtFull(priorPaid)} in the prior range, so Facebook's Views KPI is organic for this period.`);
+    } else {
+      items.push('Facebook paid media views were 0 in this range; Facebook Views are organic media views.');
+    }
+  }
+
+  if (ps.includes('youtube')) {
+    const current = rowsInRange('youtube', start, end);
+    const prior = rowsInRange('youtube', state.priorRange.start, state.priorRange.end);
+    const adViews = sumField(current, 'adViews');
+    const adWatch = sumField(current, 'adWatchTime');
+    const priorAdViews = sumField(prior, 'adViews');
+    if (adViews > 0) {
+      const active = activeDateRange(current, 'adViews');
+      const offDates = current.filter((row) => Number(row.adViews || 0) === 0).map((row) => shortDate(row.date));
+      let line = `YouTube ADVERTISING traffic recorded ${fmtFull(adViews)} ad views`;
+      if (adWatch > 0) line += ` and ${fmtFull(adWatch)} watched minutes`;
+      line += active ? ` on ${active}` : '';
+      if (offDates.length) line += `; it was 0 on ${offDates.join(', ')}`;
+      line += `. Dashboard YouTube views are kept separate from ADVERTISING traffic.`;
+      items.push(line);
+    } else if (priorAdViews > 0) {
+      items.push(`YouTube ADVERTISING traffic was 0 in this range after ${fmtFull(priorAdViews)} ad views in the prior range.`);
+    } else {
+      items.push('YouTube ADVERTISING traffic was 0 in this range.');
+    }
+  }
+
+  if (ps.includes('tiktok')) {
+    items.push('TikTok is pulled from the TikTok Organic source, so paid distribution is not included in this connector pull.');
+  }
+
+  return items;
+}
+
+function paidImpactHtml(ps, start, end) {
+  const items = paidImpactItems(ps, start, end);
+  if (!items.length) return '';
+  return `<div class="analysis-card paid-impact"><h3>Paid impact checked</h3><ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>`;
+}
+
+function analysisCard(title, bodyHtml, cls = '') {
+  return `<div class="analysis-card${cls ? ` ${cls}` : ''}"><h3>${escapeHtml(title)}</h3><p>${bodyHtml}</p></div>`;
+}
+
 function themeTakeaway(theme) {
   if (!theme) return '';
   if (theme.label === 'Dog-owner problem hook') return 'Dog owners are most likely responding to a clear symptom or question before the product is introduced.';
@@ -1147,23 +1204,24 @@ function creativeAnalysisHtml(ps, start, end, info) {
   const weakExamples = themeExamples(items, weak, 1, true);
   const actions = creativeActionsFor(winner, weak, ps);
 
-  let html = `<p class="ov-reason"><strong>Creative read:</strong> ${items.length} posts averaged <strong>${fmt(Math.round(curAvg))}</strong> views each ${analysisDeltaHtml(avgDelta)}.`;
-  if (engRate != null) html += ` Posted-content engagement rate was <strong>${(engRate * 100).toFixed(1)}%</strong>.`;
-  html += '</p>';
+  const cards = [];
+  let creativeRead = `${items.length} posts averaged <strong>${fmt(Math.round(curAvg))}</strong> views each ${analysisDeltaHtml(avgDelta)}.`;
+  if (engRate != null) creativeRead += ` Posted-content engagement rate was <strong>${(engRate * 100).toFixed(1)}%</strong>.`;
+  cards.push(analysisCard('Creative read', creativeRead));
 
   if (winner) {
-    html += `<p class="ov-reason"><strong>Winning pattern:</strong> ${escapeHtml(winner.label)} is strongest in this ${info.word}: <strong>${fmt(Math.round(winner.avg))}</strong> avg views across ${winner.n} ${winner.n === 1 ? 'post' : 'posts'}, accounting for ${Math.round(winner.share * 100)}% of posted-content views. ${escapeHtml(themeTakeaway(winner))}`;
-    if (winnerExamples.length) html += ` <span class="ov-examples">Examples: ${inlineExamples(winnerExamples)}.</span>`;
-    html += '</p>';
+    let body = `${escapeHtml(winner.label)} is strongest in this ${info.word}: <strong>${fmt(Math.round(winner.avg))}</strong> avg views across ${winner.n} ${winner.n === 1 ? 'post' : 'posts'}, accounting for ${Math.round(winner.share * 100)}% of posted-content views. ${escapeHtml(themeTakeaway(winner))}`;
+    if (winnerExamples.length) body += ` <span class="ov-examples">Examples: ${inlineExamples(winnerExamples)}.</span>`;
+    cards.push(analysisCard('Winning pattern', body));
   }
   if (weak) {
-    html += `<p class="ov-reason"><strong>Weak spot:</strong> ${escapeHtml(weak.label)} is trailing at <strong>${fmt(Math.round(weak.avg))}</strong> avg views. Rebuild the opening before using that lane as the lead.`;
-    if (weakExamples.length) html += ` <span class="ov-examples">Example to rebuild: ${inlineExamples(weakExamples)}.</span>`;
-    html += '</p>';
+    let body = `${escapeHtml(weak.label)} is trailing at <strong>${fmt(Math.round(weak.avg))}</strong> avg views. Rebuild the opening before using that lane as the lead.`;
+    if (weakExamples.length) body += ` <span class="ov-examples">Example to rebuild: ${inlineExamples(weakExamples)}.</span>`;
+    cards.push(analysisCard('Weak spot', body));
   }
 
-  html += `<p class="ov-sub">Recommended actions</p><ol class="ov-action-list">${actions.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ol>`;
-  return html;
+  return `<div class="analysis-grid">${cards.join('')}</div>` +
+    `<div class="analysis-actions"><h3>Recommended actions</h3><ol class="ov-action-list">${actions.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ol></div>`;
 }
 
 function renderCreativeFocusedOverview(p, start, end, info) {
@@ -1186,7 +1244,7 @@ function renderCreativeFocusedOverview(p, start, end, info) {
   if (totalFollowers != null) parts.push(`${fmtFull(totalFollowers)} total followers`);
   html += `${parts.join(', ')} vs the previous ${info.word}.</p>`;
 
-  if (PAID_CONTEXT[p]) html += `<p class="ov-note"><strong>Paid context:</strong> ${escapeHtml(PAID_CONTEXT[p])}</p>`;
+  html += paidImpactHtml([p], start, end);
   html += creativeAnalysisHtml([p], start, end, info);
   el.innerHTML = html;
 }
@@ -1223,10 +1281,7 @@ function renderCreativeOverview() {
     html += '</p>';
   }
 
-  if (ps.includes('instagram')) {
-    html += '<p class="ov-note"><strong>Paid context:</strong> Instagram views and reach include paid/promoted distribution, so Instagram changes are not a pure organic signal.</p>';
-  }
-
+  html += paidImpactHtml(ps, start, end);
   html += creativeAnalysisHtml(ps, start, end, info);
 
   if (active.length) {
@@ -1284,20 +1339,20 @@ function renderContent() {
 
   const contentColumns = (platform, rows) => {
     const base = [
-      { label: '#', cls: '', value: (_c, i) => i + 1 },
-      { label: 'Content', cls: '', value: (c) => {
+      { label: '#', cls: 'rank-col', value: (_c, i) => i + 1 },
+      { label: 'Content', cls: 'content-col', value: (c) => {
         const label = c.title && c.title.trim() ? c.title : `${capWord(c.platform)} post`;
         return c.url && c.url !== '#'
           ? `<a class="content-link" href="${escapeHtml(c.url)}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`
           : escapeHtml(label);
       } },
-      { label: 'Type', cls: '', value: (c) => `<span class="type-tag">${escapeHtml(c.type || '-')}</span>` },
-      { label: 'Date posted', cls: '', value: (c) => c.date },
+      { label: 'Type', cls: 'type-col', value: (c) => `<span class="type-tag">${escapeHtml(c.type || '-')}</span>` },
+      { label: 'Date posted', cls: 'date-col', value: (c) => c.date },
     ];
-    base.push({ label: 'Views', cls: 'num', value: (c) => fmtFull(c.views) });
-    if (supports(platform, 'reach') && rows.some((c) => c.reach != null)) base.push({ label: 'Reach', cls: 'num', value: (c) => fmtFull(c.reach) });
-    if (platform === 'youtube') base.push({ label: 'Watch time', cls: 'num', value: (c) => c.watchTime == null ? '-' : `${fmt(c.watchTime / 60)} hrs` });
-    base.push({ label: 'Engagement', cls: 'num', value: (c) => fmtFull(c.eng) });
+    base.push({ label: 'Views', cls: 'num metric-col', value: (c) => fmtFull(c.views) });
+    if (supports(platform, 'reach') && rows.some((c) => c.reach != null)) base.push({ label: 'Reach', cls: 'num metric-col', value: (c) => fmtFull(c.reach) });
+    if (platform === 'youtube') base.push({ label: 'Watch time', cls: 'num metric-col', value: (c) => c.watchTime == null ? '-' : `${fmt(c.watchTime / 60)} hrs` });
+    base.push({ label: 'Engagement', cls: 'num metric-col', value: (c) => fmtFull(c.eng) });
     return base;
   };
 
@@ -1388,13 +1443,11 @@ function renderKpis() {
     const note = pendingOnly ? 'pending approval' : (m.key === 'totalFollowers' ? 'latest total' : (m.key === 'watchTime' ? 'YouTube - selected range' : (m.key === 'reach' ? 'available platforms' : 'selected range')));
     const val = pendingOnly || (m.key === 'watchTime' && curr === 0) ? null : curr;
     const delta = m.showDelta === false ? '' : deltaHtml(curr, prev);
-    const context = pendingOnly ? '' : kpiContextFor(m.key, showing);
     return `
       <div class="kpi">
         <div class="label">${m.label} <span class="kpi-note">${note}</span></div>
         <div class="value">${m.fmt(val)}</div>
         <div>${pendingOnly ? '' : delta}</div>
-        ${context ? `<div class="kpi-context">${escapeHtml(context)}</div>` : ''}
       </div>`;
   }).join('');
 }

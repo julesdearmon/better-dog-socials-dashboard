@@ -5344,7 +5344,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-07-03",
-          "posts": 0,
+          "posts": 1,
           "views": 0,
           "reach": 0,
           "watchTime": 0,
@@ -5364,7 +5364,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-07-05",
-          "posts": 0,
+          "posts": 1,
           "views": 0,
           "reach": 0,
           "watchTime": 0,
@@ -5389,7 +5389,8 @@ window.REAL_DATA = {
       "followersAsOf": "2026-07-06",
       "followersNote": "Total subscribers is rounded by the YouTube connector; new followers use gained subscribers minus lost subscribers.",
       "hasNewFollowers": true,
-      "adTrafficNote": "YouTube ad traffic is tracked from Supermetrics Traffic source type = ADVERTISING."
+      "adTrafficNote": "YouTube ad traffic is tracked from Supermetrics Traffic source type = ADVERTISING.",
+      "postSupplementNote": "YouTube public channel feed/page supplement added 2 published uploads for 2026-07-03 through 2026-07-06 because Supermetrics LatestVideos and VideoTotals returned no rows for those uploads."
     },
     "tiktok": {
       "platform": "tiktok",
@@ -8139,7 +8140,46 @@ window.REAL_DATA = {
       "views": 1050,
       "reach": 0,
       "eng": 58
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-07-05",
+      "url": "https://www.youtube.com/shorts/_oi2rtsdems",
+      "title": "Why do dogs bite their tail?",
+      "type": "Short Form Clip",
+      "views": 1975,
+      "watchTime": null,
+      "reach": null,
+      "eng": 0,
+      "source": "YouTube public channel feed/page supplement",
+      "sourceNote": "Supermetrics LatestVideos and VideoTotals returned no rows for this new upload as of this patch."
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-07-03",
+      "url": "https://www.youtube.com/shorts/rBe8Bvs60UA",
+      "title": "What is Confidence in a Dog?",
+      "type": "Short Form Clip",
+      "views": 508,
+      "watchTime": null,
+      "reach": null,
+      "eng": 0,
+      "source": "YouTube public channel feed/page supplement",
+      "sourceNote": "Supermetrics LatestVideos and VideoTotals returned no rows for this new upload as of this patch."
     }
   ],
-  "followersDataNote": "New followers is for the selected range when Supermetrics has complete data. Total followers is the latest available platform total; Instagram and YouTube do not expose historical total-follower snapshots in this connector."
+  "followersDataNote": "New followers is for the selected range when Supermetrics has complete data. Total followers is the latest available platform total; Instagram and YouTube do not expose historical total-follower snapshots in this connector.",
+  "supplementalSources": [
+    {
+      "key": "youtube-public-posts-2026-07-03-2026-07-06",
+      "platform": "youtube",
+      "range": {
+        "start": "2026-07-03",
+        "end": "2026-07-06"
+      },
+      "source": "YouTube public channel feed/page supplement",
+      "reason": "Supermetrics LatestVideos and VideoTotals returned no rows for confirmed public uploads in this range.",
+      "posts": 2
+    }
+  ]
 };

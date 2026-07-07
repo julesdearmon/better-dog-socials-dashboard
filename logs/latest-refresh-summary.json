@@ -22,9 +22,17 @@
     "youtube": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Channel totals pulled through the latest rows returned by Supermetrics; July 5-6 were zero-filled where no rows returned."
+      "note": "Channel totals are from Supermetrics. Two July 3-6 public YouTube uploads were added as post metadata because Supermetrics LatestVideos and VideoTotals returned no rows for those confirmed uploads."
     }
   },
   "errors": [],
-  "published": true
+  "published": true,
+  "supplementalSources": [
+    {
+      "key": "youtube-public-posts-2026-07-03-2026-07-06",
+      "platform": "youtube",
+      "source": "YouTube public channel feed/page supplement",
+      "posts": 2
+    }
+  ]
 }

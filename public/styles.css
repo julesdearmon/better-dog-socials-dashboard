@@ -309,10 +309,16 @@ body {
 .posts-table .content-title { max-width: 420px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .table-wrap { overflow-x: auto; }
-.posts-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.posts-table { width: 100%; min-width: 900px; border-collapse: collapse; table-layout: fixed; font-size: 13px; }
 .posts-table th, .posts-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); }
 .posts-table th { color: var(--muted); font-weight: 550; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
 .posts-table td.num, .posts-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.posts-table .rank-col { width: 44px; text-align: center; }
+.posts-table .content-col { width: 40%; }
+.posts-table .type-col { width: 150px; }
+.posts-table .date-col { width: 116px; }
+.posts-table .metric-col { width: 112px; }
+.posts-table td.content-col { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .posts-table .pill { font-size: 11px; padding: 3px 8px; border-radius: 999px; text-transform: capitalize; color: #fff; }
 .stale-row td { background: #fffdf7; }
 .source-badge {
@@ -347,6 +353,23 @@ body {
 .ov-delta.up { color: var(--good); }
 .ov-delta.down { color: var(--bad); }
 .ov-delta.flat { color: var(--muted); }
+.analysis-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 14px; }
+.analysis-card, .analysis-actions {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-2);
+  padding: 12px 13px;
+}
+.analysis-card h3, .analysis-actions h3 {
+  margin: 0 0 7px;
+  font-size: 12px;
+  color: var(--text);
+  font-weight: 750;
+}
+.analysis-card p { margin: 0; font-size: 13px; line-height: 1.55; }
+.analysis-card ul { margin: 0; padding-left: 18px; }
+.analysis-card li { font-size: 13px; line-height: 1.5; padding: 3px 0; }
+.paid-impact { grid-column: 1 / -1; background: #fffdf7; }
 .ov-reason { font-size: 13px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 11px 13px; margin: 0 0 14px; line-height: 1.55; }
 .ov-reason strong { color: var(--text); }
 .ov-examples { color: var(--muted); }
@@ -422,6 +445,7 @@ body {
 @media (max-width: 900px) {
   .kpis, .platform-cards { grid-template-columns: repeat(2, 1fr); }
   .grid { grid-template-columns: 1fr; }
+  .analysis-grid { grid-template-columns: 1fr; }
   .topbar { align-items: flex-start; flex-wrap: wrap; }
   .controls { flex-wrap: wrap; }
 }
