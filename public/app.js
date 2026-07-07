@@ -834,14 +834,6 @@ function renderFocusedOverview(p, start, end, info) {
   if (watch != null) html += `, <strong>${fmt(watch / 60)}</strong> hrs watch time${wordDelta(deltaPct(watch, prv.watchTime || 0))}`;
   html += ` vs the previous ${info.word}.</p>`;
 
-  if (p === 'instagram') {
-    html += '<p class="ov-reason"><strong>Paid media context:</strong> Instagram views and reach include organic plus paid/promoted distribution. The current Supermetrics Instagram connector does not expose an organic-only split, so Instagram changes should not be read as purely organic movement.</p>';
-  } else if (p === 'facebook') {
-    html += '<p class="ov-reason"><strong>Paid media context:</strong> Facebook views are organic media views. Reach uses Page media views unique, not an organic-only reach split.</p>';
-  } else if (p === 'youtube') {
-    html += '<p class="ov-reason"><strong>Paid media context:</strong> YouTube advertising traffic can be separated from other traffic sources before interpreting view changes.</p>';
-  }
-
   // What contributed — decompose the views change into posting volume, per-post
   // performance, and any single breakout post (all from the data).
   if (dvV != null) {
@@ -929,10 +921,6 @@ function renderOverview() {
   // Headline — totals over the selected range vs the previous one.
   let html = `<p class="ov-headline">Across ${escapeHtml(scopeLabel)}: <strong>${fmt(tv)}</strong> views${wordDelta(dv)}` +
     `${anyReach ? `, <strong>${fmt(tr)}</strong> reach${wordDelta(dr)}` : ''} vs the previous ${info.word}.</p>`;
-
-  if (ps.includes('instagram')) {
-    html += '<p class="ov-reason"><strong>Paid media context:</strong> Instagram totals include paid/promoted distribution plus organic activity. Facebook views use organic media views.</p>';
-  }
 
   // Biggest mover (data only): the platform whose views changed most, and — if one
   // post accounts for 40%+ of its views — a link to that post.
@@ -1081,10 +1069,6 @@ function zeroDateSummary(rows, key) {
 function paidImpactItems(ps, start, end) {
   const items = [];
 
-  if (ps.includes('instagram')) {
-    items.push('Instagram totals include paid/promoted distribution; the connector does not expose a paid-vs-organic split.');
-  }
-
   if (ps.includes('facebook')) {
     const current = rowsInRange('facebook', start, end);
     const prior = rowsInRange('facebook', state.priorRange.start, state.priorRange.end);
@@ -1094,8 +1078,6 @@ function paidImpactItems(ps, start, end) {
       items.push(`Facebook paid media ran in this range: ${fmtFull(paid)} paid views (${analysisDeltaWords(deltaPct(paid, priorPaid))} vs prior). The Views KPI still uses organic media views.`);
     } else if (priorPaid > 0) {
       items.push(`Facebook paid media was off in this range: 0 paid views after ${fmtFull(priorPaid)} in the prior range. Facebook Views are organic for this period.`);
-    } else {
-      items.push('Facebook paid media views were 0; Facebook Views are organic media views.');
     }
   }
 
@@ -1115,13 +1097,7 @@ function paidImpactItems(ps, start, end) {
       items.push(line);
     } else if (priorAdViews > 0) {
       items.push(`YouTube ads were off in this range: 0 ad views after ${fmtFull(priorAdViews)} ad views in the prior range.`);
-    } else {
-      items.push('YouTube ad traffic was 0 in this range.');
     }
-  }
-
-  if (ps.includes('tiktok')) {
-    items.push('TikTok uses the TikTok Organic source, so paid distribution is not included.');
   }
 
   return items;
@@ -1130,7 +1106,7 @@ function paidImpactItems(ps, start, end) {
 function paidImpactHtml(ps, start, end) {
   const items = paidImpactItems(ps, start, end);
   if (!items.length) return '';
-  return analysisRowHtml('Ads checked', analysisListHtml(items), 'paid-impact-row');
+  return analysisRowHtml('Paid impact', analysisListHtml(items), 'paid-impact-row');
 }
 
 function analysisRowHtml(label, bodyHtml, cls = '') {
@@ -1795,17 +1771,15 @@ function adContextHtml(scopePlatforms, metricKey, idx, movement) {
   const prevIdx = idx > 0 ? idx - 1 : null;
   const lines = [];
 
-  if (scopePlatforms.includes('instagram') && (metricKey === 'views' || metricKey === 'reach')) {
-    lines.push(`Instagram ${METRIC_NOUN[metricKey]} includes organic plus paid/promoted distribution, so this ${movement} cannot be read as purely organic from the dashboard data.`);
-  }
-
   if (scopePlatforms.includes('facebook') && (metricKey === 'views' || metricKey === 'reach')) {
     const paid = periodFieldTotal(['facebook'], idx, 'paidViews');
     const prevPaid = prevIdx == null ? 0 : periodFieldTotal(['facebook'], prevIdx, 'paidViews');
-    if (metricKey === 'views') {
-      lines.push(`Facebook views shown here are organic media views. Separate Facebook paid media views were ${fmt(paid)} this period${prevIdx == null ? '' : ` (${deltaWords(paid, prevPaid)})`}.`);
-    } else {
-      lines.push(`Facebook reach may be affected by paid distribution. Facebook paid media views were ${fmt(paid)} this period${prevIdx == null ? '' : ` (${deltaWords(paid, prevPaid)})`}.`);
+    if (paid > 0 || prevPaid > 0) {
+      if (metricKey === 'views') {
+        lines.push(`Facebook paid media views were ${fmt(paid)} this period${prevIdx == null ? '' : ` (${deltaWords(paid, prevPaid)})`}; the dashboard Views line still uses organic media views.`);
+      } else {
+        lines.push(`Facebook reach may be affected by paid distribution. Facebook paid media views were ${fmt(paid)} this period${prevIdx == null ? '' : ` (${deltaWords(paid, prevPaid)})`}.`);
+      }
     }
   }
 
@@ -1816,7 +1790,9 @@ function adContextHtml(scopePlatforms, metricKey, idx, movement) {
     const ytValue = periodFieldTotal(['youtube'], idx, metricKey);
     const share = ytValue > 0 ? `, about ${Math.round(adValue / ytValue * 100)}% of YouTube ${METRIC_NOUN[metricKey]}` : '';
     const formatted = metricKey === 'watchTime' ? fmtAdMinutes(adValue) : fmt(adValue);
-    lines.push(`YouTube advertising traffic contributed ${formatted}${share}${prevIdx == null ? '' : ` (${deltaWords(adValue, prevAd)})`}.`);
+    if (adValue > 0 || prevAd > 0) {
+      lines.push(`YouTube advertising traffic contributed ${formatted}${share}${prevIdx == null ? '' : ` (${deltaWords(adValue, prevAd)})`}.`);
+    }
   }
 
   if (!lines.length) return '';
