@@ -7,6 +7,27 @@ const summary = JSON.parse(readFileSync('logs/latest-refresh-summary.json', 'utf
 const requiredPlatforms = Object.keys(config.platforms || {});
 const generatedFrom = String(data.generatedFrom || '');
 const problems = [];
+const DAY = 86400000;
+
+const iso = (ms) => new Date(ms).toISOString().slice(0, 10);
+function defaultRange(asOf) {
+  const base = Date.parse(`${asOf}T00:00:00Z`);
+  const d = new Date(base);
+  const start = base - ((d.getUTCDay() - 5 + 7) % 7) * DAY;
+  return { start: iso(start), end: asOf };
+}
+function priorRange(range) {
+  const start = Date.parse(`${range.start}T00:00:00Z`);
+  const end = Date.parse(`${range.end}T00:00:00Z`);
+  const lenDays = Math.round((end - start) / DAY) + 1;
+  const priorEnd = start - DAY;
+  return { start: iso(priorEnd - (lenDays - 1) * DAY), end: iso(priorEnd) };
+}
+function findRangeOverride(platform, range) {
+  return (data.rangeOverrides || []).find((r) => r.platform === platform && r.start === range.start && r.end === range.end);
+}
+const sumRows = (rows, field) => rows.reduce((sum, row) => sum + Number(row[field] || 0), 0);
+const rowsInRange = (rows, range) => (rows || []).filter((row) => row.date >= range.start && row.date <= range.end);
 
 if (config.sourceOfTruth !== 'supermetrics-chatgpt-codex-connector') problems.push('config sourceOfTruth is not the Supermetrics connector');
 if (config.standaloneSupermetricsRestApi?.enabled) problems.push('standalone Supermetrics REST API is enabled in config');
@@ -49,6 +70,55 @@ for (const platform of requiredPlatforms) {
     if (recentNonZeroPostRows.length >= 10 && recentNonZeroPostRows.every((row) => Number(row.posts || 0) === 1)) {
       problems.push('tiktok: recent post counts look like profile rows; verify against TikTok video IDs');
     }
+  }
+}
+
+if (data.asOf) {
+  const range = defaultRange(data.asOf);
+  const comparisonRange = priorRange(range);
+  const exactRangeRequirements = {
+    instagram: ['views', 'reach'],
+    facebook: ['views', 'reach'],
+    youtube: ['views', 'watchTime'],
+    tiktok: ['views', 'reach'],
+  };
+  for (const [platform, fields] of Object.entries(exactRangeRequirements)) {
+    for (const checkedRange of [range, comparisonRange]) {
+      const override = findRangeOverride(platform, checkedRange);
+      if (!override) {
+        problems.push(`${platform}: missing exact range override for ${checkedRange.start} to ${checkedRange.end}`);
+        continue;
+      }
+      for (const field of fields) {
+        if (override.values?.[field] == null) {
+          problems.push(`${platform}: exact range override ${checkedRange.start} to ${checkedRange.end} missing ${field}`);
+        }
+      }
+    }
+  }
+
+  for (const platform of requiredPlatforms) {
+    const metric = data.metrics?.[platform];
+    if (!metric || metric.hasTopContent === false) continue;
+    const posts = sumRows(rowsInRange(metric.daily, range), 'posts');
+    const contentRows = (data.content || []).filter((item) => item.platform === platform && item.date >= range.start && item.date <= range.end);
+    if (posts > 0 && contentRows.length < posts) {
+      problems.push(`${platform}: default range has ${posts} posts but only ${contentRows.length} content rows`);
+    }
+  }
+
+  const ytRows = rowsInRange(data.metrics?.youtube?.daily, range);
+  const ytContent = (data.content || []).filter((item) => item.platform === 'youtube' && item.date >= range.start && item.date <= range.end);
+  const ytDailyViews = sumRows(ytRows, 'views');
+  const ytContentViews = sumRows(ytContent, 'views');
+  if (ytContentViews > 0 && ytDailyViews === 0) {
+    problems.push(`youtube: default range ${range.start} to ${range.end} has content views but zero channel views`);
+  }
+  const publicSupplement = (data.content || []).filter((item) =>
+    item.platform === 'youtube' && /public channel feed|page supplement/i.test(String(item.source || item.sourceNote || ''))
+  );
+  if (publicSupplement.length) {
+    problems.push(`youtube: ${publicSupplement.length} public supplement content rows remain; use Supermetrics connector-verified rows`);
   }
 }
 

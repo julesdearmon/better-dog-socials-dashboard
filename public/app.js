@@ -1518,12 +1518,11 @@ function renderKpis() {
   $('#kpis').innerHTML = visibleMetrics().map((m) => {
     const curr = totalAt(m.key, 0);
     const prev = totalAt(m.key, 1);
-    const note = pendingOnly ? 'pending approval' : (m.key === 'totalFollowers' ? 'latest total' : (m.key === 'watchTime' ? 'YouTube - selected range' : (m.key === 'reach' ? 'available platforms' : 'selected range')));
     const val = pendingOnly || (m.key === 'watchTime' && curr === 0) ? null : curr;
     const delta = m.showDelta === false ? '' : deltaHtml(curr, prev);
     return `
       <div class="kpi">
-        <div class="label">${m.label} <span class="kpi-note">${note}</span></div>
+        <div class="label">${m.label}</div>
         <div class="value">${m.fmt(val)}</div>
         <div>${pendingOnly ? '' : delta}</div>
       </div>`;
@@ -1549,7 +1548,6 @@ function renderPlatformCards() {
   wrap.innerHTML = ps.map((p) => {
     const cur = state.curTotals[p] || {};
     const prv = state.priorTotals[p] || {};
-    const status = sourceStatus(p);
     const followers = supports(p, 'totalFollowers') ? cur.totalFollowers : null;
     const mainValue = followers == null ? fmt(cur.views || 0) : fmtFull(followers);
     const mainLabel = followers == null ? 'views selected range' : 'total followers';
@@ -1565,7 +1563,6 @@ function renderPlatformCards() {
           <span class="platform-mark">${escapeHtml(nameOf(p).slice(0, 1))}</span>
           <div>
             <div class="pname">${escapeHtml(nameOf(p))}</div>
-            <div class="phandle">${escapeHtml(status.label)}</div>
           </div>
         </div>
         <div class="pcard-main">

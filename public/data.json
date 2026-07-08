@@ -12,6 +12,86 @@
   "rangeOverrides": [
     {
       "platform": "instagram",
+      "start": "2026-07-03",
+      "end": "2026-07-06",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 53937,
+        "reach": 3589
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-03",
+      "end": "2026-07-06",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 1840,
+        "reach": 817
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-03",
+      "end": "2026-07-06",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 3431,
+        "watchTime": 1280
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-03",
+      "end": "2026-07-06",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 29767,
+        "reach": 27975
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-06-29",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 63572,
+        "reach": 3860
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-06-29",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 855,
+        "reach": 460
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-06-29",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 3066,
+        "watchTime": 989
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-06-29",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 78287,
+        "reach": 75911
+      }
+    },
+    {
+      "platform": "instagram",
       "start": "2026-06-26",
       "end": "2026-07-02",
       "source": "Supermetrics exact range total",
@@ -5314,9 +5394,9 @@
         {
           "date": "2026-06-30",
           "posts": 1,
-          "views": 953,
+          "views": 929,
           "reach": 0,
-          "watchTime": 261,
+          "watchTime": 257,
           "newFollowers": 10,
           "adViews": 23,
           "adWatchTime": 31
@@ -5324,9 +5404,9 @@
         {
           "date": "2026-07-01",
           "posts": 0,
-          "views": 0,
+          "views": 264,
           "reach": 0,
-          "watchTime": 0,
+          "watchTime": 108,
           "newFollowers": 2,
           "adViews": 14,
           "adWatchTime": 14
@@ -5334,40 +5414,40 @@
         {
           "date": "2026-07-02",
           "posts": 0,
-          "views": 0,
+          "views": 1262,
           "reach": 0,
-          "watchTime": 0,
-          "newFollowers": 0,
+          "watchTime": 406,
+          "newFollowers": 6,
           "adViews": 142,
           "adWatchTime": 126
         },
         {
           "date": "2026-07-03",
-          "posts": 1,
-          "views": 0,
+          "posts": 0,
+          "views": 863,
           "reach": 0,
-          "watchTime": 0,
-          "newFollowers": 0,
+          "watchTime": 537,
+          "newFollowers": 5,
           "adViews": 314,
           "adWatchTime": 201
         },
         {
           "date": "2026-07-04",
           "posts": 0,
-          "views": 0,
+          "views": 267,
           "reach": 0,
-          "watchTime": 0,
-          "newFollowers": 0,
+          "watchTime": 192,
+          "newFollowers": 5,
           "adViews": 147,
           "adWatchTime": 125
         },
         {
           "date": "2026-07-05",
-          "posts": 1,
-          "views": 0,
+          "posts": 0,
+          "views": 2301,
           "reach": 0,
-          "watchTime": 0,
-          "newFollowers": 0,
+          "watchTime": 551,
+          "newFollowers": 4,
           "adViews": 0,
           "adWatchTime": 0
         },
@@ -5925,87 +6005,87 @@
           "date": "2026-06-29",
           "posts": 5,
           "views": 34125,
-          "reach": 0,
+          "reach": 33291,
           "watchTime": 0,
           "profileViews": 112,
-          "totalFollowers": 2040,
+          "totalFollowers": 2064,
           "newFollowers": 68
         },
         {
           "date": "2026-06-30",
           "posts": 6,
           "views": 11657,
-          "reach": 0,
+          "reach": 11064,
           "watchTime": 0,
           "profileViews": 39,
-          "totalFollowers": 2040,
+          "totalFollowers": 2064,
           "newFollowers": 20
         },
         {
           "date": "2026-07-01",
           "posts": 5,
           "views": 14500,
-          "reach": 0,
+          "reach": 14179,
           "watchTime": 0,
           "profileViews": 52,
-          "totalFollowers": 2040,
+          "totalFollowers": 2064,
           "newFollowers": 37
         },
         {
           "date": "2026-07-02",
           "posts": 6,
           "views": 18005,
-          "reach": 0,
+          "reach": 17377,
           "watchTime": 0,
           "profileViews": 78,
-          "totalFollowers": 2040,
+          "totalFollowers": 2064,
           "newFollowers": 56
         },
         {
           "date": "2026-07-03",
           "posts": 6,
           "views": 9667,
-          "reach": 21386,
+          "reach": 9314,
           "watchTime": 0,
           "profileViews": 38,
-          "totalFollowers": 2040,
+          "totalFollowers": 2064,
           "newFollowers": 22
         },
         {
           "date": "2026-07-04",
           "posts": 1,
           "views": 7167,
-          "reach": 0,
+          "reach": 6791,
           "watchTime": 0,
           "profileViews": 24,
-          "totalFollowers": 2040,
+          "totalFollowers": 2064,
           "newFollowers": 17
         },
         {
           "date": "2026-07-05",
           "posts": 1,
           "views": 5976,
-          "reach": 0,
+          "reach": 5281,
           "watchTime": 0,
           "profileViews": 19,
-          "totalFollowers": 2040,
+          "totalFollowers": 2064,
           "newFollowers": 15
         },
         {
           "date": "2026-07-06",
           "posts": 5,
-          "views": 0,
-          "reach": 0,
+          "views": 6957,
+          "reach": 6589,
           "watchTime": 0,
           "profileViews": 0,
-          "totalFollowers": 2040,
-          "newFollowers": 0
+          "totalFollowers": 2064,
+          "newFollowers": 10
         }
       ],
       "reachLabel": "Reached audience",
       "postProvider": "supermetrics-tiktok-organic-video-ids",
       "hasFollowers": true,
-      "totalFollowers": 2040,
+      "totalFollowers": 2064,
       "followersAsOf": "2026-07-06",
       "followersNote": "TikTok profile metrics are available from May 8, 2026 in the current Supermetrics connector.",
       "historyStart": "2026-05-08",
@@ -8008,9 +8088,47 @@
       "url": "https://www.facebook.com/674626722402999_122180388566906904",
       "title": "A dog's confidence grows when they know their needs are met.",
       "type": "Short Form Clip",
-      "views": 225,
-      "reach": 164,
-      "eng": 9
+      "views": 259,
+      "reach": 199,
+      "eng": 11,
+      "source": "Supermetrics Facebook post insights",
+      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 8, 2026."
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-07-04",
+      "url": "https://www.facebook.com/674626722402999_122180496350906904",
+      "title": "A happier belly makes everyday life easier, for your dog and for you.",
+      "type": "Single Image",
+      "views": 240,
+      "reach": 155,
+      "eng": 2,
+      "source": "Supermetrics Facebook post insights",
+      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 8, 2026."
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-07-05",
+      "url": "https://www.facebook.com/674626722402999_122180654498906904",
+      "title": "Ever wonder why dogs chase or chew on their tail?",
+      "type": "Short Form Clip",
+      "views": 641,
+      "reach": 584,
+      "eng": 11,
+      "source": "Supermetrics Facebook post insights",
+      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 8, 2026."
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-07-06",
+      "url": "https://www.facebook.com/674626722402999_1566398261509132",
+      "title": "Is your dog constantly scratching?",
+      "type": "Short Form Clip",
+      "views": 127456,
+      "reach": null,
+      "eng": 305,
+      "source": "Supermetrics Facebook post insights",
+      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 8, 2026."
     },
     {
       "platform": "instagram",
@@ -8025,32 +8143,41 @@
     {
       "platform": "tiktok",
       "date": "2026-07-03",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658042641904389407",
+      "title": "Calm confidence is the energy of a good leader.",
+      "type": "Short Form Clip",
+      "views": 1027,
+      "reach": 490,
+      "eng": 44,
+      "sourceId": "7658042641904389407",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-03",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7658042907810696478",
       "title": "Some energy creates motion.",
       "type": "Short Form Clip",
-      "views": 459,
-      "reach": 337,
-      "eng": 45
+      "views": 681,
+      "reach": 461,
+      "eng": 55,
+      "sourceId": "7658042907810696478",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
     },
     {
       "platform": "tiktok",
       "date": "2026-07-03",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7658041831288081694",
-      "title": "When your dog?s belly is off, everything is off?bloating, discomfort, loss of appetite, weight changes.",
+      "title": "When your dog's belly is off, everything is off.",
       "type": "Short Form Clip",
-      "views": 395,
-      "reach": 313,
-      "eng": 24
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-03",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658042641904389407",
-      "title": "Calm confidence is the energy of a good leader.",
-      "type": "Short Form Clip",
-      "views": 363,
-      "reach": 295,
-      "eng": 29
+      "views": 419,
+      "reach": 359,
+      "eng": 25,
+      "sourceId": "7658041831288081694",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
     },
     {
       "platform": "tiktok",
@@ -8058,9 +8185,12 @@
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7656917552441953567",
       "title": "A dog's confidence grows when they know their needs are met.",
       "type": "Short Form Clip",
-      "views": 253,
-      "reach": 197,
-      "eng": 19
+      "views": 272,
+      "reach": 228,
+      "eng": 21,
+      "sourceId": "7656917552441953567",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
     },
     {
       "platform": "tiktok",
@@ -8068,9 +8198,12 @@
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7658042034279697694",
       "title": "When the belly is not happy, everything else is affected.",
       "type": "Short Form Clip",
-      "views": 229,
-      "reach": 193,
-      "eng": 18
+      "views": 239,
+      "reach": 217,
+      "eng": 19,
+      "sourceId": "7658042034279697694",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
     },
     {
       "platform": "tiktok",
@@ -8078,19 +8211,103 @@
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7658042321140862238",
       "title": "Calm confidence is the foundation of balance.",
       "type": "Short Form Clip",
-      "views": 128,
-      "reach": 97,
-      "eng": 10
+      "views": 136,
+      "reach": 107,
+      "eng": 10,
+      "sourceId": "7658042321140862238",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
     },
     {
-      "platform": "facebook",
+      "platform": "tiktok",
       "date": "2026-07-04",
-      "url": "https://www.facebook.com/674626722402999_122180496350906904",
-      "title": "A happier belly makes everyday life easier, for your dog and for you.",
-      "type": "Single Image",
-      "views": 178,
-      "reach": 103,
-      "eng": 2
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658043199713266975",
+      "title": "Aging doesn't mean giving up.",
+      "type": "Short Form Clip",
+      "views": 481,
+      "reach": 369,
+      "eng": 28,
+      "sourceId": "7658043199713266975",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-05",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656919166057827615",
+      "title": "Ever wonder why dogs chase or chew on their tail?",
+      "type": "Short Form Clip",
+      "views": 2588,
+      "reach": 2215,
+      "eng": 70,
+      "sourceId": "7656919166057827615",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-06",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7659544801691389214",
+      "title": "Your dog's skin health affects more than comfort.",
+      "type": "Short Form Clip",
+      "views": 2413,
+      "reach": 25,
+      "eng": 31,
+      "sourceId": "7659544801691389214",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-06",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7659544709769039135",
+      "title": "If the gut is off, the whole body feels it.",
+      "type": "Short Form Clip",
+      "views": 669,
+      "reach": 111,
+      "eng": 20,
+      "sourceId": "7659544709769039135",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-06",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7659544889910103326",
+      "title": "Cesar shares a few of his favorite Better Dog Supplements.",
+      "type": "Short Form Clip",
+      "views": 419,
+      "reach": 0,
+      "eng": 17,
+      "sourceId": "7659544889910103326",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-06",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7659544841956740383",
+      "title": "Nothing steals a peaceful walk faster than mosquitoes.",
+      "type": "Short Form Clip",
+      "views": 378,
+      "reach": 0,
+      "eng": 5,
+      "sourceId": "7659544841956740383",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-06",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7659543961916280095",
+      "title": "A calm, confident dog is a balanced dog.",
+      "type": "Short Form Clip",
+      "views": 25,
+      "reach": 6,
+      "eng": 0,
+      "sourceId": "7659543961916280095",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
     },
     {
       "platform": "instagram",
@@ -8103,26 +8320,6 @@
       "eng": 10
     },
     {
-      "platform": "tiktok",
-      "date": "2026-07-04",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658043199713266975",
-      "title": "Aging doesn?t mean giving up.",
-      "type": "Short Form Clip",
-      "views": 375,
-      "reach": 277,
-      "eng": 24
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-07-05",
-      "url": "https://www.facebook.com/674626722402999_122180654498906904",
-      "title": "Ever wonder why dogs chase or chew on their tail?",
-      "type": "Short Form Clip",
-      "views": 568,
-      "reach": 428,
-      "eng": 8
-    },
-    {
       "platform": "instagram",
       "date": "2026-07-05",
       "url": "https://www.instagram.com/reel/DaalvxQjYU-/",
@@ -8133,40 +8330,30 @@
       "eng": 38
     },
     {
-      "platform": "tiktok",
-      "date": "2026-07-05",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656919166057827615",
-      "title": "Ever wonder why dogs chase or chew on their tail?",
-      "type": "Short Form Clip",
-      "views": 1050,
-      "reach": 0,
-      "eng": 58
-    },
-    {
       "platform": "youtube",
-      "date": "2026-07-05",
-      "url": "https://www.youtube.com/shorts/_oi2rtsdems",
+      "date": "2026-06-29",
+      "url": "https://www.youtube.com/watch?v=_oi2rtsdems",
       "title": "Why do dogs bite their tail?",
       "type": "Short Form Clip",
-      "views": 1975,
-      "watchTime": null,
+      "views": 1958,
+      "watchTime": 350,
       "reach": null,
-      "eng": 0,
-      "source": "YouTube public channel feed/page supplement",
-      "sourceNote": "Supermetrics LatestVideos and VideoTotals returned no rows for this new upload as of this patch."
+      "eng": 36,
+      "source": "Supermetrics LatestVideos",
+      "sourceNote": "Published date and performance verified through Supermetrics LatestVideos on Jul 8, 2026."
     },
     {
       "platform": "youtube",
-      "date": "2026-07-03",
-      "url": "https://www.youtube.com/shorts/rBe8Bvs60UA",
+      "date": "2026-06-30",
+      "url": "https://www.youtube.com/watch?v=rBe8Bvs60UA",
       "title": "What is Confidence in a Dog?",
       "type": "Short Form Clip",
-      "views": 508,
-      "watchTime": null,
+      "views": 9,
+      "watchTime": 5,
       "reach": null,
       "eng": 0,
-      "source": "YouTube public channel feed/page supplement",
-      "sourceNote": "Supermetrics LatestVideos and VideoTotals returned no rows for this new upload as of this patch."
+      "source": "Supermetrics LatestVideos",
+      "sourceNote": "Published date and performance verified through Supermetrics LatestVideos on Jul 8, 2026."
     }
   ],
   "followersDataNote": "New followers is for the selected range when Supermetrics has complete data. Total followers is the latest available platform total; Instagram and YouTube do not expose historical total-follower snapshots in this connector.",
