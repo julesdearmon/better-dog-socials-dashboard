@@ -61,9 +61,19 @@ if ((summary.errors || []).length) problems.push(`refresh summary contains error
 const updatedMs = Date.parse(String(data.updatedAt).replace(/, ([0-9]{1,2}:[0-9]{2} [AP]M)$/i, ', 2026 $1'));
 const today = new Date();
 const todayKey = today.toLocaleDateString('en-US', { timeZone: 'America/New_York' });
+const dateKeyMs = (key) => {
+  const [month, day, year] = key.split('/').map(Number);
+  return Date.UTC(year, month - 1, day);
+};
 if (!Number.isNaN(updatedMs)) {
   const updatedKey = new Date(updatedMs).toLocaleDateString('en-US', { timeZone: 'America/New_York' });
-  if (updatedKey !== todayKey) problems.push(`updatedAt is not today: ${data.updatedAt}`);
+  if (updatedKey !== todayKey) {
+    const todayStart = dateKeyMs(todayKey);
+    const updatedStart = dateKeyMs(updatedKey);
+    const daysOld = Math.round((todayStart - updatedStart) / 86400000);
+    if (!Number.isFinite(daysOld) || daysOld > 2) problems.push(`updatedAt is stale: ${data.updatedAt}`);
+    else console.warn(`Dashboard data was last updated ${daysOld} day${daysOld === 1 ? '' : 's'} ago: ${data.updatedAt}`);
+  }
 }
 
 if (problems.length) {

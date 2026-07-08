@@ -223,9 +223,9 @@ function presetRange(name, asOfMs) {
   return null;
 }
 
-// Default range: 2026 year-to-date.
+// Default range: current reporting week through the latest available data.
 function defaultRange(asOfMs) {
-  return presetRange('ytd-2026', asOfMs);
+  return presetRange('this-week', asOfMs);
 }
 
 // Human label for the selected range, e.g. "Jun 1 – Jun 30, 2026".
