@@ -14,7 +14,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
 const GRAN_NOUN = { daily: 'day', weekly: 'week', monthly: 'month' };
 const GRAN_LABEL = { daily: 'Daily', weekly: 'Weekly', monthly: 'Monthly' };
-const THEME_KEY = 'betterDogDashboardTheme';
+const THEME_KEY = 'betterDogDashboardThemeChoice';
 
 const state = {
   clients: [], clientId: null,
@@ -41,13 +41,16 @@ function savedTheme() {
   } catch (err) {
     // Ignore blocked storage.
   }
-  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  return 'light';
 }
 
-function setTheme(theme, rerender = false) {
+function setTheme(theme, options = {}) {
+  const { rerender = false, persist = false } = options;
   const next = theme === 'dark' ? 'dark' : 'light';
   document.documentElement.dataset.theme = next;
-  try { localStorage.setItem(THEME_KEY, next); } catch (err) { /* ignore blocked storage */ }
+  if (persist) {
+    try { localStorage.setItem(THEME_KEY, next); } catch (err) { /* ignore blocked storage */ }
+  }
   const btn = $('#themeToggle');
   if (btn) {
     const dark = next === 'dark';
@@ -622,7 +625,7 @@ async function init() {
   $('#exportBtn').addEventListener('click', exportCsv);
   $('#themeToggle')?.addEventListener('click', () => {
     const current = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
-    setTheme(current === 'dark' ? 'light' : 'dark', true);
+    setTheme(current === 'dark' ? 'light' : 'dark', { rerender: true, persist: true });
   });
   $('#insightClose').addEventListener('click', () => { $('#insightPanel').hidden = true; state.insightKey = null; });
 
@@ -2167,5 +2170,5 @@ function exportCsv() {
   URL.revokeObjectURL(url);
 }
 
-setTheme(savedTheme(), false);
+setTheme(savedTheme());
 init();
