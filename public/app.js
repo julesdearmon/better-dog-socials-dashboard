@@ -99,7 +99,9 @@ function suggestedGranularity(startIso, endIso) {
 }
 function setGranButton(g) {
   const allowed = allowedGranularities();
-  [...$('#granToggle').children].forEach((b) => {
+  const toggle = $('#granToggle');
+  toggle.classList.toggle('single-option', allowed.length === 1);
+  [...toggle.children].forEach((b) => {
     const isAllowed = allowed.includes(b.dataset.g);
     b.hidden = !isAllowed;
     b.disabled = !isAllowed;

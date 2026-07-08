@@ -337,9 +337,24 @@ body {
   cursor: pointer;
   border-right: 1px solid var(--line);
 }
+.seg button[hidden] { display: none !important; }
 .seg button:last-child { border-right: none; }
 .seg button:hover { background: var(--panel-2); }
 .seg button.active { background: var(--accent); color: #fff; font-weight: 750; }
+#granToggle.single-option {
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+#granToggle.single-option button {
+  min-width: 88px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(136, 204, 51, 0.14);
+}
+#granToggle.single-option button.active {
+  border-color: rgba(136, 204, 51, 0.45);
+}
 #rangePresets {
   width: 100%;
   max-width: 100%;
