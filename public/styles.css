@@ -535,6 +535,61 @@ body {
   .card-head { align-items: flex-start; gap: 10px; flex-wrap: wrap; }
   .chart-legend { font-size: 10px; }
   .chart-box { height: 220px; }
-  .posts-table { min-width: 680px; }
+  .table-wrap { margin: 0; padding: 0; overflow-x: visible; }
+  .posts-table {
+    display: block;
+    min-width: 0;
+    width: 100%;
+    table-layout: auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 12px;
+  }
+  .posts-table thead { display: none; }
+  .posts-table tbody { display: grid; gap: 10px; }
+  .posts-table tr {
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+    padding: 8px 10px;
+  }
+  .posts-table th,
+  .posts-table td {
+    border-bottom: none;
+    padding: 6px 0;
+  }
+  .posts-table td {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+    text-align: left;
+    width: 100%;
+  }
+  .posts-table td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .posts-table td.num,
+  .posts-table th.num { text-align: left; }
+  .posts-table .rank-col,
+  .posts-table .content-col,
+  .posts-table .type-col,
+  .posts-table .date-col,
+  .posts-table .metric-col {
+    width: auto;
+  }
+  .posts-table td.content-col {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+  }
+  .content-link { overflow-wrap: anywhere; }
+  .type-tag { white-space: normal; text-align: left; }
   .analysis-row { padding: 13px 0; }
 }

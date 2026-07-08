@@ -1389,7 +1389,7 @@ function renderContent() {
     const cols = contentColumns(platform, rows);
     return `<div class="table-wrap"><table class="posts-table">
       <thead><tr>${cols.map((col) => `<th${col.cls ? ` class="${col.cls}"` : ''}>${escapeHtml(col.label)}</th>`).join('')}</tr></thead>
-      <tbody>${rows.map((c, i) => `<tr>${cols.map((col) => `<td${col.cls ? ` class="${col.cls}"` : ''}>${col.value(c, i)}</td>`).join('')}</tr>`).join('')}</tbody>
+      <tbody>${rows.map((c, i) => `<tr>${cols.map((col) => `<td data-label="${escapeHtml(col.label === '#' ? 'Rank' : col.label)}"${col.cls ? ` class="${col.cls}"` : ''}>${col.value(c, i)}</td>`).join('')}</tr>`).join('')}</tbody>
     </table></div>`;
   };
 
