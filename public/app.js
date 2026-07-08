@@ -1751,13 +1751,112 @@ function adContextHtml(scopePlatforms, metricKey, idx, movement) {
   return `<p class="insight-caveat"><strong>Ad context:</strong> ${lines.map(escapeHtml).join('<br>')}</p>`;
 }
 
+function periodDays(period) {
+  return Math.round((Date.parse(period.end + 'T00:00:00Z') - Date.parse(period.start + 'T00:00:00Z')) / DAY) + 1;
+}
+
+function priorWindow(period) {
+  const days = periodDays(period);
+  const start = shiftIsoDate(period.start, -days);
+  const end = shiftIsoDate(period.end, -days);
+  return {
+    start,
+    end,
+    label: days === 1 ? shortDate(start) : rangeLabel(start, end),
+  };
+}
+
+function scopedRows(scopePlatforms, start, end) {
+  return scopePlatforms.flatMap((p) => rowsInRange(p, start, end).map((row) => ({ ...row, platform: p })));
+}
+
+function scopedFieldTotal(scopePlatforms, start, end, field) {
+  return scopedRows(scopePlatforms, start, end).reduce((sum, row) => sum + (Number(row[field]) || 0), 0);
+}
+
+function scopedContent(scopePlatforms, start, end) {
+  return (state.data.content || []).filter((c) => scopePlatforms.includes(c.platform) && c.date >= start && c.date <= end);
+}
+
+function contentMetricValue(item, field) {
+  return Number(item?.[field] || 0);
+}
+
+function itemPlatformPrefix(item, platform) {
+  return platform === 'total' ? `${nameOf(item.platform)} - ` : '';
+}
+
+function contentDriverLine(item, field, platform, label) {
+  const title = item.title && item.title.trim() ? item.title : `${capWord(item.platform)} post`;
+  const link = item.url && item.url !== '#'
+    ? `<a class="content-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(title)}</a>`
+    : escapeHtml(title);
+  const value = contentMetricValue(item, field);
+  const metric = field === 'watchTime' ? fmtMetricVal('watchTime', value) : fmt(value);
+  return `<li><span class="insight-driver-label">${escapeHtml(label)}</span>${itemPlatformPrefix(item, platform)}${link}<span class="ins-meta">${escapeHtml(item.type || 'post')} - ${metric} ${escapeHtml(field)} - ${shortDate(item.date)}</span></li>`;
+}
+
+function contentBenchmark(scopePlatforms, end, field) {
+  const start = shiftIsoDate(end, -13);
+  const items = scopedContent(scopePlatforms, start, end).filter((item) => contentMetricValue(item, field) > 0);
+  if (!items.length) return null;
+  const avg = items.reduce((sum, item) => sum + contentMetricValue(item, field), 0) / items.length;
+  return { avg, count: items.length };
+}
+
+function paidImpactForClick(scopePlatforms, metricKey, period, prevWindow) {
+  const lines = [];
+  const limits = [];
+  let impact = 'none';
+
+  if (scopePlatforms.includes('facebook') && (metricKey === 'views' || metricKey === 'reach')) {
+    const paid = scopedFieldTotal(['facebook'], period.start, period.end, 'paidViews');
+    const priorPaid = scopedFieldTotal(['facebook'], prevWindow.start, prevWindow.end, 'paidViews');
+    if (paid > 0 || priorPaid > 0) {
+      const direction = deltaWords(paid, priorPaid);
+      if (paid > priorPaid * 1.15 && paid > 0) impact = 'up';
+      if (paid < priorPaid * 0.85 && priorPaid > 0) impact = 'down';
+      const note = metricKey === 'views'
+        ? 'Facebook dashboard views are organic, so paid media is context rather than the KPI source.'
+        : 'Facebook reach can be affected by paid distribution.';
+      lines.push(`Facebook paid media views: ${fmtFull(paid)} (${direction || 'no prior paid change'}). ${note}`);
+    }
+  }
+
+  if (scopePlatforms.includes('youtube') && (metricKey === 'views' || metricKey === 'watchTime')) {
+    const field = metricKey === 'watchTime' ? 'adWatchTime' : 'adViews';
+    const adValue = scopedFieldTotal(['youtube'], period.start, period.end, field);
+    const priorAd = scopedFieldTotal(['youtube'], prevWindow.start, prevWindow.end, field);
+    if (adValue > 0 || priorAd > 0) {
+      const direction = deltaWords(adValue, priorAd);
+      if (adValue > priorAd * 1.15 && adValue > 0) impact = 'up';
+      if (adValue < priorAd * 0.85 && priorAd > 0) impact = 'down';
+      const formatted = metricKey === 'watchTime' ? fmtMetricVal('watchTime', adValue) : fmtFull(adValue);
+      const youtubeValue = scopedFieldTotal(['youtube'], period.start, period.end, metricKey);
+      const share = youtubeValue > 0 ? `; equivalent to about ${Math.round(adValue / youtubeValue * 100)}% of YouTube ${METRIC_NOUN[metricKey]}` : '';
+      lines.push(`YouTube advertising traffic: ${formatted} (${direction || 'no prior ad change'})${share}. Dashboard YouTube views are kept separate from ADVERTISING traffic.`);
+    }
+  }
+
+  if (scopePlatforms.includes('instagram') && (metricKey === 'views' || metricKey === 'reach')) {
+    limits.push('Instagram includes paid/promoted distribution, but this data does not include a day-level organic vs paid split.');
+  }
+
+  return { lines, limits, impact };
+}
+
+function insightSection(title, bodyHtml) {
+  if (!bodyHtml) return '';
+  return `<div class="insight-section"><div class="insight-section-title">${escapeHtml(title)}</div>${bodyHtml}</div>`;
+}
+
 function showInsight(platform, metricKey, idx) {
   const panel = $('#insightPanel');
   const period = state.periods[idx];
   const scope = platform === 'total' ? 'All platforms' : nameOf(platform);
   const metric = METRIC_NOUN[metricKey] || metricKey;
   $('#insightTitle').textContent = period ? `${scope} ${metric} - ${period.label}` : 'Data insights';
-  $('#insightBody').innerHTML = buildInsight(platform, metricKey, idx);
+  $('#insightBody').innerHTML = buildInsightV2(platform, metricKey, idx);
   panel.hidden = false;
   panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
@@ -1850,6 +1949,117 @@ function buildInsight(platform, metricKey, idx) {
     caveats.push(`YouTube ${metricName} reflects channel-wide viewing during this ${noun} (across all videos, old and new), so it can't be tied to a single upload. The posts above are what was published in the window.`);
   }
   if (caveats.length) html += `<p class="insight-caveat">${caveats.map(escapeHtml).join('<br>')}</p>`;
+
+  return html;
+}
+
+// New click insight: explain what happened on/around the selected date instead
+// of only restating the clicked metric.
+function buildInsightV2(platform, metricKey, idx) {
+  const period = state.periods[idx];
+  if (!period) return '';
+
+  const noun = GRAN_NOUN[state.granularity];
+  const scopePlatforms = platform === 'total' ? platforms().filter((p) => supports(p, metricKey)) : [platform];
+  const valAt = (i) => scopePlatforms.reduce((sum, p) => sum + ((state.series[p] && state.series[p][i]) ? (state.series[p][i][metricKey] || 0) : 0), 0);
+  const vals = state.periods.map((_, i) => valAt(i));
+  const value = vals[idx];
+  const others = vals.filter((_, i) => i !== idx);
+  const avg = others.length ? others.reduce((sum, v) => sum + v, 0) / others.length : 0;
+  const factor = avg > 0 ? value / avg : null;
+  const prevWindow = priorWindow(period);
+  const priorValue = scopedFieldTotal(scopePlatforms, prevWindow.start, prevWindow.end, metricKey);
+  const windowDelta = priorValue ? (value - priorValue) / priorValue : null;
+  const isPeak = value > 0 && value === Math.max(...vals);
+  const scopeLabel = platform === 'total' ? 'All platforms' : nameOf(platform);
+  const metricName = METRIC_NOUN[metricKey] || metricKey;
+
+  let badge = '', badgeCls = '';
+  if (factor != null) {
+    if (factor >= 1.4) { badge = `Up ${factor.toFixed(1)}x vs chart average`; badgeCls = 'hot'; }
+    else if (factor <= 0.7) { badge = `Down ${factor.toFixed(1)}x vs chart average`; badgeCls = 'low'; }
+    else { badge = 'Near chart average'; badgeCls = 'mid'; }
+  }
+
+  let html = `<p class="insight-headline"><strong>${escapeHtml(scopeLabel)}</strong> - ${escapeHtml(metricName)} - ${escapeHtml(period.label)}</p>`;
+  html += `<div class="insight-stat"><span class="insight-value">${fmtMetricVal(metricKey, value)}</span>`;
+  if (badge) html += ` <span class="spike-badge ${badgeCls}">${escapeHtml(badge)}</span>`;
+  html += '</div>';
+
+  const movementLines = [];
+  if (windowDelta != null) {
+    movementLines.push(`${windowDelta >= 0 ? 'Up' : 'Down'} ${(Math.abs(windowDelta) * 100).toFixed(0)}% vs ${prevWindow.label} (${fmtMetricVal(metricKey, priorValue)}).`);
+  } else {
+    movementLines.push(`No comparable ${metricName} in ${prevWindow.label}.`);
+  }
+  if (factor != null) {
+    movementLines.push(factor >= 1.15 || factor <= 0.85
+      ? `${factor.toFixed(1)}x the visible ${noun} average.`
+      : `About even with the visible ${noun} average.`);
+  }
+  if (isPeak) movementLines.push('Highest point in the current chart view.');
+  html += insightSection('Movement', `<ul class="insight-driver-list">${movementLines.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ul>`);
+
+  const field = CONTENT_FIELD[metricKey];
+  const sortField = field || 'views';
+  const currentContent = scopedContent(scopePlatforms, period.start, period.end)
+    .sort((a, b) => contentMetricValue(b, sortField) - contentMetricValue(a, sortField));
+  const priorContent = scopedContent(scopePlatforms, prevWindow.start, prevWindow.end)
+    .sort((a, b) => contentMetricValue(b, sortField) - contentMetricValue(a, sortField));
+  const currentTop = currentContent.slice(0, 3);
+  const priorTop = priorContent.slice(0, state.granularity === 'daily' ? 2 : 1);
+
+  let shareValid = false;
+  if (field) {
+    const contentSum = currentContent.reduce((sum, item) => sum + contentMetricValue(item, field), 0);
+    shareValid = value > 0 && contentSum > 0 && contentSum / value >= 0.8 && contentSum / value <= 1.25;
+  } else if (metricKey === 'posts') {
+    shareValid = true;
+  }
+
+  const contributorLines = [];
+  for (const item of currentTop) contributorLines.push(contentDriverLine(item, sortField, platform, state.granularity === 'daily' ? 'Same day' : 'This period'));
+  for (const item of priorTop) contributorLines.push(contentDriverLine(item, sortField, platform, state.granularity === 'daily' ? 'Prior day' : 'Prior period'));
+
+  let patternHtml = '';
+  const benchmark = contentBenchmark(scopePlatforms, period.end, sortField);
+  const topItem = currentTop[0];
+  if (topItem && benchmark && benchmark.avg > 0) {
+    const multiple = contentMetricValue(topItem, sortField) / benchmark.avg;
+    if (multiple >= 2) {
+      patternHtml = `<div class="insight-pattern"><strong>Outlier content:</strong> ${escapeHtml(topItem.title || `${nameOf(topItem.platform)} post`)} was ${multiple.toFixed(1)}x the recent post average for ${escapeHtml(sortField)}.</div>`;
+    }
+  }
+
+  if (contributorLines.length) {
+    const intro = shareValid && metricKey !== 'posts'
+      ? 'Post-level totals line up closely with this point, so these are likely content drivers.'
+      : `These are the posts/videos published on the clicked ${noun} or immediately before it.`;
+    html += insightSection('Likely contributors', `<p class="insight-mini">${escapeHtml(intro)}</p><ul class="insight-driver-list">${contributorLines.join('')}</ul>${patternHtml}`);
+  } else {
+    html += insightSection('Likely contributors', `<p class="insight-mini">No posts/videos were published on the clicked ${noun} or prior ${noun}. Movement likely came from older content, distribution, or paid context if present.</p>`);
+  }
+
+  const paid = paidImpactForClick(scopePlatforms, metricKey, period, prevWindow);
+  if (paid.lines.length) {
+    html += insightSection('Paid impact', `<ul class="insight-driver-list">${paid.lines.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ul>`);
+  }
+
+  const caveats = [...paid.limits];
+  const ytInScope = platform === 'youtube' || (platform === 'total' && scopePlatforms.includes('youtube'));
+  if (ytInScope && (metricKey === 'views' || metricKey === 'watchTime') && !shareValid) {
+    const verb = metricKey === 'views' ? 'reflect' : 'reflects';
+    caveats.push(`YouTube ${metricName} ${verb} viewing across old and new videos, so new uploads are not the only possible driver.`);
+  }
+  if (caveats.length) html += `<p class="insight-caveat">${caveats.map(escapeHtml).join('<br>')}</p>`;
+
+  let takeaway;
+  if (paid.impact === 'up' && (windowDelta == null || windowDelta >= 0)) takeaway = 'Paid/ad activity increased in the same window, so treat paid distribution as a likely contributor to the lift.';
+  else if (paid.impact === 'down' && (windowDelta == null || windowDelta < 0)) takeaway = 'Paid/ad activity dropped in the same window, so it likely contributed to the decline.';
+  else if (shareValid && currentTop.length && metricKey !== 'posts') takeaway = 'This looks content-led. Start by reviewing the same-day top post and the hook/format behind it.';
+  else if (currentTop.length || priorTop.length) takeaway = 'Review the posts above first; the data shows nearby content activity, but attribution is directional rather than exact.';
+  else takeaway = 'No nearby new content explains this point. Check older content, distribution, and any paid activity outside the connected organic sources.';
+  html += `<div class="insight-takeaway"><strong>Takeaway:</strong> ${escapeHtml(takeaway)}</div>`;
 
   return html;
 }

@@ -487,10 +487,54 @@ body {
 .insight-list { list-style: none; padding: 0; margin: 0 0 12px; }
 .insight-list li { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
 .insight-list li:last-child { border-bottom: none; }
+.insight-section {
+  border-top: 1px solid var(--line);
+  padding: 13px 0;
+}
+.insight-section-title {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.insight-mini { color: var(--muted); font-size: 12px; line-height: 1.5; margin: 0 0 8px; }
+.insight-driver-list { list-style: none; margin: 0; padding: 0; }
+.insight-driver-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.insight-driver-list li:last-child { border-bottom: none; }
+.insight-driver-label {
+  color: var(--muted);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 7px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
 .ins-meta { color: var(--muted); font-size: 12px; margin-left: auto; font-variant-numeric: tabular-nums; }
 .insight-pattern { font-size: 13px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; }
 .insight-pattern strong { color: var(--text); }
 .insight-caveat { font-size: 12px; color: var(--muted); line-height: 1.5; margin: 0; }
+.insight-takeaway {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.insight-takeaway strong { color: var(--text); }
 
 /* ---- Loading ---- */
 .loading {
@@ -591,5 +635,7 @@ body {
   }
   .content-link { overflow-wrap: anywhere; }
   .type-tag { white-space: normal; text-align: left; }
+  .insight-driver-list li { align-items: flex-start; }
+  .ins-meta { width: 100%; margin-left: 0; }
   .analysis-row { padding: 13px 0; }
 }
