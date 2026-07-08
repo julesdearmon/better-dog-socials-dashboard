@@ -1,37 +1,44 @@
 {
-  "refreshedAt": "Jul 7, 2026, 6:20 AM",
-  "dataThrough": "2026-07-06",
+  "refreshedAt": "Jul 8, 2026, 2:07 PM",
+  "dataThrough": "2026-07-07",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
-  "generatedFrom": "Supermetrics API (Instagram, Facebook, TikTok, YouTube)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; YouTube July 7 performance pending)",
   "platforms": {
     "instagram": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "YTD metrics pulled from Jan 1; YTD reach uses an exact range override."
+      "note": "Updated through Jul 7; exact current/prior range totals refreshed."
     },
     "facebook": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Views use organic media views; YTD paid views are retained for context."
+      "note": "Updated through Jul 7; Facebook views are organic media views and paid views were 0 in the default range."
     },
     "tiktok": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Profile metrics are available from May 8, 2026. Daily post counts were corrected from Supermetrics TikTok Organic video IDs; top-content metric rows can still timeout."
+      "note": "Profile totals updated through Jul 7; Better Dog video-level query returned no Jul 7 rows."
     },
     "youtube": {
-      "status": "live",
+      "status": "partial",
       "provider": "supermetrics",
-      "note": "Channel totals are from Supermetrics. Two July 3-6 public YouTube uploads were added as post metadata because Supermetrics LatestVideos and VideoTotals returned no rows for those confirmed uploads."
+      "note": "Channel totals available through Jul 5; Jul 3 and Jul 5 uploads verified with VideoTotals; Jul 7 upload metadata confirmed from public feed but performance is pending."
     }
   },
   "errors": [],
   "published": true,
   "supplementalSources": [
     {
-      "key": "youtube-public-posts-2026-07-03-2026-07-06",
+      "key": "youtube-public-upload-metadata-2026-07-07",
       "platform": "youtube",
-      "source": "YouTube public channel feed/page supplement",
+      "source": "YouTube public feed metadata",
+      "posts": 1,
+      "note": "Upload metadata only; performance pending in Supermetrics."
+    },
+    {
+      "key": "youtube-videototals-2026-07-03-2026-07-05",
+      "platform": "youtube",
+      "source": "Supermetrics VideoTotals",
       "posts": 2
     },
     {

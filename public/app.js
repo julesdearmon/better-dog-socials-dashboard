@@ -1078,7 +1078,9 @@ function contentTitle(item) {
 function contentInlineLink(item) {
   if (!item) return '';
   const title = escapeHtml(contentTitle(item));
-  const meta = `${nameOf(item.platform)} - ${fmtFull(item.views || 0)} views`;
+  const meta = item.metricsPending
+    ? `${nameOf(item.platform)} - metrics pending`
+    : `${nameOf(item.platform)} - ${fmtFull(item.views || 0)} views`;
   const label = item.url && item.url !== '#'
     ? `<a class="ov-example-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${title}</a>`
     : `<span>${title}</span>`;
@@ -1107,6 +1109,52 @@ function rowsInRange(p, start, end) {
 
 function sumField(rows, key) {
   return rows.reduce((sum, row) => sum + (Number(row[key]) || 0), 0);
+}
+
+function scoredContentIn(p, start, end) {
+  return contentIn(p, start, end)
+    .filter((item) => !item.metricsPending && Number(item.views || 0) > 0)
+    .sort((a, b) => (b.views || 0) - (a.views || 0));
+}
+
+function platformCauseHtml(p, start, end, info) {
+  const cur = state.curTotals[p] || {};
+  const prv = state.priorTotals[p] || {};
+  const bits = [];
+  const posts = cur.posts || 0;
+  const priorPosts = prv.posts || 0;
+  const top = scoredContentIn(p, start, end)[0];
+  const priorTop = scoredContentIn(p, state.priorRange.start, state.priorRange.end)[0];
+
+  if (posts || priorPosts) {
+    bits.push(`Posting volume was ${fmtFull(posts)} vs ${fmtFull(priorPosts)} before.`);
+  }
+
+  if (top && priorTop) {
+    bits.push(`Top post now: ${contentInlineLink(top)}; prior top was ${contentInlineLink(priorTop)}.`);
+  } else if (top) {
+    bits.push(`Best current example: ${contentInlineLink(top)}.`);
+  }
+
+  if (p === 'facebook') {
+    const paid = sumField(rowsInRange('facebook', start, end), 'paidViews');
+    const priorPaid = sumField(rowsInRange('facebook', state.priorRange.start, state.priorRange.end), 'paidViews');
+    if (paid === 0 && priorPaid === 0) bits.push('Facebook paid views were 0, so this movement was organic.');
+  }
+
+  if (p === 'youtube') {
+    const adViews = sumField(rowsInRange('youtube', start, end), 'adViews');
+    const priorAdViews = sumField(rowsInRange('youtube', state.priorRange.start, state.priorRange.end), 'adViews');
+    if (adViews || priorAdViews) bits.push(`YouTube ad views were ${fmtFull(adViews)} vs ${fmtFull(priorAdViews)} before.`);
+    if (state.data?.metrics?.youtube?.performanceAsOf) bits.push(`YouTube daily performance is only available through ${niceDate(state.data.metrics.youtube.performanceAsOf)} in this refresh.`);
+  }
+
+  if (p === 'tiktok') {
+    bits.push('TikTok data here is organic profile data; no TikTok ads source is connected.');
+  }
+
+  if (!bits.length) return '';
+  return bits.join(' ');
 }
 
 function shortDate(isoDate) {
@@ -1161,7 +1209,7 @@ function paidImpactItems(ps, start, end) {
       if (active) line += `, active on ${active}`;
       if (adWatch > 0) line += `, with ${fmtFull(adWatch)} watched minutes`;
       if (zeroSummary) line += `. Ad traffic was ${zeroSummary}`;
-      line += '. Dashboard YouTube views are separate from ad traffic.';
+      line += '. This ad traffic is part of the YouTube traffic mix.';
       items.push(line);
     } else if (priorAdViews > 0) {
       items.push(`YouTube ad views went from ${fmtFull(priorAdViews)} to 0.`);
@@ -1205,7 +1253,6 @@ function totalMovementHtml(rows, totalViews, priorViews, info, ps, start, end) {
     .filter((row) => row.views != null && row.priorViews != null && row.viewChange)
     .sort((a, b) => Math.abs(b.viewChange) - Math.abs(a.viewChange));
 
-  bullets.push(`Total views ${movementWord(dTotal)} from the prior ${info.word}.`);
   if (movers.length) {
     const primary = dTotal != null && dTotal < 0
       ? movers.filter((row) => row.viewChange < 0).sort((a, b) => a.viewChange - b.viewChange)[0] || movers[0]
@@ -1213,11 +1260,16 @@ function totalMovementHtml(rows, totalViews, priorViews, info, ps, start, end) {
     const counterMove = dTotal != null && dTotal < 0
       ? movers.filter((row) => row.viewChange > 0).sort((a, b) => b.viewChange - a.viewChange)[0]
       : movers.filter((row) => row.viewChange < 0).sort((a, b) => a.viewChange - b.viewChange)[0];
-    bullets.push(`Biggest reason: <strong>${nameOf(primary.p)}</strong> ${viewChangePhrase(primary.viewChange)} (${analysisDeltaWords(primary.dViews)}).`);
+    const primaryLabel = dTotal < 0 ? 'Main reason for the drop' : 'Main reason for the lift';
+    const primaryCause = platformCauseHtml(primary.p, start, end, info);
+    bullets.push(`${primaryLabel}: <strong>${nameOf(primary.p)}</strong> ${viewChangePhrase(primary.viewChange)}. ${primaryCause}`);
     if (counterMove) {
       const label = dTotal < 0 ? 'What helped' : 'What pulled it down';
-      bullets.push(`${label}: <strong>${nameOf(counterMove.p)}</strong> ${viewChangePhrase(counterMove.viewChange)}.`);
+      const counterCause = platformCauseHtml(counterMove.p, start, end, info);
+      bullets.push(`${label}: <strong>${nameOf(counterMove.p)}</strong> ${viewChangePhrase(counterMove.viewChange)}. ${counterCause}`);
     }
+  } else {
+    bullets.push('No single platform explains the change. Review the platform rows and top content examples below.');
   }
   for (const item of paidImpactItems(ps, start, end)) bullets.push(`<strong>Paid/ad note:</strong> ${escapeHtml(item)}`);
   return analysisRowHtml('Why it changed', analysisBulletListHtml(bullets));
@@ -1228,17 +1280,22 @@ function platformMovementHtml(p, cur, prv, start, end, info) {
   if (supports(p, 'views')) {
     const views = cur.views || 0;
     const priorViews = prv.views || 0;
-    bullets.push(`Views ${movementWord(deltaPct(views, priorViews))} from the prior ${info.word}.`);
+    const changed = views - priorViews;
+    if (changed) {
+      const label = changed > 0 ? 'Main lift' : 'Main drop';
+      bullets.push(`${label}: ${viewChangePhrase(changed)}. ${platformCauseHtml(p, start, end, info)}`);
+    } else {
+      bullets.push(`Views were flat. ${platformCauseHtml(p, start, end, info)}`);
+    }
   }
   const posts = cur.posts || 0;
   const priorPosts = prv.posts || 0;
   if (posts || priorPosts) {
-    bullets.push(`Posting volume: ${fmtFull(posts)} posts this ${info.word} vs ${fmtFull(priorPosts)} in the prior ${info.word}.`);
     if (posts && priorPosts && supports(p, 'views')) {
       const avg = (cur.views || 0) / posts;
       const priorAvg = (prv.views || 0) / priorPosts;
       const avgDelta = deltaPct(avg, priorAvg);
-      if (avgDelta != null && Math.abs(avgDelta) >= 0.15) bullets.push(`Average views per post were ${analysisDeltaWords(avgDelta)}.`);
+      if (avgDelta != null && Math.abs(avgDelta) >= 0.15) bullets.push(`Average views per post ${movementWord(avgDelta)}.`);
     }
   }
   for (const item of paidImpactItems([p], start, end)) bullets.push(`<strong>Paid/ad note:</strong> ${escapeHtml(item)}`);
@@ -1247,10 +1304,10 @@ function platformMovementHtml(p, cur, prv, start, end, info) {
 
 function themeTakeaway(theme) {
   if (!theme) return '';
-  if (theme.label === 'Dog-owner problem hook') return 'These posts start with a problem dog owners already care about, then bring in the product.';
-  if (theme.label === 'Cesar behavior/routine') return 'These posts work because Cesar gives people a clear behavior lesson before the product appears.';
-  if (theme.label === 'Product support claim') return 'Product claims can work, but they perform better when the opening starts with a dog problem.';
-  return 'The best posts give viewers a clear reason to care right away.';
+  if (theme.label === 'Dog-owner problem hook') return 'Winning structure: name a problem fast, then connect it to the supplement.';
+  if (theme.label === 'Cesar behavior/routine') return 'Winning structure: Cesar explains the behavior first, then the product supports the lesson.';
+  if (theme.label === 'Product support claim') return 'Product claims need a stronger first line: lead with the symptom before naming the supplement.';
+  return 'Winning structure: make the first line clear enough that a dog owner knows why to keep watching.';
 }
 
 function readableThemeLabel(label) {
@@ -1297,18 +1354,18 @@ function creativeActionsFor(theme, weak, ps) {
   if (!theme) return ['Keep testing hooks until there is enough post-level data to identify a repeatable winner.', sourceLine];
   const actions = [];
   if (theme.label === 'Cesar behavior/routine') {
-    actions.push('Cut more Cesar-led routine clips: behavior lesson first, supplement support second.');
-    actions.push('New video idea if footage is missing: Cesar reacts to a food-focused or high-energy dog, names the behavior, then ties it to one formula.');
+    actions.push('Make 3 Cesar-led clips where he names the behavior in the first line, then shows the supplement as support.');
+    actions.push('Use existing high-energy, mealtime, or confidence footage before planning a new shoot.');
   } else if (theme.label === 'Dog-owner problem hook') {
-    actions.push('Build the next batch around one visible dog-owner problem in the first second: tear stains, itching, loose stool, slowing down, or anxiety.');
-    actions.push('Use UGC B-roll for the symptom visual, then add Cesar/product footage after the hook lands.');
+    actions.push('Make the next batch around clear first-line hooks: "Why does my dog bite their tail?" or "Is your dog constantly scratching?"');
+    actions.push('Open with symptom B-roll first, then bring in Cesar/product support after the hook lands.');
   } else if (theme.label === 'Product support claim') {
-    actions.push('Keep the product proof, but rewrite the opening around the dog problem before naming the supplement.');
+    actions.push('Rewrite product-first clips so the first line names the dog problem before naming the supplement.');
   } else {
-    actions.push('Repeat the winning hook structure and test it across Instagram, TikTok, and YouTube Shorts.');
+    actions.push('Repeat the clearest opening line from the top post and test it across Instagram, TikTok, and YouTube Shorts.');
   }
-  if (weak?.label === 'Product support claim') actions.push('Reduce product-first openings unless they are paired with a specific symptom or behavior.');
-  if (ps.includes('youtube')) actions.push('For YouTube, reuse the strongest short-form hooks but judge quality with watch time because reach is unavailable.');
+  if (weak?.label === 'Product support claim') actions.push('Turn weaker product-first clips into symptom-first clips.');
+  if (ps.includes('youtube')) actions.push('For YouTube Shorts, reuse the strongest hook but judge success by watch time because reach is unavailable.');
   actions.push(sourceLine);
   const unique = [...new Set(actions)];
   return [...unique.filter((line) => line !== sourceLine).slice(0, 3), sourceLine];
@@ -1339,9 +1396,14 @@ function platformReadRows(ps, start, end) {
 }
 
 function creativeAnalysisHtml(ps, start, end, info) {
-  const items = (state.data.content || []).filter((c) => ps.includes(c.platform) && c.date >= start && c.date <= end);
+  const allItems = (state.data.content || []).filter((c) => ps.includes(c.platform) && c.date >= start && c.date <= end);
+  const pendingItems = allItems.filter((c) => c.metricsPending);
+  const items = allItems.filter((c) => !c.metricsPending);
   if (!items.length) {
-    return analysisRowHtml('Content signal', 'No posted content is available in this range, so there is not enough content data to explain the movement.');
+    if (pendingItems.length) {
+      return analysisRowHtml('Content signal', `${pendingItems.length} post${pendingItems.length === 1 ? '' : 's'} are confirmed, but performance metrics are still pending in Supermetrics.`);
+    }
+    return analysisRowHtml('Content signal', 'No post-level content is available in this range, so the dashboard cannot explain the movement from creative performance yet.');
   }
 
   const themes = creativeThemeStats(items);
@@ -1355,20 +1417,23 @@ function creativeAnalysisHtml(ps, start, end, info) {
   if (items.length < 4) {
     rows.push(analysisRowHtml('Data note', `Only ${items.length} post${items.length === 1 ? '' : 's'} had post-level data, so this is a small sample.`));
   }
+  if (pendingItems.length) {
+    rows.push(analysisRowHtml('Data note', `${pendingItems.length} confirmed post${pendingItems.length === 1 ? '' : 's'} still ${pendingItems.length === 1 ? 'needs' : 'need'} Supermetrics performance data.`));
+  }
 
   if (winner) {
-    let body = `<p>Top pattern: <strong>${escapeHtml(readableThemeLabel(winner.label))}</strong>.</p>`;
+    let body = `<p><strong>${escapeHtml(readableThemeLabel(winner.label))}</strong> performed best in the available post-level data.</p>`;
     body += `<p>${escapeHtml(themeTakeaway(winner))}</p>`;
     if (winnerExamples.length) body += `<div class="analysis-examples"><strong>Examples:</strong> ${inlineExamples(winnerExamples)}.</div>`;
     rows.push(analysisRowHtml('What worked', body));
   }
   if (weak) {
-    let body = `<p>Weaker pattern: <strong>${escapeHtml(readableThemeLabel(weak.label))}</strong>. The opening likely needs to be clearer or more problem-led.</p>`;
+    let body = `<p><strong>${escapeHtml(readableThemeLabel(weak.label))}</strong> was weaker. Make the opening more specific to the dog owner’s problem.</p>`;
     if (weakExamples.length) body += `<div class="analysis-examples"><strong>Example to improve:</strong> ${inlineExamples(weakExamples)}.</div>`;
     rows.push(analysisRowHtml('What to improve', body));
   }
 
-  rows.push(analysisRowHtml('Do next', `<p class="analysis-basis">Based on the content patterns above and the footage we have available.</p><ol class="ov-action-list">${actions.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ol>`, 'analysis-actions-row'));
+  rows.push(analysisRowHtml('Do next', `<ol class="ov-action-list">${actions.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ol>`, 'analysis-actions-row'));
   return rows.join('');
 }
 
@@ -1432,6 +1497,7 @@ function renderContent() {
 
   // Top 3 per platform across the selected range, grouped.
   const contentScore = (c) => {
+    if (c.metricsPending) return -1;
     const primary = c[key];
     if (primary != null && primary !== 0) return primary;
     if (key === 'views' && c.platform === 'facebook') return c.eng || 0;
@@ -1458,10 +1524,11 @@ function renderContent() {
       { label: 'Type', cls: 'type-col', value: (c) => `<span class="type-tag">${escapeHtml(c.type || '-')}</span>` },
       { label: 'Date posted', cls: 'date-col', value: (c) => c.date },
     ];
-    base.push({ label: 'Views', cls: 'num metric-col', value: (c) => fmtFull(c.views) });
-    if (supports(platform, 'reach') && rows.some((c) => c.reach != null)) base.push({ label: 'Reach', cls: 'num metric-col', value: (c) => fmtFull(c.reach) });
-    if (platform === 'youtube') base.push({ label: 'Watch time', cls: 'num metric-col', value: (c) => c.watchTime == null ? '-' : `${fmt(c.watchTime / 60)} hrs` });
-    base.push({ label: 'Engagement', cls: 'num metric-col', value: (c) => fmtFull(c.eng) });
+    const pending = (c) => c.metricsPending ? '<span class="pending-metric">Pending</span>' : null;
+    base.push({ label: 'Views', cls: 'num metric-col', value: (c) => pending(c) || fmtFull(c.views) });
+    if (supports(platform, 'reach') && rows.some((c) => c.reach != null)) base.push({ label: 'Reach', cls: 'num metric-col', value: (c) => pending(c) || fmtFull(c.reach) });
+    if (platform === 'youtube') base.push({ label: 'Watch time', cls: 'num metric-col', value: (c) => pending(c) || (c.watchTime == null ? '-' : `${fmt(c.watchTime / 60)} hrs`) });
+    base.push({ label: 'Engagement', cls: 'num metric-col', value: (c) => pending(c) || fmtFull(c.eng) });
     return base;
   };
 
@@ -1968,7 +2035,7 @@ function paidImpactForClick(scopePlatforms, metricKey, period, prevWindow) {
       const formatted = metricKey === 'watchTime' ? fmtMetricVal('watchTime', adValue) : fmtFull(adValue);
       const youtubeValue = scopedFieldTotal(['youtube'], period.start, period.end, metricKey);
       const share = youtubeValue > 0 ? `; equivalent to about ${Math.round(adValue / youtubeValue * 100)}% of YouTube ${METRIC_NOUN[metricKey]}` : '';
-      lines.push(`YouTube ad traffic: ${formatted} (${direction || 'no prior ad change'})${share}. Dashboard YouTube views are separate from ad traffic.`);
+      lines.push(`YouTube ad traffic: ${formatted} (${direction || 'no prior ad change'})${share}. This is part of the YouTube traffic mix.`);
     }
   }
 

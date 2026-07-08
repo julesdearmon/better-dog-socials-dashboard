@@ -115,7 +115,9 @@ if (data.asOf) {
     problems.push(`youtube: default range ${range.start} to ${range.end} has content views but zero channel views`);
   }
   const publicSupplement = (data.content || []).filter((item) =>
-    item.platform === 'youtube' && /public channel feed|page supplement/i.test(String(item.source || item.sourceNote || ''))
+    item.platform === 'youtube' &&
+    /public (channel )?feed|page supplement/i.test(String(item.source || item.sourceNote || '')) &&
+    !item.metricsPending
   );
   if (publicSupplement.length) {
     problems.push(`youtube: ${publicSupplement.length} public supplement content rows remain; use Supermetrics connector-verified rows`);

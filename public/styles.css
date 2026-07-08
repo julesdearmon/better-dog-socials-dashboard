@@ -787,6 +787,7 @@ body {
 .posts-table .metric-col { width: 112px; }
 .posts-table td.content-col { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .posts-table .pill { font-size: 11px; padding: 3px 8px; border-radius: 999px; text-transform: capitalize; color: #fff; }
+.pending-metric { color: var(--muted); font-size: 12px; font-weight: 650; }
 .stale-row td { background: var(--stale-row); }
 .source-badge {
   display: inline-block;
