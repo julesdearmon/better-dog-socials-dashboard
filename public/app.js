@@ -54,7 +54,8 @@ function setTheme(theme, options = {}) {
   const btn = $('#themeToggle');
   if (btn) {
     const dark = next === 'dark';
-    btn.textContent = dark ? 'Light mode' : 'Dark mode';
+    btn.classList.toggle('is-dark', dark);
+    btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
     btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
     btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
   }
