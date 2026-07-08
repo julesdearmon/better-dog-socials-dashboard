@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Better Dog Supplements — Social Dashboard</title>
   <meta name="description" content="Better Dog Supplements social media metrics dashboard" />
-  <link rel="stylesheet" href="styles.css?v=20260708-mobile-theme" />
+  <link rel="stylesheet" href="styles.css?v=20260708-command-center" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
@@ -14,6 +14,7 @@
       <img src="logo.png" alt="Better Dog Supplements" class="brand-logo" />
       <div class="brand-sub" id="reportWeek"></div>
     </div>
+    <div class="command-title">Social Media Command Center</div>
     <div class="controls">
       <div class="control">
         <span>Chart view</span>
@@ -57,43 +58,68 @@
   </header>
 
   <main id="dashboard" class="dashboard">
-    <h1 class="page-title">Social Media Metrics</h1>
-    <div id="demoBanner" class="demo-banner" hidden>
-      <strong>⚠ Sample data shown.</strong>
-      The live Better Dog data didn't load in this view, so these are placeholder numbers — <strong>not</strong> real metrics. Reopen the dashboard, or ask to re-pull the latest data from Supermetrics.
+    <section class="command-summary">
+      <div class="summary-copy">
+        <p class="command-kicker">Better Dog Supplements</p>
+        <h1 class="page-title">Social Media Metrics</h1>
+      </div>
+      <div class="summary-notes">
+        <div id="demoBanner" class="demo-banner" hidden>
+          <strong>⚠ Sample data shown.</strong>
+          The live Better Dog data didn't load in this view, so these are placeholder numbers — <strong>not</strong> real metrics. Reopen the dashboard, or ask to re-pull the latest data from Supermetrics.
+        </div>
+        <div id="liveNote" class="live-note" hidden></div>
+        <div id="dataQualityNote" class="data-quality-note" hidden></div>
+        <p class="weekly-note" id="periodNote"></p>
+      </div>
+      <div class="platform-filter" id="platformFilter"></div>
+    </section>
+
+    <div class="section-heading">
+      <h2 class="section-title" id="kpisTitle">Metric Totals</h2>
     </div>
-    <div id="liveNote" class="live-note" hidden></div>
-    <div id="dataQualityNote" class="data-quality-note" hidden></div>
-    <p class="weekly-note" id="periodNote"></p>
-
-    <div class="platform-filter" id="platformFilter"></div>
-
-    <h2 class="section-title" id="kpisTitle">Metric Totals</h2>
     <section class="kpis" id="kpis"></section>
 
-    <p class="chart-hint" id="chartHint">Click any chart point for details.</p>
+    <section class="channels-section" id="channelsSection">
+      <div class="section-heading">
+        <div>
+          <h2 class="section-title">Channels</h2>
+          <p class="section-note">Connected profiles and selected-range performance.</p>
+        </div>
+      </div>
+      <div class="platform-cards" id="platformCards"></div>
+    </section>
 
-    <section class="grid">
-      <div class="card chart-card" id="viewsCard">
-        <div class="card-head"><h2 id="viewsTitle">Views</h2><span class="chart-legend" id="viewsLegend" hidden></span></div>
-        <div class="chart-box"><canvas id="viewsChart"></canvas></div>
-        <p class="chart-note" id="viewsNote" hidden></p>
+    <section class="charts-section">
+      <div class="section-heading">
+        <div>
+          <h2 class="section-title">Momentum</h2>
+          <p class="chart-hint" id="chartHint">Click any chart point for details.</p>
+        </div>
       </div>
-      <div class="card chart-card" id="postsCard">
-        <div class="card-head"><h2 id="postsTitle">Posts</h2><span class="chart-legend" id="postsLegend" hidden></span></div>
-        <div class="chart-box"><canvas id="postsChart"></canvas></div>
-        <p class="chart-note" id="postsNote" hidden></p>
-      </div>
-      <div class="card chart-card" id="reachCard">
-        <div class="card-head"><h2 id="reachTitle">Reach</h2><span class="chart-legend" id="reachLegend" hidden></span></div>
-        <div class="chart-box"><canvas id="reachChart"></canvas></div>
-        <p class="chart-note" id="reachNote" hidden></p>
-      </div>
-      <div class="card chart-card" id="watchCard">
-        <div class="card-head"><h2 id="watchTitle">YouTube watch time</h2><span class="chart-legend" id="watchLegend" hidden></span></div>
-        <div class="chart-box"><canvas id="watchChart"></canvas></div>
-        <p class="chart-note" id="watchNote" hidden></p>
-      </div>
+
+      <section class="grid">
+        <div class="card chart-card" id="viewsCard">
+          <div class="card-head"><h2 id="viewsTitle">Views</h2><span class="chart-legend" id="viewsLegend" hidden></span></div>
+          <div class="chart-box"><canvas id="viewsChart"></canvas></div>
+          <p class="chart-note" id="viewsNote" hidden></p>
+        </div>
+        <div class="card chart-card" id="postsCard">
+          <div class="card-head"><h2 id="postsTitle">Posts</h2><span class="chart-legend" id="postsLegend" hidden></span></div>
+          <div class="chart-box"><canvas id="postsChart"></canvas></div>
+          <p class="chart-note" id="postsNote" hidden></p>
+        </div>
+        <div class="card chart-card" id="reachCard">
+          <div class="card-head"><h2 id="reachTitle">Reach</h2><span class="chart-legend" id="reachLegend" hidden></span></div>
+          <div class="chart-box"><canvas id="reachChart"></canvas></div>
+          <p class="chart-note" id="reachNote" hidden></p>
+        </div>
+        <div class="card chart-card" id="watchCard">
+          <div class="card-head"><h2 id="watchTitle">YouTube watch time</h2><span class="chart-legend" id="watchLegend" hidden></span></div>
+          <div class="chart-box"><canvas id="watchChart"></canvas></div>
+          <p class="chart-note" id="watchNote" hidden></p>
+        </div>
+      </section>
     </section>
 
     <section class="card insight-card" id="insightPanel" hidden>
@@ -130,6 +156,6 @@
   <script src="realdata.js"></script>
   <script src="business-suite-overrides.js"></script>
   <script src="demo.js"></script>
-  <script src="app.js?v=20260708-optional-dark"></script>
+  <script src="app.js?v=20260708-command-center"></script>
 </body>
 </html>

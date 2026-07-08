@@ -814,6 +814,7 @@ function render() {
   renderChartVisibility();
   renderMetricNotes();
   renderKpis();
+  renderPlatformCards();
   renderCreativeOverview();
   renderTrend('postsChart', 'posts');
   renderTrend('viewsChart', 'views');
@@ -1526,6 +1527,53 @@ function renderKpis() {
         <div class="value">${m.fmt(val)}</div>
         <div>${pendingOnly ? '' : delta}</div>
       </div>`;
+  }).join('');
+}
+
+function renderPlatformCards() {
+  const wrap = $('#platformCards');
+  const section = $('#channelsSection');
+  if (!wrap || !section) return;
+  const ps = platforms();
+  section.hidden = !ps.length;
+  if (!ps.length) {
+    wrap.innerHTML = '';
+    return;
+  }
+
+  const metricStat = (label, value, prev, formatter = fmt) => {
+    const shown = value == null ? '—' : formatter(value);
+    return `<div class="pcard-stat"><span>${escapeHtml(label)}</span><strong>${shown}</strong>${miniDelta(value, prev)}</div>`;
+  };
+
+  wrap.innerHTML = ps.map((p) => {
+    const cur = state.curTotals[p] || {};
+    const prv = state.priorTotals[p] || {};
+    const status = sourceStatus(p);
+    const followers = supports(p, 'totalFollowers') ? cur.totalFollowers : null;
+    const mainValue = followers == null ? fmt(cur.views || 0) : fmtFull(followers);
+    const mainLabel = followers == null ? 'views selected range' : 'total followers';
+    const stats = [];
+    stats.push(metricStat('Views', cur.views || 0, prv.views || 0, fmt));
+    stats.push(metricStat('Posts', cur.posts || 0, prv.posts || 0, fmtFull));
+    if (supports(p, 'newFollowers')) stats.push(metricStat('New followers', cur.newFollowers, prv.newFollowers, fmtFull));
+    if (supports(p, 'reach')) stats.push(metricStat('Reach', cur.reach || 0, prv.reach || 0, fmt));
+    if (supports(p, 'watchTime')) stats.push(metricStat('Watch time', cur.watchTime, prv.watchTime, (v) => fmt(v / 60) + ' hrs'));
+    return `
+      <article class="pcard ${p}" style="--platform-color:${PLATFORM_COLORS[p] || '#88cc33'}">
+        <div class="phead">
+          <span class="platform-mark">${escapeHtml(nameOf(p).slice(0, 1))}</span>
+          <div>
+            <div class="pname">${escapeHtml(nameOf(p))}</div>
+            <div class="phandle">${escapeHtml(status.label)}</div>
+          </div>
+        </div>
+        <div class="pcard-main">
+          <strong>${mainValue}</strong>
+          <span>${escapeHtml(mainLabel)}</span>
+        </div>
+        <div class="pcard-stats">${stats.join('')}</div>
+      </article>`;
   }).join('');
 }
 
