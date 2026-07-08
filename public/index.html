@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Better Dog Supplements — Social Dashboard</title>
   <meta name="description" content="Better Dog Supplements social media metrics dashboard" />
-  <link rel="stylesheet" href="styles.css?v=20260708-granularity-pill" />
+  <link rel="stylesheet" href="styles.css?v=20260708-topbar-status" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
@@ -15,6 +15,9 @@
       <div class="brand-sub" id="reportWeek"></div>
     </div>
     <div class="command-title">Social Media Command Center</div>
+    <div class="topbar-status">
+      <span id="modeBadge" class="badge"></span>
+    </div>
     <div class="controls">
       <div class="control">
         <span>Chart view</span>
@@ -51,9 +54,10 @@
           <button type="button" data-preset="last-3-months">Last 3 months</button>
         </div>
       </div>
-      <button id="exportBtn" class="btn">Export CSV</button>
-      <button id="themeToggle" class="btn theme-toggle" type="button" aria-label="Switch theme">Dark mode</button>
-      <span id="modeBadge" class="badge"></span>
+      <div class="control-actions">
+        <button id="exportBtn" class="btn">Export CSV</button>
+        <button id="themeToggle" class="btn theme-toggle" type="button" aria-label="Switch theme">Dark mode</button>
+      </div>
     </div>
   </header>
 

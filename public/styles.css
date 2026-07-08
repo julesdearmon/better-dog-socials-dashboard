@@ -140,6 +140,13 @@ body {
   text-transform: uppercase;
   white-space: nowrap;
 }
+.topbar-status {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 110px;
+}
 
 .demo-banner {
   background: var(--demo-bg);
@@ -234,11 +241,10 @@ body {
   grid-column: 1 / -1;
   justify-self: center;
   width: min(100%, 1280px);
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 148px minmax(520px, 1fr) auto;
   align-items: end;
-  justify-content: flex-start;
   gap: 8px;
-  flex-wrap: wrap;
   padding: 9px;
   border: 1px solid var(--line);
   border-radius: 18px;
@@ -256,6 +262,13 @@ body {
 .control:nth-child(1) { flex: 0 0 auto; }
 .control:nth-child(2) { flex: 0 0 148px; }
 .control:nth-child(3) { flex: 1 1 420px; }
+.control-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  align-self: end;
+}
 .control > span {
   font-size: 10px;
   font-weight: 750;
@@ -356,7 +369,7 @@ body {
   border-color: rgba(136, 204, 51, 0.45);
 }
 #rangePresets {
-  width: 100%;
+  width: fit-content;
   max-width: 100%;
   overflow-x: auto;
   scrollbar-width: none;
@@ -388,7 +401,6 @@ body {
   text-align: center;
 }
 .badge {
-  align-self: flex-end;
   font-size: 11px;
   padding: 5px 10px;
   border-radius: 999px;
@@ -943,11 +955,20 @@ body {
     white-space: normal;
     letter-spacing: 0.26em;
   }
-  .controls { width: 100%; justify-content: flex-start; gap: 10px; flex-wrap: wrap; }
+  .topbar-status { justify-self: start; }
+  .controls {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
   .control,
   .control:nth-child(1),
   .control:nth-child(2) { flex: 1 1 160px; min-width: 150px; }
-  .control:nth-child(3) { flex: 1 1 100%; min-width: 0; }
+  .control:nth-child(3) { grid-column: 1 / -1; flex: 1 1 100%; min-width: 0; }
+  .control-actions {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
   .seg { max-width: 100%; overflow-x: auto; }
   .seg button { padding: 7px 10px; white-space: nowrap; }
   .card { padding: 16px; }
@@ -992,6 +1013,9 @@ body {
     letter-spacing: 0.22em;
     line-height: 1.6;
   }
+  .topbar-status {
+    justify-self: start;
+  }
   .controls {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1012,6 +1036,13 @@ body {
     box-shadow: var(--shadow);
   }
   .control:nth-child(3) { grid-column: 1 / -1; }
+  .control-actions {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 8px;
+  }
   .control, .cal-btn, .btn, .content-controls, .content-controls select { width: 100%; }
   .seg { width: 100%; }
   .seg button {
@@ -1041,11 +1072,6 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 38px;
-  }
-  #modeBadge {
-    grid-column: 1 / -1;
-    justify-self: start;
-    align-self: center;
   }
   .dashboard { padding: 18px 12px 44px; }
   .command-summary {
@@ -1190,7 +1216,7 @@ body {
 @media (max-width: 380px) {
   .controls { grid-template-columns: 1fr; }
   .control:nth-child(3) { grid-column: auto; }
-  #modeBadge { grid-column: auto; }
+  .control-actions { grid-template-columns: 1fr; }
   .chart-box { height: 215px; }
   .posts-table td { grid-template-columns: 82px minmax(0, 1fr); }
 }
