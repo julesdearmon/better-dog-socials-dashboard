@@ -22,7 +22,6 @@ const state = {
   rangeStart: null, rangeEnd: null, // selected date range (YYYY-MM-DD), inclusive
   priorRange: null,                 // equal-length window immediately before the range
   calMonth: null, calPick: null, calHover: null, // calendar popover state
-  insightKey: null,        // which chart point's insight is currently open (for click-to-toggle)
   selectedPlatforms: [],   // one or more toggled platform chips
   totalOnly: true,         // true = charts show only the combined Total line
   contentSort: 'views',
@@ -647,7 +646,6 @@ async function init() {
     if (!e.target.closest('.kpi-help')) return;
     scrollToAnalysis();
   });
-  $('#insightClose').addEventListener('click', () => { $('#insightPanel').hidden = true; state.insightKey = null; });
 
   // Top-content controls
   $('#contentSort').addEventListener('change', (e) => { state.contentSort = e.target.value; renderContent(); });
@@ -807,7 +805,6 @@ function render() {
   buildSeries();
   updateMode();
   renderDataQuality();
-  $('#insightPanel').hidden = true; state.insightKey = null; // stale once the view changes; re-click to refresh
   const chartGran = chartGranularity();
   const noun = GRAN_NOUN[chartGran];
   state.granularity = chartGran;
@@ -1442,7 +1439,7 @@ function renderCreativeFocusedOverview(p, start, end, info) {
   const cur = state.curTotals[p] || {};
   const prv = state.priorTotals[p] || {};
 
-  $('#overviewTitle').textContent = `Content analysis - ${nameOf(p)} - ${info.title}`;
+  $('#overviewTitle').textContent = `Range analysis - ${nameOf(p)} - ${info.title}`;
   let html = '<div class="analysis-quick">';
   html += platformMovementHtml(p, cur, prv, start, end, info);
   html += creativeAnalysisHtml([p], start, end, info);
@@ -1462,7 +1459,7 @@ function renderCreativeOverview() {
     return;
   }
 
-  $('#overviewTitle').textContent = `Content analysis - ${info.title}`;
+  $('#overviewTitle').textContent = `Range analysis - ${info.title}`;
   const totalViews = totalAt('views', 0);
   const priorViews = totalAt('views', 1);
   const rows = platformReadRows(ps, start, end);
@@ -1871,22 +1868,7 @@ function onPointClick(canvasId, datasetIndex, periodIndex, chart) {
   if (!metricKey) return;
   const dataset = chart.data.datasets[datasetIndex] || {};
   if (dataset.isPrior) return;
-  const label = dataset.label || '';
-  let platform;
-  if (canvasId === 'watchChart') platform = 'youtube';
-  else if (label === 'Total') platform = 'total';
-  else platform = platformByName(label);
-  if (!platform) return;
-  // Click a point to open its insight; click the same point again to close it.
-  const key = `${platform}|${metricKey}|${periodIndex}`;
-  const panel = $('#insightPanel');
-  if (!panel.hidden && state.insightKey === key) {
-    panel.hidden = true;
-    state.insightKey = null;
-    return;
-  }
-  state.insightKey = key;
-  showInsight(platform, metricKey, periodIndex);
+  scrollToAnalysis();
 }
 
 function fmtMetricVal(key, v) {
