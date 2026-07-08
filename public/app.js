@@ -14,6 +14,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
 const GRAN_NOUN = { daily: 'day', weekly: 'week', monthly: 'month' };
 const GRAN_LABEL = { daily: 'Daily', weekly: 'Weekly', monthly: 'Monthly' };
+const THEME_KEY = 'betterDogDashboardTheme';
 
 const state = {
   clients: [], clientId: null,
@@ -32,6 +33,46 @@ let offline = false;
 
 const $ = (s) => document.querySelector(s);
 const DAY = 86400000;
+
+function savedTheme() {
+  try {
+    const saved = localStorage.getItem(THEME_KEY);
+    if (saved === 'dark' || saved === 'light') return saved;
+  } catch (err) {
+    // Ignore blocked storage.
+  }
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function setTheme(theme, rerender = false) {
+  const next = theme === 'dark' ? 'dark' : 'light';
+  document.documentElement.dataset.theme = next;
+  try { localStorage.setItem(THEME_KEY, next); } catch (err) { /* ignore blocked storage */ }
+  const btn = $('#themeToggle');
+  if (btn) {
+    const dark = next === 'dark';
+    btn.textContent = dark ? 'Light mode' : 'Dark mode';
+    btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+  }
+  if (rerender && state.data) render();
+}
+
+function cssVar(name, fallback) {
+  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return value || fallback;
+}
+
+function chartTheme() {
+  return {
+    grid: cssVar('--chart-grid', '#e7ecd6'),
+    legend: cssVar('--chart-legend', '#4b5043'),
+    ticks: cssVar('--muted', '#717869'),
+    tooltipBg: cssVar('--text', '#222322'),
+    tooltipText: cssVar('--panel', '#ffffff'),
+    total: cssVar('--total-line', TOTAL_COLOR),
+  };
+}
 
 function rangeDays() {
   if (!state.rangeStart || !state.rangeEnd) return 0;
@@ -579,6 +620,10 @@ async function init() {
     render();
   });
   $('#exportBtn').addEventListener('click', exportCsv);
+  $('#themeToggle')?.addEventListener('click', () => {
+    const current = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+    setTheme(current === 'dark' ? 'light' : 'dark', true);
+  });
   $('#insightClose').addEventListener('click', () => { $('#insightPanel').hidden = true; state.insightKey = null; });
 
   // Top-content controls
@@ -1518,10 +1563,19 @@ const COMMON_OPTS = {
 
 function lineChart(canvasId, labels, datasets) {
   if (charts[canvasId]) charts[canvasId].destroy();
+  const theme = chartTheme();
   const opts = JSON.parse(JSON.stringify(COMMON_OPTS));
   opts.plugins.tooltip = COMMON_OPTS.plugins.tooltip;
   opts.plugins.legend.onClick = isolateLegend; // function lost in JSON clone
   opts.plugins.legend.labels.filter = (item, data) => !data.datasets[item.datasetIndex]?.isPrior;
+  opts.plugins.legend.labels.color = theme.legend;
+  opts.plugins.tooltip.backgroundColor = theme.tooltipBg;
+  opts.plugins.tooltip.titleColor = theme.tooltipText;
+  opts.plugins.tooltip.bodyColor = theme.tooltipText;
+  opts.scales.x.ticks.color = theme.ticks;
+  opts.scales.y.ticks.color = theme.ticks;
+  opts.scales.x.grid.color = theme.grid;
+  opts.scales.y.grid.color = theme.grid;
   opts.scales.y.ticks.callback = COMMON_OPTS.scales.y.ticks.callback;
   // Click a point → spike insight for that line + period.
   opts.onClick = (evt, _els, chart) => {
@@ -1601,8 +1655,9 @@ function renderTrend(canvasId, metricKey) {
   // "Total" focus: draw only the combined line, nothing else.
   if (state.totalOnly) {
     const data = labels.map((_, i) => ps.reduce((s, p) => s + (state.series[p][i]?.[metricKey] || 0), 0));
-    const datasets = [currentDataset('Total', data, TOTAL_COLOR, 3, false)];
-    const priorLine = priorDataset('Total', priorTotalValues(ps, metricKey), TOTAL_COLOR);
+    const total = chartTheme().total;
+    const datasets = [currentDataset('Total', data, total, 3, false)];
+    const priorLine = priorDataset('Total', priorTotalValues(ps, metricKey), total);
     if (priorLine) datasets.push(priorLine);
     lineChart(canvasId, labels, datasets);
     return;
@@ -1847,7 +1902,7 @@ function paidImpactForClick(scopePlatforms, metricKey, period, prevWindow) {
 
 function insightSection(title, bodyHtml) {
   if (!bodyHtml) return '';
-  return `<div class="insight-section"><div class="insight-section-title">${escapeHtml(title)}</div>${bodyHtml}</div>`;
+  return `<div class="insight-section"><div class="insight-section-title">${escapeHtml(title)}</div><div class="insight-section-body">${bodyHtml}</div></div>`;
 }
 
 function showInsight(platform, metricKey, idx) {
@@ -2112,4 +2167,5 @@ function exportCsv() {
   URL.revokeObjectURL(url);
 }
 
+setTheme(savedTheme(), false);
 init();
