@@ -250,6 +250,16 @@ function applyBusinessSuiteSeriesOverrides(seriesMap = state.series, startIso = 
 }
 
 // Quick-preset ranges. Each also picks a sensible chart grouping.
+function todayLocalMidnightUtcMs() {
+  const now = new Date();
+  return Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+}
+
+function presetAnchorMs(name) {
+  if (name === 'this-week' || name === 'last-week') return todayLocalMidnightUtcMs();
+  return Date.parse(state.data.asOf + 'T00:00:00Z');
+}
+
 function presetRange(name, asOfMs) {
   const base = midnightUTC(asOfMs);
   const d = new Date(base);
@@ -270,7 +280,7 @@ function presetRange(name, asOfMs) {
   return null;
 }
 
-// Default range: current reporting week through the latest available data.
+// Default range: current reporting week through today's calendar date.
 function defaultRange(asOfMs) {
   return presetRange('this-week', asOfMs);
 }
@@ -633,7 +643,7 @@ async function init() {
   $('#rangePresets').addEventListener('click', (e) => {
     const btn = e.target.closest('button[data-preset]');
     if (!btn) return;
-    const r = presetRange(btn.dataset.preset, Date.parse(state.data.asOf + 'T00:00:00Z'));
+    const r = presetRange(btn.dataset.preset, presetAnchorMs(btn.dataset.preset));
     if (!r) return;
     state.rangeStart = r.start; state.rangeEnd = r.end; state.granularity = r.gran;
     state.selectedPreset = btn.dataset.preset;
@@ -755,7 +765,7 @@ async function load() {
       }
     }
     if (!state.rangeStart || !state.rangeEnd) {
-      const r = defaultRange(Date.parse(state.data.asOf + 'T00:00:00Z'));
+      const r = defaultRange(presetAnchorMs('this-week'));
       const firstDate = state.data.metrics?.instagram?.daily?.[0]?.date;
       if (firstDate && firstDate > r.start) r.start = firstDate;
       state.rangeStart = r.start; state.rangeEnd = r.end;
@@ -817,9 +827,8 @@ function render() {
   // Reflect the selected range in the calendar button + header.
   renderCalBtn();
   // Highlight a preset only when the range exactly matches it.
-  const asOfMs = Date.parse(state.data.asOf + 'T00:00:00Z');
   [...$('#rangePresets').children].forEach((b) => {
-    const r = presetRange(b.dataset.preset, asOfMs);
+    const r = presetRange(b.dataset.preset, presetAnchorMs(b.dataset.preset));
     const selected = state.selectedPreset
       ? b.dataset.preset === state.selectedPreset
       : !!r && r.start === state.rangeStart && r.end === state.rangeEnd;
