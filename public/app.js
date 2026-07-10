@@ -342,17 +342,17 @@ function viewSourceNote(ps, opts = {}) {
   const compact = opts.compact === true;
   if (selected.length === 1) {
     const p = selected[0];
-    if (p === 'facebook' || p === 'tiktok') return compact ? 'Organic only; no ad views.' : 'Includes only organic views and does not include ad views.';
-    if (p === 'instagram') return compact ? 'Organic + paid/promoted.' : 'Includes organic plus paid/promoted views.';
-    if (p === 'youtube') return compact ? 'Total views; may include ads.' : 'Includes total YouTube views, including ad traffic when present.';
+    if (p === 'facebook' || p === 'tiktok') return compact ? 'Organic only - ads excluded.' : 'View source: Organic only. Ad views are excluded.';
+    if (p === 'instagram') return compact ? 'Includes paid/promoted.' : 'View source: Includes paid/promoted views. Not organic-only.';
+    if (p === 'youtube') return compact ? 'Total views - ads may be included.' : 'View source: Total YouTube views. Ad traffic is included when present.';
   }
   const organic = selected.filter((p) => viewSourceKind(p) === 'organic').map(nameOf);
   const paid = selected.filter((p) => viewSourceKind(p) === 'paid').map(nameOf);
-  if (organic.length && !paid.length) return compact ? 'Organic only; no ad views.' : 'Includes only organic views and does not include ad views.';
-  if (paid.length && !organic.length) return compact ? 'Organic + paid/ad views.' : 'Includes organic plus paid/promoted or ad-driven views.';
-  const organicText = organic.length ? `Organic only: ${organic.join(', ')}.` : '';
-  const paidText = paid.length ? `Includes paid/ad traffic: ${paid.join(', ')}.` : '';
-  return `${organicText} ${paidText}`.trim();
+  if (organic.length && !paid.length) return compact ? 'Organic only - ads excluded.' : 'View source: Organic only. Ad views are excluded.';
+  if (paid.length && !organic.length) return compact ? 'Includes paid/ad traffic.' : 'View source: Paid/promoted or ad traffic may be included. Not organic-only.';
+  const organicText = organic.length ? `${organic.join(', ')} exclude ad views` : '';
+  const paidText = paid.length ? `${paid.join(', ')} may include paid/ad traffic` : '';
+  return `View source: Mixed. ${[organicText, paidText].filter(Boolean).join('; ')}.`;
 }
 
 function renderMetricNotes() {
