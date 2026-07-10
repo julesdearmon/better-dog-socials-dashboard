@@ -22,6 +22,12 @@
       "connector": "Instagram Insights",
       "status": "live",
       "historyStart": "2026-01-01",
+      "accountGuard": {
+        "dsId": "IGI",
+        "accountId": "17841475238822164",
+        "accountName": "Better Dog Supplements by Cesar Millan",
+        "expectedMetricHandle": "@betterdogsupplements"
+      },
       "requiredMetrics": [
         "views",
         "reach",
@@ -33,6 +39,13 @@
       "connector": "Facebook Insights",
       "status": "live",
       "historyStart": "2026-01-01",
+      "accountGuard": {
+        "dsId": "FB",
+        "accountId": "674626722402999",
+        "accountName": "Better Dog Supplements by Cesar Millan",
+        "expectedMetricHandle": "Better Dog Supplements",
+        "contentUrlMustContain": "674626722402999"
+      },
       "requiredMetrics": [
         "views",
         "reach",
@@ -46,6 +59,13 @@
       "connector": "TikTok Organic",
       "status": "live",
       "historyStart": "2026-05-08",
+      "accountGuard": {
+        "dsId": "TIKBA",
+        "freeTextAccount": "betterdogsupplements",
+        "expectedUsername": "betterdogsupplements",
+        "expectedMetricHandle": "@betterdogsupplements",
+        "contentUrlMustContain": "/@betterdogsupplements/"
+      },
       "requiredMetrics": [
         "views",
         "reach",
@@ -59,6 +79,12 @@
       "connector": "YouTube Analytics",
       "status": "live",
       "historyStart": "2026-01-01",
+      "accountGuard": {
+        "dsId": "YT2",
+        "accountId": "UC9rUabwMqe2C98J2l1NDz2g",
+        "accountName": "Better Dog Supplements by Cesar Millan",
+        "expectedMetricHandle": "Better Dog Supplements"
+      },
       "requiredMetrics": [
         "views",
         "watchTime",

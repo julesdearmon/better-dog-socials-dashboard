@@ -21,6 +21,7 @@ const state = {
   granularity: 'weekly',            // how the chart lines are grouped within the range
   rangeStart: null, rangeEnd: null, // selected date range (YYYY-MM-DD), inclusive
   priorRange: null,                 // equal-length window immediately before the range
+  selectedPreset: null,
   calMonth: null, calPick: null, calHover: null, // calendar popover state
   selectedPlatforms: [],   // one or more toggled platform chips
   totalOnly: true,         // true = charts show only the combined Total line
@@ -252,7 +253,7 @@ function applyBusinessSuiteSeriesOverrides(seriesMap = state.series, startIso = 
 function presetRange(name, asOfMs) {
   const base = midnightUTC(asOfMs);
   const d = new Date(base);
-  let diff = (d.getUTCDay() - 4 + 7) % 7; if (diff === 0) diff = 7;
+  const diff = (d.getUTCDay() - 4 + 7) % 7;
   const thu = base - diff * DAY;                              // most recent completed Thursday
   const thisWeekStart = base - ((d.getUTCDay() - 5 + 7) % 7) * DAY; // current Friday-Thursday reporting week
   const monthFirst = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1);
@@ -436,6 +437,7 @@ function setupCalendar() {
       state.rangeStart = a < iso ? a : iso;
       state.rangeEnd = a < iso ? iso : a;
       state.granularity = suggestedGranularity(state.rangeStart, state.rangeEnd);
+      state.selectedPreset = null;
       setGranButton(state.granularity);
       state.calPick = null;
       closeCal();
@@ -634,6 +636,7 @@ async function init() {
     const r = presetRange(btn.dataset.preset, Date.parse(state.data.asOf + 'T00:00:00Z'));
     if (!r) return;
     state.rangeStart = r.start; state.rangeEnd = r.end; state.granularity = r.gran;
+    state.selectedPreset = btn.dataset.preset;
     setGranButton(state.granularity);
     render();
   });
@@ -756,6 +759,7 @@ async function load() {
       const firstDate = state.data.metrics?.instagram?.daily?.[0]?.date;
       if (firstDate && firstDate > r.start) r.start = firstDate;
       state.rangeStart = r.start; state.rangeEnd = r.end;
+      state.selectedPreset = 'this-week';
     }
     render();
   } catch (err) {
@@ -816,7 +820,10 @@ function render() {
   const asOfMs = Date.parse(state.data.asOf + 'T00:00:00Z');
   [...$('#rangePresets').children].forEach((b) => {
     const r = presetRange(b.dataset.preset, asOfMs);
-    b.classList.toggle('active', !!r && r.start === state.rangeStart && r.end === state.rangeEnd);
+    const selected = state.selectedPreset
+      ? b.dataset.preset === state.selectedPreset
+      : !!r && r.start === state.rangeStart && r.end === state.rangeEnd;
+    b.classList.toggle('active', selected);
   });
   const rLabel = rangeLabel(state.rangeStart, state.rangeEnd);
   const compareLabel = rangeLabel(state.priorRange.start, state.priorRange.end);

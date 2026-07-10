@@ -28,6 +28,7 @@ function findRangeOverride(platform, range) {
 }
 const sumRows = (rows, field) => rows.reduce((sum, row) => sum + Number(row[field] || 0), 0);
 const rowsInRange = (rows, range) => (rows || []).filter((row) => row.date >= range.start && row.date <= range.end);
+const normalize = (value) => String(value || '').trim().toLowerCase();
 
 if (config.sourceOfTruth !== 'supermetrics-chatgpt-codex-connector') problems.push('config sourceOfTruth is not the Supermetrics connector');
 if (config.standaloneSupermetricsRestApi?.enabled) problems.push('standalone Supermetrics REST API is enabled in config');
@@ -42,6 +43,19 @@ for (const platform of requiredPlatforms) {
   if (!metric) problems.push(`${platform}: missing metrics`);
   if (!generatedFrom.toLowerCase().includes(platform)) problems.push(`${platform}: missing from generatedFrom`);
   if (metric?.provider !== platformConfig.provider) problems.push(`${platform}: provider is not ${platformConfig.provider}`);
+  const guard = platformConfig.accountGuard || {};
+  if (guard.expectedMetricHandle && metric?.handle !== guard.expectedMetricHandle) {
+    problems.push(`${platform}: metric handle is ${metric?.handle || 'missing'}, expected ${guard.expectedMetricHandle}`);
+  }
+  if (guard.dsId && metric?.sourceAccount?.dsId !== guard.dsId) {
+    problems.push(`${platform}: source account dsId is ${metric?.sourceAccount?.dsId || 'missing'}, expected ${guard.dsId}`);
+  }
+  if (guard.accountId && metric?.sourceAccount?.accountId !== guard.accountId) {
+    problems.push(`${platform}: source account ID is ${metric?.sourceAccount?.accountId || 'missing'}, expected ${guard.accountId}`);
+  }
+  if (guard.expectedUsername && normalize(metric?.sourceAccount?.username) !== normalize(guard.expectedUsername)) {
+    problems.push(`${platform}: source username is ${metric?.sourceAccount?.username || 'missing'}, expected ${guard.expectedUsername}`);
+  }
   if (metric?.carriedForward) problems.push(`${platform}: carried-forward data is still enabled`);
   if (!Array.isArray(metric?.daily) || metric.daily.length === 0) problems.push(`${platform}: no daily rows`);
   if (metric?.daily?.at(-1)?.date !== data.asOf) problems.push(`${platform}: latest daily row does not match asOf`);
@@ -70,6 +84,21 @@ for (const platform of requiredPlatforms) {
     if (recentNonZeroPostRows.length >= 10 && recentNonZeroPostRows.every((row) => Number(row.posts || 0) === 1)) {
       problems.push('tiktok: recent post counts look like profile rows; verify against TikTok video IDs');
     }
+    for (const row of metric?.daily || []) {
+      if (normalize(row.sourceUsername) !== normalize(guard.expectedUsername)) {
+        problems.push(`tiktok: ${row.date} sourceUsername is ${row.sourceUsername || 'missing'}, expected ${guard.expectedUsername}`);
+      }
+    }
+  }
+}
+
+for (const item of data.content || []) {
+  const guard = config.platforms?.[item.platform]?.accountGuard || {};
+  if (guard.contentUrlMustContain && !String(item.url || '').includes(guard.contentUrlMustContain)) {
+    problems.push(`${item.platform}: content URL does not match expected account guard for ${item.date || 'unknown date'}`);
+  }
+  if (item.platform === 'tiktok' && normalize(item.sourceUsername) !== normalize(guard.expectedUsername)) {
+    problems.push(`tiktok: content row ${item.sourceId || item.url || item.date || 'unknown'} sourceUsername is ${item.sourceUsername || 'missing'}, expected ${guard.expectedUsername}`);
   }
 }
 

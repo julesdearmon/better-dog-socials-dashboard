@@ -1924,7 +1924,12 @@ window.REAL_DATA = {
       "totalFollowers": 2807,
       "followersAsOf": "2026-07-09",
       "followersNote": "Total followers is current from Supermetrics. Instagram new followers are only available for the last 30 days, so full-year new follower gain is not available.",
-      "hasNewFollowers": true
+      "hasNewFollowers": true,
+      "sourceAccount": {
+        "dsId": "IGI",
+        "accountId": "17841475238822164",
+        "accountName": "Better Dog Supplements by Cesar Millan"
+      }
     },
     "facebook": {
       "platform": "facebook",
@@ -3778,7 +3783,12 @@ window.REAL_DATA = {
       "followersNote": "Total followers is the latest Page followers count from Supermetrics; new followers are net daily changes.",
       "viewsLabel": "Organic media views",
       "viewsNote": "Facebook views use Page media views organic from Supermetrics. Reach uses Page media views unique and is not an organic-only reach split.",
-      "hasNewFollowers": true
+      "hasNewFollowers": true,
+      "sourceAccount": {
+        "dsId": "FB",
+        "accountId": "674626722402999",
+        "accountName": "Better Dog Supplements by Cesar Millan"
+      }
     },
     "youtube": {
       "platform": "youtube",
@@ -5703,7 +5713,12 @@ window.REAL_DATA = {
       "adTrafficNote": "YouTube ad traffic is tracked from Supermetrics Traffic source type = ADVERTISING.",
       "postSupplementNote": "YouTube Supermetrics channel daily rows are available through Jul 7 in this refresh; Jul 8-9 are marked pending until the connector returns daily rows.",
       "performanceAsOf": "2026-07-05",
-      "dataAvailabilityNote": "YouTube ChannelTotals returned daily rows through Jul 5 in this refresh. Jul 6-7 performance should be treated as pending, not zero."
+      "dataAvailabilityNote": "YouTube ChannelTotals returned daily rows through Jul 5 in this refresh. Jul 6-7 performance should be treated as pending, not zero.",
+      "sourceAccount": {
+        "dsId": "YT2",
+        "accountId": "UC9rUabwMqe2C98J2l1NDz2g",
+        "accountName": "Better Dog Supplements by Cesar Millan"
+      }
     },
     "tiktok": {
       "platform": "tiktok",
@@ -5723,7 +5738,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 5,
           "totalFollowers": 2040,
-          "newFollowers": 142
+          "newFollowers": 142,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-09",
@@ -5733,7 +5749,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 8,
           "totalFollowers": 2040,
-          "newFollowers": 6
+          "newFollowers": 6,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-10",
@@ -5743,7 +5760,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 6,
           "totalFollowers": 2040,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-11",
@@ -5753,7 +5771,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 5,
           "totalFollowers": 2040,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-12",
@@ -5763,7 +5782,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 27,
           "totalFollowers": 2040,
-          "newFollowers": 7
+          "newFollowers": 7,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-13",
@@ -5773,7 +5793,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 9,
           "totalFollowers": 2040,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-14",
@@ -5783,7 +5804,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 4,
           "totalFollowers": 2040,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-15",
@@ -5793,7 +5815,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 2,
           "totalFollowers": 2040,
-          "newFollowers": 1
+          "newFollowers": 1,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-16",
@@ -5803,7 +5826,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 0,
           "totalFollowers": 2040,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-17",
@@ -5813,7 +5837,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 1,
           "totalFollowers": 2040,
-          "newFollowers": 2
+          "newFollowers": 2,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-18",
@@ -5823,7 +5848,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 9,
           "totalFollowers": 2040,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-19",
@@ -5833,7 +5859,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 10,
           "totalFollowers": 2040,
-          "newFollowers": 7
+          "newFollowers": 7,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-20",
@@ -5843,7 +5870,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 13,
           "totalFollowers": 2040,
-          "newFollowers": 4
+          "newFollowers": 4,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-21",
@@ -5853,7 +5881,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 23,
           "totalFollowers": 2040,
-          "newFollowers": 12
+          "newFollowers": 12,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-22",
@@ -5863,7 +5892,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 36,
           "totalFollowers": 2040,
-          "newFollowers": 26
+          "newFollowers": 26,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-23",
@@ -5873,7 +5903,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 11,
           "totalFollowers": 2040,
-          "newFollowers": 8
+          "newFollowers": 8,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-24",
@@ -5883,7 +5914,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 20,
           "totalFollowers": 2040,
-          "newFollowers": 5
+          "newFollowers": 5,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-25",
@@ -5893,7 +5925,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 34,
           "totalFollowers": 2040,
-          "newFollowers": 21
+          "newFollowers": 21,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-26",
@@ -5903,7 +5936,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 52,
           "totalFollowers": 2040,
-          "newFollowers": 29
+          "newFollowers": 29,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-27",
@@ -5913,7 +5947,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 93,
           "totalFollowers": 2040,
-          "newFollowers": 55
+          "newFollowers": 55,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-28",
@@ -5923,7 +5958,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 235,
           "totalFollowers": 2040,
-          "newFollowers": 146
+          "newFollowers": 146,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-29",
@@ -5933,7 +5969,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 100,
           "totalFollowers": 2040,
-          "newFollowers": 61
+          "newFollowers": 61,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-30",
@@ -5943,7 +5980,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 67,
           "totalFollowers": 2040,
-          "newFollowers": 34
+          "newFollowers": 34,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-05-31",
@@ -5953,7 +5991,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 94,
           "totalFollowers": 2040,
-          "newFollowers": 62
+          "newFollowers": 62,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-01",
@@ -5963,7 +6002,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 70,
           "totalFollowers": 2040,
-          "newFollowers": 51
+          "newFollowers": 51,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-02",
@@ -5973,7 +6013,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 44,
           "totalFollowers": 2040,
-          "newFollowers": 30
+          "newFollowers": 30,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-03",
@@ -5983,7 +6024,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 42,
           "totalFollowers": 2040,
-          "newFollowers": 28
+          "newFollowers": 28,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-04",
@@ -5993,7 +6035,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 50,
           "totalFollowers": 2040,
-          "newFollowers": 26
+          "newFollowers": 26,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-05",
@@ -6003,7 +6046,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 67,
           "totalFollowers": 2040,
-          "newFollowers": 37
+          "newFollowers": 37,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-06",
@@ -6013,7 +6057,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 53,
           "totalFollowers": 2040,
-          "newFollowers": 27
+          "newFollowers": 27,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-07",
@@ -6023,7 +6068,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 62,
           "totalFollowers": 2040,
-          "newFollowers": 29
+          "newFollowers": 29,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-08",
@@ -6033,7 +6079,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 23,
           "totalFollowers": 2040,
-          "newFollowers": 16
+          "newFollowers": 16,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-09",
@@ -6043,7 +6090,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 56,
           "totalFollowers": 2040,
-          "newFollowers": 38
+          "newFollowers": 38,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-10",
@@ -6053,7 +6101,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 46,
           "totalFollowers": 2040,
-          "newFollowers": 33
+          "newFollowers": 33,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-11",
@@ -6063,7 +6112,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 93,
           "totalFollowers": 2040,
-          "newFollowers": 57
+          "newFollowers": 57,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-12",
@@ -6073,7 +6123,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 103,
           "totalFollowers": 2040,
-          "newFollowers": 53
+          "newFollowers": 53,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-13",
@@ -6083,7 +6134,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 40,
           "totalFollowers": 2040,
-          "newFollowers": 21
+          "newFollowers": 21,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-14",
@@ -6093,7 +6145,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 56,
           "totalFollowers": 2040,
-          "newFollowers": 34
+          "newFollowers": 34,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-15",
@@ -6103,7 +6156,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 83,
           "totalFollowers": 2040,
-          "newFollowers": 56
+          "newFollowers": 56,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-16",
@@ -6113,7 +6167,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 53,
           "totalFollowers": 2040,
-          "newFollowers": 28
+          "newFollowers": 28,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-17",
@@ -6123,7 +6178,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 78,
           "totalFollowers": 2040,
-          "newFollowers": 49
+          "newFollowers": 49,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-18",
@@ -6133,7 +6189,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 81,
           "totalFollowers": 2040,
-          "newFollowers": 57
+          "newFollowers": 57,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-19",
@@ -6143,7 +6200,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 71,
           "totalFollowers": 2040,
-          "newFollowers": 54
+          "newFollowers": 54,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-20",
@@ -6153,7 +6211,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 92,
           "totalFollowers": 2040,
-          "newFollowers": 65
+          "newFollowers": 65,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-21",
@@ -6163,7 +6222,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 74,
           "totalFollowers": 2040,
-          "newFollowers": 51
+          "newFollowers": 51,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-22",
@@ -6173,7 +6233,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 52,
           "totalFollowers": 2040,
-          "newFollowers": 38
+          "newFollowers": 38,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-23",
@@ -6183,7 +6244,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 68,
           "totalFollowers": 2040,
-          "newFollowers": 42
+          "newFollowers": 42,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-24",
@@ -6193,7 +6255,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 89,
           "totalFollowers": 2040,
-          "newFollowers": 35
+          "newFollowers": 35,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-25",
@@ -6203,7 +6266,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 66,
           "totalFollowers": 2040,
-          "newFollowers": 18
+          "newFollowers": 18,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-26",
@@ -6213,7 +6277,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 120,
           "totalFollowers": 2040,
-          "newFollowers": 77
+          "newFollowers": 77,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-27",
@@ -6223,7 +6288,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 116,
           "totalFollowers": 2040,
-          "newFollowers": 55
+          "newFollowers": 55,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-28",
@@ -6233,7 +6299,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 84,
           "totalFollowers": 2040,
-          "newFollowers": 37
+          "newFollowers": 37,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-29",
@@ -6243,7 +6310,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 112,
           "totalFollowers": 2064,
-          "newFollowers": 68
+          "newFollowers": 68,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-06-30",
@@ -6253,7 +6321,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 39,
           "totalFollowers": 2064,
-          "newFollowers": 20
+          "newFollowers": 20,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-07-01",
@@ -6263,7 +6332,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 52,
           "totalFollowers": 2064,
-          "newFollowers": 37
+          "newFollowers": 37,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-07-02",
@@ -6273,7 +6343,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 78,
           "totalFollowers": 2064,
-          "newFollowers": 56
+          "newFollowers": 56,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-07-03",
@@ -6283,7 +6354,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 38,
           "totalFollowers": 2064,
-          "newFollowers": 22
+          "newFollowers": 22,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-07-04",
@@ -6293,7 +6365,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 24,
           "totalFollowers": 2064,
-          "newFollowers": 17
+          "newFollowers": 17,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-07-05",
@@ -6303,7 +6376,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 19,
           "totalFollowers": 2064,
-          "newFollowers": 15
+          "newFollowers": 15,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-07-06",
@@ -6313,7 +6387,8 @@ window.REAL_DATA = {
           "watchTime": 0,
           "profileViews": 0,
           "totalFollowers": 2064,
-          "newFollowers": 10
+          "newFollowers": 10,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-07-07",
@@ -6324,7 +6399,8 @@ window.REAL_DATA = {
           "profileViews": 32,
           "totalFollowers": 2067,
           "newFollowers": 18,
-          "postMetricsPending": true
+          "postMetricsPending": true,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-07-08",
@@ -6335,7 +6411,8 @@ window.REAL_DATA = {
           "profileViews": 63,
           "totalFollowers": 2112,
           "newFollowers": 45,
-          "postMetricsPending": true
+          "postMetricsPending": true,
+          "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-07-09",
@@ -6346,7 +6423,8 @@ window.REAL_DATA = {
           "profileViews": 0,
           "totalFollowers": 2112,
           "newFollowers": 0,
-          "postMetricsPending": true
+          "postMetricsPending": true,
+          "sourceUsername": "betterdogsupplements"
         }
       ],
       "reachLabel": "Reached audience",
@@ -6359,7 +6437,13 @@ window.REAL_DATA = {
       "hasNewFollowers": true,
       "postDefinition": "TikTok videos published, counted from Supermetrics TikTok Organic video IDs by create date.",
       "postCountNote": "Daily post counts use the TikTok Organic videos report. July 7 profile totals are available, but the Better Dog video-level query returned no July 7 rows on Jul 8, 2026.",
-      "topContentUnavailableReason": "TikTok Organic video-level query returned no Better Dog rows for Jul 8-9 in this refresh."
+      "topContentUnavailableReason": "TikTok Organic video-level query returned no Better Dog rows for Jul 8-9 in this refresh.",
+      "sourceAccount": {
+        "dsId": "TIKBA",
+        "username": "betterdogsupplements",
+        "displayName": "Better Dog Supplements",
+        "freeTextAccount": "betterdogsupplements"
+      }
     }
   },
   "content": [
@@ -7040,7 +7124,8 @@ window.REAL_DATA = {
       "views": 4080,
       "reach": 3411,
       "eng": 0,
-      "sourceId": "7641973110710734110"
+      "sourceId": "7641973110710734110",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "facebook",
@@ -7153,7 +7238,8 @@ window.REAL_DATA = {
       "views": 325530,
       "reach": 180000,
       "eng": 0,
-      "sourceId": "7645127973598760205"
+      "sourceId": "7645127973598760205",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -7164,7 +7250,8 @@ window.REAL_DATA = {
       "views": 3083,
       "reach": 1410,
       "eng": 0,
-      "sourceId": "7645123612956970253"
+      "sourceId": "7645123612956970253",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
@@ -7239,7 +7326,8 @@ window.REAL_DATA = {
       "views": 6511,
       "reach": 5497,
       "eng": 0,
-      "sourceId": "7644957016250813726"
+      "sourceId": "7644957016250813726",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "facebook",
@@ -7270,7 +7358,8 @@ window.REAL_DATA = {
       "views": 3623,
       "reach": 2721,
       "eng": 0,
-      "sourceId": "7645393224793640223"
+      "sourceId": "7645393224793640223",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "facebook",
@@ -7301,7 +7390,8 @@ window.REAL_DATA = {
       "views": 53363,
       "reach": 28967,
       "eng": 0,
-      "sourceId": "7645422333015919902"
+      "sourceId": "7645422333015919902",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
@@ -7591,7 +7681,8 @@ window.REAL_DATA = {
       "views": 15556,
       "reach": 11713,
       "eng": 0,
-      "sourceId": "7647930539952852254"
+      "sourceId": "7647930539952852254",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "facebook",
@@ -7642,7 +7733,8 @@ window.REAL_DATA = {
       "views": 2700,
       "reach": 2213,
       "eng": 0,
-      "sourceId": "7647931867726941470"
+      "sourceId": "7647931867726941470",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "facebook",
@@ -7693,7 +7785,8 @@ window.REAL_DATA = {
       "views": 2897,
       "reach": 2565,
       "eng": 0,
-      "sourceId": "7649113809658989855"
+      "sourceId": "7649113809658989855",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "facebook",
@@ -7734,7 +7827,8 @@ window.REAL_DATA = {
       "views": 7807,
       "reach": 4991,
       "eng": 0,
-      "sourceId": "7649116034749730079"
+      "sourceId": "7649116034749730079",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
@@ -7819,7 +7913,8 @@ window.REAL_DATA = {
       "views": 9633,
       "reach": 8728,
       "eng": 0,
-      "sourceId": "7652630734280150302"
+      "sourceId": "7652630734280150302",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -7830,7 +7925,8 @@ window.REAL_DATA = {
       "views": 4521,
       "reach": 3992,
       "eng": 0,
-      "sourceId": "7652006245137665310"
+      "sourceId": "7652006245137665310",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -7841,7 +7937,8 @@ window.REAL_DATA = {
       "views": 3305,
       "reach": 3015,
       "eng": 0,
-      "sourceId": "7649427050683452703"
+      "sourceId": "7649427050683452703",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "facebook",
@@ -7892,7 +7989,8 @@ window.REAL_DATA = {
       "views": 5008,
       "reach": 4418,
       "eng": 0,
-      "sourceId": "7652007870522723614"
+      "sourceId": "7652007870522723614",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -7903,7 +8001,8 @@ window.REAL_DATA = {
       "views": 2643,
       "reach": 2074,
       "eng": 0,
-      "sourceId": "7653215557302455582"
+      "sourceId": "7653215557302455582",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "facebook",
@@ -7975,7 +8074,8 @@ window.REAL_DATA = {
       "views": 11174,
       "reach": 9436,
       "eng": 0,
-      "sourceId": "7655347869494299934"
+      "sourceId": "7655347869494299934",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
@@ -8027,7 +8127,8 @@ window.REAL_DATA = {
       "views": 4480,
       "reach": 4047,
       "eng": 0,
-      "sourceId": "7655053656722558238"
+      "sourceId": "7655053656722558238",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
@@ -8100,7 +8201,8 @@ window.REAL_DATA = {
       "views": 7504,
       "reach": 3079,
       "eng": 0,
-      "sourceId": "7655822037751041310"
+      "sourceId": "7655822037751041310",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8111,7 +8213,8 @@ window.REAL_DATA = {
       "views": 3715,
       "reach": 3346,
       "eng": 0,
-      "sourceId": "7655822148065430814"
+      "sourceId": "7655822148065430814",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
@@ -8133,7 +8236,8 @@ window.REAL_DATA = {
       "views": 1452,
       "reach": 834,
       "eng": 0,
-      "sourceId": "7656865433806507294"
+      "sourceId": "7656865433806507294",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8144,7 +8248,8 @@ window.REAL_DATA = {
       "views": 1343,
       "reach": 958,
       "eng": 0,
-      "sourceId": "7656865581311741215"
+      "sourceId": "7656865581311741215",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "facebook",
@@ -8175,7 +8280,8 @@ window.REAL_DATA = {
       "views": 2628,
       "reach": 1017,
       "eng": 0,
-      "sourceId": "7657256113506684191"
+      "sourceId": "7657256113506684191",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
@@ -8207,7 +8313,8 @@ window.REAL_DATA = {
       "views": 1043,
       "reach": 64,
       "eng": 0,
-      "sourceId": "7657257539117108510"
+      "sourceId": "7657257539117108510",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8218,7 +8325,8 @@ window.REAL_DATA = {
       "views": 510,
       "reach": 249,
       "eng": 0,
-      "sourceId": "7657256658036378911"
+      "sourceId": "7657256658036378911",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8229,7 +8337,8 @@ window.REAL_DATA = {
       "views": 431,
       "reach": 36,
       "eng": 0,
-      "sourceId": "7657257701499604255"
+      "sourceId": "7657257701499604255",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8240,7 +8349,8 @@ window.REAL_DATA = {
       "views": 301,
       "reach": 274,
       "eng": 0,
-      "sourceId": "7657256317395930398"
+      "sourceId": "7657256317395930398",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8251,7 +8361,8 @@ window.REAL_DATA = {
       "views": 147,
       "reach": 60,
       "eng": 0,
-      "sourceId": "7657256501731478815"
+      "sourceId": "7657256501731478815",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "facebook",
@@ -8282,7 +8393,8 @@ window.REAL_DATA = {
       "views": 1389,
       "reach": 1005,
       "eng": 14,
-      "sourceId": "7658041583962541343"
+      "sourceId": "7658041583962541343",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8293,7 +8405,8 @@ window.REAL_DATA = {
       "views": 1229,
       "reach": 1023,
       "eng": 95,
-      "sourceId": "7658040941864930590"
+      "sourceId": "7658040941864930590",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8304,7 +8417,8 @@ window.REAL_DATA = {
       "views": 1074,
       "reach": 946,
       "eng": 35,
-      "sourceId": "7658041215278992671"
+      "sourceId": "7658041215278992671",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8315,7 +8429,8 @@ window.REAL_DATA = {
       "views": 750,
       "reach": 672,
       "eng": 53,
-      "sourceId": "7656916624238316830"
+      "sourceId": "7656916624238316830",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8326,7 +8441,8 @@ window.REAL_DATA = {
       "views": 307,
       "reach": 276,
       "eng": 12,
-      "sourceId": "7657257891170176286"
+      "sourceId": "7657257891170176286",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8337,7 +8453,8 @@ window.REAL_DATA = {
       "views": 222,
       "reach": 191,
       "eng": 1,
-      "sourceId": "7658040601652350239"
+      "sourceId": "7658040601652350239",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
@@ -8383,7 +8500,8 @@ window.REAL_DATA = {
       "eng": 44,
       "sourceId": "7658042641904389407",
       "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8396,7 +8514,8 @@ window.REAL_DATA = {
       "eng": 55,
       "sourceId": "7658042907810696478",
       "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8409,7 +8528,8 @@ window.REAL_DATA = {
       "eng": 25,
       "sourceId": "7658041831288081694",
       "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8422,7 +8542,8 @@ window.REAL_DATA = {
       "eng": 21,
       "sourceId": "7656917552441953567",
       "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8435,7 +8556,8 @@ window.REAL_DATA = {
       "eng": 19,
       "sourceId": "7658042034279697694",
       "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8448,7 +8570,8 @@ window.REAL_DATA = {
       "eng": 10,
       "sourceId": "7658042321140862238",
       "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
@@ -8496,7 +8619,8 @@ window.REAL_DATA = {
       "eng": 28,
       "sourceId": "7658043199713266975",
       "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "facebook",
@@ -8531,7 +8655,8 @@ window.REAL_DATA = {
       "eng": 70,
       "sourceId": "7656919166057827615",
       "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
@@ -8569,7 +8694,8 @@ window.REAL_DATA = {
       "eng": 31,
       "sourceId": "7659544801691389214",
       "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8582,7 +8708,8 @@ window.REAL_DATA = {
       "eng": 20,
       "sourceId": "7659544709769039135",
       "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8595,7 +8722,8 @@ window.REAL_DATA = {
       "eng": 17,
       "sourceId": "7659544889910103326",
       "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8608,7 +8736,8 @@ window.REAL_DATA = {
       "eng": 5,
       "sourceId": "7659544841956740383",
       "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -8621,7 +8750,8 @@ window.REAL_DATA = {
       "eng": 0,
       "sourceId": "7659543961916280095",
       "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "facebook",
