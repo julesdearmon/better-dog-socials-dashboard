@@ -15,21 +15,23 @@ connections.
 
 ## What This Process Does
 
-The dashboard is a static website hosted on GitHub Pages. Codex refreshes the
+The dashboard is a static website hosted on Vercel. Codex refreshes the
 social data through the connected Supermetrics ChatGPT/Codex connector, writes
-it into the public dashboard files, commits it, and pushes it. GitHub Actions
-only deploys the already-refreshed files to GitHub Pages.
+it into the public dashboard files, validates it, commits it, and pushes it.
+Vercel Git integration should deploy `main`; if it does not, publish production
+through the linked Vercel project.
 
 For each brand, the setup has four parts:
 
 1. Confirm the brand accounts and IDs.
 2. Confirm the brand is connected in Supermetrics.
 3. Run or wait for the Codex Supermetrics refresh.
-4. Verify GitHub deploys the refreshed dashboard.
+4. Verify Vercel deploys the refreshed dashboard and keeps every route protected.
 
 ## Important Links
 
-- Dashboard: https://julesdearmon.github.io/better-dog-socials-dashboard/
+- Dashboard: https://better-dog-socials-dashboard.vercel.app/
+- Custom domain: https://socials.betterdogsupplements.com/
 - GitHub repo: https://github.com/julesdearmon/better-dog-socials-dashboard
 - GitHub Actions: https://github.com/julesdearmon/better-dog-socials-dashboard/actions
 - Meta developers: https://developers.facebook.com/
@@ -48,7 +50,8 @@ Do this:
 
 - Use the connected Supermetrics ChatGPT/Codex connector to pull data.
 - Let Codex update `public/data.json` and `public/realdata.js`.
-- Let GitHub Actions deploy the committed public files.
+- Let Vercel Git integration deploy the committed public files, or run the
+  linked production deploy if Git integration does not publish the latest `main`.
 
 Do not do this on the current plan:
 
@@ -70,8 +73,11 @@ Reliability guardrails:
   stale, errored, or carried-forward data.
 - The refresh should pull year-to-date history where Supermetrics supports it:
   Instagram, Facebook, and YouTube from January 1, 2026 forward; TikTok Organic
-  from May 4, 2026 forward because Supermetrics does not support earlier TikTok
-  Organic dates for this account.
+  from May 8, 2026 forward because that is the earliest supported date currently
+  returned for this account.
+- If YouTube post-level rows are missing but the public channel feed confirms
+  uploads, add metadata-only supplemental rows with `metricsPending: true` and a
+  clear public-feed source note. Never present pending performance as zero.
 
 ## Meta: Instagram and Facebook
 

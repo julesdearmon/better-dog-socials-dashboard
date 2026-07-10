@@ -294,32 +294,12 @@
     },
     {
       "platform": "instagram",
-      "start": "2026-06-01",
-      "end": "2026-06-30",
-      "source": "Meta Business Suite Content Overview screenshot",
-      "values": {
-        "views": 567510,
-        "reach": 80700
-      }
-    },
-    {
-      "platform": "instagram",
       "start": "2026-07-01",
       "end": "2026-07-02",
       "source": "Supermetrics exact range total",
       "values": {
         "views": 17412,
         "reach": 3854
-      }
-    },
-    {
-      "platform": "instagram",
-      "start": "2026-05-01",
-      "end": "2026-05-31",
-      "source": "Derived from Meta Business Suite June screenshot percent change",
-      "values": {
-        "views": 395753,
-        "reach": 68974
       }
     },
     {
@@ -5693,7 +5673,7 @@
         },
         {
           "date": "2026-07-09",
-          "posts": 0,
+          "posts": 2,
           "views": 0,
           "reach": 0,
           "watchTime": 0,
@@ -5710,7 +5690,7 @@
       "followersNote": "Total subscribers is rounded by the YouTube connector; new followers use gained subscribers minus lost subscribers.",
       "hasNewFollowers": true,
       "adTrafficNote": "YouTube ad traffic is tracked from Supermetrics Traffic source type = ADVERTISING.",
-      "postSupplementNote": "YouTube Supermetrics channel daily rows are available through Jul 7 in this refresh; Jul 8-9 are marked pending until the connector returns daily rows.",
+      "postSupplementNote": "YouTube Supermetrics channel daily rows are available through Jul 7 in this refresh. Two Jul 9 public uploads are included as clearly marked public-feed metadata while Supermetrics post rows are pending; performance remains pending.",
       "performanceAsOf": "2026-07-05",
       "dataAvailabilityNote": "YouTube ChannelTotals returned daily rows through Jul 5 in this refresh. Jul 6-7 performance should be treated as pending, not zero.",
       "sourceAccount": {
@@ -8830,6 +8810,36 @@
       "sourceId": "18093530291105181",
       "source": "Supermetrics Instagram media insights",
       "sourceNote": "Verified through Supermetrics Instagram media insights on Jul 10, 2026."
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-07-09",
+      "url": "https://www.youtube.com/shorts/ZIqR1QS4uhI",
+      "title": "Happy Go Lucky Belly - Some foods quietly hurt your dog's gut",
+      "type": "Short Form Clip",
+      "views": 0,
+      "watchTime": 0,
+      "reach": null,
+      "eng": 0,
+      "metricsPending": true,
+      "sourceId": "ZIqR1QS4uhI",
+      "source": "YouTube public channel feed supplement",
+      "sourceNote": "Public upload confirmed Jul 10, 2026; Supermetrics post-level row and performance are pending."
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-07-09",
+      "url": "https://www.youtube.com/shorts/M41mII0eIIg",
+      "title": "Help Your Puppy Trust The Leash",
+      "type": "Short Form Clip",
+      "views": 0,
+      "watchTime": 0,
+      "reach": null,
+      "eng": 0,
+      "metricsPending": true,
+      "sourceId": "M41mII0eIIg",
+      "source": "YouTube public channel feed supplement",
+      "sourceNote": "Public upload confirmed Jul 10, 2026; Supermetrics post-level row and performance are pending."
     }
   ],
   "followersDataNote": "New followers is for the selected range when Supermetrics has complete data. Total followers is the latest available platform total; Instagram and YouTube do not expose historical total-follower snapshots in this connector. TikTok follower change is inferred from latest available profile totals when daily net follower rows are unavailable.",
@@ -8839,6 +8849,13 @@
       "platform": "youtube",
       "source": "Supermetrics YouTube ChannelTotals",
       "note": "Channel daily rows returned through Jul 7; Jul 8-9 are present as pending rows until Supermetrics returns daily performance."
+    },
+    {
+      "key": "youtube-public-feed-post-metadata-2026-07-09",
+      "platform": "youtube",
+      "source": "YouTube public channel feed",
+      "posts": 2,
+      "note": "Two Jul 9 public uploads are included as metadata only because Supermetrics returned no matching post-level rows; performance remains pending."
     },
     {
       "key": "tiktok-video-id-post-counts-2026-07-08-2026-07-09",

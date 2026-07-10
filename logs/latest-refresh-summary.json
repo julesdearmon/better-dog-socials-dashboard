@@ -35,6 +35,13 @@
       "note": "Channel daily rows returned through Jul 7; Jul 8-9 are present as pending rows until Supermetrics returns daily performance."
     },
     {
+      "key": "youtube-public-feed-post-metadata-2026-07-09",
+      "platform": "youtube",
+      "source": "YouTube public channel feed",
+      "posts": 2,
+      "note": "Two Jul 9 public uploads are included as metadata only because Supermetrics returned no matching post-level rows; performance remains pending."
+    },
+    {
       "key": "tiktok-video-id-post-counts-2026-07-08-2026-07-09",
       "platform": "tiktok",
       "source": "Supermetrics TikTok Organic videos report",
