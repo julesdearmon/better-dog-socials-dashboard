@@ -5,10 +5,10 @@ window.REAL_DATA = {
     "name": "Better Dog Supplements",
     "color": "#88cc33"
   },
-  "asOf": "2026-07-07",
-  "updatedAt": "Jul 8, 2026, 2:07 PM",
+  "asOf": "2026-07-09",
+  "updatedAt": "Jul 10, 2026, 3:55 AM",
   "source": "live",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; YouTube July 7 performance pending)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; YouTube daily rows available through Jul 7)",
   "directApiErrors": [],
   "rangeOverrides": [
     {
@@ -179,7 +179,7 @@ window.REAL_DATA = {
       "end": "2026-07-02",
       "source": "Supermetrics exact range total",
       "values": {
-        "views": 90961,
+        "views": 90970,
         "reach": 18569
       }
     },
@@ -187,9 +187,11 @@ window.REAL_DATA = {
       "platform": "facebook",
       "start": "2026-06-26",
       "end": "2026-07-02",
-      "source": "Supermetrics exact range total",
+      "source": "Supermetrics daily rows sum; exact deduped reach unavailable for this prior range",
       "values": {
-        "views": 1954
+        "views": 2093,
+        "reach": 1184,
+        "paidViews": 0
       }
     },
     {
@@ -198,8 +200,10 @@ window.REAL_DATA = {
       "end": "2026-07-02",
       "source": "Supermetrics exact range total",
       "values": {
-        "views": 3334,
-        "watchTime": 946
+        "views": 4836,
+        "watchTime": 1456,
+        "adViews": 249,
+        "adWatchTime": 247
       }
     },
     {
@@ -321,47 +325,100 @@ window.REAL_DATA = {
     },
     {
       "platform": "instagram",
+      "start": "2026-07-03",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 90098,
+        "reach": 20297
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-03",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 2995,
+        "reach": 1440,
+        "paidViews": 0
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-03",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total; daily YouTube rows available through Jul 7",
+      "values": {
+        "views": 4671,
+        "watchTime": 2215,
+        "adViews": 1538,
+        "adWatchTime": 951
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-03",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 53994,
+        "reach": 36242
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-06-26",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 181289,
+        "reach": 176694
+      }
+    },
+    {
+      "platform": "instagram",
       "start": "2026-01-01",
-      "end": "2026-07-06",
+      "end": "2026-07-09",
       "source": "Supermetrics exact YTD range total",
       "seriesDistribute": false,
       "values": {
-        "views": 2506655,
-        "reach": 50276
+        "views": 2542842,
+        "reach": 35962
       }
     },
     {
       "platform": "facebook",
       "start": "2026-01-01",
-      "end": "2026-07-06",
-      "source": "Supermetrics exact YTD range total",
+      "end": "2026-07-09",
+      "source": "Supermetrics YTD total; reach uses daily-row sum because exact YTD deduped reach is unavailable",
       "seriesDistribute": false,
       "values": {
-        "views": 36740,
-        "reach": 115103,
+        "views": 37419,
+        "reach": 116825,
         "paidViews": 157513
       }
     },
     {
       "platform": "youtube",
       "start": "2026-01-01",
-      "end": "2026-07-06",
-      "source": "Supermetrics exact YTD range total",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact YTD range total; daily YouTube rows available through Jul 7",
       "seriesDistribute": false,
       "values": {
-        "views": 151561,
-        "watchTime": 73368
+        "views": 155089,
+        "watchTime": 74852
       }
     },
     {
       "platform": "tiktok",
       "start": "2026-01-01",
-      "end": "2026-07-06",
-      "source": "Supermetrics exact YTD range total; TikTok metrics available from May 8",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact YTD range total; TikTok exact profile metrics available from May 11 in this query",
       "seriesDistribute": false,
       "values": {
-        "views": 866196,
-        "reach": 842060
+        "views": 895784,
+        "reach": 855639
       }
     }
   ],
@@ -373,7 +430,7 @@ window.REAL_DATA = {
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "asOf": "2026-07-07",
+      "asOf": "2026-07-09",
       "daily": [
         {
           "date": "2026-01-01",
@@ -1843,11 +1900,29 @@ window.REAL_DATA = {
           "watchTime": 0,
           "newFollowers": 0,
           "totalFollowers": 2775
+        },
+        {
+          "date": "2026-07-08",
+          "posts": 1,
+          "views": 14191,
+          "reach": 8160,
+          "watchTime": 0,
+          "newFollowers": 24,
+          "totalFollowers": 2799
+        },
+        {
+          "date": "2026-07-09",
+          "posts": 1,
+          "views": 8578,
+          "reach": 3913,
+          "watchTime": 0,
+          "newFollowers": 0,
+          "totalFollowers": 2807
         }
       ],
       "hasFollowers": true,
-      "totalFollowers": 2775,
-      "followersAsOf": "2026-07-07",
+      "totalFollowers": 2807,
+      "followersAsOf": "2026-07-09",
       "followersNote": "Total followers is current from Supermetrics. Instagram new followers are only available for the last 30 days, so full-year new follower gain is not available.",
       "hasNewFollowers": true
     },
@@ -1858,7 +1933,7 @@ window.REAL_DATA = {
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "asOf": "2026-07-07",
+      "asOf": "2026-07-09",
       "daily": [
         {
           "date": "2026-01-01",
@@ -3673,13 +3748,33 @@ window.REAL_DATA = {
           "totalFollowers": 766,
           "paidViews": 0,
           "newFollowers": 6
+        },
+        {
+          "date": "2026-07-08",
+          "posts": 0,
+          "views": 243,
+          "reach": 87,
+          "watchTime": 0,
+          "totalFollowers": 779,
+          "paidViews": 0,
+          "newFollowers": 13
+        },
+        {
+          "date": "2026-07-09",
+          "posts": 1,
+          "views": 436,
+          "reach": 298,
+          "watchTime": 0,
+          "totalFollowers": 789,
+          "paidViews": 0,
+          "newFollowers": 10
         }
       ],
       "reachLabel": "Page media views unique",
       "reachNote": "Facebook reach uses Page media views unique, not an organic-only reach split.",
       "hasFollowers": true,
-      "totalFollowers": 766,
-      "followersAsOf": "2026-07-07",
+      "totalFollowers": 789,
+      "followersAsOf": "2026-07-09",
       "followersNote": "Total followers is the latest Page followers count from Supermetrics; new followers are net daily changes.",
       "viewsLabel": "Organic media views",
       "viewsNote": "Facebook views use Page media views organic from Supermetrics. Reach uses Page media views unique and is not an organic-only reach split.",
@@ -3692,7 +3787,7 @@ window.REAL_DATA = {
       "provider": "supermetrics",
       "hasWatchTime": true,
       "hasReach": false,
-      "asOf": "2026-07-07",
+      "asOf": "2026-07-09",
       "daily": [
         {
           "date": "2026-01-01",
@@ -5575,16 +5670,38 @@ window.REAL_DATA = {
           "adViews": 0,
           "adWatchTime": 0,
           "performancePending": true
+        },
+        {
+          "date": "2026-07-08",
+          "posts": 0,
+          "views": 0,
+          "reach": 0,
+          "watchTime": 0,
+          "newFollowers": null,
+          "adViews": 0,
+          "adWatchTime": 0,
+          "performancePending": true
+        },
+        {
+          "date": "2026-07-09",
+          "posts": 0,
+          "views": 0,
+          "reach": 0,
+          "watchTime": 0,
+          "newFollowers": null,
+          "adViews": 0,
+          "adWatchTime": 0,
+          "performancePending": true
         }
       ],
       "reachUnavailableReason": "YouTube reach/unique viewers is not available in the current Supermetrics connector.",
       "hasFollowers": true,
-      "totalFollowers": 1150,
-      "followersAsOf": "2026-07-05",
+      "totalFollowers": 1170,
+      "followersAsOf": "2026-07-09",
       "followersNote": "Total subscribers is rounded by the YouTube connector; new followers use gained subscribers minus lost subscribers.",
       "hasNewFollowers": true,
       "adTrafficNote": "YouTube ad traffic is tracked from Supermetrics Traffic source type = ADVERTISING.",
-      "postSupplementNote": "YouTube public feed confirms uploads on Jul 3, Jul 5, and Jul 7. Supermetrics VideoTotals verifies Jul 3 and Jul 5 performance; the Jul 7 video returned no Supermetrics performance row on Jul 8, 2026.",
+      "postSupplementNote": "YouTube Supermetrics channel daily rows are available through Jul 7 in this refresh; Jul 8-9 are marked pending until the connector returns daily rows.",
       "performanceAsOf": "2026-07-05",
       "dataAvailabilityNote": "YouTube ChannelTotals returned daily rows through Jul 5 in this refresh. Jul 6-7 performance should be treated as pending, not zero."
     },
@@ -5596,7 +5713,7 @@ window.REAL_DATA = {
       "hasWatchTime": false,
       "hasReach": true,
       "hasTopContent": true,
-      "asOf": "2026-07-07",
+      "asOf": "2026-07-09",
       "daily": [
         {
           "date": "2026-05-08",
@@ -6202,24 +6319,47 @@ window.REAL_DATA = {
           "date": "2026-07-07",
           "posts": 0,
           "views": 8652,
-          "reach": 0,
+          "reach": 8267,
           "watchTime": 0,
           "profileViews": 32,
           "totalFollowers": 2067,
           "newFollowers": 18,
+          "postMetricsPending": true
+        },
+        {
+          "date": "2026-07-08",
+          "posts": 0,
+          "views": 15575,
+          "reach": 0,
+          "watchTime": 0,
+          "profileViews": 63,
+          "totalFollowers": 2112,
+          "newFollowers": 45,
+          "postMetricsPending": true
+        },
+        {
+          "date": "2026-07-09",
+          "posts": 0,
+          "views": 0,
+          "reach": 0,
+          "watchTime": 0,
+          "profileViews": 0,
+          "totalFollowers": 2112,
+          "newFollowers": 0,
           "postMetricsPending": true
         }
       ],
       "reachLabel": "Reached audience",
       "postProvider": "supermetrics-tiktok-organic-video-ids",
       "hasFollowers": true,
-      "totalFollowers": 2067,
-      "followersAsOf": "2026-07-07",
+      "totalFollowers": 2112,
+      "followersAsOf": "2026-07-09",
       "followersNote": "TikTok profile metrics are available from May 8, 2026 in the current Supermetrics connector.",
       "historyStart": "2026-05-08",
       "hasNewFollowers": true,
       "postDefinition": "TikTok videos published, counted from Supermetrics TikTok Organic video IDs by create date.",
-      "postCountNote": "Daily post counts use the TikTok Organic videos report. July 7 profile totals are available, but the Better Dog video-level query returned no July 7 rows on Jul 8, 2026."
+      "postCountNote": "Daily post counts use the TikTok Organic videos report. July 7 profile totals are available, but the Better Dog video-level query returned no July 7 rows on Jul 8, 2026.",
+      "topContentUnavailableReason": "TikTok Organic video-level query returned no Better Dog rows for Jul 8-9 in this refresh."
     }
   },
   "content": [
@@ -6659,22 +6799,22 @@ window.REAL_DATA = {
     {
       "platform": "facebook",
       "date": "2026-05-15",
-      "url": "https://www.facebook.com/674626722402999_122174012048906904",
-      "title": "National Pet Month is a reminder to celebrate the love, loyalty, and joy our pets bring into our lives every day.",
-      "type": "Feed Post",
-      "views": 173,
-      "reach": 103,
-      "eng": 3
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-05-15",
       "url": "https://www.facebook.com/674626722402999_122174013152906904",
       "title": "Anxiety is not a natural state for a dog.",
       "type": "Short Form Clip",
       "views": 466,
       "reach": 401,
       "eng": 8
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-05-15",
+      "url": "https://www.facebook.com/674626722402999_122174012048906904",
+      "title": "National Pet Month is a reminder to celebrate the love, loyalty, and joy our pets bring into our lives every day.",
+      "type": "Feed Post",
+      "views": 173,
+      "reach": 103,
+      "eng": 3
     },
     {
       "platform": "instagram",
@@ -8136,13 +8276,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-07-02",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656916624238316830",
-      "title": "What does happy-go-lucky look like in a dog? Happy-Go-Lucky Belly supports healthy digestion.",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658041583962541343",
+      "title": "The skin can reflect what is going on inside the body. Skin Magic supports healthy skin.",
       "type": "Short Form Clip",
-      "views": 750,
-      "reach": 672,
-      "eng": 53,
-      "sourceId": "7656916624238316830"
+      "views": 1389,
+      "reach": 1005,
+      "eng": 14,
+      "sourceId": "7658041583962541343"
     },
     {
       "platform": "tiktok",
@@ -8158,17 +8298,6 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-07-02",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658041583962541343",
-      "title": "The skin can reflect what is going on inside the body. Skin Magic supports healthy skin.",
-      "type": "Short Form Clip",
-      "views": 1389,
-      "reach": 1005,
-      "eng": 14,
-      "sourceId": "7658041583962541343"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-02",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7658041215278992671",
       "title": "When a dog belly is not right, their whole body feels it. Happy Go-Lucky Belly supports digestive balance.",
       "type": "Short Form Clip",
@@ -8176,6 +8305,17 @@ window.REAL_DATA = {
       "reach": 946,
       "eng": 35,
       "sourceId": "7658041215278992671"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656916624238316830",
+      "title": "What does happy-go-lucky look like in a dog? Happy-Go-Lucky Belly supports healthy digestion.",
+      "type": "Short Form Clip",
+      "views": 750,
+      "reach": 672,
+      "eng": 53,
+      "sourceId": "7656916624238316830"
     },
     {
       "platform": "tiktok",
@@ -8219,42 +8359,6 @@ window.REAL_DATA = {
       "views": 259,
       "reach": 199,
       "eng": 11,
-      "source": "Supermetrics Facebook post insights",
-      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 8, 2026."
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-07-04",
-      "url": "https://www.facebook.com/674626722402999_122180496350906904",
-      "title": "A happier belly makes everyday life easier, for your dog and for you.",
-      "type": "Single Image",
-      "views": 240,
-      "reach": 155,
-      "eng": 2,
-      "source": "Supermetrics Facebook post insights",
-      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 8, 2026."
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-07-05",
-      "url": "https://www.facebook.com/674626722402999_122180654498906904",
-      "title": "Ever wonder why dogs chase or chew on their tail?",
-      "type": "Short Form Clip",
-      "views": 641,
-      "reach": 584,
-      "eng": 11,
-      "source": "Supermetrics Facebook post insights",
-      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 8, 2026."
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-07-06",
-      "url": "https://www.facebook.com/674626722402999_1566398261509132",
-      "title": "Is your dog constantly scratching?",
-      "type": "Short Form Clip",
-      "views": 127456,
-      "reach": null,
-      "eng": 305,
       "source": "Supermetrics Facebook post insights",
       "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 8, 2026."
     },
@@ -8347,6 +8451,41 @@ window.REAL_DATA = {
       "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
     },
     {
+      "platform": "youtube",
+      "date": "2026-07-03",
+      "url": "https://www.youtube.com/watch?v=rBe8Bvs60UA",
+      "title": "What is Confidence in a Dog?",
+      "type": "Short Form Clip",
+      "views": 9,
+      "watchTime": 5,
+      "reach": null,
+      "eng": 0,
+      "source": "Supermetrics VideoTotals",
+      "sourceNote": "Video ID confirmed from YouTube public feed; performance verified through Supermetrics VideoTotals on Jul 8, 2026."
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-07-04",
+      "url": "https://www.facebook.com/674626722402999_122180496350906904",
+      "title": "A happier belly makes everyday life easier, for your dog and for you.",
+      "type": "Single Image",
+      "views": 240,
+      "reach": 155,
+      "eng": 2,
+      "source": "Supermetrics Facebook post insights",
+      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 8, 2026."
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-07-04",
+      "url": "https://www.instagram.com/p/DaYA1r1DZR6/",
+      "title": "A happier belly makes everyday life easier, for your dog and for you.",
+      "type": "Single Image",
+      "views": 146,
+      "reach": 89,
+      "eng": 10
+    },
+    {
       "platform": "tiktok",
       "date": "2026-07-04",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7658043199713266975",
@@ -8360,6 +8499,28 @@ window.REAL_DATA = {
       "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
     },
     {
+      "platform": "facebook",
+      "date": "2026-07-05",
+      "url": "https://www.facebook.com/674626722402999_122180654498906904",
+      "title": "Ever wonder why dogs chase or chew on their tail?",
+      "type": "Short Form Clip",
+      "views": 641,
+      "reach": 584,
+      "eng": 11,
+      "source": "Supermetrics Facebook post insights",
+      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 8, 2026."
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-07-05",
+      "url": "https://www.instagram.com/reel/DaalvxQjYU-/",
+      "title": "Ever wonder why dogs chase or chew on their tail?",
+      "type": "Short Form Clip",
+      "views": 453,
+      "reach": 349,
+      "eng": 38
+    },
+    {
       "platform": "tiktok",
       "date": "2026-07-05",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7656919166057827615",
@@ -8371,6 +8532,31 @@ window.REAL_DATA = {
       "sourceId": "7656919166057827615",
       "source": "Supermetrics TikTok Organic videos",
       "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-07-05",
+      "url": "https://www.youtube.com/watch?v=_oi2rtsdems",
+      "title": "Why do dogs bite their tail?",
+      "type": "Short Form Clip",
+      "views": 1958,
+      "watchTime": 350,
+      "reach": null,
+      "eng": 36,
+      "source": "Supermetrics VideoTotals",
+      "sourceNote": "Video ID confirmed from YouTube public feed; performance verified through Supermetrics VideoTotals on Jul 8, 2026."
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-07-06",
+      "url": "https://www.facebook.com/674626722402999_1566398261509132",
+      "title": "Is your dog constantly scratching?",
+      "type": "Short Form Clip",
+      "views": 127456,
+      "reach": null,
+      "eng": 305,
+      "source": "Supermetrics Facebook post insights",
+      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 8, 2026."
     },
     {
       "platform": "tiktok",
@@ -8438,50 +8624,17 @@ window.REAL_DATA = {
       "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026."
     },
     {
-      "platform": "instagram",
-      "date": "2026-07-04",
-      "url": "https://www.instagram.com/p/DaYA1r1DZR6/",
-      "title": "A happier belly makes everyday life easier, for your dog and for you.",
-      "type": "Single Image",
-      "views": 146,
-      "reach": 89,
-      "eng": 10
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-07-05",
-      "url": "https://www.instagram.com/reel/DaalvxQjYU-/",
-      "title": "Ever wonder why dogs chase or chew on their tail?",
+      "platform": "facebook",
+      "date": "2026-07-07",
+      "url": "https://www.facebook.com/674626722402999_122180918594906904",
+      "title": "Some dogs go at 100mph.",
       "type": "Short Form Clip",
-      "views": 453,
-      "reach": 349,
-      "eng": 38
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-07-05",
-      "url": "https://www.youtube.com/watch?v=_oi2rtsdems",
-      "title": "Why do dogs bite their tail?",
-      "type": "Short Form Clip",
-      "views": 1958,
-      "watchTime": 350,
-      "reach": null,
-      "eng": 36,
-      "source": "Supermetrics VideoTotals",
-      "sourceNote": "Video ID confirmed from YouTube public feed; performance verified through Supermetrics VideoTotals on Jul 8, 2026."
-    },
-    {
-      "platform": "youtube",
-      "date": "2026-07-03",
-      "url": "https://www.youtube.com/watch?v=rBe8Bvs60UA",
-      "title": "What is Confidence in a Dog?",
-      "type": "Short Form Clip",
-      "views": 9,
-      "watchTime": 5,
-      "reach": null,
-      "eng": 0,
-      "source": "Supermetrics VideoTotals",
-      "sourceNote": "Video ID confirmed from YouTube public feed; performance verified through Supermetrics VideoTotals on Jul 8, 2026."
+      "views": 384,
+      "reach": 335,
+      "eng": 8,
+      "paidViews": 0,
+      "source": "Supermetrics Facebook post insights",
+      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 8, 2026."
     },
     {
       "platform": "instagram",
@@ -8496,45 +8649,74 @@ window.REAL_DATA = {
       "sourceNote": "Verified through Supermetrics Instagram media insights on Jul 8, 2026."
     },
     {
-      "platform": "facebook",
-      "date": "2026-07-07",
-      "url": "https://www.facebook.com/674626722402999_122180918594906904",
-      "title": "Some dogs go at 100mph.",
-      "type": "Short Form Clip",
-      "views": 384,
-      "reach": 335,
-      "eng": 8,
-      "paidViews": 0,
-      "source": "Supermetrics Facebook post insights",
-      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 8, 2026."
-    },
-    {
       "platform": "youtube",
       "date": "2026-07-07",
       "url": "https://www.youtube.com/shorts/zfsvq8S3rtw",
       "title": "Some dogs go at 100mph.",
       "type": "Short Form Clip",
-      "views": null,
-      "watchTime": null,
+      "views": 58,
+      "watchTime": 10,
       "reach": null,
-      "eng": null,
-      "metricsPending": true,
-      "source": "YouTube public feed metadata",
-      "sourceNote": "Public feed confirmed this upload; Supermetrics VideoTotals returned no row on Jul 8, 2026, so performance metrics are pending."
+      "eng": 9,
+      "metricsPending": false,
+      "source": "Supermetrics LatestVideos",
+      "sourceNote": "Performance verified through Supermetrics LatestVideos on Jul 10, 2026."
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-07-08",
+      "url": "https://www.instagram.com/p/DaiTAj5k7QY/",
+      "title": "Does your dog inhale dinner like it?s a race?",
+      "type": "Carousel",
+      "views": 267,
+      "reach": 118,
+      "eng": 19,
+      "sourceId": "18083054282401682",
+      "source": "Supermetrics Instagram media insights",
+      "sourceNote": "Verified through Supermetrics Instagram media insights on Jul 10, 2026."
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-07-09",
+      "url": "https://www.facebook.com/674626722402999_122181167438906904",
+      "title": "For a puppy, the leash should feel like a natural extension of your guidance, not something to fight, fear, or avoid.",
+      "type": "Short Form Clip",
+      "views": 293,
+      "reach": 267,
+      "eng": 6,
+      "paidViews": 0,
+      "sourceId": "674626722402999_122181167438906904",
+      "source": "Supermetrics Facebook post insights",
+      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 10, 2026."
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-07-09",
+      "url": "https://www.instagram.com/reel/Dak48vnFQed/",
+      "title": "For a puppy, the leash should feel like a natural extension of your guidance, not something to fight, fear, or avoid.",
+      "type": "Short Form Clip",
+      "views": 720,
+      "reach": 639,
+      "eng": 72,
+      "sourceId": "18093530291105181",
+      "source": "Supermetrics Instagram media insights",
+      "sourceNote": "Verified through Supermetrics Instagram media insights on Jul 10, 2026."
     }
   ],
-  "followersDataNote": "New followers is for the selected range when Supermetrics has complete data. Total followers is the latest available platform total; Instagram and YouTube do not expose historical total-follower snapshots in this connector.",
+  "followersDataNote": "New followers is for the selected range when Supermetrics has complete data. Total followers is the latest available platform total; Instagram and YouTube do not expose historical total-follower snapshots in this connector. TikTok follower change is inferred from latest available profile totals when daily net follower rows are unavailable.",
   "supplementalSources": [
     {
-      "key": "youtube-public-posts-2026-07-03-2026-07-06",
+      "key": "youtube-channel-daily-pending-2026-07-08-2026-07-09",
       "platform": "youtube",
-      "range": {
-        "start": "2026-07-03",
-        "end": "2026-07-06"
-      },
-      "source": "YouTube public channel feed/page supplement",
-      "reason": "Supermetrics LatestVideos and VideoTotals returned no rows for confirmed public uploads in this range.",
-      "posts": 2
+      "source": "Supermetrics YouTube ChannelTotals",
+      "note": "Channel daily rows returned through Jul 7; Jul 8-9 are present as pending rows until Supermetrics returns daily performance."
+    },
+    {
+      "key": "tiktok-video-id-post-counts-2026-07-08-2026-07-09",
+      "platform": "tiktok",
+      "source": "Supermetrics TikTok Organic videos report",
+      "posts": 0,
+      "note": "Filtered Better Dog video query returned no Jul 8-9 video rows."
     }
   ]
 };
