@@ -549,7 +549,14 @@ body {
   letter-spacing: 0;
   line-height: 1.05;
 }
-.kpi-context { font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.35; }
+.kpi-context {
+  position: relative;
+  z-index: 1;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.35;
+}
 .delta-wrap {
   position: relative;
   z-index: 1;
@@ -762,6 +769,16 @@ body {
 .pcard-stat .mini {
   display: inline-block;
   margin-left: 5px;
+}
+.pcard-note {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 10px;
+  font-style: normal;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
 }
 .dot.instagram { background: var(--ig); }
 .dot.facebook { background: var(--fb); }

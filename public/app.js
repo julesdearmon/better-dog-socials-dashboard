@@ -327,11 +327,32 @@ function reachContextSummary() {
 
 function viewsContextSummary() {
   const ps = platforms().filter((p) => supports(p, 'views'));
-  const parts = [];
-  if (ps.includes('instagram')) parts.push('Instagram views include paid/promoted distribution.');
-  if (ps.includes('facebook')) parts.push('Facebook views are organic media views.');
-  if (ps.includes('youtube')) parts.push('YouTube ADVERTISING traffic is tracked separately in analysis.');
-  return parts.join(' ');
+  return viewSourceNote(ps);
+}
+
+function viewSourceKind(p) {
+  if (p === 'facebook' || p === 'tiktok') return 'organic';
+  if (p === 'instagram' || p === 'youtube') return 'paid';
+  return 'unknown';
+}
+
+function viewSourceNote(ps, opts = {}) {
+  const selected = [...new Set((ps || []).filter((p) => supports(p, 'views')))];
+  if (!selected.length) return '';
+  const compact = opts.compact === true;
+  if (selected.length === 1) {
+    const p = selected[0];
+    if (p === 'facebook' || p === 'tiktok') return compact ? 'Organic only; no ad views.' : 'Includes only organic views and does not include ad views.';
+    if (p === 'instagram') return compact ? 'Organic + paid/promoted.' : 'Includes organic plus paid/promoted views.';
+    if (p === 'youtube') return compact ? 'Total views; may include ads.' : 'Includes total YouTube views, including ad traffic when present.';
+  }
+  const organic = selected.filter((p) => viewSourceKind(p) === 'organic').map(nameOf);
+  const paid = selected.filter((p) => viewSourceKind(p) === 'paid').map(nameOf);
+  if (organic.length && !paid.length) return compact ? 'Organic only; no ad views.' : 'Includes only organic views and does not include ad views.';
+  if (paid.length && !organic.length) return compact ? 'Organic + paid/ad views.' : 'Includes organic plus paid/promoted or ad-driven views.';
+  const organicText = organic.length ? `Organic only: ${organic.join(', ')}.` : '';
+  const paidText = paid.length ? `Includes paid/ad traffic: ${paid.join(', ')}.` : '';
+  return `${organicText} ${paidText}`.trim();
 }
 
 function renderMetricNotes() {
@@ -1631,11 +1652,13 @@ function renderKpis() {
     const prev = totalAt(m.key, 1);
     const val = pendingOnly || (m.key === 'watchTime' && curr === 0) ? null : curr;
     const delta = m.showDelta === false ? '' : deltaHtmlWithHelp(curr, prev, m.key);
+    const context = m.key === 'views' ? viewSourceNote(platforms()) : '';
     return `
       <div class="kpi">
         <div class="label">${m.label}</div>
         <div class="value">${m.fmt(val)}</div>
         <div>${pendingOnly ? '' : delta}</div>
+        ${context ? `<div class="kpi-context">${escapeHtml(context)}</div>` : ''}
       </div>`;
   }).join('');
 }
@@ -1651,9 +1674,9 @@ function renderPlatformCards() {
     return;
   }
 
-  const metricStat = (label, value, prev, formatter = fmt) => {
+  const metricStat = (label, value, prev, formatter = fmt, note = '') => {
     const shown = value == null ? '—' : formatter(value);
-    return `<div class="pcard-stat"><span>${escapeHtml(label)}</span><strong>${shown}</strong>${miniDelta(value, prev)}</div>`;
+    return `<div class="pcard-stat"><span>${escapeHtml(label)}</span><strong>${shown}</strong>${miniDelta(value, prev)}${note ? `<em class="pcard-note">${escapeHtml(note)}</em>` : ''}</div>`;
   };
 
   wrap.innerHTML = ps.map((p) => {
@@ -1663,7 +1686,7 @@ function renderPlatformCards() {
     const mainValue = followers == null ? fmt(cur.views || 0) : fmtFull(followers);
     const mainLabel = followers == null ? 'views selected range' : 'total followers';
     const stats = [];
-    stats.push(metricStat('Views', cur.views || 0, prv.views || 0, fmt));
+    stats.push(metricStat('Views', cur.views || 0, prv.views || 0, fmt, viewSourceNote([p], { compact: true })));
     stats.push(metricStat('Posts', cur.posts || 0, prv.posts || 0, fmtFull));
     if (supports(p, 'newFollowers')) stats.push(metricStat('New followers', cur.newFollowers, prv.newFollowers, fmtFull));
     if (supports(p, 'reach')) stats.push(metricStat('Reach', cur.reach || 0, prv.reach || 0, fmt));
