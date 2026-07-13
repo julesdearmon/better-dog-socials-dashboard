@@ -5,10 +5,10 @@ window.REAL_DATA = {
     "name": "Better Dog Supplements",
     "color": "#88cc33"
   },
-  "asOf": "2026-07-09",
-  "updatedAt": "Jul 10, 2026, 3:55 AM",
+  "asOf": "2026-07-12",
+  "updatedAt": "Jul 13, 2026, 7:45 AM",
   "source": "live",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; YouTube daily rows available through Jul 7)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; YouTube daily rows available through Jul 10; TikTok video rows unavailable for Jul 10-12)",
   "directApiErrors": [],
   "rangeOverrides": [
     {
@@ -295,32 +295,12 @@ window.REAL_DATA = {
     },
     {
       "platform": "instagram",
-      "start": "2026-06-01",
-      "end": "2026-06-30",
-      "source": "Meta Business Suite Content Overview screenshot",
-      "values": {
-        "views": 567510,
-        "reach": 80700
-      }
-    },
-    {
-      "platform": "instagram",
       "start": "2026-07-01",
       "end": "2026-07-02",
       "source": "Supermetrics exact range total",
       "values": {
         "views": 17412,
         "reach": 3854
-      }
-    },
-    {
-      "platform": "instagram",
-      "start": "2026-05-01",
-      "end": "2026-05-31",
-      "source": "Derived from Meta Business Suite June screenshot percent change",
-      "values": {
-        "views": 395753,
-        "reach": 68974
       }
     },
     {
@@ -420,6 +400,178 @@ window.REAL_DATA = {
         "views": 895784,
         "reach": 855639
       }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-07-10",
+      "end": "2026-07-12",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 30573,
+        "reach": 3423
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-07-07",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 36173,
+        "reach": 3927
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-10",
+      "end": "2026-07-12",
+      "source": "Supermetrics daily rows sum; exact deduped reach unavailable for this range",
+      "values": {
+        "views": 1449,
+        "reach": 709,
+        "paidViews": 0
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-07",
+      "end": "2026-07-09",
+      "source": "Supermetrics daily rows sum; exact deduped reach unavailable for this range",
+      "values": {
+        "views": 1154,
+        "reach": 718,
+        "paidViews": 0
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-10",
+      "end": "2026-07-12",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 26570,
+        "reach": 25499
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-07",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 41372,
+        "reach": 40122
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-10",
+      "end": "2026-07-12",
+      "source": "Supermetrics exact range total; daily YouTube rows available through Jul 10",
+      "values": {
+        "views": 1429,
+        "watchTime": 872,
+        "adViews": 1244,
+        "adWatchTime": 771
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-07",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 3780,
+        "watchTime": 2451,
+        "adViews": 2284,
+        "adWatchTime": 1449
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-07-10",
+      "end": "2026-07-13",
+      "source": "Supermetrics exact range total through latest complete data date Jul 12; Jul 13 not yet complete",
+      "values": {
+        "views": 30573,
+        "reach": 3423
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-10",
+      "end": "2026-07-13",
+      "source": "Supermetrics daily rows sum through latest complete data date Jul 12; exact deduped reach unavailable for this range",
+      "values": {
+        "views": 1449,
+        "reach": 709,
+        "paidViews": 0
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-10",
+      "end": "2026-07-13",
+      "source": "Supermetrics exact range total through latest complete data date Jul 12; Jul 13 not yet complete",
+      "values": {
+        "views": 26570,
+        "reach": 25499
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-10",
+      "end": "2026-07-13",
+      "source": "Supermetrics exact range total through latest complete data date Jul 12; daily YouTube rows available through Jul 10",
+      "values": {
+        "views": 1429,
+        "watchTime": 872,
+        "adViews": 1244,
+        "adWatchTime": 771
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-07-06",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 69590,
+        "reach": 3927
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-06",
+      "end": "2026-07-09",
+      "source": "Supermetrics daily rows sum; exact deduped reach unavailable for this range",
+      "values": {
+        "views": 1526,
+        "reach": 873,
+        "paidViews": 0
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-06",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 48329,
+        "reach": 46711
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-06",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 4383,
+        "watchTime": 2756,
+        "adViews": 2685,
+        "adWatchTime": 1680
+      }
     }
   ],
   "metrics": {
@@ -430,7 +582,7 @@ window.REAL_DATA = {
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "asOf": "2026-07-09",
+      "asOf": "2026-07-12",
       "daily": [
         {
           "date": "2026-01-01",
@@ -1918,11 +2070,38 @@ window.REAL_DATA = {
           "watchTime": 0,
           "newFollowers": 0,
           "totalFollowers": 2807
+        },
+        {
+          "date": "2026-07-10",
+          "posts": 1,
+          "views": 13079,
+          "reach": 6492,
+          "watchTime": 0,
+          "newFollowers": 23,
+          "totalFollowers": 2830
+        },
+        {
+          "date": "2026-07-11",
+          "posts": 1,
+          "views": 9792,
+          "reach": 4626,
+          "watchTime": 0,
+          "newFollowers": 11,
+          "totalFollowers": 2841
+        },
+        {
+          "date": "2026-07-12",
+          "posts": 1,
+          "views": 7702,
+          "reach": 3423,
+          "watchTime": 0,
+          "newFollowers": 0,
+          "totalFollowers": 2841
         }
       ],
       "hasFollowers": true,
-      "totalFollowers": 2807,
-      "followersAsOf": "2026-07-09",
+      "totalFollowers": 2851,
+      "followersAsOf": "2026-07-13",
       "followersNote": "Total followers is current from Supermetrics. Instagram new followers are only available for the last 30 days, so full-year new follower gain is not available.",
       "hasNewFollowers": true,
       "sourceAccount": {
@@ -1938,7 +2117,7 @@ window.REAL_DATA = {
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "asOf": "2026-07-09",
+      "asOf": "2026-07-12",
       "daily": [
         {
           "date": "2026-01-01",
@@ -3773,13 +3952,43 @@ window.REAL_DATA = {
           "totalFollowers": 789,
           "paidViews": 0,
           "newFollowers": 10
+        },
+        {
+          "date": "2026-07-10",
+          "posts": 1,
+          "views": 638,
+          "reach": 317,
+          "watchTime": 0,
+          "totalFollowers": 804,
+          "paidViews": 0,
+          "newFollowers": 15
+        },
+        {
+          "date": "2026-07-11",
+          "posts": 1,
+          "views": 296,
+          "reach": 113,
+          "watchTime": 0,
+          "totalFollowers": 816,
+          "paidViews": 0,
+          "newFollowers": 12
+        },
+        {
+          "date": "2026-07-12",
+          "posts": 1,
+          "views": 515,
+          "reach": 279,
+          "watchTime": 0,
+          "totalFollowers": 828,
+          "paidViews": 0,
+          "newFollowers": 12
         }
       ],
       "reachLabel": "Page media views unique",
       "reachNote": "Facebook reach uses Page media views unique, not an organic-only reach split.",
       "hasFollowers": true,
-      "totalFollowers": 789,
-      "followersAsOf": "2026-07-09",
+      "totalFollowers": 828,
+      "followersAsOf": "2026-07-12",
       "followersNote": "Total followers is the latest Page followers count from Supermetrics; new followers are net daily changes.",
       "viewsLabel": "Organic media views",
       "viewsNote": "Facebook views use Page media views organic from Supermetrics. Reach uses Page media views unique and is not an organic-only reach split.",
@@ -3797,7 +4006,7 @@ window.REAL_DATA = {
       "provider": "supermetrics",
       "hasWatchTime": true,
       "hasReach": false,
-      "asOf": "2026-07-09",
+      "asOf": "2026-07-12",
       "daily": [
         {
           "date": "2026-01-01",
@@ -5694,7 +5903,39 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-07-09",
+          "posts": 2,
+          "views": 0,
+          "reach": 0,
+          "watchTime": 0,
+          "newFollowers": null,
+          "adViews": 0,
+          "adWatchTime": 0,
+          "performancePending": true
+        },
+        {
+          "date": "2026-07-10",
           "posts": 0,
+          "views": 1429,
+          "reach": 0,
+          "watchTime": 872,
+          "newFollowers": 2,
+          "adViews": 1244,
+          "adWatchTime": 771
+        },
+        {
+          "date": "2026-07-11",
+          "posts": 0,
+          "views": 0,
+          "reach": 0,
+          "watchTime": 0,
+          "newFollowers": null,
+          "adViews": 0,
+          "adWatchTime": 0,
+          "performancePending": true
+        },
+        {
+          "date": "2026-07-12",
+          "posts": 1,
           "views": 0,
           "reach": 0,
           "watchTime": 0,
@@ -5706,14 +5947,14 @@ window.REAL_DATA = {
       ],
       "reachUnavailableReason": "YouTube reach/unique viewers is not available in the current Supermetrics connector.",
       "hasFollowers": true,
-      "totalFollowers": 1170,
-      "followersAsOf": "2026-07-09",
+      "totalFollowers": 1180,
+      "followersAsOf": "2026-07-12",
       "followersNote": "Total subscribers is rounded by the YouTube connector; new followers use gained subscribers minus lost subscribers.",
       "hasNewFollowers": true,
       "adTrafficNote": "YouTube ad traffic is tracked from Supermetrics Traffic source type = ADVERTISING.",
-      "postSupplementNote": "YouTube Supermetrics channel daily rows are available through Jul 7 in this refresh; Jul 8-9 are marked pending until the connector returns daily rows.",
-      "performanceAsOf": "2026-07-05",
-      "dataAvailabilityNote": "YouTube ChannelTotals returned daily rows through Jul 5 in this refresh. Jul 6-7 performance should be treated as pending, not zero.",
+      "postSupplementNote": "YouTube Supermetrics channel daily rows are available through Jul 10 in this refresh. One Jul 12 public upload is included as metadata only because Supermetrics returned no matching post-level row; performance remains pending.",
+      "performanceAsOf": "2026-07-10",
+      "dataAvailabilityNote": "YouTube ChannelTotals returned daily rows through Jul 10 in this refresh. Jul 11-12 performance should be treated as pending, not zero.",
       "sourceAccount": {
         "dsId": "YT2",
         "accountId": "UC9rUabwMqe2C98J2l1NDz2g",
@@ -5727,8 +5968,8 @@ window.REAL_DATA = {
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "hasTopContent": true,
-      "asOf": "2026-07-09",
+      "hasTopContent": false,
+      "asOf": "2026-07-12",
       "daily": [
         {
           "date": "2026-05-08",
@@ -6425,19 +6666,55 @@ window.REAL_DATA = {
           "newFollowers": 0,
           "postMetricsPending": true,
           "sourceUsername": "betterdogsupplements"
+        },
+        {
+          "date": "2026-07-10",
+          "posts": 0,
+          "views": 12058,
+          "reach": 11553,
+          "watchTime": 0,
+          "profileViews": 33,
+          "totalFollowers": 2211,
+          "newFollowers": 99,
+          "postMetricsPending": true,
+          "sourceUsername": "betterdogsupplements"
+        },
+        {
+          "date": "2026-07-11",
+          "posts": 0,
+          "views": 14512,
+          "reach": 13946,
+          "watchTime": 0,
+          "profileViews": 49,
+          "totalFollowers": 2211,
+          "newFollowers": 0,
+          "postMetricsPending": true,
+          "sourceUsername": "betterdogsupplements"
+        },
+        {
+          "date": "2026-07-12",
+          "posts": 0,
+          "views": 0,
+          "reach": 0,
+          "watchTime": 0,
+          "profileViews": 0,
+          "totalFollowers": 2211,
+          "newFollowers": 0,
+          "postMetricsPending": true,
+          "sourceUsername": "betterdogsupplements"
         }
       ],
       "reachLabel": "Reached audience",
       "postProvider": "supermetrics-tiktok-organic-video-ids",
       "hasFollowers": true,
-      "totalFollowers": 2112,
-      "followersAsOf": "2026-07-09",
+      "totalFollowers": 2211,
+      "followersAsOf": "2026-07-12",
       "followersNote": "TikTok profile metrics are available from May 8, 2026 in the current Supermetrics connector.",
       "historyStart": "2026-05-08",
       "hasNewFollowers": true,
       "postDefinition": "TikTok videos published, counted from Supermetrics TikTok Organic video IDs by create date.",
-      "postCountNote": "Daily post counts use the TikTok Organic videos report. July 7 profile totals are available, but the Better Dog video-level query returned no July 7 rows on Jul 8, 2026.",
-      "topContentUnavailableReason": "TikTok Organic video-level query returned no Better Dog rows for Jul 8-9 in this refresh.",
+      "postCountNote": "Daily post counts use the TikTok Organic videos report. The Jul 10-12 video-level query timed out, so TikTok posts are not counted for that range instead of being guessed.",
+      "topContentUnavailableReason": "TikTok Organic profile totals are live through Jul 12, but Supermetrics video-level rows timed out for Jul 10-12. Post counts/top content are not shown for that range until the connector returns video rows.",
       "sourceAccount": {
         "dsId": "TIKBA",
         "username": "betterdogsupplements",
@@ -8831,22 +9108,155 @@ window.REAL_DATA = {
       "sourceId": "18093530291105181",
       "source": "Supermetrics Instagram media insights",
       "sourceNote": "Verified through Supermetrics Instagram media insights on Jul 10, 2026."
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-07-09",
+      "url": "https://www.youtube.com/shorts/ZIqR1QS4uhI",
+      "title": "Happy Go Lucky Belly - Some foods quietly hurt your dog's gut",
+      "type": "Short Form Clip",
+      "views": 0,
+      "watchTime": 0,
+      "reach": null,
+      "eng": 0,
+      "metricsPending": true,
+      "sourceId": "ZIqR1QS4uhI",
+      "source": "YouTube public channel feed supplement",
+      "sourceNote": "Public upload confirmed Jul 10, 2026; Supermetrics post-level row and performance are pending."
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-07-09",
+      "url": "https://www.youtube.com/shorts/M41mII0eIIg",
+      "title": "Help Your Puppy Trust The Leash",
+      "type": "Short Form Clip",
+      "views": 0,
+      "watchTime": 0,
+      "reach": null,
+      "eng": 0,
+      "metricsPending": true,
+      "sourceId": "M41mII0eIIg",
+      "source": "YouTube public channel feed supplement",
+      "sourceNote": "Public upload confirmed Jul 10, 2026; Supermetrics post-level row and performance are pending."
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-07-10",
+      "url": "https://www.facebook.com/674626722402999_122181296516906904",
+      "title": "Ever wonder what foods or drinks are quietly upsetting your dog's stomach? Happy-Go-Lucky Belly is our daily herbal supplement made to support comfortable digestion and gut balance when your dog's belly needs a little extra help. ??",
+      "type": "Short Form Clip",
+      "views": 392,
+      "reach": 337,
+      "eng": 4,
+      "paidViews": 0,
+      "sourceId": "674626722402999_122181296516906904",
+      "source": "Supermetrics Facebook post insights",
+      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 13, 2026."
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-07-10",
+      "url": "https://www.instagram.com/reel/DandfbvChrX/",
+      "title": "Ever wonder what foods or drinks are quietly upsetting your dog's stomach? Happy-Go-Lucky Belly is our daily herbal supplement made to support comfortable digestion and gut balance when your dog's belly needs a little extra help. ??",
+      "type": "Short Form Clip",
+      "views": 9558,
+      "reach": 8687,
+      "eng": 435,
+      "sourceId": "17934609528320784",
+      "source": "Supermetrics Instagram media insights",
+      "sourceNote": "Verified through Supermetrics Instagram media insights on Jul 13, 2026."
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-07-11",
+      "url": "https://www.facebook.com/674626722402999_122181407090906904",
+      "title": "Don't let stiffness slow them down. Forever Active supports joint health and mobility at every age, so your dog stays comfortable, steady, and ready for more.",
+      "type": "Image",
+      "views": 196,
+      "reach": 113,
+      "eng": 4,
+      "paidViews": 0,
+      "sourceId": "674626722402999_122181407090906904",
+      "source": "Supermetrics Facebook post insights",
+      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 13, 2026."
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-07-11",
+      "url": "https://www.instagram.com/p/DaqCiS8DToA/",
+      "title": "Don't let stiffness slow them down. Forever Active supports joint health and mobility at every age, so your dog stays comfortable, steady, and ready for more.",
+      "type": "Image",
+      "views": 293,
+      "reach": 217,
+      "eng": 18,
+      "sourceId": "18143997499493865",
+      "source": "Supermetrics Instagram media insights",
+      "sourceNote": "Verified through Supermetrics Instagram media insights on Jul 13, 2026."
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-07-12",
+      "url": "https://www.facebook.com/674626722402999_122181537038906904",
+      "title": "Is your dog constantly shaking their ears? It could be their way of communicating discomfort caused by dryness, irritation, buildup, or other causes. Skin Magic supports dry, itchy skin from within with natural ingredients that help promote healthier skin and greater everyday comfort.",
+      "type": "Short Form Clip",
+      "views": 252,
+      "reach": 231,
+      "eng": 4,
+      "paidViews": 0,
+      "sourceId": "674626722402999_122181537038906904",
+      "source": "Supermetrics Facebook post insights",
+      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 13, 2026."
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-07-12",
+      "url": "https://www.instagram.com/reel/DasnS3sjydW/",
+      "title": "Is your dog constantly shaking their ears? It could be their way of communicating discomfort caused by dryness, irritation, buildup, or other causes. Skin Magic supports dry, itchy skin from within with natural ingredients that help promote healthier skin and greater everyday comfort.",
+      "type": "Short Form Clip",
+      "views": 537,
+      "reach": 448,
+      "eng": 31,
+      "sourceId": "18098199269609602",
+      "source": "Supermetrics Instagram media insights",
+      "sourceNote": "Verified through Supermetrics Instagram media insights on Jul 13, 2026."
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-07-12",
+      "url": "https://www.youtube.com/shorts/r0nwat9Gsb8",
+      "title": "Why Would Dogs Shake Their Ears",
+      "type": "Short Form Clip",
+      "views": 0,
+      "watchTime": 0,
+      "reach": null,
+      "eng": 0,
+      "metricsPending": true,
+      "sourceId": "r0nwat9Gsb8",
+      "source": "YouTube public channel feed supplement",
+      "sourceNote": "Public upload confirmed Jul 12, 2026; Supermetrics post-level row and performance are pending."
     }
   ],
   "followersDataNote": "New followers is for the selected range when Supermetrics has complete data. Total followers is the latest available platform total; Instagram and YouTube do not expose historical total-follower snapshots in this connector. TikTok follower change is inferred from latest available profile totals when daily net follower rows are unavailable.",
   "supplementalSources": [
     {
-      "key": "youtube-channel-daily-pending-2026-07-08-2026-07-09",
+      "key": "youtube-channel-daily-pending-2026-07-11-2026-07-12",
       "platform": "youtube",
       "source": "Supermetrics YouTube ChannelTotals",
-      "note": "Channel daily rows returned through Jul 7; Jul 8-9 are present as pending rows until Supermetrics returns daily performance."
+      "note": "Channel daily rows returned through Jul 10; Jul 11-12 are present as pending rows until Supermetrics returns daily performance."
     },
     {
-      "key": "tiktok-video-id-post-counts-2026-07-08-2026-07-09",
+      "key": "youtube-public-feed-post-metadata-2026-07-12",
+      "platform": "youtube",
+      "source": "YouTube public channel feed",
+      "posts": 1,
+      "note": "One Jul 12 public upload is included as metadata only because Supermetrics returned no matching post-level row; performance remains pending."
+    },
+    {
+      "key": "tiktok-video-query-timeout-2026-07-10-2026-07-12",
       "platform": "tiktok",
       "source": "Supermetrics TikTok Organic videos report",
-      "posts": 0,
-      "note": "Filtered Better Dog video query returned no Jul 8-9 video rows."
+      "posts": null,
+      "note": "Filtered Better Dog video query timed out for Jul 10-12; TikTok profile totals remain live, but post counts/top content are not guessed."
     }
   ]
 };

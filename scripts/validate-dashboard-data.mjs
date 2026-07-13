@@ -29,6 +29,23 @@ function findRangeOverride(platform, range) {
 const sumRows = (rows, field) => rows.reduce((sum, row) => sum + Number(row[field] || 0), 0);
 const rowsInRange = (rows, range) => (rows || []).filter((row) => row.date >= range.start && row.date <= range.end);
 const normalize = (value) => String(value || '').trim().toLowerCase();
+function addDaysIso(isoDate, days) {
+  return iso(Date.parse(`${isoDate}T00:00:00Z`) + days * DAY);
+}
+function todayIsoInNewYork() {
+  const parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(new Date()).map((part) => [part.type, part.value]));
+  return `${parts.year}-${parts.month}-${parts.day}`;
+}
+function reportingWeekStart(isoDate) {
+  const base = Date.parse(`${isoDate}T00:00:00Z`);
+  const d = new Date(base);
+  return iso(base - ((d.getUTCDay() - 5 + 7) % 7) * DAY);
+}
 
 if (config.sourceOfTruth !== 'supermetrics-chatgpt-codex-connector') problems.push('config sourceOfTruth is not the Supermetrics connector');
 if (config.standaloneSupermetricsRestApi?.enabled) problems.push('standalone Supermetrics REST API is enabled in config');
@@ -36,6 +53,21 @@ if (data.source !== 'live') problems.push('dashboard source is not live');
 if (!data.asOf) problems.push('missing asOf date');
 if (!data.updatedAt) problems.push('missing updatedAt timestamp');
 if (/direct|meta api|youtube api|carried/i.test(generatedFrom)) problems.push(`generatedFrom mentions an old source: ${generatedFrom}`);
+
+const todayIso = todayIsoInNewYork();
+const latestCompleteDate = addDaysIso(todayIso, -1);
+const currentWeekStart = reportingWeekStart(todayIso);
+if (data.asOf && data.asOf < latestCompleteDate) {
+  problems.push(`data.asOf is stale: ${data.asOf}; expected at least ${latestCompleteDate}`);
+}
+if (data.asOf && data.asOf >= currentWeekStart) {
+  const currentWeek = { start: currentWeekStart, end: data.asOf };
+  const currentWeekViews = requiredPlatforms.reduce((sum, platform) => sum + sumRows(rowsInRange(data.metrics?.[platform]?.daily, currentWeek), 'views'), 0);
+  const currentWeekPosts = requiredPlatforms.reduce((sum, platform) => sum + sumRows(rowsInRange(data.metrics?.[platform]?.daily, currentWeek), 'posts'), 0);
+  if (currentWeekViews === 0 && currentWeekPosts === 0) {
+    problems.push(`current reporting week ${currentWeek.start} to ${currentWeek.end} has zero views and zero posts`);
+  }
+}
 
 for (const platform of requiredPlatforms) {
   const platformConfig = config.platforms[platform] || {};
