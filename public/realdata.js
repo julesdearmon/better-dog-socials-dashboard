@@ -19,7 +19,8 @@ window.REAL_DATA = {
       "values": {
         "views": 101577,
         "reach": 98479
-      }
+      },
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -29,7 +30,8 @@ window.REAL_DATA = {
       "values": {
         "views": 38419,
         "reach": 27975
-      }
+      },
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
@@ -131,7 +133,8 @@ window.REAL_DATA = {
       "values": {
         "views": 29767,
         "reach": 27975
-      }
+      },
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "instagram",
@@ -171,7 +174,8 @@ window.REAL_DATA = {
       "values": {
         "views": 78287,
         "reach": 75911
-      }
+      },
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "instagram",
@@ -344,7 +348,8 @@ window.REAL_DATA = {
       "values": {
         "views": 53994,
         "reach": 36242
-      }
+      },
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -354,7 +359,8 @@ window.REAL_DATA = {
       "values": {
         "views": 181289,
         "reach": 176694
-      }
+      },
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "instagram",
@@ -399,7 +405,8 @@ window.REAL_DATA = {
       "values": {
         "views": 895784,
         "reach": 855639
-      }
+      },
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "instagram",
@@ -451,7 +458,8 @@ window.REAL_DATA = {
       "values": {
         "views": 26570,
         "reach": 25499
-      }
+      },
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -461,7 +469,8 @@ window.REAL_DATA = {
       "values": {
         "views": 41372,
         "reach": 40122
-      }
+      },
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
@@ -516,7 +525,8 @@ window.REAL_DATA = {
       "values": {
         "views": 26570,
         "reach": 25499
-      }
+      },
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
@@ -559,7 +569,8 @@ window.REAL_DATA = {
       "values": {
         "views": 48329,
         "reach": 46711
-      }
+      },
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",

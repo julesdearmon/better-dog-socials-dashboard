@@ -29,6 +29,7 @@ function findRangeOverride(platform, range) {
 const sumRows = (rows, field) => rows.reduce((sum, row) => sum + Number(row[field] || 0), 0);
 const rowsInRange = (rows, range) => (rows || []).filter((row) => row.date >= range.start && row.date <= range.end);
 const normalize = (value) => String(value || '').trim().toLowerCase();
+const rangeSourceUsername = (range) => range?.sourceUsername || range?.sourceAccount?.username || range?.account?.username;
 function addDaysIso(isoDate, days) {
   return iso(Date.parse(`${isoDate}T00:00:00Z`) + days * DAY);
 }
@@ -131,6 +132,15 @@ for (const item of data.content || []) {
   }
   if (item.platform === 'tiktok' && normalize(item.sourceUsername) !== normalize(guard.expectedUsername)) {
     problems.push(`tiktok: content row ${item.sourceId || item.url || item.date || 'unknown'} sourceUsername is ${item.sourceUsername || 'missing'}, expected ${guard.expectedUsername}`);
+  }
+}
+
+for (const override of data.rangeOverrides || []) {
+  if (override.platform !== 'tiktok') continue;
+  const guard = config.platforms?.tiktok?.accountGuard || {};
+  const username = rangeSourceUsername(override);
+  if (normalize(username) !== normalize(guard.expectedUsername)) {
+    problems.push(`tiktok: exact range override ${override.start} to ${override.end} sourceUsername is ${username || 'missing'}, expected ${guard.expectedUsername}`);
   }
 }
 
