@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 const data = JSON.parse(readFileSync('public/data.json', 'utf8'));
 const config = JSON.parse(readFileSync('config/data-sources.json', 'utf8'));
 const summary = JSON.parse(readFileSync('logs/latest-refresh-summary.json', 'utf8'));
+const realDataSource = readFileSync('public/realdata.js', 'utf8');
 const requiredPlatforms = Object.keys(config.platforms || {});
 const generatedFrom = String(data.generatedFrom || '');
 const problems = [];
@@ -29,7 +30,16 @@ function findRangeOverride(platform, range) {
 const sumRows = (rows, field) => rows.reduce((sum, row) => sum + Number(row[field] || 0), 0);
 const rowsInRange = (rows, range) => (rows || []).filter((row) => row.date >= range.start && row.date <= range.end);
 const normalize = (value) => String(value || '').trim().toLowerCase();
+const forbiddenAccountPattern = /(?:^|[^a-z])(?:manuel\s+suarez|mrmanuelsuarez)(?:$|[^a-z])/i;
 const rangeSourceUsername = (range) => range?.sourceUsername || range?.sourceAccount?.username || range?.account?.username;
+function checkForbiddenIdentity(label, values) {
+  for (const value of values) {
+    if (forbiddenAccountPattern.test(String(value || ''))) {
+      problems.push(`${label}: forbidden non-Better-Dog account identity found`);
+      return;
+    }
+  }
+}
 function addDaysIso(isoDate, days) {
   return iso(Date.parse(`${isoDate}T00:00:00Z`) + days * DAY);
 }
@@ -55,6 +65,20 @@ if (!data.asOf) problems.push('missing asOf date');
 if (!data.updatedAt) problems.push('missing updatedAt timestamp');
 if (/direct|meta api|youtube api|carried/i.test(generatedFrom)) problems.push(`generatedFrom mentions an old source: ${generatedFrom}`);
 
+const realDataMatch = realDataSource.match(/^\/\/[^\n]*\nwindow\.REAL_DATA\s*=\s*([\s\S]*);\s*$/);
+if (!realDataMatch) {
+  problems.push('public/realdata.js is not in the expected generated format');
+} else {
+  try {
+    const realData = JSON.parse(realDataMatch[1]);
+    if (JSON.stringify(realData) !== JSON.stringify(data)) {
+      problems.push('public/realdata.js does not exactly match public/data.json');
+    }
+  } catch {
+    problems.push('public/realdata.js contains invalid embedded JSON');
+  }
+}
+
 const todayIso = todayIsoInNewYork();
 const latestCompleteDate = addDaysIso(todayIso, -1);
 const currentWeekStart = reportingWeekStart(todayIso);
@@ -77,6 +101,13 @@ for (const platform of requiredPlatforms) {
   if (!generatedFrom.toLowerCase().includes(platform)) problems.push(`${platform}: missing from generatedFrom`);
   if (metric?.provider !== platformConfig.provider) problems.push(`${platform}: provider is not ${platformConfig.provider}`);
   const guard = platformConfig.accountGuard || {};
+  checkForbiddenIdentity(`${platform} source account`, [
+    metric?.handle,
+    metric?.sourceAccount?.accountId,
+    metric?.sourceAccount?.accountName,
+    metric?.sourceAccount?.username,
+    metric?.sourceAccount?.handle,
+  ]);
   if (guard.expectedMetricHandle && metric?.handle !== guard.expectedMetricHandle) {
     problems.push(`${platform}: metric handle is ${metric?.handle || 'missing'}, expected ${guard.expectedMetricHandle}`);
   }
@@ -118,6 +149,11 @@ for (const platform of requiredPlatforms) {
       problems.push('tiktok: recent post counts look like profile rows; verify against TikTok video IDs');
     }
     for (const row of metric?.daily || []) {
+      checkForbiddenIdentity(`tiktok daily row ${row.date || 'unknown'}`, [
+        row.sourceUsername,
+        row.sourceAccount?.username,
+        row.sourceAccount?.accountName,
+      ]);
       if (normalize(row.sourceUsername) !== normalize(guard.expectedUsername)) {
         problems.push(`tiktok: ${row.date} sourceUsername is ${row.sourceUsername || 'missing'}, expected ${guard.expectedUsername}`);
       }
@@ -127,6 +163,12 @@ for (const platform of requiredPlatforms) {
 
 for (const item of data.content || []) {
   const guard = config.platforms?.[item.platform]?.accountGuard || {};
+  checkForbiddenIdentity(`${item.platform || 'unknown'} content row ${item.date || 'unknown'}`, [
+    item.sourceUsername,
+    item.sourceAccount?.username,
+    item.sourceAccount?.accountName,
+    item.sourceAccount?.accountId,
+  ]);
   if (guard.contentUrlMustContain && !String(item.url || '').includes(guard.contentUrlMustContain)) {
     problems.push(`${item.platform}: content URL does not match expected account guard for ${item.date || 'unknown date'}`);
   }
@@ -136,6 +178,14 @@ for (const item of data.content || []) {
 }
 
 for (const override of data.rangeOverrides || []) {
+  checkForbiddenIdentity(`${override.platform || 'unknown'} exact range override ${override.start || 'unknown'} to ${override.end || 'unknown'}`, [
+    override.sourceUsername,
+    override.sourceAccount?.username,
+    override.sourceAccount?.accountName,
+    override.sourceAccount?.accountId,
+    override.account?.username,
+    override.account?.accountName,
+  ]);
   if (override.platform !== 'tiktok') continue;
   const guard = config.platforms?.tiktok?.accountGuard || {};
   const username = rangeSourceUsername(override);
@@ -200,6 +250,21 @@ if (summary.sourceOfTruth !== config.sourceOfTruth) problems.push('refresh summa
 if (summary.dataThrough !== data.asOf) problems.push('refresh summary dataThrough does not match public/data.json asOf');
 if (summary.generatedFrom !== data.generatedFrom) problems.push('refresh summary generatedFrom does not match public/data.json');
 if ((summary.errors || []).length) problems.push(`refresh summary contains errors: ${summary.errors.length}`);
+if (!summary.refreshedAt) problems.push('refresh summary is missing refreshedAt');
+if (!Array.isArray(summary.skippedItems)) problems.push('refresh summary is missing skippedItems array');
+for (const platform of requiredPlatforms) {
+  const platformSummary = summary.platforms?.[platform];
+  if (!platformSummary) {
+    problems.push(`refresh summary is missing ${platform} status`);
+    continue;
+  }
+  if (!['live', 'partial', 'pending'].includes(platformSummary.status)) {
+    problems.push(`refresh summary ${platform} has invalid status: ${platformSummary.status || 'missing'}`);
+  }
+  if (!platformSummary.historyStart) {
+    problems.push(`refresh summary ${platform} is missing actual historyStart`);
+  }
+}
 
 const updatedMs = Date.parse(String(data.updatedAt).replace(/, ([0-9]{1,2}:[0-9]{2} [AP]M)$/i, ', 2026 $1'));
 const today = new Date();
