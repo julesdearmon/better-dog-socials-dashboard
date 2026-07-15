@@ -83,7 +83,10 @@ const todayIso = todayIsoInNewYork();
 const latestCompleteDate = addDaysIso(todayIso, -1);
 const currentWeekStart = reportingWeekStart(todayIso);
 if (data.asOf && data.asOf < latestCompleteDate) {
-  problems.push(`data.asOf is stale: ${data.asOf}; expected at least ${latestCompleteDate}`);
+  problems.push(`data.asOf is stale: ${data.asOf}; expected ${latestCompleteDate}`);
+}
+if (data.asOf && data.asOf > latestCompleteDate) {
+  problems.push(`data.asOf includes a partial current day: ${data.asOf}; expected ${latestCompleteDate}`);
 }
 if (data.asOf && data.asOf >= currentWeekStart) {
   const currentWeek = { start: currentWeekStart, end: data.asOf };

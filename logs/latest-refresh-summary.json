@@ -1,32 +1,36 @@
 {
-  "refreshedAt": "Jul 13, 2026, 7:45 AM",
-  "dataThrough": "2026-07-12",
+  "refreshedAt": "Jul 15, 2026, 9:00 AM",
+  "dataThrough": "2026-07-14",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; YouTube daily rows available through Jul 10; TikTok video rows unavailable for Jul 10-12)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; updated through previous complete day Jul 14; YouTube daily rows lag for Jul 13-14 and Jul 14 upload is metadata-only pending performance)",
   "platforms": {
     "instagram": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Updated through Jul 12; Jul 10-12 daily metrics and media rows refreshed."
+      "note": "Updated through Jul 14; Jul 13-14 daily metrics and Jul 14 media row refreshed.",
+      "historyStart": "2026-01-01"
     },
     "facebook": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Updated through Jul 12; Facebook views remain organic media views and paid views were 0 for Jul 10-12."
+      "note": "Updated through Jul 14; Facebook views remain organic media views and paid views were 0 for Jul 13-14.",
+      "historyStart": "2026-01-01"
     },
     "tiktok": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Profile totals updated through Jul 12 for Better Dog; video-level query timed out, so post counts/top content are unavailable for Jul 10-12."
+      "note": "Profile totals updated through Jul 14 for Better Dog using explicit free-text account betterdogsupplements; video-level/top content remains pending.",
+      "historyStart": "2026-05-08"
     },
     "youtube": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Exact range totals refreshed for Jul 10-12; daily channel rows are available through Jul 10, and one Jul 12 upload is metadata-only pending performance."
+      "note": "Exact range totals refreshed through Jul 14; daily/post rows for Jul 13-14 are pending, with Jul 14 public upload included as metadata only.",
+      "historyStart": "2026-01-01"
     }
   },
   "errors": [],
-  "published": true,
+  "published": false,
   "supplementalSources": [
     {
       "key": "youtube-channel-daily-pending-2026-07-11-2026-07-12",
@@ -47,6 +51,23 @@
       "source": "Supermetrics TikTok Organic videos report",
       "posts": null,
       "note": "Filtered Better Dog video query timed out for Jul 10-12; TikTok profile totals remain live, but post counts/top content are not guessed."
+    },
+    {
+      "key": "youtube-channel-daily-pending-2026-07-13-2026-07-14",
+      "platform": "youtube",
+      "source": "Supermetrics YouTube ChannelTotals",
+      "note": "Channel daily rows returned no Jul 13-14 rows in this refresh; exact range totals are present, and daily rows are marked pending until Supermetrics returns daily performance."
+    },
+    {
+      "key": "youtube-public-feed-post-metadata-2026-07-14",
+      "platform": "youtube",
+      "source": "YouTube public channel feed",
+      "posts": 1,
+      "note": "One Jul 14 public upload is included as metadata only because Supermetrics returned no matching post-level row; performance remains pending."
     }
+  ],
+  "skippedItems": [
+    "YouTube daily/post-level rows for Jul 13-14 are pending in Supermetrics; Jul 14 public upload is metadata-only until connector metrics arrive.",
+    "TikTok video-level/top-content rows remain pending; profile totals were pulled with explicit Better Dog free-text account guard."
   ]
 }

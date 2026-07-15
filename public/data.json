@@ -4,374 +4,12 @@
     "name": "Better Dog Supplements",
     "color": "#88cc33"
   },
-  "asOf": "2026-07-12",
-  "updatedAt": "Jul 13, 2026, 7:45 AM",
+  "asOf": "2026-07-14",
+  "updatedAt": "Jul 15, 2026, 9:00 AM",
   "source": "live",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; YouTube daily rows available through Jul 10; TikTok video rows unavailable for Jul 10-12)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; updated through previous complete day Jul 14; YouTube daily rows lag for Jul 13-14 and Jul 14 upload is metadata-only pending performance)",
   "directApiErrors": [],
   "rangeOverrides": [
-    {
-      "platform": "tiktok",
-      "start": "2026-06-28",
-      "end": "2026-07-02",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 101577,
-        "reach": 98479
-      },
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "start": "2026-07-03",
-      "end": "2026-07-07",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 38419,
-        "reach": 27975
-      },
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "youtube",
-      "start": "2026-06-28",
-      "end": "2026-07-02",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 3504,
-        "watchTime": 1133
-      }
-    },
-    {
-      "platform": "youtube",
-      "start": "2026-07-03",
-      "end": "2026-07-07",
-      "source": "Supermetrics exact range total; daily YouTube rows available through Jul 5 in this refresh",
-      "values": {
-        "views": 3431,
-        "watchTime": 1280
-      }
-    },
-    {
-      "platform": "facebook",
-      "start": "2026-06-28",
-      "end": "2026-07-02",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 1465,
-        "reach": 735,
-        "paidViews": 0
-      }
-    },
-    {
-      "platform": "facebook",
-      "start": "2026-07-03",
-      "end": "2026-07-07",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 2315,
-        "reach": 1150,
-        "paidViews": 0
-      }
-    },
-    {
-      "platform": "instagram",
-      "start": "2026-06-28",
-      "end": "2026-07-02",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 74175,
-        "reach": 3860
-      }
-    },
-    {
-      "platform": "instagram",
-      "start": "2026-07-03",
-      "end": "2026-07-07",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 67324,
-        "reach": 3397
-      }
-    },
-    {
-      "platform": "instagram",
-      "start": "2026-07-03",
-      "end": "2026-07-06",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 53937,
-        "reach": 3589
-      }
-    },
-    {
-      "platform": "facebook",
-      "start": "2026-07-03",
-      "end": "2026-07-06",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 1840,
-        "reach": 817
-      }
-    },
-    {
-      "platform": "youtube",
-      "start": "2026-07-03",
-      "end": "2026-07-06",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 3431,
-        "watchTime": 1280
-      }
-    },
-    {
-      "platform": "tiktok",
-      "start": "2026-07-03",
-      "end": "2026-07-06",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 29767,
-        "reach": 27975
-      },
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "instagram",
-      "start": "2026-06-29",
-      "end": "2026-07-02",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 63572,
-        "reach": 3860
-      }
-    },
-    {
-      "platform": "facebook",
-      "start": "2026-06-29",
-      "end": "2026-07-02",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 855,
-        "reach": 460
-      }
-    },
-    {
-      "platform": "youtube",
-      "start": "2026-06-29",
-      "end": "2026-07-02",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 3066,
-        "watchTime": 989
-      }
-    },
-    {
-      "platform": "tiktok",
-      "start": "2026-06-29",
-      "end": "2026-07-02",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 78287,
-        "reach": 75911
-      },
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "instagram",
-      "start": "2026-06-26",
-      "end": "2026-07-02",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 90970,
-        "reach": 18569
-      }
-    },
-    {
-      "platform": "facebook",
-      "start": "2026-06-26",
-      "end": "2026-07-02",
-      "source": "Supermetrics daily rows sum; exact deduped reach unavailable for this prior range",
-      "values": {
-        "views": 2093,
-        "reach": 1184,
-        "paidViews": 0
-      }
-    },
-    {
-      "platform": "youtube",
-      "start": "2026-06-26",
-      "end": "2026-07-02",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 4836,
-        "watchTime": 1456,
-        "adViews": 249,
-        "adWatchTime": 247
-      }
-    },
-    {
-      "platform": "instagram",
-      "start": "2026-06-19",
-      "end": "2026-06-25",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 101704,
-        "reach": 39334
-      }
-    },
-    {
-      "platform": "facebook",
-      "start": "2026-06-19",
-      "end": "2026-06-25",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 4096
-      }
-    },
-    {
-      "platform": "youtube",
-      "start": "2026-06-19",
-      "end": "2026-06-25",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 3901,
-        "watchTime": 911
-      }
-    },
-    {
-      "platform": "instagram",
-      "start": "2026-06-12",
-      "end": "2026-06-18",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 224890,
-        "reach": 32378
-      }
-    },
-    {
-      "platform": "facebook",
-      "start": "2026-06-12",
-      "end": "2026-06-18",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 7272
-      }
-    },
-    {
-      "platform": "youtube",
-      "start": "2026-06-12",
-      "end": "2026-06-18",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 1475,
-        "watchTime": 686
-      }
-    },
-    {
-      "platform": "instagram",
-      "start": "2026-06-05",
-      "end": "2026-06-11",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 104867,
-        "reach": 34031
-      }
-    },
-    {
-      "platform": "facebook",
-      "start": "2026-06-05",
-      "end": "2026-06-11",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 7770
-      }
-    },
-    {
-      "platform": "youtube",
-      "start": "2026-06-05",
-      "end": "2026-06-11",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 2066,
-        "watchTime": 975
-      }
-    },
-    {
-      "platform": "instagram",
-      "start": "2026-07-01",
-      "end": "2026-07-02",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 17412,
-        "reach": 3854
-      }
-    },
-    {
-      "platform": "instagram",
-      "start": "2026-07-03",
-      "end": "2026-07-09",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 90098,
-        "reach": 20297
-      }
-    },
-    {
-      "platform": "facebook",
-      "start": "2026-07-03",
-      "end": "2026-07-09",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 2995,
-        "reach": 1440,
-        "paidViews": 0
-      }
-    },
-    {
-      "platform": "youtube",
-      "start": "2026-07-03",
-      "end": "2026-07-09",
-      "source": "Supermetrics exact range total; daily YouTube rows available through Jul 7",
-      "values": {
-        "views": 4671,
-        "watchTime": 2215,
-        "adViews": 1538,
-        "adWatchTime": 951
-      }
-    },
-    {
-      "platform": "tiktok",
-      "start": "2026-07-03",
-      "end": "2026-07-09",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 53994,
-        "reach": 36242
-      },
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "start": "2026-06-26",
-      "end": "2026-07-02",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 181289,
-        "reach": 176694
-      },
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "instagram",
-      "start": "2026-01-01",
-      "end": "2026-07-09",
-      "source": "Supermetrics exact YTD range total",
-      "seriesDistribute": false,
-      "values": {
-        "views": 2542842,
-        "reach": 35962
-      }
-    },
     {
       "platform": "facebook",
       "start": "2026-01-01",
@@ -385,14 +23,14 @@
       }
     },
     {
-      "platform": "youtube",
+      "platform": "instagram",
       "start": "2026-01-01",
       "end": "2026-07-09",
-      "source": "Supermetrics exact YTD range total; daily YouTube rows available through Jul 7",
+      "source": "Supermetrics exact YTD range total",
       "seriesDistribute": false,
       "values": {
-        "views": 155089,
-        "watchTime": 74852
+        "views": 2542842,
+        "reach": 35962
       }
     },
     {
@@ -408,34 +46,451 @@
       "sourceUsername": "betterdogsupplements"
     },
     {
-      "platform": "instagram",
-      "start": "2026-07-10",
-      "end": "2026-07-12",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 30573,
-        "reach": 3423
-      }
-    },
-    {
-      "platform": "instagram",
-      "start": "2026-07-07",
+      "platform": "youtube",
+      "start": "2026-01-01",
       "end": "2026-07-09",
-      "source": "Supermetrics exact range total",
+      "source": "Supermetrics exact YTD range total; daily YouTube rows available through Jul 7",
+      "seriesDistribute": false,
       "values": {
-        "views": 36173,
-        "reach": 3927
+        "views": 155089,
+        "watchTime": 74852
       }
     },
     {
       "platform": "facebook",
-      "start": "2026-07-10",
-      "end": "2026-07-12",
+      "start": "2026-06-05",
+      "end": "2026-06-11",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 7770
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-06-05",
+      "end": "2026-06-11",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 104867,
+        "reach": 34031
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-06-05",
+      "end": "2026-06-11",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 2066,
+        "watchTime": 975
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-06-12",
+      "end": "2026-06-18",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 7272
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-06-12",
+      "end": "2026-06-18",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 224890,
+        "reach": 32378
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-06-12",
+      "end": "2026-06-18",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 1475,
+        "watchTime": 686
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-06-19",
+      "end": "2026-06-25",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 4096
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-06-19",
+      "end": "2026-06-25",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 101704,
+        "reach": 39334
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-06-19",
+      "end": "2026-06-25",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 3901,
+        "watchTime": 911
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-06-26",
+      "end": "2026-07-02",
+      "source": "Supermetrics daily rows sum; exact deduped reach unavailable for this prior range",
+      "values": {
+        "views": 2093,
+        "reach": 1184,
+        "paidViews": 0
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-06-26",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 90970,
+        "reach": 18569
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-06-26",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 181289,
+        "reach": 176694
+      },
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-06-26",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 4836,
+        "watchTime": 1456,
+        "adViews": 249,
+        "adWatchTime": 247
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-06-28",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 1465,
+        "reach": 735,
+        "paidViews": 0
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-06-28",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 74175,
+        "reach": 3860
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-06-28",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 101577,
+        "reach": 98479
+      },
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-06-28",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 3504,
+        "watchTime": 1133
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-06-29",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 855,
+        "reach": 460
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-06-29",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 63572,
+        "reach": 3860
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-06-29",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 78287,
+        "reach": 75911
+      },
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-06-29",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 3066,
+        "watchTime": 989
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-07-01",
+      "end": "2026-07-02",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 17412,
+        "reach": 3854
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-03",
+      "end": "2026-07-06",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 1840,
+        "reach": 817
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-07-03",
+      "end": "2026-07-06",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 53937,
+        "reach": 3589
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-03",
+      "end": "2026-07-06",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 29767,
+        "reach": 27975
+      },
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-03",
+      "end": "2026-07-06",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 3431,
+        "watchTime": 1280
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-03",
+      "end": "2026-07-07",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 2315,
+        "reach": 1150,
+        "paidViews": 0
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-07-03",
+      "end": "2026-07-07",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 67324,
+        "reach": 3397
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-03",
+      "end": "2026-07-07",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 38419,
+        "reach": 27975
+      },
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-03",
+      "end": "2026-07-07",
+      "source": "Supermetrics exact range total; daily YouTube rows available through Jul 5 in this refresh",
+      "values": {
+        "views": 3431,
+        "watchTime": 1280
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-03",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 2995,
+        "reach": 1440,
+        "paidViews": 0
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-07-03",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 90098,
+        "reach": 20297
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-03",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 53994,
+        "reach": 36242
+      },
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-03",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total; daily YouTube rows available through Jul 7",
+      "values": {
+        "views": 4671,
+        "watchTime": 2215,
+        "adViews": 1538,
+        "adWatchTime": 951
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-05",
+      "end": "2026-07-09",
       "source": "Supermetrics daily rows sum; exact deduped reach unavailable for this range",
       "values": {
-        "views": 1449,
-        "reach": 709,
+        "views": 2325,
+        "reach": 1381,
         "paidViews": 0
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-07-05",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 74720,
+        "reach": 3927
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-05",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 54305,
+        "reach": 51992
+      },
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-05",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 6684,
+        "watchTime": 3307
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-06",
+      "end": "2026-07-09",
+      "source": "Supermetrics daily rows sum; exact deduped reach unavailable for this range",
+      "values": {
+        "views": 1526,
+        "reach": 873,
+        "paidViews": 0
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-07-06",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 69590,
+        "reach": 3927
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-06",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 48329,
+        "reach": 46711
+      },
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-06",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 4383,
+        "watchTime": 2756,
+        "adViews": 2685,
+        "adWatchTime": 1680
       }
     },
     {
@@ -450,15 +505,14 @@
       }
     },
     {
-      "platform": "tiktok",
-      "start": "2026-07-10",
-      "end": "2026-07-12",
+      "platform": "instagram",
+      "start": "2026-07-07",
+      "end": "2026-07-09",
       "source": "Supermetrics exact range total",
       "values": {
-        "views": 26570,
-        "reach": 25499
-      },
-      "sourceUsername": "betterdogsupplements"
+        "views": 36173,
+        "reach": 3927
+      }
     },
     {
       "platform": "tiktok",
@@ -468,6 +522,50 @@
       "values": {
         "views": 41372,
         "reach": 40122
+      },
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-07",
+      "end": "2026-07-09",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 3780,
+        "watchTime": 2451,
+        "adViews": 2284,
+        "adWatchTime": 1449
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-10",
+      "end": "2026-07-12",
+      "source": "Supermetrics daily rows sum; exact deduped reach unavailable for this range",
+      "values": {
+        "views": 1449,
+        "reach": 709,
+        "paidViews": 0
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-07-10",
+      "end": "2026-07-12",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 30573,
+        "reach": 3423
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-10",
+      "end": "2026-07-12",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 26570,
+        "reach": 25499
       },
       "sourceUsername": "betterdogsupplements"
     },
@@ -484,15 +582,14 @@
       }
     },
     {
-      "platform": "youtube",
-      "start": "2026-07-07",
-      "end": "2026-07-09",
-      "source": "Supermetrics exact range total",
+      "platform": "facebook",
+      "start": "2026-07-10",
+      "end": "2026-07-13",
+      "source": "Supermetrics daily rows sum through latest complete data date Jul 12; exact deduped reach unavailable for this range",
       "values": {
-        "views": 3780,
-        "watchTime": 2451,
-        "adViews": 2284,
-        "adWatchTime": 1449
+        "views": 1449,
+        "reach": 709,
+        "paidViews": 0
       }
     },
     {
@@ -503,17 +600,6 @@
       "values": {
         "views": 30573,
         "reach": 3423
-      }
-    },
-    {
-      "platform": "facebook",
-      "start": "2026-07-10",
-      "end": "2026-07-13",
-      "source": "Supermetrics daily rows sum through latest complete data date Jul 12; exact deduped reach unavailable for this range",
-      "values": {
-        "views": 1449,
-        "reach": 709,
-        "paidViews": 0
       }
     },
     {
@@ -540,47 +626,45 @@
       }
     },
     {
-      "platform": "instagram",
-      "start": "2026-07-06",
-      "end": "2026-07-09",
-      "source": "Supermetrics exact range total",
-      "values": {
-        "views": 69590,
-        "reach": 3927
-      }
-    },
-    {
       "platform": "facebook",
-      "start": "2026-07-06",
-      "end": "2026-07-09",
+      "start": "2026-07-10",
+      "end": "2026-07-14",
       "source": "Supermetrics daily rows sum; exact deduped reach unavailable for this range",
       "values": {
-        "views": 1526,
-        "reach": 873,
+        "views": 2036,
+        "reach": 887,
         "paidViews": 0
       }
     },
     {
-      "platform": "tiktok",
-      "start": "2026-07-06",
-      "end": "2026-07-09",
+      "platform": "instagram",
+      "start": "2026-07-10",
+      "end": "2026-07-14",
       "source": "Supermetrics exact range total",
       "values": {
-        "views": 48329,
-        "reach": 46711
+        "views": 132632,
+        "reach": 9792
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-10",
+      "end": "2026-07-14",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 50367,
+        "reach": 47832
       },
       "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
-      "start": "2026-07-06",
-      "end": "2026-07-09",
-      "source": "Supermetrics exact range total",
+      "start": "2026-07-10",
+      "end": "2026-07-14",
+      "source": "Supermetrics exact range total; daily YouTube rows available through Jul 10 and Jul 14 upload is metadata-only pending performance",
       "values": {
-        "views": 4383,
-        "watchTime": 2756,
-        "adViews": 2685,
-        "adWatchTime": 1680
+        "views": 3685,
+        "watchTime": 1976
       }
     }
   ],
@@ -592,7 +676,7 @@
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "asOf": "2026-07-12",
+      "asOf": "2026-07-14",
       "daily": [
         {
           "date": "2026-01-01",
@@ -2107,6 +2191,24 @@
           "watchTime": 0,
           "newFollowers": 0,
           "totalFollowers": 2841
+        },
+        {
+          "date": "2026-07-13",
+          "posts": 0,
+          "views": 78178,
+          "reach": 2803,
+          "watchTime": 0,
+          "newFollowers": null,
+          "totalFollowers": 2841
+        },
+        {
+          "date": "2026-07-14",
+          "posts": 1,
+          "views": 23856,
+          "reach": 9792,
+          "watchTime": 0,
+          "newFollowers": null,
+          "totalFollowers": 2841
         }
       ],
       "hasFollowers": true,
@@ -2127,7 +2229,7 @@
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "asOf": "2026-07-12",
+      "asOf": "2026-07-14",
       "daily": [
         {
           "date": "2026-01-01",
@@ -3992,6 +4094,26 @@
           "totalFollowers": 828,
           "paidViews": 0,
           "newFollowers": 12
+        },
+        {
+          "date": "2026-07-13",
+          "posts": 0,
+          "views": 305,
+          "reach": 71,
+          "watchTime": 0,
+          "totalFollowers": 828,
+          "paidViews": 0,
+          "newFollowers": null
+        },
+        {
+          "date": "2026-07-14",
+          "posts": 1,
+          "views": 282,
+          "reach": 107,
+          "watchTime": 0,
+          "totalFollowers": 828,
+          "paidViews": 0,
+          "newFollowers": null
         }
       ],
       "reachLabel": "Page media views unique",
@@ -4016,7 +4138,7 @@
       "provider": "supermetrics",
       "hasWatchTime": true,
       "hasReach": false,
-      "asOf": "2026-07-12",
+      "asOf": "2026-07-14",
       "daily": [
         {
           "date": "2026-01-01",
@@ -5953,6 +6075,30 @@
           "adViews": 0,
           "adWatchTime": 0,
           "performancePending": true
+        },
+        {
+          "date": "2026-07-13",
+          "posts": 0,
+          "views": 0,
+          "reach": 0,
+          "watchTime": 0,
+          "newFollowers": null,
+          "adViews": 0,
+          "adWatchTime": 0,
+          "performancePending": true,
+          "totalFollowers": 913
+        },
+        {
+          "date": "2026-07-14",
+          "posts": 1,
+          "views": 0,
+          "reach": 0,
+          "watchTime": 0,
+          "newFollowers": null,
+          "adViews": 0,
+          "adWatchTime": 0,
+          "performancePending": true,
+          "totalFollowers": 913
         }
       ],
       "reachUnavailableReason": "YouTube reach/unique viewers is not available in the current Supermetrics connector.",
@@ -5979,7 +6125,7 @@
       "hasWatchTime": false,
       "hasReach": true,
       "hasTopContent": false,
-      "asOf": "2026-07-12",
+      "asOf": "2026-07-14",
       "daily": [
         {
           "date": "2026-05-08",
@@ -6703,6 +6849,30 @@
         },
         {
           "date": "2026-07-12",
+          "posts": 0,
+          "views": 0,
+          "reach": 0,
+          "watchTime": 0,
+          "profileViews": 0,
+          "totalFollowers": 2211,
+          "newFollowers": 0,
+          "postMetricsPending": true,
+          "sourceUsername": "betterdogsupplements"
+        },
+        {
+          "date": "2026-07-13",
+          "posts": 0,
+          "views": 11715,
+          "reach": 10875,
+          "watchTime": 0,
+          "profileViews": 0,
+          "totalFollowers": 2211,
+          "newFollowers": 0,
+          "postMetricsPending": true,
+          "sourceUsername": "betterdogsupplements"
+        },
+        {
+          "date": "2026-07-14",
           "posts": 0,
           "views": 0,
           "reach": 0,
@@ -9244,6 +9414,48 @@
       "sourceId": "r0nwat9Gsb8",
       "source": "YouTube public channel feed supplement",
       "sourceNote": "Public upload confirmed Jul 12, 2026; Supermetrics post-level row and performance are pending."
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-07-14",
+      "url": "https://www.facebook.com/674626722402999_122181795974906904",
+      "title": "Vet and groomer visits are part of life, but for a puppy, they can feel overwhelming.",
+      "type": "Short Form Clip",
+      "views": 107,
+      "reach": 90,
+      "eng": 6,
+      "paidViews": 0,
+      "sourceId": "674626722402999_122181795974906904",
+      "source": "Supermetrics Facebook post insights",
+      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 15, 2026."
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-07-14",
+      "url": "https://www.instagram.com/reel/Daxw4QdjNXF/",
+      "title": "Vet and groomer visits are part of life, but for a puppy, they can feel overwhelming.",
+      "type": "Short Form Clip",
+      "views": 13169,
+      "reach": 11799,
+      "eng": 528,
+      "sourceId": "18123782749675718",
+      "source": "Supermetrics Instagram media insights",
+      "sourceNote": "Verified through Supermetrics Instagram media insights on Jul 15, 2026."
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-07-14",
+      "url": "https://www.youtube.com/shorts/4-a70Xtnn54",
+      "title": "Want calm vet visits? Start with your puppy",
+      "type": "Short Form Clip",
+      "views": 0,
+      "watchTime": 0,
+      "reach": null,
+      "eng": 0,
+      "metricsPending": true,
+      "sourceId": "4-a70Xtnn54",
+      "source": "YouTube public channel feed supplement",
+      "sourceNote": "Public upload confirmed Jul 15, 2026; Supermetrics post-level row and performance are pending."
     }
   ],
   "followersDataNote": "New followers is for the selected range when Supermetrics has complete data. Total followers is the latest available platform total; Instagram and YouTube do not expose historical total-follower snapshots in this connector. TikTok follower change is inferred from latest available profile totals when daily net follower rows are unavailable.",
@@ -9267,6 +9479,19 @@
       "source": "Supermetrics TikTok Organic videos report",
       "posts": null,
       "note": "Filtered Better Dog video query timed out for Jul 10-12; TikTok profile totals remain live, but post counts/top content are not guessed."
+    },
+    {
+      "key": "youtube-channel-daily-pending-2026-07-13-2026-07-14",
+      "platform": "youtube",
+      "source": "Supermetrics YouTube ChannelTotals",
+      "note": "Channel daily rows returned no Jul 13-14 rows in this refresh; exact range totals are present, and daily rows are marked pending until Supermetrics returns daily performance."
+    },
+    {
+      "key": "youtube-public-feed-post-metadata-2026-07-14",
+      "platform": "youtube",
+      "source": "YouTube public channel feed",
+      "posts": 1,
+      "note": "One Jul 14 public upload is included as metadata only because Supermetrics returned no matching post-level row; performance remains pending."
     }
   ]
 }

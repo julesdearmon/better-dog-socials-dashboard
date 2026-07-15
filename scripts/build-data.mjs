@@ -53,9 +53,9 @@ const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.get
 const yesterday = new Date(today); yesterday.setUTCDate(today.getUTCDate() - 1);
 const start = new Date(today); start.setUTCDate(today.getUTCDate() - WINDOW_DAYS);
 
-const ASOF = ymd(today);
 const START = ymd(start);
 const END = ymd(yesterday);
+const ASOF = END;
 
 // full zero-fill axis: START..END inclusive
 function axisDates() {

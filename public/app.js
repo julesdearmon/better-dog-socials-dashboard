@@ -250,13 +250,13 @@ function applyBusinessSuiteSeriesOverrides(seriesMap = state.series, startIso = 
 }
 
 // Quick-preset ranges. Each also picks a sensible chart grouping.
-function todayLocalMidnightUtcMs() {
+function yesterdayLocalMidnightUtcMs() {
   const now = new Date();
-  return Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  return Date.UTC(now.getFullYear(), now.getMonth(), now.getDate() - 1);
 }
 
 function presetAnchorMs(name) {
-  if (name === 'this-week' || name === 'last-week') return todayLocalMidnightUtcMs();
+  if (name === 'this-week' || name === 'last-week') return yesterdayLocalMidnightUtcMs();
   return Date.parse(state.data.asOf + 'T00:00:00Z');
 }
 
@@ -280,7 +280,7 @@ function presetRange(name, asOfMs) {
   return null;
 }
 
-// Default range: current reporting week through today's calendar date.
+// Default range: current reporting week through the latest complete day.
 function defaultRange(asOfMs) {
   return presetRange('this-week', asOfMs);
 }
