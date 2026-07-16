@@ -183,11 +183,22 @@ function latestTotalFollowers(metric) {
   return latest;
 }
 
+function totalFollowersAt(metric, endIso) {
+  if (!metric) return null;
+  let latest = null;
+  for (const row of metric.daily || []) {
+    if (row.date > endIso) break;
+    if (row.totalFollowers != null) latest = row.totalFollowers;
+  }
+  if (latest != null) return latest;
+  return endIso >= state.data.asOf ? latestTotalFollowers(metric) : null;
+}
+
 // Sum a platform's daily rows over an inclusive [startIso, endIso] window.
 function sumRange(metric, startIso, endIso) {
   const daily = Array.isArray(metric) ? metric : (metric?.daily || []);
   const hasFollowers = !Array.isArray(metric) && !!metric?.hasFollowers;
-  const t = { posts: 0, views: 0, reach: 0, watchTime: null, newFollowers: null, totalFollowers: latestTotalFollowers(metric) };
+  const t = { posts: 0, views: 0, reach: 0, watchTime: null, newFollowers: null, totalFollowers: totalFollowersAt(metric, endIso) };
   let followerSum = 0;
   let followerSeen = false;
   for (const row of daily) {

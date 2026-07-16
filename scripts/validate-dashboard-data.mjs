@@ -17,6 +17,13 @@ function defaultRange(asOf) {
   const start = base - ((d.getUTCDay() - 5 + 7) % 7) * DAY;
   return { start: iso(start), end: asOf };
 }
+function lastCompletedWeekRange(asOf) {
+  const base = Date.parse(`${asOf}T00:00:00Z`);
+  const d = new Date(base);
+  const diff = (d.getUTCDay() - 4 + 7) % 7;
+  const thu = base - diff * DAY;
+  return { start: iso(thu - 6 * DAY), end: iso(thu) };
+}
 function priorRange(range) {
   const start = Date.parse(`${range.start}T00:00:00Z`);
   const end = Date.parse(`${range.end}T00:00:00Z`);
@@ -200,6 +207,10 @@ for (const override of data.rangeOverrides || []) {
 if (data.asOf) {
   const range = defaultRange(data.asOf);
   const comparisonRange = priorRange(range);
+  const lastWeekRange = lastCompletedWeekRange(data.asOf);
+  if (range.start === lastWeekRange.start && range.end === lastWeekRange.end) {
+    problems.push(`this-week and last-week presets resolve to the same range: ${range.start} to ${range.end}`);
+  }
   const exactRangeRequirements = {
     instagram: ['views', 'reach'],
     facebook: ['views', 'reach'],
