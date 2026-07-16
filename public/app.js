@@ -255,9 +255,20 @@ function yesterdayLocalMidnightUtcMs() {
   return Date.UTC(now.getFullYear(), now.getMonth(), now.getDate() - 1);
 }
 
+function dataAsOfMs() {
+  const ms = Date.parse((state.data?.asOf || '') + 'T00:00:00Z');
+  return Number.isFinite(ms) ? ms : null;
+}
+
+function latestCompleteAnchorMs() {
+  const yesterdayMs = yesterdayLocalMidnightUtcMs();
+  const asOfMs = dataAsOfMs();
+  return asOfMs == null ? yesterdayMs : Math.min(yesterdayMs, asOfMs);
+}
+
 function presetAnchorMs(name) {
-  if (name === 'this-week' || name === 'last-week') return yesterdayLocalMidnightUtcMs();
-  return Date.parse(state.data.asOf + 'T00:00:00Z');
+  if (['ytd-2026', 'this-week', 'last-week', 'this-month'].includes(name)) return latestCompleteAnchorMs();
+  return dataAsOfMs() || latestCompleteAnchorMs();
 }
 
 function presetRange(name, asOfMs) {
@@ -397,7 +408,9 @@ function renderMetricNotes() {
 // ---------------------------------------------------------------------------
 function calBounds() {
   const dl = state.data.metrics.instagram.daily;
-  return { min: dl[0].date, max: dl[dl.length - 1].date };
+  const maxIso = iso(latestCompleteAnchorMs());
+  const dataMax = dl[dl.length - 1].date;
+  return { min: dl[0].date, max: dataMax < maxIso ? dataMax : maxIso };
 }
 function renderCalBtn() {
   const btn = $('#calBtn');
