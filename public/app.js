@@ -1175,7 +1175,7 @@ function scoredContentIn(p, start, end) {
     .sort((a, b) => (b.views || 0) - (a.views || 0));
 }
 
-function platformCauseHtml(p, start, end, info) {
+function platformCauseHtml(p, start, end, info, direction = 'any') {
   const cur = state.curTotals[p] || {};
   const prv = state.priorTotals[p] || {};
   const bits = [];
@@ -1184,31 +1184,33 @@ function platformCauseHtml(p, start, end, info) {
   const top = scoredContentIn(p, start, end)[0];
   const priorTop = scoredContentIn(p, state.priorRange.start, state.priorRange.end)[0];
 
-  if (posts || priorPosts) {
-    bits.push(`Posting volume was ${fmtFull(posts)} vs ${fmtFull(priorPosts)} before.`);
+  if (posts !== priorPosts) {
+    bits.push(`${posts > priorPosts ? 'More' : 'Fewer'} posts: ${fmtFull(posts)} vs ${fmtFull(priorPosts)} before.`);
   }
 
   if (top && priorTop) {
-    bits.push(`Top post now: ${contentInlineLink(top)}; prior top was ${contentInlineLink(priorTop)}.`);
+    const topViews = top.views || 0;
+    const priorTopViews = priorTop.views || 0;
+    if (direction === 'down' && topViews < priorTopViews) {
+      bits.push(`Top post was weaker: ${contentInlineLink(top)} vs prior ${contentInlineLink(priorTop)}.`);
+    } else if (direction === 'up' && topViews > priorTopViews) {
+      bits.push(`Top post was stronger: ${contentInlineLink(top)} vs prior ${contentInlineLink(priorTop)}.`);
+    } else if (direction === 'any') {
+      bits.push(`Top post: ${contentInlineLink(top)}.`);
+    }
   } else if (top) {
-    bits.push(`Best current example: ${contentInlineLink(top)}.`);
-  }
-
-  if (p === 'facebook') {
-    const paid = sumField(rowsInRange('facebook', start, end), 'paidViews');
-    const priorPaid = sumField(rowsInRange('facebook', state.priorRange.start, state.priorRange.end), 'paidViews');
-    if (paid === 0 && priorPaid === 0) bits.push('Facebook paid views were 0, so this movement was organic.');
+    bits.push(`Best current post: ${contentInlineLink(top)}.`);
+  } else if (priorTop && direction === 'down') {
+    bits.push(`Prior period had a stronger post: ${contentInlineLink(priorTop)}.`);
   }
 
   if (p === 'youtube') {
     const adViews = sumField(rowsInRange('youtube', start, end), 'adViews');
     const priorAdViews = sumField(rowsInRange('youtube', state.priorRange.start, state.priorRange.end), 'adViews');
-    if (adViews || priorAdViews) bits.push(`YouTube ad views were ${fmtFull(adViews)} vs ${fmtFull(priorAdViews)} before.`);
-    if (state.data?.metrics?.youtube?.performanceAsOf) bits.push(`YouTube daily performance is only available through ${niceDate(state.data.metrics.youtube.performanceAsOf)} in this refresh.`);
-  }
-
-  if (p === 'tiktok') {
-    bits.push('TikTok data here is organic profile data; no TikTok ads source is connected.');
+    const adDirection = adViews > priorAdViews * 1.15 ? 'up' : adViews < priorAdViews * 0.85 ? 'down' : 'flat';
+    if ((adViews || priorAdViews) && ((direction === 'up' && adDirection === 'up') || (direction === 'down' && adDirection === 'down') || direction === 'any')) {
+      bits.push(`YouTube ad views ${adDirection === 'up' ? 'rose' : adDirection === 'down' ? 'fell' : 'were similar'}: ${fmtFull(adViews)} vs ${fmtFull(priorAdViews)} before.`);
+    }
   }
 
   if (!bits.length) return '';
@@ -1239,18 +1241,18 @@ function zeroDateSummary(rows, key) {
   return `${zeroDates.length} zero-ad days in the range`;
 }
 
-function paidImpactItems(ps, start, end) {
+function paidImpactItems(ps, start, end, direction = 'any') {
   const items = [];
+  const aligns = (impact) => direction === 'any' || impact === direction;
 
   if (ps.includes('facebook')) {
     const current = rowsInRange('facebook', start, end);
     const prior = rowsInRange('facebook', state.priorRange.start, state.priorRange.end);
     const paid = sumField(current, 'paidViews');
     const priorPaid = sumField(prior, 'paidViews');
-    if (paid > 0) {
-      items.push(`Facebook paid views changed from ${fmtFull(priorPaid)} to ${fmtFull(paid)}. The main Facebook Views number still shows organic media views.`);
-    } else if (priorPaid > 0) {
-      items.push(`Facebook paid views went from ${fmtFull(priorPaid)} to 0. Facebook Views are organic here, so paid traffic is background context.`);
+    const impact = paid > priorPaid * 1.15 && paid > 0 ? 'up' : paid < priorPaid * 0.85 && priorPaid > 0 ? 'down' : 'flat';
+    if (impact !== 'flat' && aligns(impact)) {
+      items.push(`Facebook paid views ${impact === 'up' ? 'rose' : 'fell'} from ${fmtFull(priorPaid)} to ${fmtFull(paid)}. Facebook Views still show organic media views.`);
     }
   }
 
@@ -1260,17 +1262,16 @@ function paidImpactItems(ps, start, end) {
     const adViews = sumField(current, 'adViews');
     const adWatch = sumField(current, 'adWatchTime');
     const priorAdViews = sumField(prior, 'adViews');
-    if (adViews > 0) {
+    const impact = adViews > priorAdViews * 1.15 && adViews > 0 ? 'up' : adViews < priorAdViews * 0.85 && priorAdViews > 0 ? 'down' : 'flat';
+    if (impact !== 'flat' && aligns(impact)) {
       const active = activeDateSummary(current, 'adViews');
       const zeroSummary = zeroDateSummary(current, 'adViews');
-      let line = `YouTube ad views changed from ${fmtFull(priorAdViews)} to ${fmtFull(adViews)}`;
+      let line = `YouTube ad views ${impact === 'up' ? 'rose' : 'fell'} from ${fmtFull(priorAdViews)} to ${fmtFull(adViews)}`;
       if (active) line += `, active on ${active}`;
       if (adWatch > 0) line += `, with ${fmtFull(adWatch)} watched minutes`;
       if (zeroSummary) line += `. Ad traffic was ${zeroSummary}`;
       line += '. This ad traffic is part of the YouTube traffic mix.';
       items.push(line);
-    } else if (priorAdViews > 0) {
-      items.push(`YouTube ad views went from ${fmtFull(priorAdViews)} to 0.`);
     }
   }
 
@@ -1298,6 +1299,7 @@ function viewChangePhrase(n) {
 
 function totalMovementHtml(rows, totalViews, priorViews, info, ps, start, end) {
   const dTotal = deltaPct(totalViews, priorViews);
+  const direction = dTotal == null || Math.abs(dTotal) < 0.015 ? 'any' : dTotal > 0 ? 'up' : 'down';
   const bullets = [];
   if (dTotal == null) {
     const leader = rows
@@ -1319,17 +1321,18 @@ function totalMovementHtml(rows, totalViews, priorViews, info, ps, start, end) {
       ? movers.filter((row) => row.viewChange > 0).sort((a, b) => b.viewChange - a.viewChange)[0]
       : movers.filter((row) => row.viewChange < 0).sort((a, b) => a.viewChange - b.viewChange)[0];
     const primaryLabel = dTotal < 0 ? 'Main reason for the drop' : 'Main reason for the lift';
-    const primaryCause = platformCauseHtml(primary.p, start, end, info);
+    const primaryCause = platformCauseHtml(primary.p, start, end, info, direction);
     bullets.push(`${primaryLabel}: <strong>${nameOf(primary.p)}</strong> ${viewChangePhrase(primary.viewChange)}. ${primaryCause}`);
     if (counterMove) {
       const label = dTotal < 0 ? 'What helped' : 'What pulled it down';
-      const counterCause = platformCauseHtml(counterMove.p, start, end, info);
+      const counterDirection = counterMove.viewChange > 0 ? 'up' : 'down';
+      const counterCause = platformCauseHtml(counterMove.p, start, end, info, counterDirection);
       bullets.push(`${label}: <strong>${nameOf(counterMove.p)}</strong> ${viewChangePhrase(counterMove.viewChange)}. ${counterCause}`);
     }
   } else {
     bullets.push('No single platform explains the change. Review the platform rows and top content examples below.');
   }
-  for (const item of paidImpactItems(ps, start, end)) bullets.push(`<strong>Paid/ad note:</strong> ${escapeHtml(item)}`);
+  for (const item of paidImpactItems(ps, start, end, direction)) bullets.push(`<strong>Paid/ad driver:</strong> ${escapeHtml(item)}`);
   return analysisRowHtml('Why it changed', analysisBulletListHtml(bullets));
 }
 
@@ -1341,9 +1344,9 @@ function platformMovementHtml(p, cur, prv, start, end, info) {
     const changed = views - priorViews;
     if (changed) {
       const label = changed > 0 ? 'Main lift' : 'Main drop';
-      bullets.push(`${label}: ${viewChangePhrase(changed)}. ${platformCauseHtml(p, start, end, info)}`);
+      bullets.push(`${label}: ${viewChangePhrase(changed)}. ${platformCauseHtml(p, start, end, info, changed > 0 ? 'up' : 'down')}`);
     } else {
-      bullets.push(`Views were flat. ${platformCauseHtml(p, start, end, info)}`);
+      bullets.push(`Views were flat. ${platformCauseHtml(p, start, end, info, 'any')}`);
     }
   }
   const posts = cur.posts || 0;
@@ -1356,16 +1359,17 @@ function platformMovementHtml(p, cur, prv, start, end, info) {
       if (avgDelta != null && Math.abs(avgDelta) >= 0.15) bullets.push(`Average views per post ${movementWord(avgDelta)}.`);
     }
   }
-  for (const item of paidImpactItems([p], start, end)) bullets.push(`<strong>Paid/ad note:</strong> ${escapeHtml(item)}`);
+  const direction = (cur.views || 0) > (prv.views || 0) ? 'up' : (cur.views || 0) < (prv.views || 0) ? 'down' : 'any';
+  for (const item of paidImpactItems([p], start, end, direction)) bullets.push(`<strong>Paid/ad driver:</strong> ${escapeHtml(item)}`);
   return analysisRowHtml('Why it changed', analysisBulletListHtml(bullets));
 }
 
 function themeTakeaway(theme) {
   if (!theme) return '';
-  if (theme.label === 'Dog-owner problem hook') return 'Winning structure: name a problem fast, then connect it to the supplement.';
-  if (theme.label === 'Cesar behavior/routine') return 'Winning structure: Cesar explains the behavior first, then the product supports the lesson.';
-  if (theme.label === 'Product support claim') return 'Product claims need a stronger first line: lead with the symptom before naming the supplement.';
-  return 'Winning structure: make the first line clear enough that a dog owner knows why to keep watching.';
+  if (theme.label === 'Dog-owner problem hook') return 'Lead with the dog problem in the first line, then show how the supplement helps.';
+  if (theme.label === 'Cesar behavior/routine') return 'Open with Cesar naming the behavior, then use the product as support.';
+  if (theme.label === 'Product support claim') return 'Lead with the symptom before naming the supplement.';
+  return 'Make the first line clear enough that a dog owner knows why to keep watching.';
 }
 
 function readableThemeLabel(label) {
@@ -1408,7 +1412,7 @@ function weakTheme(themes, winner) {
 }
 
 function creativeActionsFor(theme, weak, ps) {
-  const sourceLine = 'Pull first from existing Cesar product, selfie, Q&A, Journey, and UGC B-roll footage before requesting a new shoot.';
+  const sourceLine = 'Use existing Cesar product, selfie, Q&A, Journey, and UGC B-roll before requesting a new shoot.';
   if (!theme) return ['Keep testing hooks until there is enough post-level data to identify a repeatable winner.', sourceLine];
   const actions = [];
   if (theme.label === 'Cesar behavior/routine') {
@@ -1427,6 +1431,11 @@ function creativeActionsFor(theme, weak, ps) {
   actions.push(sourceLine);
   const unique = [...new Set(actions)];
   return [...unique.filter((line) => line !== sourceLine).slice(0, 3), sourceLine];
+}
+
+function suggestionLineHtml(line, example) {
+  const exampleHtml = example ? ` <span class="ov-example-meta">Example:</span> ${contentInlineLink(example)}` : '';
+  return `<li>${escapeHtml(line)}${exampleHtml}</li>`;
 }
 
 function platformReadRows(ps, start, end) {
@@ -1459,9 +1468,9 @@ function creativeAnalysisHtml(ps, start, end, info) {
   const items = allItems.filter((c) => !c.metricsPending);
   if (!items.length) {
     if (pendingItems.length) {
-      return analysisRowHtml('Content signal', `${pendingItems.length} post${pendingItems.length === 1 ? '' : 's'} are confirmed, but performance metrics are still pending in Supermetrics.`);
+      return analysisRowHtml('Suggested changes', 'Wait for post-level metrics before changing creative. Platform totals are updated, but content-level performance is still pending in Supermetrics.', 'analysis-actions-row');
     }
-    return analysisRowHtml('Content signal', 'No post-level content is available in this range, so the dashboard cannot explain the movement from creative performance yet.');
+    return analysisRowHtml('Suggested changes', 'No post-level content is available in this range. Use the platform movement above, then refresh when content data is available.', 'analysis-actions-row');
   }
 
   const themes = creativeThemeStats(items);
@@ -1471,28 +1480,24 @@ function creativeAnalysisHtml(ps, start, end, info) {
   const weakExamples = themeExamples(items, weak, 1, true);
   const actions = creativeActionsFor(winner, weak, ps);
 
-  const rows = [];
-  if (items.length < 4) {
-    rows.push(analysisRowHtml('Data note', `Only ${items.length} post${items.length === 1 ? '' : 's'} had post-level data, so this is a small sample.`));
-  }
-  if (pendingItems.length) {
-    rows.push(analysisRowHtml('Data note', `${pendingItems.length} confirmed post${pendingItems.length === 1 ? '' : 's'} still ${pendingItems.length === 1 ? 'needs' : 'need'} Supermetrics performance data.`));
-  }
+  const suggestions = [];
 
   if (winner) {
-    let body = `<p><strong>${escapeHtml(readableThemeLabel(winner.label))}</strong> performed best in the available post-level data.</p>`;
-    body += `<p>${escapeHtml(themeTakeaway(winner))}</p>`;
-    if (winnerExamples.length) body += `<div class="analysis-examples"><strong>Examples:</strong> ${inlineExamples(winnerExamples)}.</div>`;
-    rows.push(analysisRowHtml('What worked', body));
+    suggestions.push(suggestionLineHtml(
+      `Repeat ${readableThemeLabel(winner.label).toLowerCase()}: ${themeTakeaway(winner)}`,
+      winnerExamples[0]
+    ));
   }
   if (weak) {
-    let body = `<p><strong>${escapeHtml(readableThemeLabel(weak.label))}</strong> was weaker. Make the opening more specific to the dog owner’s problem.</p>`;
-    if (weakExamples.length) body += `<div class="analysis-examples"><strong>Example to improve:</strong> ${inlineExamples(weakExamples)}.</div>`;
-    rows.push(analysisRowHtml('What to improve', body));
+    suggestions.push(suggestionLineHtml(
+      `Improve weaker ${readableThemeLabel(weak.label).toLowerCase()} by making the first line more specific to the dog owner's problem.`,
+      weakExamples[0]
+    ));
   }
 
-  rows.push(analysisRowHtml('Do next', `<ol class="ov-action-list">${actions.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ol>`, 'analysis-actions-row'));
-  return rows.join('');
+  for (const action of actions) suggestions.push(`<li>${escapeHtml(action)}</li>`);
+  const unique = [...new Set(suggestions)].slice(0, 4);
+  return analysisRowHtml('Suggested changes', `<ol class="ov-action-list">${unique.join('')}</ol>`, 'analysis-actions-row');
 }
 
 function renderCreativeFocusedOverview(p, start, end, info) {
@@ -1952,6 +1957,13 @@ function movementText(wow, factor) {
   return 'normal range';
 }
 
+function movementDirection(windowDelta, factor) {
+  if (windowDelta != null && Math.abs(windowDelta) >= 0.05) return windowDelta > 0 ? 'up' : 'down';
+  if (factor != null && factor >= 1.15) return 'up';
+  if (factor != null && factor <= 0.85) return 'down';
+  return 'flat';
+}
+
 function fmtAdMinutes(minutes) {
   return `${fmt(minutes / 60)} hrs`;
 }
@@ -2050,22 +2062,24 @@ function contentBenchmark(scopePlatforms, end, field) {
   return { avg, count: items.length };
 }
 
-function paidImpactForClick(scopePlatforms, metricKey, period, prevWindow) {
+function paidImpactForClick(scopePlatforms, metricKey, period, prevWindow, pointDirection = 'any') {
   const lines = [];
   const limits = [];
   let impact = 'none';
+  const matchesPoint = (impactDirection) => pointDirection === 'any' || pointDirection === 'flat' || impactDirection === pointDirection;
+  const addLine = (impactDirection, line) => {
+    if (impactDirection === 'flat' || !matchesPoint(impactDirection)) return;
+    impact = impactDirection;
+    lines.push(line);
+  };
 
-  if (scopePlatforms.includes('facebook') && (metricKey === 'views' || metricKey === 'reach')) {
+  if (scopePlatforms.includes('facebook') && metricKey === 'reach') {
     const paid = scopedFieldTotal(['facebook'], period.start, period.end, 'paidViews');
     const priorPaid = scopedFieldTotal(['facebook'], prevWindow.start, prevWindow.end, 'paidViews');
     if (paid > 0 || priorPaid > 0) {
       const direction = deltaWords(paid, priorPaid);
-      if (paid > priorPaid * 1.15 && paid > 0) impact = 'up';
-      if (paid < priorPaid * 0.85 && priorPaid > 0) impact = 'down';
-      const note = metricKey === 'views'
-        ? 'Facebook dashboard views are organic, so paid media is background context.'
-        : 'Facebook reach can be affected by paid distribution.';
-      lines.push(`Facebook paid media views: ${fmtFull(paid)} (${direction || 'no prior paid change'}). ${note}`);
+      const impactDirection = paid > priorPaid * 1.15 && paid > 0 ? 'up' : paid < priorPaid * 0.85 && priorPaid > 0 ? 'down' : 'flat';
+      addLine(impactDirection, `Facebook paid media views ${impactDirection === 'up' ? 'rose' : 'fell'} to ${fmtFull(paid)} (${direction}). Facebook reach can be affected by paid distribution.`);
     }
   }
 
@@ -2075,12 +2089,11 @@ function paidImpactForClick(scopePlatforms, metricKey, period, prevWindow) {
     const priorAd = scopedFieldTotal(['youtube'], prevWindow.start, prevWindow.end, field);
     if (adValue > 0 || priorAd > 0) {
       const direction = deltaWords(adValue, priorAd);
-      if (adValue > priorAd * 1.15 && adValue > 0) impact = 'up';
-      if (adValue < priorAd * 0.85 && priorAd > 0) impact = 'down';
+      const impactDirection = adValue > priorAd * 1.15 && adValue > 0 ? 'up' : adValue < priorAd * 0.85 && priorAd > 0 ? 'down' : 'flat';
       const formatted = metricKey === 'watchTime' ? fmtMetricVal('watchTime', adValue) : fmtFull(adValue);
       const youtubeValue = scopedFieldTotal(['youtube'], period.start, period.end, metricKey);
       const share = youtubeValue > 0 ? `; equivalent to about ${Math.round(adValue / youtubeValue * 100)}% of YouTube ${METRIC_NOUN[metricKey]}` : '';
-      lines.push(`YouTube ad traffic: ${formatted} (${direction || 'no prior ad change'})${share}. This is part of the YouTube traffic mix.`);
+      addLine(impactDirection, `YouTube ad traffic ${impactDirection === 'up' ? 'rose' : 'fell'} to ${formatted} (${direction})${share}.`);
     }
   }
 
@@ -2216,6 +2229,7 @@ function buildInsightV2(platform, metricKey, idx) {
   const prevWindow = priorWindow(period);
   const priorValue = scopedFieldTotal(scopePlatforms, prevWindow.start, prevWindow.end, metricKey);
   const windowDelta = priorValue ? (value - priorValue) / priorValue : null;
+  const direction = movementDirection(windowDelta, factor);
   const isPeak = value > 0 && value === Math.max(...vals);
   const scopeLabel = platform === 'total' ? 'All platforms' : nameOf(platform);
   const metricName = METRIC_NOUN[metricKey] || metricKey;
@@ -2231,20 +2245,6 @@ function buildInsightV2(platform, metricKey, idx) {
   html += `<div class="insight-stat"><span class="insight-value">${fmtMetricVal(metricKey, value)}</span>`;
   if (badge) html += ` <span class="spike-badge ${badgeCls}">${escapeHtml(badge)}</span>`;
   html += '</div>';
-
-  const movementLines = [];
-  if (windowDelta != null) {
-    movementLines.push(`${windowDelta >= 0 ? 'Up' : 'Down'} ${(Math.abs(windowDelta) * 100).toFixed(0)}% vs ${prevWindow.label} (${fmtMetricVal(metricKey, priorValue)}).`);
-  } else {
-    movementLines.push(`No comparable ${metricName} in ${prevWindow.label}.`);
-  }
-  if (factor != null) {
-    movementLines.push(factor >= 1.15 || factor <= 0.85
-      ? `${factor.toFixed(1)}x the visible ${noun} average.`
-      : `About even with the visible ${noun} average.`);
-  }
-  if (isPeak) movementLines.push('Highest point in the current chart view.');
-  html += insightSection('Movement', `<ul class="insight-driver-list">${movementLines.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ul>`);
 
   const field = CONTENT_FIELD[metricKey];
   const sortField = field || 'views';
@@ -2277,6 +2277,42 @@ function buildInsightV2(platform, metricKey, idx) {
     }
   }
 
+  const paid = paidImpactForClick(scopePlatforms, metricKey, period, prevWindow, direction);
+  const reasonLines = [];
+  const addReason = (text) => reasonLines.push(escapeHtml(text));
+  const addReasonHtml = (html) => reasonLines.push(html);
+  const currentBest = currentTop[0];
+  const priorBest = priorTop[0];
+  const currentBestValue = contentMetricValue(currentBest, sortField);
+  const priorBestValue = contentMetricValue(priorBest, sortField);
+  const topMultiple = topItem && benchmark && benchmark.avg > 0 ? contentMetricValue(topItem, sortField) / benchmark.avg : null;
+
+  if (direction === 'up') {
+    if (topItem && topMultiple >= 2) {
+      addReasonHtml(`${contentInlineLink(topItem)} looks like the breakout: ${topMultiple.toFixed(1)}x the recent post average.`);
+    } else if (currentBest && priorBest && currentBestValue > priorBestValue * 1.15) {
+      addReasonHtml(`Top content was stronger: ${contentInlineLink(currentBest)} vs prior ${contentInlineLink(priorBest)}.`);
+    } else if (currentBest && !priorBest) {
+      addReasonHtml(`New content helped: ${contentInlineLink(currentBest)}.`);
+    }
+    if (currentContent.length > priorContent.length) addReason(`More posts/videos were published (${currentContent.length} vs ${priorContent.length}).`);
+  } else if (direction === 'down') {
+    if (currentBest && priorBest && currentBestValue < priorBestValue * 0.85) {
+      addReasonHtml(`Top content was weaker: ${contentInlineLink(currentBest)} vs prior ${contentInlineLink(priorBest)}.`);
+    } else if (!currentBest && priorBest) {
+      addReasonHtml(`The prior ${noun} had content activity (${contentInlineLink(priorBest)}), but this ${noun} did not.`);
+    }
+    if (currentContent.length < priorContent.length) addReason(`Fewer posts/videos were published (${currentContent.length} vs ${priorContent.length}).`);
+  }
+
+  for (const line of paid.lines) addReason(line);
+  if (!reasonLines.length) {
+    if (direction === 'down') addReason('No clear new-post or aligned paid/ad driver explains the drop in the connected data. Check older content and source-platform ad history.');
+    else if (direction === 'up') addReason('No single new-post or aligned paid/ad driver explains the lift. Older content or platform distribution likely contributed.');
+    else addReason('This point is close to the prior window; no clear spike/drop driver stands out.');
+  }
+  html += insightSection('Why this point changed', `<ul class="insight-driver-list">${reasonLines.map((line) => `<li>${line}</li>`).join('')}</ul>`);
+
   if (contributorLines.length) {
     const intro = shareValid && metricKey !== 'posts'
       ? 'Post-level totals line up closely with this point, so these are likely content drivers.'
@@ -2284,11 +2320,6 @@ function buildInsightV2(platform, metricKey, idx) {
     html += insightSection('Likely contributors', `<p class="insight-mini">${escapeHtml(intro)}</p><ul class="insight-driver-list">${contributorLines.join('')}</ul>${patternHtml}`);
   } else {
     html += insightSection('Likely contributors', `<p class="insight-mini">No posts/videos were published on the clicked ${noun} or prior ${noun}. Movement likely came from older content, distribution, or paid context if present.</p>`);
-  }
-
-  const paid = paidImpactForClick(scopePlatforms, metricKey, period, prevWindow);
-  if (paid.lines.length) {
-    html += insightSection('Paid impact', `<ul class="insight-driver-list">${paid.lines.map((line) => `<li>${escapeHtml(line)}</li>`).join('')}</ul>`);
   }
 
   const caveats = [...paid.limits];
@@ -2300,11 +2331,11 @@ function buildInsightV2(platform, metricKey, idx) {
   if (caveats.length) html += `<p class="insight-caveat">${caveats.map(escapeHtml).join('<br>')}</p>`;
 
   let takeaway;
-  if (paid.impact === 'up' && (windowDelta == null || windowDelta >= 0)) takeaway = 'Paid/ad activity increased in the same window, so treat paid distribution as a likely contributor to the lift.';
-  else if (paid.impact === 'down' && (windowDelta == null || windowDelta < 0)) takeaway = 'Paid/ad activity dropped in the same window, so it likely contributed to the decline.';
-  else if (shareValid && currentTop.length && metricKey !== 'posts') takeaway = 'This looks content-led. Start by reviewing the same-day top post and the hook/format behind it.';
-  else if (currentTop.length || priorTop.length) takeaway = 'Review the posts above first; the data shows nearby content activity, but attribution is directional rather than exact.';
-  else takeaway = 'No nearby new content explains this point. Check older content, distribution, and any paid activity outside the connected organic sources.';
+  if (paid.impact === 'up') takeaway = 'Treat paid/ad traffic as a likely lift driver for this point.';
+  else if (paid.impact === 'down') takeaway = 'Treat reduced paid/ad traffic as a likely decline driver for this point.';
+  else if (direction === 'down' && (currentTop.length || priorTop.length)) takeaway = 'Start with the weaker or missing content above; that is the clearest connected reason for the drop.';
+  else if (direction === 'up' && currentTop.length) takeaway = 'Start with the strongest content above; that is the clearest connected reason for the lift.';
+  else takeaway = 'The connected data does not isolate one direct cause. Check older content and source-platform distribution next.';
   html += `<div class="insight-takeaway"><strong>Takeaway:</strong> ${escapeHtml(takeaway)}</div>`;
 
   return html;
