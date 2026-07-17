@@ -207,7 +207,7 @@ for (const override of data.rangeOverrides || []) {
 if (data.asOf) {
   const range = defaultRange(data.asOf);
   const comparisonRange = priorRange(range);
-  const lastWeekRange = lastCompletedWeekRange(data.asOf);
+  const lastWeekRange = priorRange(range);
   if (range.start === lastWeekRange.start && range.end === lastWeekRange.end) {
     problems.push(`this-week and last-week presets resolve to the same range: ${range.start} to ${range.end}`);
   }

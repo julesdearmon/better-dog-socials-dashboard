@@ -295,7 +295,7 @@ function presetRange(name, asOfMs) {
   const last3MonthsStart = Date.UTC(lastMonth.getUTCFullYear(), lastMonth.getUTCMonth() - 2, 1);
   if (name === 'ytd-2026') return { start: '2026-01-01', end: iso(base), gran: 'monthly' };
   if (name === 'this-week') return { start: iso(thisWeekStart), end: iso(base), gran: 'daily' };
-  if (name === 'last-week') return { start: iso(thu - 6 * DAY), end: iso(thu), gran: 'daily' };
+  if (name === 'last-week') return { start: iso(thisWeekStart - 7 * DAY), end: iso(thisWeekStart - DAY), gran: 'daily' };
   if (name === 'this-month') return { start: iso(monthFirst), end: iso(base), gran: 'daily' };
   if (name === 'last-month') return { start: iso(lastMonthStart), end: iso(lastMonthEnd), gran: 'weekly' };
   if (name === 'last-3-months') return { start: iso(last3MonthsStart), end: iso(lastMonthEnd), gran: 'weekly' };

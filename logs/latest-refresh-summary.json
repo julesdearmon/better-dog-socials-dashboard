@@ -1,31 +1,31 @@
 {
-  "refreshedAt": "Jul 16, 2026, 6:24 AM",
-  "dataThrough": "2026-07-15",
+  "refreshedAt": "Jul 17, 2026, 12:34 PM",
+  "dataThrough": "2026-07-16",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; updated through previous complete day Jul 15; YouTube Jul 15 daily rows lagged, exact range totals used; no July 16 partial data included)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; updated through previous complete day Jul 16; YouTube Jul 16 daily/post rows lagged, exact range totals and public upload metadata used; TikTok Jul 16 daily profile row lagged, exact range delta used; no July 17 partial data included)",
   "platforms": {
     "instagram": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Updated through Jul 15 with profile views/reach and one Jul 15 media row.",
+      "note": "Updated through Jul 16 with profile views/reach and one Jul 16 media row.",
       "historyStart": "2026-01-01"
     },
     "facebook": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Updated through Jul 15; Facebook views remain organic media views and paid views were 0.",
+      "note": "Updated through Jul 16; Facebook views remain organic media views and paid views were 0.",
       "historyStart": "2026-01-01"
     },
     "tiktok": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Profile exact range totals updated through Jul 15 for Better Dog; Jul 15 video rows returned, but earlier Jul 10-14 video-level rows remain incomplete.",
+      "note": "Profile exact range totals updated through Jul 16 for Better Dog; Jul 16 video-level query timed out, so post count/top content was not guessed.",
       "historyStart": "2026-05-08"
     },
     "youtube": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Exact range totals updated through Jul 15; Jul 15 daily/post rows are pending, and no Jul 15 public upload was found.",
+      "note": "Exact range totals updated through Jul 16; Jul 16 daily/post rows are pending, and one Jul 16 public upload was confirmed as metadata-only.",
       "historyStart": "2026-01-01"
     }
   },
@@ -90,11 +90,38 @@
       "platform": "tiktok",
       "source": "Supermetrics TikTok Organic profile report",
       "note": "One-day profile query returned 0 views for Jul 15, while exact Jul 10-15 range totals increased. Jul 15 profile performance is derived from the exact range delta and marked."
+    },
+    {
+      "key": "youtube-channel-daily-derived-2026-07-16",
+      "platform": "youtube",
+      "source": "Supermetrics YouTube ChannelTotals exact range",
+      "note": "Jul 16 daily ChannelTotals row returned no data, but exact Jul 10-16 totals were available. Jul 16 daily views/watch time are derived from the exact range delta and clearly marked."
+    },
+    {
+      "key": "youtube-public-feed-post-metadata-2026-07-16",
+      "platform": "youtube",
+      "source": "YouTube public channel feed",
+      "posts": 1,
+      "note": "One Jul 16 public upload is included as metadata only because Supermetrics returned no matching post-level row; performance remains pending."
+    },
+    {
+      "key": "tiktok-profile-daily-range-delta-2026-07-16",
+      "platform": "tiktok",
+      "source": "Supermetrics TikTok Organic profile report",
+      "note": "One-day profile query returned 0 views for Jul 16, while exact Jul 10-16 range totals increased. Jul 16 profile performance is derived from the exact range delta and marked."
+    },
+    {
+      "key": "tiktok-video-query-timeout-2026-07-16",
+      "platform": "tiktok",
+      "source": "Supermetrics TikTok Organic videos report",
+      "posts": null,
+      "note": "Filtered Better Dog video query timed out for Jul 16; TikTok profile totals remain live, but Jul 16 post count/top content is not guessed."
     }
   ],
   "skippedItems": [
-    "YouTube Jul 15 daily/post-level rows are pending in Supermetrics; exact range totals are used and the derived daily row is marked.",
-    "TikTok Jul 10-14 video-level/top-content rows remain incomplete; Jul 15 Better Dog video rows were pulled with explicit username guard.",
-    "TikTok aggregate new-follower range values were excluded because Supermetrics returned impossible values for Jul 4-9 and Jul 10-15."
+    "YouTube Jul 16 daily/post-level rows are pending in Supermetrics; exact range totals are used and the derived daily row is marked.",
+    "YouTube Jul 16 public upload is included as metadata only; Supermetrics post-level performance remains pending.",
+    "TikTok Jul 16 video-level/top-content query timed out; profile totals remain live, but post count/top content is not guessed.",
+    "TikTok aggregate new-follower range values were excluded because the connector returned an impossible value."
   ]
 }
