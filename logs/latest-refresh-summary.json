@@ -1,8 +1,8 @@
 {
-  "refreshedAt": "Jul 17, 2026, 12:34 PM",
+  "refreshedAt": "Jul 17, 2026, 12:52 PM",
   "dataThrough": "2026-07-16",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; updated through previous complete day Jul 16; YouTube Jul 16 daily/post rows lagged, exact range totals and public upload metadata used; TikTok Jul 16 daily profile row lagged, exact range delta used; no July 17 partial data included)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; updated through previous complete day Jul 16; YouTube Jul 3-14 daily rows backfilled Jul 17; YouTube Jul 15-16 post rows pending; TikTok Jul 16 daily profile row lagged, exact range delta used; no July 17 partial data included)",
   "platforms": {
     "instagram": {
       "status": "live",
@@ -25,7 +25,7 @@
     "youtube": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Exact range totals updated through Jul 16; Jul 16 daily/post rows are pending, and one Jul 16 public upload was confirmed as metadata-only.",
+      "note": "YouTube daily rows backfilled through Jul 14; Jul 3-9 corrected to 7,813 views. Jul 15-16 post performance remains pending, with Jul 16 public upload metadata included.",
       "historyStart": "2026-01-01"
     }
   },
@@ -116,11 +116,22 @@
       "source": "Supermetrics TikTok Organic videos report",
       "posts": null,
       "note": "Filtered Better Dog video query timed out for Jul 16; TikTok profile totals remain live, but Jul 16 post count/top content is not guessed."
+    },
+    {
+      "key": "youtube-channel-daily-backfill-2026-07-03-2026-07-09",
+      "platform": "youtube",
+      "source": "Supermetrics YouTube ChannelTotals",
+      "note": "Jul 3-9 daily ChannelTotals backfilled on Jul 17. Weekly views corrected from 4,671 to 7,813."
+    },
+    {
+      "key": "youtube-channel-daily-backfill-2026-07-10-2026-07-14",
+      "platform": "youtube",
+      "source": "Supermetrics YouTube ChannelTotals",
+      "note": "Jul 10-14 daily ChannelTotals backfilled on Jul 17. Exact Jul 10-16 total remains 6,111; Jul 15-16 post-level performance is pending."
     }
   ],
   "skippedItems": [
-    "YouTube Jul 16 daily/post-level rows are pending in Supermetrics; exact range totals are used and the derived daily row is marked.",
-    "YouTube Jul 16 public upload is included as metadata only; Supermetrics post-level performance remains pending.",
+    "YouTube Jul 15-16 post-level performance remains pending in Supermetrics; public upload metadata is included where confirmed.",
     "TikTok Jul 16 video-level/top-content query timed out; profile totals remain live, but post count/top content is not guessed.",
     "TikTok aggregate new-follower range values were excluded because the connector returned an impossible value."
   ]
