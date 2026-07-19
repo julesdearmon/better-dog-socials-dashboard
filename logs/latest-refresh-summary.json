@@ -1,31 +1,31 @@
 {
-  "refreshedAt": "Jul 17, 2026, 12:52 PM",
-  "dataThrough": "2026-07-16",
+  "refreshedAt": "Jul 19, 2026, 6:00 AM",
+  "dataThrough": "2026-07-18",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; updated through previous complete day Jul 16; YouTube Jul 3-14 daily rows backfilled Jul 17; YouTube Jul 15-16 post rows pending; TikTok Jul 16 daily profile row lagged, exact range delta used; no July 17 partial data included)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; updated through previous complete day Jul 18; YouTube Jul 15-16 daily rows backfilled Jul 19; YouTube Jul 17-18 performance pending; TikTok post-level rows pending; no July 19 partial data included)",
   "platforms": {
     "instagram": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Updated through Jul 16 with profile views/reach and one Jul 16 media row.",
+      "note": "Updated through Jul 18 with guarded profile and media rows.",
       "historyStart": "2026-01-01"
     },
     "facebook": {
-      "status": "live",
+      "status": "partial",
       "provider": "supermetrics",
-      "note": "Updated through Jul 16; Facebook views remain organic media views and paid views were 0.",
+      "note": "Metrics updated through Jul 18; Jul 18 post-level row is pending.",
       "historyStart": "2026-01-01"
     },
     "tiktok": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Profile exact range totals updated through Jul 16 for Better Dog; Jul 16 video-level query timed out, so post count/top content was not guessed.",
+      "note": "Better Dog profile totals updated through Jul 18; post-level query remains pending.",
       "historyStart": "2026-05-08"
     },
     "youtube": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "YouTube daily rows backfilled through Jul 14; Jul 3-9 corrected to 7,813 views. Jul 15-16 post performance remains pending, with Jul 16 public upload metadata included.",
+      "note": "Daily rows backfilled through Jul 16; Jul 17 upload metadata included and performance remains pending.",
       "historyStart": "2026-01-01"
     }
   },
@@ -128,11 +128,37 @@
       "platform": "youtube",
       "source": "Supermetrics YouTube ChannelTotals",
       "note": "Jul 10-14 daily ChannelTotals backfilled on Jul 17. Exact Jul 10-16 total remains 6,111; Jul 15-16 post-level performance is pending."
+    },
+    {
+      "key": "youtube-channel-daily-backfill-2026-07-15-2026-07-16",
+      "platform": "youtube",
+      "source": "Supermetrics YouTube ChannelTotals",
+      "note": "Jul 15-16 daily rows backfilled Jul 19; completed Jul 10-16 total replaced with 6,769 views."
+    },
+    {
+      "key": "youtube-channel-daily-backfill-2026-07-15-2026-07-16",
+      "platform": "youtube",
+      "source": "Supermetrics YouTube ChannelTotals",
+      "note": "Jul 15-16 daily rows backfilled Jul 19; completed Jul 10-16 total replaced with 6,769 views."
+    },
+    {
+      "key": "youtube-public-feed-post-metadata-2026-07-17",
+      "platform": "youtube",
+      "source": "YouTube public channel feed",
+      "posts": 1,
+      "note": "One Jul 17 public upload is included as metadata only because Supermetrics returned no matching post-level row; performance remains pending."
+    },
+    {
+      "key": "tiktok-video-query-pending-2026-07-17-2026-07-18",
+      "platform": "tiktok",
+      "source": "Supermetrics TikTok Organic videos report",
+      "posts": null,
+      "note": "Post-level query did not complete; Better Dog profile totals remain live and post counts were not guessed."
     }
   ],
   "skippedItems": [
-    "YouTube Jul 15-16 post-level performance remains pending in Supermetrics; public upload metadata is included where confirmed.",
-    "TikTok Jul 16 video-level/top-content query timed out; profile totals remain live, but post count/top content is not guessed.",
-    "TikTok aggregate new-follower range values were excluded because the connector returned an impossible value."
+    "YouTube Jul 17-18 performance remains pending in Supermetrics; Jul 17 public upload metadata is included.",
+    "TikTok Jul 17-18 post-level query did not complete; profile totals remain live and post counts were not guessed.",
+    "TikTok aggregate new-follower values were excluded because the connector field is unreliable."
   ]
 }
