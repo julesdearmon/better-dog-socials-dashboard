@@ -4,10 +4,10 @@
     "name": "Better Dog Supplements",
     "color": "#88cc33"
   },
-  "asOf": "2026-07-18",
-  "updatedAt": "Jul 19, 2026, 6:00 AM",
+  "asOf": "2026-07-19",
+  "updatedAt": "Jul 20, 2026, 6:00 AM",
   "source": "live",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; updated through previous complete day Jul 18; YouTube Jul 15-16 daily rows backfilled Jul 19; YouTube Jul 17-18 performance pending; TikTok post-level rows pending; no July 19 partial data included)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; updated through previous complete day Jul 19; YouTube Jul 17 daily row backfilled Jul 20; YouTube Jul 18-19 performance pending; TikTok Jul 19 daily/content rows pending; no July 20 partial data included)",
   "directApiErrors": [],
   "rangeOverrides": [
     {
@@ -796,19 +796,6 @@
       "sourceUsername": "betterdogsupplements"
     },
     {
-      "platform": "youtube",
-      "start": "2026-07-10",
-      "end": "2026-07-16",
-      "source": "Supermetrics exact ChannelTotals and TrafficSources range totals; Jul 15-16 daily rows backfilled Jul 19",
-      "values": {
-        "views": 6769,
-        "watchTime": 3763,
-        "adViews": 4517,
-        "adWatchTime": 2780,
-        "newFollowers": 53
-      }
-    },
-    {
       "platform": "instagram",
       "start": "2026-07-17",
       "end": "2026-07-18",
@@ -896,6 +883,109 @@
         "watchTime": 352,
         "newFollowers": 23
       }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-10",
+      "end": "2026-07-16",
+      "source": "Supermetrics exact ChannelTotals and TrafficSources range totals; refreshed Jul 20",
+      "values": {
+        "views": 6746,
+        "watchTime": 3746,
+        "adViews": 4517,
+        "adWatchTime": 2780,
+        "newFollowers": 53
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-07-17",
+      "end": "2026-07-19",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 58691,
+        "reach": 3802,
+        "newFollowers": 33
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-17",
+      "end": "2026-07-19",
+      "source": "Supermetrics daily totals; exact reach is unavailable without a date dimension",
+      "values": {
+        "views": 1387,
+        "reach": 3109,
+        "paidViews": 3761
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-17",
+      "end": "2026-07-19",
+      "source": "Supermetrics exact range total; Jul 19 profile row delayed and aggregate new-follower field excluded as unreliable",
+      "values": {
+        "views": 17747,
+        "reach": 16790
+      },
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-17",
+      "end": "2026-07-19",
+      "source": "Supermetrics exact ChannelTotals and TrafficSources range totals; Jul 18-19 daily rows pending",
+      "values": {
+        "views": 386,
+        "watchTime": 227,
+        "adViews": 104,
+        "adWatchTime": 131,
+        "newFollowers": 7
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-07-14",
+      "end": "2026-07-16",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 52595,
+        "reach": 6567,
+        "newFollowers": 66
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-14",
+      "end": "2026-07-16",
+      "source": "Supermetrics daily totals; exact reach is unavailable without a date dimension",
+      "values": {
+        "views": 1215,
+        "reach": 382,
+        "paidViews": 0
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-14",
+      "end": "2026-07-16",
+      "source": "Supermetrics exact range total; aggregate new-follower field excluded as unreliable",
+      "values": {
+        "views": 18676,
+        "reach": 17313
+      },
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-14",
+      "end": "2026-07-16",
+      "source": "Supermetrics exact ChannelTotals range total",
+      "values": {
+        "views": 2278,
+        "watchTime": 1304,
+        "newFollowers": 36
+      }
     }
   ],
   "metrics": {
@@ -906,7 +996,7 @@
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "asOf": "2026-07-18",
+      "asOf": "2026-07-19",
       "daily": [
         {
           "date": "2026-01-01",
@@ -2461,7 +2551,7 @@
         {
           "date": "2026-07-17",
           "posts": 1,
-          "views": 30540,
+          "views": 30541,
           "reach": 24834,
           "watchTime": 0,
           "newFollowers": 16,
@@ -2470,16 +2560,26 @@
         {
           "date": "2026-07-18",
           "posts": 1,
-          "views": 21521,
-          "reach": 16928,
+          "views": 21529,
+          "reach": 16937,
+          "watchTime": 0,
+          "newFollowers": 17,
+          "totalFollowers": 2987
+        },
+        {
+          "date": "2026-07-19",
+          "posts": 0,
+          "views": 6621,
+          "reach": 3802,
           "watchTime": 0,
           "newFollowers": 0,
-          "totalFollowers": 2974
+          "totalFollowers": 2987,
+          "postMetricsPending": true
         }
       ],
       "hasFollowers": true,
-      "totalFollowers": 2940,
-      "followersAsOf": "2026-07-16",
+      "totalFollowers": 2987,
+      "followersAsOf": "2026-07-20",
       "followersNote": "Total followers is current from Supermetrics. Instagram new followers are only available for the last 30 days, so full-year new follower gain is not available.",
       "hasNewFollowers": true,
       "sourceAccount": {
@@ -2495,7 +2595,7 @@
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "asOf": "2026-07-18",
+      "asOf": "2026-07-19",
       "daily": [
         {
           "date": "2026-01-01",
@@ -4417,10 +4517,20 @@
           "views": 303,
           "reach": 1033,
           "watchTime": 0,
-          "paidViews": 1349,
+          "paidViews": 1350,
           "newFollowers": null,
           "totalFollowers": 868,
           "postMetricsPending": true
+        },
+        {
+          "date": "2026-07-19",
+          "posts": 1,
+          "views": 643,
+          "reach": 1903,
+          "watchTime": 0,
+          "paidViews": 2411,
+          "newFollowers": null,
+          "totalFollowers": 868
         }
       ],
       "reachLabel": "Page media views unique",
@@ -4445,7 +4555,7 @@
       "provider": "supermetrics",
       "hasWatchTime": true,
       "hasReach": false,
-      "asOf": "2026-07-18",
+      "asOf": "2026-07-19",
       "daily": [
         {
           "date": "2026-01-01",
@@ -6398,9 +6508,9 @@
         {
           "date": "2026-07-14",
           "posts": 1,
-          "views": 1643,
+          "views": 1620,
           "reach": 0,
-          "watchTime": 969,
+          "watchTime": 952,
           "newFollowers": 13,
           "totalFollowers": 943,
           "adViews": null,
@@ -6431,14 +6541,13 @@
         {
           "date": "2026-07-17",
           "posts": 1,
-          "views": 0,
+          "views": 386,
           "reach": 0,
-          "watchTime": 0,
-          "newFollowers": 0,
-          "totalFollowers": 943,
-          "adViews": 0,
-          "adWatchTime": 0,
-          "performancePending": true
+          "watchTime": 227,
+          "newFollowers": 7,
+          "totalFollowers": 1240,
+          "adViews": null,
+          "adWatchTime": null
         },
         {
           "date": "2026-07-18",
@@ -6447,7 +6556,19 @@
           "reach": 0,
           "watchTime": 0,
           "newFollowers": 0,
-          "totalFollowers": 943,
+          "totalFollowers": 1240,
+          "adViews": 0,
+          "adWatchTime": 0,
+          "performancePending": true
+        },
+        {
+          "date": "2026-07-19",
+          "posts": 1,
+          "views": 0,
+          "reach": 0,
+          "watchTime": 0,
+          "newFollowers": 0,
+          "totalFollowers": 1240,
           "adViews": 0,
           "adWatchTime": 0,
           "performancePending": true
@@ -6455,14 +6576,14 @@
       ],
       "reachUnavailableReason": "YouTube reach/unique viewers is not available in the current Supermetrics connector.",
       "hasFollowers": true,
-      "totalFollowers": 924,
-      "followersAsOf": "2026-07-16",
+      "totalFollowers": 1240,
+      "followersAsOf": "2026-07-19",
       "followersNote": "Total subscribers is rounded by the YouTube connector; new followers use gained subscribers minus lost subscribers.",
       "hasNewFollowers": true,
       "adTrafficNote": "YouTube ad traffic is tracked from Supermetrics Traffic source type = ADVERTISING.",
-      "postSupplementNote": "Jul 12, Jul 14, and Jul 16 public uploads are metadata-only until Supermetrics returns post-level performance rows.",
-      "performanceAsOf": "2026-07-16",
-      "dataAvailabilityNote": "ChannelTotals are backfilled through Jul 16. Jul 17-18 performance is pending in Supermetrics.",
+      "postSupplementNote": "Jul 12, Jul 14, Jul 16, Jul 17, and Jul 19 public uploads are metadata-only until Supermetrics returns matching post-level performance rows.",
+      "performanceAsOf": "2026-07-17",
+      "dataAvailabilityNote": "ChannelTotals are backfilled through Jul 17. Jul 18-19 daily performance is pending in Supermetrics.",
       "sourceAccount": {
         "dsId": "YT2",
         "accountId": "UC9rUabwMqe2C98J2l1NDz2g",
@@ -6477,7 +6598,7 @@
       "hasWatchTime": false,
       "hasReach": true,
       "hasTopContent": true,
-      "asOf": "2026-07-18",
+      "asOf": "2026-07-19",
       "daily": [
         {
           "date": "2026-05-08",
@@ -7266,7 +7387,7 @@
           "reach": 7545,
           "watchTime": 0,
           "profileViews": 29,
-          "totalFollowers": 2306,
+          "totalFollowers": 2333,
           "newFollowers": null,
           "postMetricsPending": true,
           "sourceUsername": "betterdogsupplements"
@@ -7274,26 +7395,39 @@
         {
           "date": "2026-07-18",
           "posts": 0,
+          "views": 9688,
+          "reach": 9245,
+          "watchTime": 0,
+          "profileViews": 0,
+          "totalFollowers": 2333,
+          "newFollowers": null,
+          "postMetricsPending": true,
+          "sourceUsername": "betterdogsupplements"
+        },
+        {
+          "date": "2026-07-19",
+          "posts": 0,
           "views": 0,
           "reach": 0,
           "watchTime": 0,
           "profileViews": 0,
-          "totalFollowers": 2306,
+          "totalFollowers": 2333,
           "newFollowers": null,
           "postMetricsPending": true,
+          "performancePending": true,
           "sourceUsername": "betterdogsupplements"
         }
       ],
       "reachLabel": "Reached audience",
       "postProvider": "supermetrics-tiktok-organic-video-ids",
       "hasFollowers": true,
-      "totalFollowers": 2262,
-      "followersAsOf": "2026-07-16",
+      "totalFollowers": 2333,
+      "followersAsOf": "2026-07-19",
       "followersNote": "TikTok profile metrics are available from May 8, 2026 in the current Supermetrics connector.",
       "historyStart": "2026-05-08",
       "hasNewFollowers": true,
       "postDefinition": "TikTok videos published, counted from Supermetrics TikTok Organic video IDs by create date.",
-      "postCountNote": "Daily TikTok post counts use the TikTok Organic videos report when available. Jul 16 video-level query timed out, so Jul 16 post count/top content is not guessed.",
+      "postCountNote": "TikTok post counts are verified where the Supermetrics videos report returns rows. Jul 17-19 content remains pending after the filtered Better Dog query timed out.",
       "topContentUnavailableReason": "TikTok post-level rows are available for some recent dates, but Jul 16 video-level rows timed out in Supermetrics.",
       "sourceAccount": {
         "dsId": "TIKBA",
@@ -10035,6 +10169,35 @@
       "sourceId": "dnmLu28vYgA",
       "source": "YouTube public channel feed supplement",
       "sourceNote": "Public upload confirmed Jul 17, 2026; Supermetrics post-level performance is pending."
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-07-19",
+      "url": "https://www.facebook.com/674626722402999_122182457000906904",
+      "title": "A dog's struggle lives on the inside long before you can see it on the outside.",
+      "type": "Short Form Clip",
+      "views": 250,
+      "reach": 232,
+      "eng": 5,
+      "paidViews": 0,
+      "sourceId": "674626722402999_122182457000906904",
+      "source": "Supermetrics Facebook post insights",
+      "sourceNote": "Verified through Supermetrics Facebook post insights on Jul 20, 2026."
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-07-19",
+      "url": "https://www.youtube.com/watch?v=1jVuASzkL9o",
+      "title": "The Broken Spirit Most Dog Owners Never See | Cesar Millan",
+      "type": "Video",
+      "views": 0,
+      "watchTime": 0,
+      "reach": null,
+      "eng": 0,
+      "metricsPending": true,
+      "sourceId": "1jVuASzkL9o",
+      "source": "YouTube public channel feed supplement",
+      "sourceNote": "Public upload confirmed Jul 19, 2026; Supermetrics post-level row and performance are pending."
     }
   ],
   "followersDataNote": "Follower totals are capped to the latest complete-day refresh when the connector provides a date-safe value. Some connector snapshot fields can return current-day totals, so those are not used as July 16 daily rows.",
@@ -10137,18 +10300,6 @@
       "note": "Jul 10-14 daily ChannelTotals backfilled on Jul 17. Exact Jul 10-16 total remains 6,111; Jul 15-16 post-level performance is pending."
     },
     {
-      "key": "youtube-channel-daily-backfill-2026-07-15-2026-07-16",
-      "platform": "youtube",
-      "source": "Supermetrics YouTube ChannelTotals",
-      "note": "Jul 15-16 daily rows backfilled Jul 19; completed Jul 10-16 total replaced with 6,769 views."
-    },
-    {
-      "key": "youtube-channel-daily-backfill-2026-07-15-2026-07-16",
-      "platform": "youtube",
-      "source": "Supermetrics YouTube ChannelTotals",
-      "note": "Jul 15-16 daily rows backfilled Jul 19; completed Jul 10-16 total replaced with 6,769 views."
-    },
-    {
       "key": "youtube-public-feed-post-metadata-2026-07-17",
       "platform": "youtube",
       "source": "YouTube public channel feed",
@@ -10161,6 +10312,26 @@
       "source": "Supermetrics TikTok Organic videos report",
       "posts": null,
       "note": "Post-level query did not complete; Better Dog profile totals remain live and post counts were not guessed."
+    },
+    {
+      "key": "youtube-channel-daily-backfill-2026-07-17",
+      "platform": "youtube",
+      "source": "Supermetrics YouTube ChannelTotals",
+      "note": "Jul 17 daily ChannelTotals backfilled Jul 20 with 386 views and 227 watch minutes."
+    },
+    {
+      "key": "youtube-public-feed-post-metadata-2026-07-19",
+      "platform": "youtube",
+      "source": "YouTube public channel feed",
+      "posts": 1,
+      "note": "One Jul 19 public upload is included as metadata only because Supermetrics returned no matching post-level row; performance remains pending."
+    },
+    {
+      "key": "tiktok-video-query-pending-2026-07-17-2026-07-19",
+      "platform": "tiktok",
+      "source": "Supermetrics TikTok Organic videos report",
+      "posts": null,
+      "note": "Filtered Better Dog post-level query timed out; profile totals remain live and post counts were not guessed."
     }
   ]
 }
