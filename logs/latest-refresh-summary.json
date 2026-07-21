@@ -1,31 +1,31 @@
 {
-  "refreshedAt": "Jul 20, 2026, 6:00 AM",
-  "dataThrough": "2026-07-19",
+  "refreshedAt": "Jul 21, 2026, 6:00 AM",
+  "dataThrough": "2026-07-20",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; updated through previous complete day Jul 19; YouTube Jul 17 daily row backfilled Jul 20; YouTube Jul 18-19 performance pending; TikTok Jul 19 daily/content rows pending; no July 20 partial data included)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; updated through previous complete day Jul 20; YouTube Jul 18 backfilled Jul 21; YouTube Jul 19-20 and TikTok Jul 20 profile performance pending; no July 21 partial data included)",
   "platforms": {
     "instagram": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Metrics updated through Jul 19; Jul 19 media rows are pending.",
+      "note": "Profile metrics updated through Jul 20; Jul 20 media rows are pending.",
       "historyStart": "2026-01-01"
     },
     "facebook": {
-      "status": "live",
+      "status": "partial",
       "provider": "supermetrics",
-      "note": "Metrics and one guarded post row updated through Jul 19.",
+      "note": "Page metrics and two guarded Jul 20 post metadata rows updated; post views/reach remain pending.",
       "historyStart": "2026-01-01"
     },
     "tiktok": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Better Dog exact profile totals updated through Jul 19; Jul 19 delayed row and post-level rows remain pending.",
+      "note": "Four guarded Jul 20 Better Dog posts updated; Jul 20 profile performance is delayed.",
       "historyStart": "2026-05-08"
     },
     "youtube": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Daily rows backfilled through Jul 17; Jul 18-19 performance is pending and Jul 19 public upload metadata is included.",
+      "note": "Daily rows backfilled through Jul 18; Jul 19-20 performance is pending and public feed showed no Jul 20 upload.",
       "historyStart": "2026-01-01"
     }
   },
@@ -162,12 +162,33 @@
       "source": "Supermetrics TikTok Organic videos report",
       "posts": null,
       "note": "Filtered Better Dog post-level query timed out; profile totals remain live and post counts were not guessed."
+    },
+    {
+      "key": "youtube-channel-daily-backfill-2026-07-18",
+      "platform": "youtube",
+      "source": "Supermetrics YouTube ChannelTotals",
+      "note": "Jul 18 daily ChannelTotals backfilled Jul 21 with 252 views and 224 watch minutes."
+    },
+    {
+      "key": "youtube-public-feed-no-upload-2026-07-20",
+      "platform": "youtube",
+      "source": "YouTube public channel feed",
+      "posts": 0,
+      "note": "Public feed showed no Jul 20 upload; latest public upload remains Jul 19."
+    },
+    {
+      "key": "tiktok-video-rows-2026-07-20",
+      "platform": "tiktok",
+      "source": "Supermetrics TikTok Organic videos report",
+      "posts": 4,
+      "note": "Filtered Better Dog query returned four Jul 20 rows for @betterdogsupplements; profile performance remains delayed."
     }
   ],
   "skippedItems": [
-    "Instagram Jul 19 media rows are pending; profile metrics remain live and post count was not guessed.",
-    "YouTube Jul 18-19 daily performance remains pending in Supermetrics; Jul 19 public upload metadata is included.",
-    "TikTok Jul 19 is a delayed zero profile row and the Jul 17-19 post query timed out; exact range totals remain live and post counts were not guessed.",
+    "Instagram Jul 20 media rows are pending; profile metrics remain live and post count was not guessed.",
+    "Facebook Jul 20 post views and reach are pending; metadata and engagement are included.",
+    "YouTube Jul 19-20 daily performance remains pending in Supermetrics; the public feed showed no Jul 20 upload.",
+    "TikTok Jul 20 profile performance is delayed; four Better Dog post rows are verified and included.",
     "TikTok aggregate new-follower values were excluded because the connector field is unreliable."
   ]
 }
