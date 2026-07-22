@@ -1,31 +1,31 @@
 {
-  "refreshedAt": "Jul 21, 2026, 6:00 AM",
-  "dataThrough": "2026-07-20",
+  "refreshedAt": "Jul 22, 2026, 6:10 AM",
+  "dataThrough": "2026-07-21",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; updated through previous complete day Jul 20; YouTube Jul 18 backfilled Jul 21; YouTube Jul 19-20 and TikTok Jul 20 profile performance pending; no July 21 partial data included)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok, YouTube; updated through previous complete day Jul 21; YouTube Jul 19 and TikTok Jul 20 backfilled Jul 22; Jul 21 TikTok and Jul 20-21 YouTube performance remain pending; no July 22 partial data included)",
   "platforms": {
     "instagram": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Profile metrics updated through Jul 20; Jul 20 media rows are pending.",
+      "note": "Profile metrics updated through Jul 21; Jul 21 media rows are pending.",
       "historyStart": "2026-01-01"
     },
     "facebook": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Page metrics and two guarded Jul 20 post metadata rows updated; post views/reach remain pending.",
+      "note": "Page metrics updated through Jul 21; Jul 21 post-level rows are pending.",
       "historyStart": "2026-01-01"
     },
     "tiktok": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Four guarded Jul 20 Better Dog posts updated; Jul 20 profile performance is delayed.",
+      "note": "Guarded profile performance backfilled through Jul 20; Jul 21 performance and post rows are pending.",
       "historyStart": "2026-05-08"
     },
     "youtube": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Daily rows backfilled through Jul 18; Jul 19-20 performance is pending and public feed showed no Jul 20 upload.",
+      "note": "Daily rows backfilled through Jul 19; Jul 20-21 performance is pending and the public feed showed no uploads on those dates.",
       "historyStart": "2026-01-01"
     }
   },
@@ -182,13 +182,39 @@
       "source": "Supermetrics TikTok Organic videos report",
       "posts": 4,
       "note": "Filtered Better Dog query returned four Jul 20 rows for @betterdogsupplements; profile performance remains delayed."
+    },
+    {
+      "key": "youtube-channel-daily-backfill-2026-07-19",
+      "platform": "youtube",
+      "source": "Supermetrics YouTube ChannelTotals",
+      "note": "Jul 19 daily ChannelTotals backfilled Jul 22 with 176 views and 165 watch minutes."
+    },
+    {
+      "key": "youtube-public-feed-no-upload-2026-07-20-2026-07-21",
+      "platform": "youtube",
+      "source": "YouTube public channel feed",
+      "posts": 0,
+      "note": "Public feed showed no Jul 20 or Jul 21 upload; latest public upload remains Jul 19."
+    },
+    {
+      "key": "tiktok-video-query-pending-2026-07-21",
+      "platform": "tiktok",
+      "source": "Supermetrics TikTok Organic videos report",
+      "posts": null,
+      "note": "The guarded Better Dog post-level query did not complete; post count and content were not guessed."
+    },
+    {
+      "key": "tiktok-profile-daily-backfill-2026-07-20",
+      "platform": "tiktok",
+      "source": "Supermetrics TikTok Organic profile report",
+      "note": "Jul 20 guarded Better Dog profile performance backfilled Jul 22 with 10,834 views and 9,240 reached audience."
     }
   ],
   "skippedItems": [
-    "Instagram Jul 20 media rows are pending; profile metrics remain live and post count was not guessed.",
-    "Facebook Jul 20 post views and reach are pending; metadata and engagement are included.",
-    "YouTube Jul 19-20 daily performance remains pending in Supermetrics; the public feed showed no Jul 20 upload.",
-    "TikTok Jul 20 profile performance is delayed; four Better Dog post rows are verified and included.",
+    "Instagram Jul 21 media rows are pending; profile metrics remain live and post count was not guessed.",
+    "Facebook Jul 21 post-level rows are pending; page metrics remain live and post count was not guessed.",
+    "YouTube Jul 20-21 daily performance remains pending in Supermetrics; the public feed showed no uploads on those dates.",
+    "TikTok Jul 21 profile performance and post rows are pending; values were not guessed.",
     "TikTok aggregate new-follower values were excluded because the connector field is unreliable."
   ]
 }
