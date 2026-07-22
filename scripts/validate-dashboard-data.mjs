@@ -34,6 +34,46 @@ function priorRange(range) {
 function findRangeOverride(platform, range) {
   return (data.rangeOverrides || []).find((r) => r.platform === platform && r.start === range.start && r.end === range.end);
 }
+function sameRange(a, b) {
+  return a?.start === b?.start && a?.end === b?.end;
+}
+function rangeKey(range) {
+  return `${range.start}..${range.end}`;
+}
+function uniqueRanges(ranges) {
+  const seen = new Set();
+  return ranges.filter((range) => {
+    const key = rangeKey(range);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+function rangeLengthDays(range) {
+  return Math.round((Date.parse(`${range.end}T00:00:00Z`) - Date.parse(`${range.start}T00:00:00Z`)) / DAY) + 1;
+}
+function dayOfWeek(isoDate) {
+  return new Date(Date.parse(`${isoDate}T00:00:00Z`)).getUTCDay();
+}
+function isFridayThroughThursday(range) {
+  return rangeLengthDays(range) === 7 && dayOfWeek(range.start) === 5 && dayOfWeek(range.end) === 4;
+}
+function rangeNoteText(platform, range, override) {
+  const notes = [
+    override?.source,
+    override?.sourceNote,
+    summary.platforms?.[platform]?.note,
+  ];
+  for (const item of summary.supplementalSources || []) {
+    if (item.platform !== platform) continue;
+    const text = `${item.key || ''} ${item.note || ''} ${item.source || ''}`;
+    if (text.includes(range.start) || text.includes(range.end)) notes.push(text);
+  }
+  return notes.filter(Boolean).join(' ').toLowerCase();
+}
+function hasPendingRangeLanguage(text) {
+  return /pending|derived|delta|backfill|backfilled|delayed|partial|not yet complete|no data/.test(text);
+}
 const sumRows = (rows, field) => rows.reduce((sum, row) => sum + Number(row[field] || 0), 0);
 const rowsInRange = (rows, range) => (rows || []).filter((row) => row.date >= range.start && row.date <= range.end);
 const normalize = (value) => String(value || '').trim().toLowerCase();
@@ -133,6 +173,9 @@ for (const platform of requiredPlatforms) {
   if (metric?.carriedForward) problems.push(`${platform}: carried-forward data is still enabled`);
   if (!Array.isArray(metric?.daily) || metric.daily.length === 0) problems.push(`${platform}: no daily rows`);
   if (metric?.daily?.at(-1)?.date !== data.asOf) problems.push(`${platform}: latest daily row does not match asOf`);
+  for (const row of metric?.daily || []) {
+    if (data.asOf && row.date > data.asOf) problems.push(`${platform}: ${row.date} is later than data.asOf ${data.asOf}`);
+  }
   for (const field of platformConfig.requiredMetrics || []) {
     const hasAnyValue = metric?.daily?.some((row) => Number(row[field] || 0) > 0);
     if (!hasAnyValue) problems.push(`${platform}: no ${field} values found`);
@@ -207,9 +250,13 @@ for (const override of data.rangeOverrides || []) {
 if (data.asOf) {
   const range = defaultRange(data.asOf);
   const comparisonRange = priorRange(range);
-  const lastWeekRange = priorRange(range);
-  if (range.start === lastWeekRange.start && range.end === lastWeekRange.end) {
-    problems.push(`this-week and last-week presets resolve to the same range: ${range.start} to ${range.end}`);
+  const lastWeekRange = lastCompletedWeekRange(data.asOf);
+  const checkedRanges = uniqueRanges([range, comparisonRange, lastWeekRange]);
+  if (!isFridayThroughThursday(lastWeekRange)) {
+    problems.push(`last-week preset is not a Friday-Thursday week: ${lastWeekRange.start} to ${lastWeekRange.end}`);
+  }
+  if (sameRange(range, comparisonRange)) {
+    problems.push(`this-week and prior comparison resolve to the same range: ${range.start} to ${range.end}`);
   }
   const exactRangeRequirements = {
     instagram: ['views', 'reach'],
@@ -218,7 +265,7 @@ if (data.asOf) {
     tiktok: ['views', 'reach'],
   };
   for (const [platform, fields] of Object.entries(exactRangeRequirements)) {
-    for (const checkedRange of [range, comparisonRange]) {
+    for (const checkedRange of checkedRanges) {
       const override = findRangeOverride(platform, checkedRange);
       if (!override) {
         problems.push(`${platform}: missing exact range override for ${checkedRange.start} to ${checkedRange.end}`);
@@ -228,6 +275,21 @@ if (data.asOf) {
         if (override.values?.[field] == null) {
           problems.push(`${platform}: exact range override ${checkedRange.start} to ${checkedRange.end} missing ${field}`);
         }
+      }
+    }
+  }
+
+  for (const checkedRange of checkedRanges) {
+    const override = findRangeOverride('youtube', checkedRange);
+    if (!override) continue;
+    const ytRows = rowsInRange(data.metrics?.youtube?.daily, checkedRange);
+    const noteText = rangeNoteText('youtube', checkedRange, override);
+    const allowPendingMismatch = !isFridayThroughThursday(checkedRange) && hasPendingRangeLanguage(noteText);
+    for (const field of ['views', 'watchTime']) {
+      const dailyValue = sumRows(ytRows, field);
+      const exactValue = Number(override.values?.[field] || 0);
+      if (dailyValue !== exactValue && !allowPendingMismatch) {
+        problems.push(`youtube: ${checkedRange.start} to ${checkedRange.end} daily ${field} sum is ${dailyValue}, but exact range ${field} is ${exactValue}; refresh/backfill before publishing`);
       }
     }
   }
