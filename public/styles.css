@@ -380,6 +380,11 @@ body {
 
 .btn {
   appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  line-height: 1;
   font-family: inherit;
   align-self: flex-end;
   background: var(--panel);
