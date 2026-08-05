@@ -8,7 +8,7 @@ window.REAL_DATA = {
   "asOf": "2026-08-04",
   "updatedAt": "Aug 5, 2026, 6:00 AM",
   "source": "live",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube; refreshed through previous complete day Aug 4; TikTok Aug 4 profile totals and YouTube Aug 3-Aug 4 performance are delayed and marked pending; no Aug 5 partial data included)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube; refreshed through previous complete day Aug 4; YouTube Aug 3-Aug 4 daily performance is delayed and marked pending; no Aug 5 partial data included)",
   "directApiErrors": [],
   "rangeOverrides": [
     {
@@ -1510,10 +1510,10 @@ window.REAL_DATA = {
       "platform": "tiktok",
       "start": "2026-07-31",
       "end": "2026-08-04",
-      "source": "Supermetrics guarded profile totals through Aug 3; Aug 4 profile query delayed",
+      "source": "Supermetrics exact guarded profile range total",
       "values": {
-        "views": 43579,
-        "reach": 41584
+        "views": 55685,
+        "reach": 53106
       },
       "sourceUsername": "betterdogsupplements"
     },
@@ -8668,14 +8668,14 @@ window.REAL_DATA = {
         {
           "date": "2026-08-03",
           "posts": 4,
-          "views": 1507,
-          "reach": 0,
+          "views": 12106,
+          "reach": 11522,
           "watchTime": 0,
-          "newFollowers": 0,
+          "newFollowers": 3248,
           "profileViews": 0,
-          "totalFollowers": 3256,
+          "totalFollowers": 3276,
           "sourceUsername": "betterdogsupplements",
-          "performancePending": true
+          "performancePending": false
         },
         {
           "date": "2026-08-04",
@@ -8684,22 +8684,22 @@ window.REAL_DATA = {
           "reach": 0,
           "watchTime": 0,
           "profileViews": 0,
-          "totalFollowers": 3256,
-          "newFollowers": null,
-          "performancePending": true,
+          "totalFollowers": 3276,
+          "newFollowers": 0,
+          "performancePending": false,
           "sourceUsername": "betterdogsupplements"
         }
       ],
       "reachLabel": "Reached audience",
       "postProvider": "supermetrics-tiktok-organic-video-ids",
       "hasFollowers": true,
-      "totalFollowers": 3164,
-      "followersAsOf": "2026-08-01",
+      "totalFollowers": 3276,
+      "followersAsOf": "2026-08-04",
       "followersNote": "TikTok profile metrics are available from May 8, 2026 in the current Supermetrics connector.",
       "historyStart": "2026-06-03",
       "hasNewFollowers": true,
       "postDefinition": "TikTok videos published, counted from Supermetrics TikTok Organic video IDs by create date.",
-      "postCountNote": "Post counts use guarded Better Dog TikTok Organic video IDs. Aug 1 profile performance is delayed, while four verified posts are included.",
+      "postCountNote": "Post counts use guarded Better Dog TikTok Organic video IDs; four verified posts are included for Aug 4.",
       "topContentUnavailableReason": null,
       "sourceAccount": {
         "dsId": "TIKBA",
@@ -11825,20 +11825,6 @@ window.REAL_DATA = {
       "performancePending": true
     },
     {
-      "platform": "youtube",
-      "date": "2026-08-02",
-      "url": "https://www.youtube.com/shorts/lapU-w98-2c",
-      "title": "Why Dogs Struggle to Get Up?",
-      "type": "Short Form Clip",
-      "views": 0,
-      "reach": null,
-      "watchTime": 0,
-      "eng": 0,
-      "sourceId": "lapU-w98-2c",
-      "source": "Public YouTube channel feed; Supermetrics performance pending",
-      "performancePending": true
-    },
-    {
       "platform": "facebook",
       "date": "2026-08-03",
       "url": "https://www.facebook.com/674626722402999_1589417389207219",
@@ -11987,13 +11973,6 @@ window.REAL_DATA = {
       "source": "Supermetrics YouTube ChannelTotals, TrafficSources, LatestVideos, and public channel feed",
       "posts": 1,
       "note": "Public channel feed confirms an Aug 2 upload; Supermetrics performance is backfilled through Aug 2 and remains pending for Aug 3-Aug 4."
-    },
-    {
-      "key": "tiktok-profile-delay-2026-08-04",
-      "platform": "tiktok",
-      "source": "Supermetrics TikTok Organic",
-      "posts": 4,
-      "note": "Aug 4 profile performance is delayed; four guarded Better Dog videos were verified and included."
     }
   ]
 };

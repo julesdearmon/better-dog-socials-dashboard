@@ -214,8 +214,16 @@ for (const platform of requiredPlatforms) {
   }
 }
 
+const seenContentIds = new Set();
 for (const item of data.content || []) {
   const guard = config.platforms?.[item.platform]?.accountGuard || {};
+  if (item.platform && item.sourceId) {
+    const contentKey = `${item.platform}:${item.sourceId}`;
+    if (seenContentIds.has(contentKey)) {
+      problems.push(`${item.platform}: duplicate content sourceId ${item.sourceId}`);
+    }
+    seenContentIds.add(contentKey);
+  }
   checkForbiddenIdentity(`${item.platform || 'unknown'} content row ${item.date || 'unknown'}`, [
     item.sourceUsername,
     item.sourceAccount?.username,

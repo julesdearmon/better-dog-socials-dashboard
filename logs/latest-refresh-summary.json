@@ -2,7 +2,7 @@
   "refreshedAt": "Aug 5, 2026, 6:00 AM",
   "dataThrough": "2026-08-04",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube; refreshed through previous complete day Aug 4; TikTok Aug 4 profile totals and YouTube Aug 3-Aug 4 performance are delayed and marked pending; no Aug 5 partial data included)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube; refreshed through previous complete day Aug 4; YouTube Aug 3-Aug 4 daily performance is delayed and marked pending; no Aug 5 partial data included)",
   "platforms": {
     "instagram": {
       "status": "live",
@@ -17,9 +17,9 @@
       "historyStart": "2026-01-01"
     },
     "tiktok": {
-      "status": "partial",
+      "status": "live",
       "provider": "supermetrics",
-      "note": "Guarded profile totals through Aug 3; Aug 4 profile performance delayed, with four verified videos.",
+      "note": "Guarded profile totals and four verified videos refreshed through Aug 4.",
       "historyStart": "2026-06-06"
     },
     "youtube": {
@@ -38,13 +38,6 @@
       "source": "Supermetrics YouTube ChannelTotals, TrafficSources, LatestVideos, and public channel feed",
       "posts": 1,
       "note": "Public channel feed confirms an Aug 2 upload; Supermetrics performance is backfilled through Aug 2 and remains pending for Aug 3-Aug 4."
-    },
-    {
-      "key": "tiktok-profile-delay-2026-08-04",
-      "platform": "tiktok",
-      "source": "Supermetrics TikTok Organic",
-      "posts": 4,
-      "note": "Aug 4 profile performance is delayed; four guarded Better Dog videos were verified and included."
     }
   ],
   "skippedItems": []
