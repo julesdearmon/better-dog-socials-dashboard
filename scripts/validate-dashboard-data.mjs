@@ -185,7 +185,8 @@ for (const platform of requiredPlatforms) {
       const isLatestRow = row.date === data.asOf;
       const hasPosts = Number(row.posts || 0) > 0;
       const hasAnyPerformance = ['views', 'reach', 'watchTime'].some((field) => Number(row[field] || 0) > 0);
-      if (!isLatestRow && hasPosts && !hasAnyPerformance) {
+      const isConnectorPending = row.performancePending === true;
+      if (!isLatestRow && hasPosts && !hasAnyPerformance && !isConnectorPending) {
         problems.push(`${platform}: ${row.date} has posts but no views, reach, or watch time`);
       }
     }
