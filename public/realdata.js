@@ -5,10 +5,10 @@ window.REAL_DATA = {
     "name": "Better Dog Supplements",
     "color": "#88cc33"
   },
-  "asOf": "2026-08-05",
-  "updatedAt": "Aug 6, 2026, 6:00 AM",
+  "asOf": "2026-08-06",
+  "updatedAt": "Aug 7, 2026, 6:00 AM",
   "source": "live",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube; refreshed through previous complete day Aug 5; YouTube Aug 5 daily performance is delayed and marked pending; no Aug 6 partial data included)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube; refreshed through previous complete day Aug 6; TikTok Aug 6 and YouTube Aug 5-Aug 6 daily performance delayed/pending; no Aug 7 partial data included)",
   "directApiErrors": [],
   "rangeOverrides": [
     {
@@ -1232,19 +1232,6 @@ window.REAL_DATA = {
       }
     },
     {
-      "platform": "youtube",
-      "start": "2026-07-24",
-      "end": "2026-07-30",
-      "source": "Supermetrics exact ChannelTotals and TrafficSources",
-      "values": {
-        "views": 2229,
-        "watchTime": 1562,
-        "adViews": 625,
-        "adWatchTime": 627,
-        "newFollowers": 70
-      }
-    },
-    {
       "platform": "tiktok",
       "start": "2026-07-24",
       "end": "2026-07-30",
@@ -1651,6 +1638,63 @@ window.REAL_DATA = {
         "reach": 60132
       },
       "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-07-31",
+      "end": "2026-08-06",
+      "source": "Supermetrics exact range total",
+      "values": {
+        "views": 160220,
+        "reach": 8908
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-07-31",
+      "end": "2026-08-06",
+      "source": "Supermetrics exact organic totals; reach uses guarded daily rows",
+      "values": {
+        "views": 2655,
+        "reach": 939,
+        "paidViews": 0
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-31",
+      "end": "2026-08-06",
+      "source": "Supermetrics exact ChannelTotals and TrafficSources; Aug 5-Aug 6 daily performance pending",
+      "values": {
+        "views": 1346,
+        "watchTime": 885,
+        "adViews": 42,
+        "adWatchTime": 35
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-07-31",
+      "end": "2026-08-06",
+      "source": "Supermetrics guarded daily profile rows; Aug 6 delayed",
+      "values": {
+        "views": 76373,
+        "reach": 18548
+      },
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-07-24",
+      "end": "2026-07-30",
+      "source": "Supermetrics exact ChannelTotals and TrafficSources",
+      "values": {
+        "views": 2228,
+        "watchTime": 1560,
+        "adViews": 625,
+        "adWatchTime": 627,
+        "newFollowers": 70
+      }
     }
   ],
   "metrics": {
@@ -3392,6 +3436,15 @@ window.REAL_DATA = {
           "posts": 2,
           "views": 18105,
           "reach": 8062,
+          "watchTime": 0,
+          "newFollowers": 0,
+          "totalFollowers": 2987
+        },
+        {
+          "date": "2026-08-06",
+          "posts": 2,
+          "views": 16332,
+          "reach": 8908,
           "watchTime": 0,
           "newFollowers": 0,
           "totalFollowers": 2987
@@ -5520,6 +5573,16 @@ window.REAL_DATA = {
           "posts": 2,
           "views": 479,
           "reach": 134,
+          "watchTime": 0,
+          "paidViews": 0,
+          "newFollowers": null,
+          "totalFollowers": 898
+        },
+        {
+          "date": "2026-08-06",
+          "posts": 1,
+          "views": 464,
+          "reach": 150,
           "watchTime": 0,
           "paidViews": 0,
           "newFollowers": null,
@@ -7690,9 +7753,9 @@ window.REAL_DATA = {
         {
           "date": "2026-07-30",
           "posts": 0,
-          "views": 317,
+          "views": 316,
           "reach": 0,
-          "watchTime": 210,
+          "watchTime": 208,
           "newFollowers": 11,
           "totalFollowers": 1370,
           "adViews": 0,
@@ -7738,18 +7801,31 @@ window.REAL_DATA = {
         {
           "date": "2026-08-03",
           "posts": 0,
-          "views": 0,
+          "views": 99,
           "reach": 0,
-          "watchTime": 0,
+          "watchTime": 106,
           "newFollowers": 0,
           "totalFollowers": 1370,
           "adViews": 0,
           "adWatchTime": 0,
-          "performancePending": true
+          "performancePending": false
         },
         {
           "date": "2026-08-04",
           "posts": 1,
+          "views": 210,
+          "reach": 0,
+          "watchTime": 93,
+          "newFollowers": 0,
+          "totalFollowers": 1370,
+          "adViews": 0,
+          "adWatchTime": 0,
+          "performancePending": false,
+          "postMetricsPending": true
+        },
+        {
+          "date": "2026-08-05",
+          "posts": 0,
           "views": 0,
           "reach": 0,
           "watchTime": 0,
@@ -7761,7 +7837,7 @@ window.REAL_DATA = {
           "postMetricsPending": true
         },
         {
-          "date": "2026-08-05",
+          "date": "2026-08-06",
           "posts": 0,
           "views": 0,
           "reach": 0,
@@ -8802,26 +8878,38 @@ window.REAL_DATA = {
         {
           "date": "2026-08-04",
           "posts": 4,
-          "views": 0,
+          "views": 7588,
           "reach": 0,
           "watchTime": 0,
           "profileViews": 0,
-          "totalFollowers": 3276,
-          "newFollowers": 0,
-          "performancePending": true,
+          "totalFollowers": 3321,
+          "newFollowers": 3267,
+          "performancePending": false,
           "sourceUsername": "betterdogsupplements"
         },
         {
           "date": "2026-08-05",
           "posts": 1,
+          "views": 13100,
+          "reach": 0,
+          "watchTime": 0,
+          "newFollowers": 3293,
+          "profileViews": 0,
+          "totalFollowers": 3321,
+          "sourceUsername": "betterdogsupplements",
+          "performancePending": false
+        },
+        {
+          "date": "2026-08-06",
+          "posts": 5,
           "views": 0,
           "reach": 0,
           "watchTime": 0,
           "newFollowers": 0,
           "profileViews": 0,
-          "totalFollowers": 3301,
+          "totalFollowers": 3321,
           "sourceUsername": "betterdogsupplements",
-          "performancePending": false
+          "performancePending": true
         }
       ],
       "reachLabel": "Reached audience",
@@ -12173,6 +12261,107 @@ window.REAL_DATA = {
       "source": "YouTube public channel feed; Supermetrics post metrics pending",
       "performancePending": true,
       "metricsPending": true
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-08-06",
+      "url": "https://www.instagram.com/reel/Dbs4RVmgahK/",
+      "title": "Ever catch your dog munching on grass and wonder why?",
+      "type": "Short Form Clip",
+      "views": 5969,
+      "reach": 5369,
+      "eng": 294,
+      "sourceId": "18329618920256400",
+      "source": "Supermetrics instagram content report"
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-08-06",
+      "url": "https://www.instagram.com/p/Dbtaj7BDQao/",
+      "title": "Does your dog's breath ever make you lean back a little?",
+      "type": "Carousel",
+      "views": 220,
+      "reach": 91,
+      "eng": 14,
+      "sourceId": "17962958487149082",
+      "source": "Supermetrics instagram content report"
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-08-06",
+      "url": "https://www.facebook.com/674626722402999_122184705062906904",
+      "title": "Ever catch your dog munching on grass and wonder why?",
+      "type": "Short Form Clip",
+      "views": 103,
+      "reach": 89,
+      "eng": 5,
+      "sourceId": "674626722402999_122184705062906904",
+      "source": "Supermetrics facebook content report"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-06",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670213501218049311",
+      "title": "Ever catch your dog munching on grass and wonder why?",
+      "type": "Short Form Clip",
+      "views": 765,
+      "reach": 0,
+      "eng": 52,
+      "sourceId": "7670213501218049311",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-06",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670535609785552158",
+      "title": "The dog is always communicating. The question is who's listening",
+      "type": "Short Form Clip",
+      "views": 737,
+      "reach": 0,
+      "eng": 13,
+      "sourceId": "7670535609785552158",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-06",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670535439626947871",
+      "title": "A dog can't say it hurts. But the body will",
+      "type": "Short Form Clip",
+      "views": 678,
+      "reach": 0,
+      "eng": 6,
+      "sourceId": "7670535439626947871",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-06",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670535680602230047",
+      "title": "Repetitive behavior? Try changing this first",
+      "type": "Short Form Clip",
+      "views": 626,
+      "reach": 0,
+      "eng": 3,
+      "sourceId": "7670535680602230047",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-06",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670535766283537694",
+      "title": "Unexplained irritation? The food might be the answer",
+      "type": "Short Form Clip",
+      "views": 120,
+      "reach": 0,
+      "eng": 0,
+      "sourceId": "7670535766283537694",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
     }
   ],
   "followersDataNote": "Follower totals are capped to the latest complete-day refresh when the connector provides a date-safe value. Some connector snapshot fields can return current-day totals, so those are not used as July 16 daily rows.",
