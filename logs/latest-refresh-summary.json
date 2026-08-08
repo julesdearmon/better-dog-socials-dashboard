@@ -1,31 +1,31 @@
 {
-  "refreshedAt": "Aug 7, 2026, 6:00 AM",
-  "dataThrough": "2026-08-06",
+  "refreshedAt": "Aug 8, 2026, 6:00 AM",
+  "dataThrough": "2026-08-07",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube; refreshed through previous complete day Aug 6; TikTok Aug 6 and YouTube Aug 5-Aug 6 daily performance delayed/pending; no Aug 7 partial data included)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube; refreshed through previous complete day Aug 7; TikTok Aug 7 and YouTube Aug 6-Aug 7 daily performance delayed/pending; no Aug 8 partial data included)",
   "platforms": {
     "instagram": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Profile and content metrics refreshed through Aug 6.",
+      "note": "Profile and content metrics refreshed through Aug 7.",
       "historyStart": "2026-01-01"
     },
     "facebook": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Organic page and post metrics refreshed through Aug 6.",
+      "note": "Organic page and post metrics refreshed through Aug 7.",
       "historyStart": "2026-01-01"
     },
     "tiktok": {
-      "status": "live",
+      "status": "partial",
       "provider": "supermetrics",
-      "note": "Guarded rows refreshed through Aug 6; Aug 6 profile performance is delayed and pending.",
+      "note": "Five guarded Aug 7 videos are included; Aug 7 profile performance is delayed and pending.",
       "historyStart": "2026-06-08"
     },
     "youtube": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Exact totals refreshed through Aug 6; daily performance is backfilled through Aug 4 and pending for Aug 5-Aug 6.",
+      "note": "Exact totals refreshed through Aug 7; daily performance is backfilled through Aug 5 and pending for Aug 6-Aug 7.",
       "historyStart": "2026-01-01"
     }
   },
@@ -33,19 +33,18 @@
   "published": false,
   "supplementalSources": [
     {
-      "key": "youtube-performance-pending-2026-08-03-2026-08-04",
+      "key": "youtube-performance-pending-2026-08-06-2026-08-07",
       "platform": "youtube",
-      "source": "Supermetrics YouTube ChannelTotals, TrafficSources, LatestVideos, and public channel feed",
-      "posts": 1,
-      "note": "Public channel feed confirms an Aug 2 upload; Supermetrics performance is backfilled through Aug 2 and remains pending for Aug 3-Aug 4."
-    },
-    {
-      "key": "youtube-performance-pending-2026-08-05",
-      "platform": "youtube",
-      "source": "Supermetrics YouTube ChannelTotals, TrafficSources, LatestVideos, and YouTube public channel feed",
-      "posts": 1,
-      "note": "Exact range totals are refreshed through Aug 5. The public feed confirms an Aug 4 upload missing from LatestVideos; Aug 5 daily performance remains pending."
+      "source": "Supermetrics YouTube ChannelTotals, TrafficSources, and LatestVideos",
+      "posts": null,
+      "note": "Daily performance is backfilled through Aug 5. Aug 6-Aug 7 performance and public-feed post verification remain pending."
     }
   ],
-  "skippedItems": []
+  "skippedItems": [
+    {
+      "platform": "youtube",
+      "range": "2026-08-06..2026-08-07",
+      "reason": "Public channel feed could not be reached; post metadata remains pending and no no-post claim is published."
+    }
+  ]
 }
