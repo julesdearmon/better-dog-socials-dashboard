@@ -1,9 +1,15 @@
 #!/usr/bin/env node
 import { readFileSync } from 'node:fs';
 
-const data = JSON.parse(readFileSync('public/data.json', 'utf8'));
-const config = JSON.parse(readFileSync('config/data-sources.json', 'utf8'));
-const summary = JSON.parse(readFileSync('logs/latest-refresh-summary.json', 'utf8'));
+function readJsonFile(filePath) {
+  return JSON.parse(readFileSync(filePath, 'utf8').replace(/^\uFEFF/, ''));
+}
+
+const data = readJsonFile('public/data.json');
+const config = readJsonFile('config/data-sources.json');
+const summary = readJsonFile('logs/latest-refresh-summary.json');
+const pipeline = readJsonFile('config/pipeline.json');
+const hosting = readJsonFile('.openai/hosting.json');
 const realDataSource = readFileSync('public/realdata.js', 'utf8');
 const requiredPlatforms = Object.keys(config.platforms || {});
 const generatedFrom = String(data.generatedFrom || '');
@@ -77,7 +83,7 @@ function hasPendingRangeLanguage(text) {
 const sumRows = (rows, field) => rows.reduce((sum, row) => sum + Number(row[field] || 0), 0);
 const rowsInRange = (rows, range) => (rows || []).filter((row) => row.date >= range.start && row.date <= range.end);
 const normalize = (value) => String(value || '').trim().toLowerCase();
-const forbiddenAccountPattern = /(?:^|[^a-z])(?:manuel\s+suarez|mrmanuelsuarez)(?:$|[^a-z])/i;
+const forbiddenAccountPattern = /(?:^|[^a-z])(?:manuel\s+suarez|mrmanuelsuarez|tom\s+cummins|tomcummins)(?:$|[^a-z])/i;
 const rangeSourceUsername = (range) => range?.sourceUsername || range?.sourceAccount?.username || range?.account?.username;
 function checkForbiddenIdentity(label, values) {
   for (const value of values) {
@@ -103,6 +109,30 @@ function reportingWeekStart(isoDate) {
   const base = Date.parse(`${isoDate}T00:00:00Z`);
   const d = new Date(base);
   return iso(base - ((d.getUTCDay() - 5 + 7) % 7) * DAY);
+}
+
+if (pipeline.client !== 'Better Dog Supplements') problems.push('pipeline client is not Better Dog Supplements');
+if (pipeline.sourceOfTruth !== config.sourceOfTruth) problems.push('pipeline sourceOfTruth does not match config/data-sources.json');
+if (pipeline.timezone !== 'America/New_York') problems.push('pipeline timezone is not America/New_York');
+if (pipeline.dateRules?.previousCompleteDayOnly !== true) problems.push('pipeline does not enforce previous complete day only');
+if (pipeline.dateRules?.weekStart !== 'friday' || pipeline.dateRules?.weekEnd !== 'thursday') problems.push('pipeline week rule is not Friday-Thursday');
+if (pipeline.dateRules?.defaultView !== 'this-week') problems.push('pipeline default view is not this-week');
+if (!pipeline.stagingSheet?.spreadsheetId || !pipeline.stagingSheet?.url?.includes(pipeline.stagingSheet.spreadsheetId)) problems.push('pipeline staging sheet is missing or malformed');
+for (const tab of ['Account Guards', 'Refresh Log', 'Daily Metrics', 'Content Posts', 'Range Overrides', 'Validation Log', 'Dashboard Export']) {
+  if (!pipeline.stagingSheet?.requiredTabs?.includes(tab)) problems.push(`pipeline staging sheet is missing required tab: ${tab}`);
+}
+if (pipeline.chatgptSite?.projectId !== hosting.project_id) problems.push('pipeline ChatGPT Site projectId does not match .openai/hosting.json');
+if (!pipeline.chatgptSite?.url?.startsWith('https://better-dog-social-dashboard.')) problems.push('pipeline ChatGPT Site URL is missing or unexpected');
+if (pipeline.production?.customDomain !== 'https://socials.betterdogsupplements.com') problems.push('pipeline custom domain is not socials.betterdogsupplements.com');
+if (pipeline.production?.currentHost !== 'vercel') problems.push('pipeline current production host should remain Vercel until cutover is approved');
+for (const platform of requiredPlatforms) {
+  const pipelineGuard = pipeline.accountGuards?.[platform] || {};
+  const configGuard = config.platforms?.[platform]?.accountGuard || {};
+  for (const key of ['dsId', 'accountId', 'freeTextAccount', 'expectedUsername', 'expectedMetricHandle', 'contentUrlMustContain']) {
+    if ((pipelineGuard[key] || '') !== (configGuard[key] || '')) {
+      problems.push(`pipeline guard mismatch for ${platform}.${key || 'unknown'}`);
+    }
+  }
 }
 
 if (config.sourceOfTruth !== 'supermetrics-chatgpt-codex-connector') problems.push('config sourceOfTruth is not the Supermetrics connector');
@@ -351,7 +381,14 @@ for (const platform of requiredPlatforms) {
   }
 }
 
-const updatedMs = Date.parse(String(data.updatedAt).replace(/, ([0-9]{1,2}:[0-9]{2} [AP]M)$/i, ', 2026 $1'));
+function parseDashboardUpdatedAt(value) {
+  const raw = String(value || '');
+  const parsed = Date.parse(raw);
+  if (!Number.isNaN(parsed)) return parsed;
+  const year = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', year: 'numeric' }).format(new Date());
+  return Date.parse(raw.replace(/, ([0-9]{1,2}:[0-9]{2} [AP]M)$/i, `, ${year} $1`));
+}
+const updatedMs = parseDashboardUpdatedAt(data.updatedAt);
 const today = new Date();
 const todayKey = today.toLocaleDateString('en-US', { timeZone: 'America/New_York' });
 const dateKeyMs = (key) => {

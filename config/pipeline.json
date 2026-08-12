@@ -1,0 +1,69 @@
+{
+  "pipelineVersion": 1,
+  "client": "Better Dog Supplements",
+  "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
+  "timezone": "America/New_York",
+  "dateRules": {
+    "previousCompleteDayOnly": true,
+    "weekStart": "friday",
+    "weekEnd": "thursday",
+    "defaultView": "this-week"
+  },
+  "stagingSheet": {
+    "title": "Better Dog Social Dashboard Data Staging",
+    "spreadsheetId": "1g7MAyIgFFhnDGBXK-DmlCoaKUtsNxeZIHLSxNyd1M9w",
+    "url": "https://docs.google.com/spreadsheets/d/1g7MAyIgFFhnDGBXK-DmlCoaKUtsNxeZIHLSxNyd1M9w",
+    "role": "private-audit-layer",
+    "requiredTabs": [
+      "Read Me",
+      "Account Guards",
+      "Refresh Log",
+      "Daily Metrics",
+      "Content Posts",
+      "Range Overrides",
+      "Validation Log",
+      "Dashboard Export"
+    ]
+  },
+  "chatgptSite": {
+    "projectId": "appgprj_6a7ca0b33edc8191948df814c7041e86",
+    "url": "https://better-dog-social-dashboard.julesdearmon.chatgpt.site",
+    "access": "owner-only-private"
+  },
+  "production": {
+    "currentHost": "vercel",
+    "customDomain": "https://socials.betterdogsupplements.com",
+    "vercelUrl": "https://better-dog-socials-dashboard.vercel.app",
+    "transitionNote": "Keep Vercel/custom domain active until the ChatGPT Site passes repeated refresh and audit cycles."
+  },
+  "accountGuards": {
+    "instagram": {
+      "dsId": "IGI",
+      "accountId": "17841475238822164",
+      "expectedMetricHandle": "@betterdogsupplements"
+    },
+    "facebook": {
+      "dsId": "FB",
+      "accountId": "674626722402999",
+      "expectedMetricHandle": "Better Dog Supplements",
+      "contentUrlMustContain": "674626722402999"
+    },
+    "youtube": {
+      "dsId": "YT2",
+      "accountId": "UC9rUabwMqe2C98J2l1NDz2g",
+      "expectedMetricHandle": "Better Dog Supplements"
+    },
+    "tiktok": {
+      "dsId": "TIKBA",
+      "freeTextAccount": "betterdogsupplements",
+      "expectedUsername": "betterdogsupplements",
+      "expectedMetricHandle": "@betterdogsupplements",
+      "contentUrlMustContain": "/@betterdogsupplements/"
+    }
+  },
+  "blockedAccounts": [
+    "Manuel Suarez",
+    "mrmanuelsuarez",
+    "Tom Cummins"
+  ]
+}
