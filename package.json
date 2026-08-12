@@ -7,6 +7,7 @@
     "start": "node server/index.js",
     "dev": "node --watch server/index.js",
     "build": "node scripts/validate-dashboard-data.mjs",
+    "build:sites": "node scripts/build-sites-worker.mjs",
     "build:direct": "node scripts/build-data-direct.mjs",
     "build:supermetrics": "node scripts/supermetrics-rest-disabled.mjs"
   },
