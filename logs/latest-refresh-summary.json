@@ -1,31 +1,31 @@
 {
-  "refreshedAt": "Aug 12, 2026, 9:00 AM",
-  "dataThrough": "2026-08-11",
+  "refreshedAt": "Aug 13, 2026, 8:59 AM",
+  "dataThrough": "2026-08-12",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
-  "generatedFrom": "Supermetrics connector (instagram, facebook, tiktok Organic, youtube; refreshed through previous complete day Aug 11; TikTok Aug 11 and YouTube Aug 10-Aug 11 daily performance delayed/pending; no Aug 12 partial data included)",
+  "generatedFrom": "Supermetrics connector (instagram, facebook, tiktok Organic, youtube; refreshed through previous complete day Aug 12; TikTok Aug 12 and YouTube Aug 10-Aug 12 daily performance delayed/pending; no Aug 13 partial data included)",
   "platforms": {
     "instagram": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Profile, follower, and content metrics refreshed through Aug 11.",
+      "note": "Profile, follower, and content metrics refreshed through Aug 12.",
       "historyStart": "2026-01-01"
     },
     "facebook": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Organic page, follower, and post metrics refreshed through Aug 11; paid page media views were 0 for Aug 7-Aug 11.",
+      "note": "Page media, follower, and post metrics refreshed through Aug 12; paid page media views were 0 for Aug 7-Aug 12.",
       "historyStart": "2026-01-01"
     },
     "tiktok": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Profile and filtered video rows refreshed through Aug 11; Aug 11 profile performance is delayed/pending.",
-      "historyStart": "2026-06-13"
+      "note": "Profile and filtered video rows refreshed through Aug 12; Aug 12 profile performance is delayed/pending.",
+      "historyStart": "2026-06-14"
     },
     "youtube": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Exact totals refreshed through Aug 11; daily performance is backfilled through Aug 9 and pending for Aug 10-Aug 11.",
+      "note": "Exact totals refreshed through Aug 12; daily performance is backfilled through Aug 9 and pending for Aug 10-Aug 12.",
       "historyStart": "2026-01-01"
     }
   },
@@ -33,18 +33,18 @@
   "published": false,
   "supplementalSources": [
     {
-      "key": "youtube-post-verification-2026-08-07-2026-08-11",
+      "key": "youtube-post-verification-2026-08-07-2026-08-12",
       "platform": "youtube",
-      "source": "Supermetrics YouTube ChannelTotals, TrafficSources, LatestVideos; public channel feed only verifies upload existence",
+      "source": "Supermetrics YouTube ChannelTotals, TrafficSources, and LatestVideos",
       "posts": 4,
-      "note": "Public channel feed confirms Aug 7, Aug 8, Aug 9, and Aug 11 uploads. Supermetrics daily performance is backfilled through Aug 9; Aug 10-Aug 11 remain pending."
+      "note": "Supermetrics LatestVideos returned no Aug 12 uploads. Aug 7, Aug 8, Aug 9, and Aug 11 uploads remain in the current-week content set; daily performance is pending for Aug 10-Aug 12."
     },
     {
-      "key": "tiktok-profile-delay-2026-08-11",
+      "key": "tiktok-profile-delay-2026-08-12",
       "platform": "tiktok",
       "source": "Supermetrics TikTok Organic profile and filtered video reports",
       "posts": 5,
-      "note": "Filtered TikTok video rows confirm five Aug 11 Better Dog videos; the TikTok profile performance row is delayed and marked pending."
+      "note": "Filtered TikTok video rows confirm five Aug 12 Better Dog videos. The TikTok profile daily performance row is delayed and marked pending; follower growth uses the current-follower snapshot movement."
     }
   ],
   "skippedItems": []

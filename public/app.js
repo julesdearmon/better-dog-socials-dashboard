@@ -15,6 +15,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const GRAN_NOUN = { daily: 'day', weekly: 'week', monthly: 'month' };
 const GRAN_LABEL = { daily: 'Daily', weekly: 'Weekly', monthly: 'Monthly' };
 const THEME_KEY = 'betterDogDashboardThemeChoice';
+const WEEKLY_TREND_PRESET_WEEKS = 6;
 
 const state = {
   clients: [], clientId: null,
@@ -86,7 +87,11 @@ function chartGranularity() {
   const allowed = allowedGranularities();
   return allowed.includes(state.granularity) ? state.granularity : allowed[0];
 }
+function usesWeeklyTrendContext() {
+  return state.selectedPreset === 'last-week';
+}
 function allowedGranularities() {
+  if (usesWeeklyTrendContext()) return ['weekly'];
   const days = rangeDays();
   if (!days || days <= 14) return ['daily'];
   if (days <= 45) return ['daily', 'weekly'];
@@ -97,6 +102,19 @@ function suggestedGranularity(startIso, endIso) {
   if (days <= 31) return 'daily';
   if (days <= 120) return 'weekly';
   return 'monthly';
+}
+function chartWindow() {
+  const startMs = Date.parse(state.rangeStart + 'T00:00:00Z');
+  const endMs = Date.parse(state.rangeEnd + 'T00:00:00Z');
+  if (usesWeeklyTrendContext()) {
+    return {
+      startMs: startMs - (WEEKLY_TREND_PRESET_WEEKS - 1) * 7 * DAY,
+      endMs,
+      granularity: 'weekly',
+      isTrendContext: true
+    };
+  }
+  return { startMs, endMs, granularity: chartGranularity(), isTrendContext: false };
 }
 function setGranButton(g) {
   const allowed = allowedGranularities();
@@ -260,6 +278,18 @@ function applyBusinessSuiteSeriesOverrides(seriesMap = state.series, startIso = 
   }
 }
 
+function applyExactPeriodOverrides(seriesMap = state.series) {
+  for (const p of Object.keys(seriesMap || {})) {
+    for (const row of seriesMap[p] || []) {
+      const override = businessSuiteOverride(p, row.start, row.end);
+      if (!override) continue;
+      for (const [metric, value] of Object.entries(override.values || {})) {
+        if (Number.isFinite(Number(value))) row[metric] = Number(value);
+      }
+    }
+  }
+}
+
 // Quick-preset ranges. Each also picks a sensible chart grouping.
 function yesterdayLocalMidnightUtcMs() {
   const now = new Date();
@@ -295,7 +325,7 @@ function presetRange(name, asOfMs) {
   const last3MonthsStart = Date.UTC(lastMonth.getUTCFullYear(), lastMonth.getUTCMonth() - 2, 1);
   if (name === 'ytd-2026') return { start: '2026-01-01', end: iso(base), gran: 'monthly' };
   if (name === 'this-week') return { start: iso(thisWeekStart), end: iso(base), gran: 'daily' };
-  if (name === 'last-week') return { start: iso(thu - 6 * DAY), end: iso(thu), gran: 'daily' };
+  if (name === 'last-week') return { start: iso(thu - 6 * DAY), end: iso(thu), gran: 'weekly' };
   if (name === 'this-month') return { start: iso(monthFirst), end: iso(base), gran: 'daily' };
   if (name === 'last-month') return { start: iso(lastMonthStart), end: iso(lastMonthEnd), gran: 'weekly' };
   if (name === 'last-3-months') return { start: iso(last3MonthsStart), end: iso(lastMonthEnd), gran: 'weekly' };
@@ -839,10 +869,11 @@ async function load() {
 function buildSeries() {
   const startMs = Date.parse(state.rangeStart + 'T00:00:00Z');
   const endMs = Date.parse(state.rangeEnd + 'T00:00:00Z');
-  const chartGran = chartGranularity();
-  // Chart buckets within the range.
-  state.periods = periodsInRange(chartGran, startMs, endMs);
-  if (!state.periods.length && startMs <= endMs) state.periods = periodsInRange('daily', startMs, endMs);
+  const chart = chartWindow();
+  const chartGran = chart.granularity;
+  // Chart buckets may show context beyond the selected range, while totals stay on the selected range.
+  state.periods = periodsInRange(chartGran, chart.startMs, chart.endMs);
+  if (!state.periods.length && chart.startMs <= chart.endMs) state.periods = periodsInRange('daily', chart.startMs, chart.endMs);
   // Headline totals: exact picked dates, vs the equal-length window right before.
   const lenDays = Math.round((endMs - startMs) / DAY) + 1;
   const priorEndMs = startMs - DAY;
@@ -859,8 +890,13 @@ function buildSeries() {
     state.series[p] = bucket(state.data.metrics[p].daily, state.periods);
     state.priorSeries[p] = bucket(state.data.metrics[p].daily, state.priorPeriods);
   }
-  applyBusinessSuiteSeriesOverrides(state.series, state.rangeStart, state.rangeEnd);
-  applyBusinessSuiteSeriesOverrides(state.priorSeries, state.priorRange.start, state.priorRange.end);
+  if (chart.isTrendContext) {
+    applyExactPeriodOverrides(state.series);
+    applyExactPeriodOverrides(state.priorSeries);
+  } else {
+    applyBusinessSuiteSeriesOverrides(state.series, state.rangeStart, state.rangeEnd);
+    applyBusinessSuiteSeriesOverrides(state.priorSeries, state.priorRange.start, state.priorRange.end);
+  }
   state.curTotals = {}; state.priorTotals = {};
   for (const p of allPlatforms()) {
     state.curTotals[p] = applyBusinessSuiteOverride(p, sumRange(state.data.metrics[p], state.rangeStart, state.rangeEnd), state.rangeStart, state.rangeEnd);
@@ -872,7 +908,8 @@ function render() {
   buildSeries();
   updateMode();
   renderDataQuality();
-  const chartGran = chartGranularity();
+  const chart = chartWindow();
+  const chartGran = chart.granularity;
   const noun = GRAN_NOUN[chartGran];
   state.granularity = chartGran;
   setGranButton(chartGran);
@@ -890,7 +927,10 @@ function render() {
   const rLabel = rangeLabel(state.rangeStart, state.rangeEnd);
   const compareLabel = rangeLabel(state.priorRange.start, state.priorRange.end);
   $('#reportWeek').textContent = rLabel;
-  $('#periodNote').innerHTML = `Compared with <strong>${compareLabel}</strong> · charted by <strong>${noun}</strong>.`;
+  const chartNote = chart.isTrendContext
+    ? `graphs show the last <strong>${WEEKLY_TREND_PRESET_WEEKS}</strong> Friday-Thursday weeks`
+    : `charted by <strong>${noun}</strong>`;
+  $('#periodNote').innerHTML = `Compared with <strong>${compareLabel}</strong>; ${chartNote}.`;
 
   $('#postsTitle').textContent = `Posts per ${noun}`;
   $('#viewsTitle').textContent = `Views per ${noun}`;
