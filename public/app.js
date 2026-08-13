@@ -42,7 +42,7 @@ function savedTheme() {
   } catch (err) {
     // Ignore blocked storage.
   }
-  return 'light';
+  return 'dark';
 }
 
 function setTheme(theme, options = {}) {
