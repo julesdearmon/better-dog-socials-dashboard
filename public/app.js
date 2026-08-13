@@ -677,7 +677,13 @@ function deltaPct(curr, prev) {
 function deltaDirection(d) {
   if (d == null) return 'flat';
   if (!Number.isFinite(d)) return d > 0 ? 'up' : 'down';
+  if (Math.abs(d) < 0.000001) return 'flat';
   return d >= 0 ? 'up' : 'down';
+}
+function deltaSymbol(dir) {
+  if (dir === 'up') return '▲';
+  if (dir === 'down') return '▼';
+  return '•';
 }
 function formatDeltaPct(d, digits = 1) {
   if (d == null) return '';
@@ -689,7 +695,7 @@ function deltaHtml(curr, prev) {
   if (d == null) return `<span class="delta flat">— no prior period</span>`;
   const dir = deltaDirection(d);
   const label = Number.isFinite(d) ? `${formatDeltaPct(d)} vs prior period` : 'new vs prior period';
-  return `<span class="delta ${dir}">${dir === 'up' ? '▲' : '▼'} ${label}</span>`;
+  return `<span class="delta ${dir}">${deltaSymbol(dir)} ${label}</span>`;
 }
 function scrollToAnalysis() {
   const card = $('#overviewCard');
@@ -708,7 +714,7 @@ function miniDelta(curr, prev) {
   const d = deltaPct(curr, prev);
   if (d == null) return '<span class="mini flat">—</span>';
   const dir = deltaDirection(d);
-  return `<span class="mini ${dir}">${dir === 'up' ? '▲' : '▼'} ${formatDeltaPct(d, 0)}</span>`;
+  return `<span class="mini ${dir}">${deltaSymbol(dir)} ${formatDeltaPct(d, 0)}</span>`;
 }
 
 // ---------------------------------------------------------------------------
@@ -2040,7 +2046,7 @@ function periodDeltaText(d, noun) {
   if (d == null) return '';
   const dir = deltaDirection(d);
   const label = Number.isFinite(d) ? `${formatDeltaPct(d, 0)} vs prior ${noun}` : `new vs prior ${noun}`;
-  return `${dir === 'up' ? '▲' : '▼'} ${label}`;
+  return `${deltaSymbol(dir)} ${label}`;
 }
 
 function periodDeltaWords(d, noun) {
