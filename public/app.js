@@ -14,7 +14,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
 const GRAN_NOUN = { daily: 'day', weekly: 'week', monthly: 'month' };
 const GRAN_LABEL = { daily: 'Daily', weekly: 'Weekly', monthly: 'Monthly' };
-const THEME_KEY = 'betterDogDashboardThemeChoice';
+const THEME_KEY = 'betterDogDashboardThemeChoice.v2';
 const WEEKLY_TREND_PRESET_WEEKS = 6;
 
 const state = {
