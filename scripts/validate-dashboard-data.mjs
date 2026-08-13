@@ -137,6 +137,16 @@ for (const platform of requiredPlatforms) {
 
 if (config.sourceOfTruth !== 'supermetrics-chatgpt-codex-connector') problems.push('config sourceOfTruth is not the Supermetrics connector');
 if (config.standaloneSupermetricsRestApi?.enabled) problems.push('standalone Supermetrics REST API is enabled in config');
+const facebookConfig = config.platforms?.facebook || {};
+if (facebookConfig.viewsMetricId !== 'page_media_view') problems.push('facebook: views must use Page media views, not organic-only or page-visit fields');
+if (facebookConfig.paidViewsMetricId !== 'page_media_view_paid') problems.push('facebook: paid views must use Page media views paid');
+if (facebookConfig.reachMetricId !== 'page_total_media_view_unique') problems.push('facebook: reach/viewers must use Page media views unique');
+if (!/do not sum daily unique/i.test(String(facebookConfig.reachAggregationRule || ''))) {
+  problems.push('facebook: reach/viewers config must forbid summing daily unique rows');
+}
+if (!/day before the range/i.test(String(facebookConfig.newFollowersRule || ''))) {
+  problems.push('facebook: new followers must be derived from the day-before-start and range-end follower snapshots');
+}
 if (data.source !== 'live') problems.push('dashboard source is not live');
 if (!data.asOf) problems.push('missing asOf date');
 if (!data.updatedAt) problems.push('missing updatedAt timestamp');

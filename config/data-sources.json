@@ -51,8 +51,15 @@
         "reach",
         "posts"
       ],
-      "viewsMetric": "Page media views organic",
-      "reachMetric": "Page media views unique"
+      "viewsMetric": "Page media views",
+      "viewsMetricId": "page_media_view",
+      "paidViewsMetric": "Page media views paid",
+      "paidViewsMetricId": "page_media_view_paid",
+      "reachMetric": "Content viewers / Page media views unique",
+      "reachMetricId": "page_total_media_view_unique",
+      "reachAggregationRule": "Do not sum daily unique viewer rows for weekly or monthly totals. Use an exact Meta/Supermetrics range total when available, or a verified Meta Business Suite override.",
+      "newFollowersMetric": "Page followers",
+      "newFollowersRule": "Use net movement from follower snapshots: range end snapshot minus the snapshot from the day before the range starts."
     },
     "tiktok": {
       "provider": "supermetrics",
