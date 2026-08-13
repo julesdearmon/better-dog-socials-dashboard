@@ -547,6 +547,14 @@ const METRICS = [
 
 const CORE_METRIC_KEYS = ['views', 'posts'];
 
+function metricLabel(key, platform = null) {
+  if (platform === 'youtube') {
+    if (key === 'newFollowers') return 'New subscribers';
+    if (key === 'totalFollowers') return 'Total subscribers';
+  }
+  return METRICS.find((m) => m.key === key)?.label || key;
+}
+
 // Every platform that has data.
 function allPlatforms() {
   return Object.keys(state.data.metrics).filter((p) => {
@@ -982,8 +990,8 @@ function renderFocusedOverview(p, start, end, info) {
   const stats = [`<strong>${fmt(eng)}</strong> engagements${wordDelta(deltaPct(eng, engPrev))}`];
   if (v > 0) stats.push(`${(eng / v * 100).toFixed(1)}% engagement rate`);
   if (posts) stats.push(`${fmt(Math.round(avg))} avg views per post`);
-  if (newFollowers != null) stats.push(`${fmtFull(newFollowers)} new followers`);
-  if (totalFollowers != null) stats.push(`${fmtFull(totalFollowers)} total followers`);
+  if (newFollowers != null) stats.push(`${fmtFull(newFollowers)} ${metricLabel('newFollowers', p).toLowerCase()}`);
+  if (totalFollowers != null) stats.push(`${fmtFull(totalFollowers)} ${metricLabel('totalFollowers', p).toLowerCase()}`);
   if (best) stats.push(`best ${GRAN_NOUN[state.granularity]}: ${escapeHtml(best.label)} (${fmt(best.views)} views)`);
   html += `<p class="ov-reason">${stats.join(' · ')}.</p>`;
 
@@ -1083,8 +1091,8 @@ function renderOverview() {
     let s = parts.join(', ');
     if (x.r != null) s += `, ${fmt(x.r)} reach${wordDelta(x.dvReach)}`;
     if (x.watch != null) s += `, ${fmt(x.watch / 60)} hrs watch time${wordDelta(x.dvWatch)}`;
-    if (x.newFollowers != null) s += `, ${fmtFull(x.newFollowers)} new followers`;
-    if (x.totalFollowers != null) s += `, ${fmtFull(x.totalFollowers)} total followers`;
+    if (x.newFollowers != null) s += `, ${fmtFull(x.newFollowers)} ${metricLabel('newFollowers', x.p).toLowerCase()}`;
+    if (x.totalFollowers != null) s += `, ${fmtFull(x.totalFollowers)} ${metricLabel('totalFollowers', x.p).toLowerCase()}`;
     const top = x.top ? ` Top post: ${linkedTop(x.top)} (${fmt(x.top.views)} views).` : '';
     html += `<li><span class="ov-dot" style="background:${PLATFORM_COLORS[x.p] || '#888'}"></span>` +
       `<strong>${nameOf(x.p)}</strong> got ${s}.${top}</li>`;
@@ -1682,9 +1690,10 @@ function renderKpis() {
     const val = pendingOnly || (m.key === 'watchTime' && curr === 0) ? null : curr;
     const delta = m.showDelta === false ? '' : deltaHtmlWithHelp(curr, prev, m.key);
     const context = m.key === 'views' ? viewSourceNote(platforms()) : '';
+    const label = metricLabel(m.key, focusedPlatform());
     return `
       <div class="kpi">
-        <div class="label">${m.label}</div>
+        <div class="label">${escapeHtml(label)}</div>
         <div class="value">${m.fmt(val)}</div>
         <div>${pendingOnly ? '' : delta}</div>
         ${context ? `<div class="kpi-context">${escapeHtml(context)}</div>` : ''}
@@ -1713,11 +1722,11 @@ function renderPlatformCards() {
     const prv = state.priorTotals[p] || {};
     const followers = supports(p, 'totalFollowers') ? cur.totalFollowers : null;
     const mainValue = followers == null ? fmt(cur.views || 0) : fmtFull(followers);
-    const mainLabel = followers == null ? 'views selected range' : 'total followers';
+    const mainLabel = followers == null ? 'views selected range' : metricLabel('totalFollowers', p).toLowerCase();
     const stats = [];
     stats.push(metricStat('Views', cur.views || 0, prv.views || 0, fmt, viewSourceNote([p], { compact: true })));
     stats.push(metricStat('Posts', cur.posts || 0, prv.posts || 0, fmtFull));
-    if (supports(p, 'newFollowers')) stats.push(metricStat('New followers', cur.newFollowers, prv.newFollowers, fmtFull));
+    if (supports(p, 'newFollowers')) stats.push(metricStat(metricLabel('newFollowers', p), cur.newFollowers, prv.newFollowers, fmtFull));
     if (supports(p, 'reach')) stats.push(metricStat('Reach', cur.reach || 0, prv.reach || 0, fmt));
     if (supports(p, 'watchTime')) stats.push(metricStat('Watch time', cur.watchTime, prv.watchTime, (v) => fmt(v / 60) + ' hrs'));
     return `
@@ -1896,8 +1905,9 @@ function renderWatchChart() {
 function renderTable() {
   const ps = platforms();
   const metrics = visibleMetrics();
+  const focus = focusedPlatform();
   const pendingOnly = ps.length > 0 && ps.every(isPendingPlatform);
-  $('#weekTable thead').innerHTML = `<tr><th>Platform</th>${metrics.map((m) => `<th class="num">${escapeHtml(m.label)}</th>`).join('')}<th>Status</th></tr>`;
+  $('#weekTable thead').innerHTML = `<tr><th>Platform</th>${metrics.map((m) => `<th class="num">${escapeHtml(metricLabel(m.key, focus))}</th>`).join('')}<th>Status</th></tr>`;
   $('#weekTable tbody').innerHTML = ps.map((p) => {
     const cells = metrics.map((m) => {
       const curr = platformAt(p, m.key, 0);
@@ -2353,12 +2363,13 @@ function exportCsv() {
   const { client } = state.data;
   const noun = GRAN_NOUN[state.granularity];
   const ps = platforms();
+  const focus = focusedPlatform();
   const wow = (c, p) => (c != null && p ? (((c - p) / p) * 100).toFixed(1) + '%' : 'n/a');
   const lines = [];
   lines.push(`${csv(client.name)} — Social Report`);
   lines.push(`Range,${csv(state.rangeStart + ' to ' + state.rangeEnd)},vs prior,${csv(state.priorRange.start + ' to ' + state.priorRange.end)},Chart grouping,${noun}`);
   lines.push('');
-  lines.push(`Platform,Posts,Posts delta,Views,Views delta,New followers,New followers delta,Total followers,Reach,Reach delta,Watch time (min),Watch delta,Source`);
+  lines.push(`Platform,Posts,Posts delta,Views,Views delta,${metricLabel('newFollowers', focus)},${metricLabel('newFollowers', focus)} delta,${metricLabel('totalFollowers', focus)},Reach,Reach delta,Watch time (min),Watch delta,Source`);
   for (const p of ps) {
     const m = state.data.metrics[p];
     const c = (k) => platformAt(p, k, 0), pr = (k) => platformAt(p, k, 1);
@@ -2373,7 +2384,7 @@ function exportCsv() {
 
   lines.push('');
   lines.push(`History (per ${noun})`);
-  lines.push('Platform,Period,Posts,Views,New followers,Total followers,Reach,Watch time (min)');
+  lines.push(`Platform,Period,Posts,Views,${metricLabel('newFollowers', focus)},${metricLabel('totalFollowers', focus)},Reach,Watch time (min)`);
   for (const p of ps) {
     state.series[p].forEach((x) => {
       lines.push([p, csv(x.label), x.posts, x.views, x.newFollowers == null ? '' : x.newFollowers, x.totalFollowers == null ? '' : x.totalFollowers, x.reach, x.watchTime == null ? '' : x.watchTime].join(','));
