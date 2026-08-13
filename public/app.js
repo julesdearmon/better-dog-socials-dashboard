@@ -15,7 +15,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const GRAN_NOUN = { daily: 'day', weekly: 'week', monthly: 'month' };
 const GRAN_LABEL = { daily: 'Daily', weekly: 'Weekly', monthly: 'Monthly' };
 const THEME_KEY = 'betterDogDashboardThemeChoice.v2';
-const WEEKLY_TREND_PRESET_WEEKS = 6;
+const WEEKLY_TREND_START_ISO = '2026-01-01';
 
 const state = {
   clients: [], clientId: null,
@@ -108,7 +108,7 @@ function chartWindow() {
   const endMs = Date.parse(state.rangeEnd + 'T00:00:00Z');
   if (usesWeeklyTrendContext()) {
     return {
-      startMs: startMs - (WEEKLY_TREND_PRESET_WEEKS - 1) * 7 * DAY,
+      startMs: Date.parse(WEEKLY_TREND_START_ISO + 'T00:00:00Z'),
       endMs,
       granularity: 'weekly',
       isTrendContext: true
@@ -666,12 +666,30 @@ function platformAt(p, metricKey, fromEnd) {
   const t = (fromEnd === 0 ? state.curTotals : state.priorTotals)[p];
   return t ? t[metricKey] : null;
 }
-function deltaPct(curr, prev) { return curr != null && prev ? (curr - prev) / prev : null; }
+function deltaPct(curr, prev) {
+  if (curr == null || prev == null) return null;
+  const c = Number(curr);
+  const p = Number(prev);
+  if (!Number.isFinite(c) || !Number.isFinite(p)) return null;
+  if (p === 0) return c === 0 ? 0 : (c > 0 ? Infinity : -Infinity);
+  return (c - p) / p;
+}
+function deltaDirection(d) {
+  if (d == null) return 'flat';
+  if (!Number.isFinite(d)) return d > 0 ? 'up' : 'down';
+  return d >= 0 ? 'up' : 'down';
+}
+function formatDeltaPct(d, digits = 1) {
+  if (d == null) return '';
+  if (!Number.isFinite(d)) return 'new';
+  return `${(Math.abs(d) * 100).toFixed(digits)}%`;
+}
 function deltaHtml(curr, prev) {
   const d = deltaPct(curr, prev);
   if (d == null) return `<span class="delta flat">— no prior period</span>`;
-  const up = d >= 0;
-  return `<span class="delta ${up ? 'up' : 'down'}">${up ? '▲' : '▼'} ${(Math.abs(d) * 100).toFixed(1)}% vs prior period</span>`;
+  const dir = deltaDirection(d);
+  const label = Number.isFinite(d) ? `${formatDeltaPct(d)} vs prior period` : 'new vs prior period';
+  return `<span class="delta ${dir}">${dir === 'up' ? '▲' : '▼'} ${label}</span>`;
 }
 function scrollToAnalysis() {
   const card = $('#overviewCard');
@@ -689,8 +707,8 @@ function deltaHtmlWithHelp(curr, prev, metricKey) {
 function miniDelta(curr, prev) {
   const d = deltaPct(curr, prev);
   if (d == null) return '<span class="mini flat">—</span>';
-  const up = d >= 0;
-  return `<span class="mini ${up ? 'up' : 'down'}">${up ? '▲' : '▼'} ${(Math.abs(d) * 100).toFixed(0)}%</span>`;
+  const dir = deltaDirection(d);
+  return `<span class="mini ${dir}">${dir === 'up' ? '▲' : '▼'} ${formatDeltaPct(d, 0)}</span>`;
 }
 
 // ---------------------------------------------------------------------------
@@ -928,7 +946,7 @@ function render() {
   const compareLabel = rangeLabel(state.priorRange.start, state.priorRange.end);
   $('#reportWeek').textContent = rLabel;
   const chartNote = chart.isTrendContext
-    ? `graphs show the last <strong>${WEEKLY_TREND_PRESET_WEEKS}</strong> Friday-Thursday weeks`
+    ? `graphs show <strong>2026 weekly history</strong> through the selected week`
     : `charted by <strong>${noun}</strong>`;
   $('#periodNote').innerHTML = `Compared with <strong>${compareLabel}</strong>; ${chartNote}.`;
 
@@ -955,8 +973,9 @@ function render() {
 // API data — no invented commentary. Wording adapts to week / month / custom range.
 function wordDelta(d) {
   if (d == null) return '';
-  const up = d >= 0;
-  return ` <span class="ov-delta ${up ? 'up' : 'down'}">(${up ? 'up' : 'down'} ${(Math.abs(d) * 100).toFixed(0)}%)</span>`;
+  const dir = deltaDirection(d);
+  const text = Number.isFinite(d) ? `${dir} ${formatDeltaPct(d, 0)}` : 'new vs prior';
+  return ` <span class="ov-delta ${dir}">(${text})</span>`;
 }
 function shortTitle(c) {
   const t = c && c.title && c.title.trim() ? c.title : (c ? `${capWord(c.platform)} post` : '');
@@ -1145,6 +1164,7 @@ function renderOverview() {
 
 function analysisDeltaWords(d) {
   if (d == null) return 'no prior comparison';
+  if (!Number.isFinite(d)) return 'new vs prior';
   if (Math.abs(d) < 0.015) return 'about flat';
   const pct = (Math.abs(d) * 100).toFixed(Math.abs(d) < 0.1 ? 1 : 0);
   return `${d > 0 ? 'up' : 'down'} ${pct}%`;
@@ -1152,6 +1172,7 @@ function analysisDeltaWords(d) {
 
 function analysisDeltaHtml(d) {
   if (d == null) return '<span class="ov-delta flat">(no prior)</span>';
+  if (!Number.isFinite(d)) return '<span class="ov-delta up">(new vs prior)</span>';
   if (Math.abs(d) < 0.015) return '<span class="ov-delta flat">(flat)</span>';
   return `<span class="ov-delta ${d > 0 ? 'up' : 'down'}">(${analysisDeltaWords(d)})</span>`;
 }
@@ -1336,6 +1357,7 @@ function analysisBulletListHtml(items) {
 
 function movementWord(n) {
   if (n == null) return 'had no prior period to compare against';
+  if (!Number.isFinite(n)) return 'started from zero';
   if (Math.abs(n) < 0.015) return 'were flat';
   return `were ${analysisDeltaWords(n)}`;
 }
@@ -2014,14 +2036,27 @@ function movementDirection(windowDelta, factor) {
   return 'flat';
 }
 
+function periodDeltaText(d, noun) {
+  if (d == null) return '';
+  const dir = deltaDirection(d);
+  const label = Number.isFinite(d) ? `${formatDeltaPct(d, 0)} vs prior ${noun}` : `new vs prior ${noun}`;
+  return `${dir === 'up' ? '▲' : '▼'} ${label}`;
+}
+
+function periodDeltaWords(d, noun) {
+  if (d == null) return '';
+  const dir = deltaDirection(d);
+  return Number.isFinite(d) ? `${dir} ${formatDeltaPct(d, 0)} vs prior ${noun}` : `new vs prior ${noun}`;
+}
+
 function fmtAdMinutes(minutes) {
   return `${fmt(minutes / 60)} hrs`;
 }
 
 function deltaWords(curr, prev) {
-  if (!prev && !curr) return '';
-  if (!prev && curr) return 'new vs prior period';
-  const d = (curr - prev) / prev;
+  const d = deltaPct(curr, prev);
+  if (d == null) return '';
+  if (!Number.isFinite(d)) return 'new vs prior period';
   if (Math.abs(d) < 0.05) return 'about flat vs prior period';
   return `${d > 0 ? 'up' : 'down'} ${(Math.abs(d) * 100).toFixed(0)}% vs prior period`;
 }
@@ -2183,7 +2218,7 @@ function buildInsight(platform, metricKey, idx) {
   const avg = others.length ? others.reduce((a, b) => a + b, 0) / others.length : 0;
   const factor = avg > 0 ? value / avg : null;
   const prev = idx > 0 ? vals[idx - 1] : null;
-  const wow = (prev != null && prev !== 0) ? (value - prev) / prev : null;
+  const wow = deltaPct(value, prev);
   const isPeak = value > 0 && value === Math.max(...vals);
   const movement = movementText(wow, factor);
 
@@ -2203,9 +2238,10 @@ function buildInsight(platform, metricKey, idx) {
   if (badge) html += ` <span class="spike-badge ${badgeCls}">${badge}</span>`;
   html += `</div>`;
   const wowBits = [];
-  if (wow != null) wowBits.push(`${wow >= 0 ? '▲' : '▼'} ${(Math.abs(wow) * 100).toFixed(0)}% vs prior ${noun}`);
+  const wowText = periodDeltaText(wow, noun);
+  if (wowText) wowBits.push(wowText);
   if (isPeak) wowBits.push('highest in the current view');
-  html += `<p class="insight-sub">This point reads as a <strong>${escapeHtml(movement)}</strong>${wow != null ? ` (${wow >= 0 ? 'up' : 'down'} ${(Math.abs(wow) * 100).toFixed(0)}% vs prior ${noun})` : ''}.</p>`;
+  html += `<p class="insight-sub">This point reads as a <strong>${escapeHtml(movement)}</strong>${wowText ? ` (${escapeHtml(periodDeltaWords(wow, noun))})` : ''}.</p>`;
   html += adContextHtml(scopePlatforms, metricKey, idx, movement);
   if (wowBits.length) html += `<div class="insight-wow">${wowBits.join(' · ')}</div>`;
 
@@ -2278,7 +2314,7 @@ function buildInsightV2(platform, metricKey, idx) {
   const factor = avg > 0 ? value / avg : null;
   const prevWindow = priorWindow(period);
   const priorValue = scopedFieldTotal(scopePlatforms, prevWindow.start, prevWindow.end, metricKey);
-  const windowDelta = priorValue ? (value - priorValue) / priorValue : null;
+  const windowDelta = deltaPct(value, priorValue);
   const direction = movementDirection(windowDelta, factor);
   const isPeak = value > 0 && value === Math.max(...vals);
   const scopeLabel = platform === 'total' ? 'All platforms' : nameOf(platform);
@@ -2404,7 +2440,12 @@ function exportCsv() {
   const noun = GRAN_NOUN[state.granularity];
   const ps = platforms();
   const focus = focusedPlatform();
-  const wow = (c, p) => (c != null && p ? (((c - p) / p) * 100).toFixed(1) + '%' : 'n/a');
+  const wow = (c, p) => {
+    const d = deltaPct(c, p);
+    if (d == null) return 'n/a';
+    if (!Number.isFinite(d)) return 'new vs prior';
+    return (d * 100).toFixed(1) + '%';
+  };
   const lines = [];
   lines.push(`${csv(client.name)} — Social Report`);
   lines.push(`Range,${csv(state.rangeStart + ' to ' + state.rangeEnd)},vs prior,${csv(state.priorRange.start + ' to ' + state.priorRange.end)},Chart grouping,${noun}`);
