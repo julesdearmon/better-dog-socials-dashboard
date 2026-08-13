@@ -8844,7 +8844,7 @@ window.REAL_DATA = {
         },
         {
           "date": "2026-08-05",
-          "posts": 0,
+          "posts": 1,
           "views": 135,
           "reach": 0,
           "watchTime": 124,
@@ -14195,6 +14195,13 @@ window.REAL_DATA = {
   ],
   "followersDataNote": "Follower growth uses daily Supermetrics fields where available. Total followers use verified Supermetrics profile/channel snapshots, with delayed daily rows marked pending.",
   "supplementalSources": [
+    {
+      "key": "youtube-community-post-verification-2026-07-31-2026-08-06",
+      "platform": "youtube",
+      "source": "YouTube channel Posts tab verification supplementing Supermetrics LatestVideos",
+      "posts": 1,
+      "note": "Verified one Better Dog Community post published Aug 5; completed-week YouTube Posts total is 5 including videos, Shorts, and Community posts."
+    },
     {
       "key": "youtube-post-verification-2026-08-07-2026-08-11",
       "platform": "youtube",
