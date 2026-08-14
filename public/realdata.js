@@ -5,10 +5,10 @@ window.REAL_DATA = {
     "name": "Better Dog Supplements",
     "color": "#88cc33"
   },
-  "asOf": "2026-08-12",
-  "updatedAt": "Aug 13, 2026, 8:59 AM",
+  "asOf": "2026-08-13",
+  "updatedAt": "Aug 14, 2026, 9:45 AM",
   "source": "live",
-  "generatedFrom": "Supermetrics connector (instagram, facebook, tiktok Organic, youtube; refreshed through previous complete day Aug 12; TikTok Aug 12 and YouTube Aug 10-Aug 12 daily performance delayed/pending; no Aug 13 partial data included)",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube) through Aug 13, 2026; TikTok Aug 13 and YouTube Aug 12-Aug 13 daily performance pending; YouTube uploads and Community posts verified on the public channel.",
   "directApiErrors": [],
   "rangeOverrides": [
     {
@@ -1282,20 +1282,24 @@ window.REAL_DATA = {
       "platform": "instagram",
       "start": "2026-07-24",
       "end": "2026-07-30",
-      "source": "Supermetrics exact range total",
+      "source": "Supermetrics exact guarded previous completed-week total",
       "values": {
-        "views": 80983,
-        "reach": 18165
+        "views": 80984,
+        "reach": 18165,
+        "newFollowers": 121,
+        "totalFollowers": 3165
       }
     },
     {
       "platform": "tiktok",
       "start": "2026-07-24",
       "end": "2026-07-30",
-      "source": "Supermetrics exact guarded profile range total",
+      "source": "Supermetrics guarded previous completed-week profile range; follower gain uses snapshot delta",
       "values": {
         "views": 107107,
-        "reach": 102261
+        "reach": 102261,
+        "newFollowers": 539,
+        "totalFollowers": 2982
       },
       "sourceUsername": "betterdogsupplements"
     },
@@ -1303,13 +1307,14 @@ window.REAL_DATA = {
       "platform": "youtube",
       "start": "2026-07-24",
       "end": "2026-07-30",
-      "source": "Supermetrics exact ChannelTotals and TrafficSources",
+      "source": "Supermetrics exact ChannelTotals and TrafficSources range",
       "values": {
-        "views": 2229,
-        "watchTime": 1562,
-        "adViews": 625,
-        "adWatchTime": 627,
-        "newFollowers": 70
+        "views": 2228,
+        "watchTime": 1560,
+        "adViews": 624,
+        "adWatchTime": 626,
+        "newFollowers": 59,
+        "totalFollowers": 1378
       }
     },
     {
@@ -1747,7 +1752,7 @@ window.REAL_DATA = {
       "platform": "instagram",
       "start": "2026-07-31",
       "end": "2026-08-06",
-      "source": "Supermetrics exact guarded Friday-Thursday range total",
+      "source": "Supermetrics exact guarded completed-week total",
       "values": {
         "views": 160243,
         "reach": 23810,
@@ -1759,11 +1764,11 @@ window.REAL_DATA = {
       "platform": "tiktok",
       "start": "2026-07-31",
       "end": "2026-08-06",
-      "source": "Supermetrics guarded TikTok Organic Friday-Thursday profile range",
+      "source": "Supermetrics guarded completed-week profile range; follower gain uses snapshot delta",
       "values": {
         "views": 86002,
         "reach": 60132,
-        "newFollowers": 168,
+        "newFollowers": 331,
         "totalFollowers": 3313
       },
       "sourceUsername": "betterdogsupplements"
@@ -1772,7 +1777,7 @@ window.REAL_DATA = {
       "platform": "youtube",
       "start": "2026-07-31",
       "end": "2026-08-06",
-      "source": "Supermetrics exact Friday-Thursday ChannelTotals and TrafficSources range",
+      "source": "Supermetrics exact ChannelTotals and TrafficSources range; includes five verified publishing activities with one Community post",
       "values": {
         "views": 1757,
         "watchTime": 1175,
@@ -2525,11 +2530,11 @@ window.REAL_DATA = {
       "platform": "tiktok",
       "start": "2026-08-01",
       "end": "2026-08-06",
-      "source": "Supermetrics guarded TikTok Organic profile range",
+      "source": "Supermetrics guarded TikTok Organic profile range; follower gain uses snapshot delta",
       "values": {
         "views": 69635,
         "reach": 44381,
-        "newFollowers": 168,
+        "newFollowers": 242,
         "totalFollowers": 3313
       },
       "sourceUsername": "betterdogsupplements"
@@ -2600,6 +2605,163 @@ window.REAL_DATA = {
         "totalFollowers": 1460
       },
       "seriesDistribute": false
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-08-13",
+      "end": "2026-08-13",
+      "source": "Supermetrics exact guarded daily row",
+      "values": {
+        "views": 20086,
+        "reach": 11839,
+        "newFollowers": 0,
+        "totalFollowers": 3381
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-08-13",
+      "end": "2026-08-13",
+      "source": "Supermetrics exact guarded daily row; organic media views",
+      "values": {
+        "views": 411,
+        "reach": 125,
+        "paidViews": 0,
+        "newFollowers": 7,
+        "totalFollowers": 1090
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-08-13",
+      "end": "2026-08-13",
+      "source": "Supermetrics guarded TikTok Organic profile row; daily performance delayed/pending",
+      "sourceUsername": "betterdogsupplements",
+      "values": {
+        "views": 0,
+        "reach": 0,
+        "newFollowers": 0,
+        "totalFollowers": 3484
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-08-13",
+      "end": "2026-08-13",
+      "source": "Supermetrics ChannelTotals/TrafficSources pending for daily performance; public Short and Community post verified",
+      "values": {
+        "views": 0,
+        "watchTime": 0,
+        "adViews": 0,
+        "adWatchTime": 0,
+        "newFollowers": 0,
+        "totalFollowers": 1470
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-08-07",
+      "end": "2026-08-13",
+      "source": "Supermetrics exact guarded range total",
+      "values": {
+        "views": 173118,
+        "reach": 35159,
+        "newFollowers": 104,
+        "totalFollowers": 3381
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-08-07",
+      "end": "2026-08-13",
+      "source": "Supermetrics exact organic range total; reach uses guarded daily unique media-view rows",
+      "values": {
+        "views": 2920,
+        "reach": 1102,
+        "paidViews": 0,
+        "newFollowers": 76,
+        "totalFollowers": 1090
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-08-07",
+      "end": "2026-08-13",
+      "source": "Supermetrics guarded TikTok Organic profile range; Aug 13 performance delayed/pending; follower gain uses snapshot delta through Aug 12",
+      "sourceUsername": "betterdogsupplements",
+      "values": {
+        "views": 58292,
+        "reach": 0,
+        "newFollowers": 150,
+        "totalFollowers": 3484
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-08-07",
+      "end": "2026-08-13",
+      "source": "Supermetrics exact ChannelTotals and TrafficSources range; Aug 12-Aug 13 daily rows pending/backfill",
+      "values": {
+        "views": 2425,
+        "watchTime": 1106,
+        "adViews": 84,
+        "adWatchTime": 96,
+        "newFollowers": 40,
+        "totalFollowers": 1470
+      }
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-01-01",
+      "end": "2026-08-13",
+      "source": "Supermetrics exact YTD total; new followers omitted because Instagram supports that metric only for the last 30 days",
+      "seriesDistribute": false,
+      "values": {
+        "views": 3243004,
+        "reach": 46529,
+        "totalFollowers": 3381
+      }
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-01-01",
+      "end": "2026-08-13",
+      "source": "Supermetrics exact YTD organic and paid media-view totals; reach uses guarded daily-row sum because exact YTD deduped reach is unavailable",
+      "seriesDistribute": false,
+      "values": {
+        "views": 50671,
+        "reach": 130789,
+        "paidViews": 173047,
+        "totalFollowers": 1090
+      }
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-01-01",
+      "end": "2026-08-13",
+      "source": "Supermetrics TikTok Organic exact range currently available from Jun 15, 2026 through Aug 13, 2026",
+      "sourceUsername": "betterdogsupplements",
+      "seriesDistribute": false,
+      "values": {
+        "views": 885734,
+        "reach": 772681,
+        "totalFollowers": 3484
+      }
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-01-01",
+      "end": "2026-08-13",
+      "source": "Supermetrics exact YTD ChannelTotals and TrafficSources range",
+      "seriesDistribute": false,
+      "values": {
+        "views": 174210,
+        "watchTime": 86435,
+        "adViews": 88481,
+        "adWatchTime": 58178,
+        "newFollowers": 1328,
+        "totalFollowers": 1470
+      }
     }
   ],
   "metrics": {
@@ -2610,7 +2772,7 @@ window.REAL_DATA = {
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "asOf": "2026-08-12",
+      "asOf": "2026-08-13",
       "daily": [
         {
           "date": "2026-01-01",
@@ -4384,7 +4546,7 @@ window.REAL_DATA = {
         {
           "date": "2026-08-10",
           "posts": 1,
-          "views": 59923,
+          "views": 59925,
           "reach": 9488,
           "watchTime": 0,
           "newFollowers": 22,
@@ -4393,25 +4555,34 @@ window.REAL_DATA = {
         {
           "date": "2026-08-11",
           "posts": 2,
-          "views": 30356,
+          "views": 30369,
           "reach": 9840,
           "watchTime": 0,
-          "newFollowers": 0,
+          "newFollowers": 17,
           "totalFollowers": 3361
         },
         {
           "date": "2026-08-12",
           "posts": 2,
-          "views": 16281,
+          "views": 16292,
           "reach": 7349,
           "watchTime": 0,
-          "newFollowers": 0,
+          "newFollowers": 12,
           "totalFollowers": 3364
+        },
+        {
+          "date": "2026-08-13",
+          "posts": 2,
+          "views": 20086,
+          "reach": 11839,
+          "watchTime": 0,
+          "newFollowers": 0,
+          "totalFollowers": 3381
         }
       ],
       "hasFollowers": true,
-      "totalFollowers": 3364,
-      "followersAsOf": "2026-08-12",
+      "totalFollowers": 3381,
+      "followersAsOf": "2026-08-13",
       "followersNote": "Total followers from Supermetrics profile followers snapshot; new followers from daily Instagram Insights rows.",
       "hasNewFollowers": true,
       "sourceAccount": {
@@ -4428,7 +4599,7 @@ window.REAL_DATA = {
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "asOf": "2026-08-12",
+      "asOf": "2026-08-13",
       "daily": [
         {
           "date": "2026-01-01",
@@ -6555,7 +6726,7 @@ window.REAL_DATA = {
           "watchTime": 0,
           "newFollowers": 12,
           "paidViews": 0,
-          "totalFollowers": 1027
+          "totalFollowers": 1026
         },
         {
           "date": "2026-08-08",
@@ -6565,7 +6736,7 @@ window.REAL_DATA = {
           "watchTime": 0,
           "paidViews": 0,
           "newFollowers": 13,
-          "totalFollowers": 1040
+          "totalFollowers": 1039
         },
         {
           "date": "2026-08-09",
@@ -6575,7 +6746,7 @@ window.REAL_DATA = {
           "watchTime": 0,
           "paidViews": 0,
           "newFollowers": 4,
-          "totalFollowers": 1044
+          "totalFollowers": 1043
         },
         {
           "date": "2026-08-10",
@@ -6585,7 +6756,7 @@ window.REAL_DATA = {
           "watchTime": 0,
           "paidViews": 0,
           "newFollowers": 14,
-          "totalFollowers": 1058
+          "totalFollowers": 1057
         },
         {
           "date": "2026-08-11",
@@ -6595,24 +6766,34 @@ window.REAL_DATA = {
           "watchTime": 0,
           "paidViews": 0,
           "newFollowers": 13,
-          "totalFollowers": 1071
+          "totalFollowers": 1070
         },
         {
           "date": "2026-08-12",
           "posts": 2,
-          "views": 573,
-          "reach": 310,
+          "views": 574,
+          "reach": 312,
           "watchTime": 0,
           "paidViews": 0,
-          "newFollowers": 12,
+          "newFollowers": 13,
           "totalFollowers": 1083
+        },
+        {
+          "date": "2026-08-13",
+          "posts": 1,
+          "views": 411,
+          "reach": 125,
+          "watchTime": 0,
+          "paidViews": 0,
+          "newFollowers": 7,
+          "totalFollowers": 1090
         }
       ],
       "reachLabel": "Page media views unique",
       "reachNote": "Facebook reach uses daily unique page media views from Supermetrics.",
       "hasFollowers": true,
-      "totalFollowers": 1083,
-      "followersAsOf": "2026-08-12",
+      "totalFollowers": 1090,
+      "followersAsOf": "2026-08-13",
       "followersNote": "Total followers and daily follower growth from Supermetrics Facebook Insights.",
       "viewsLabel": "Organic views",
       "viewsNote": "Facebook views are organic page media views only and do not include paid views.",
@@ -6631,7 +6812,7 @@ window.REAL_DATA = {
       "provider": "supermetrics",
       "hasWatchTime": true,
       "hasReach": false,
-      "asOf": "2026-08-12",
+      "asOf": "2026-08-13",
       "daily": [
         {
           "date": "2026-01-01",
@@ -8908,37 +9089,50 @@ window.REAL_DATA = {
         {
           "date": "2026-08-10",
           "posts": 0,
-          "views": 0,
+          "views": 408,
           "reach": 0,
-          "watchTime": 0,
-          "newFollowers": 0,
-          "totalFollowers": 1450,
+          "watchTime": 222,
+          "newFollowers": 14,
+          "totalFollowers": 1470,
           "adViews": 0,
           "adWatchTime": 0,
-          "performancePending": true,
-          "postMetricsPending": true
+          "performancePending": false,
+          "postMetricsPending": false
         },
         {
           "date": "2026-08-11",
           "posts": 1,
+          "views": 549,
+          "reach": 0,
+          "watchTime": 305,
+          "newFollowers": 10,
+          "totalFollowers": 1470,
+          "adViews": 0,
+          "adWatchTime": 0,
+          "performancePending": false,
+          "postMetricsPending": false
+        },
+        {
+          "date": "2026-08-12",
+          "posts": 2,
           "views": 0,
           "reach": 0,
           "watchTime": 0,
           "newFollowers": 0,
-          "totalFollowers": 1450,
+          "totalFollowers": 1470,
           "adViews": 0,
           "adWatchTime": 0,
           "performancePending": true,
           "postMetricsPending": true
         },
         {
-          "date": "2026-08-12",
-          "posts": 0,
+          "date": "2026-08-13",
+          "posts": 2,
           "views": 0,
           "reach": 0,
           "watchTime": 0,
           "newFollowers": 0,
-          "totalFollowers": 1460,
+          "totalFollowers": 1470,
           "adViews": 0,
           "adWatchTime": 0,
           "performancePending": true,
@@ -8947,14 +9141,14 @@ window.REAL_DATA = {
       ],
       "reachUnavailableReason": "YouTube reach/unique viewers is not available in the current Supermetrics connector.",
       "hasFollowers": true,
-      "totalFollowers": 1460,
-      "followersAsOf": "2026-08-12",
+      "totalFollowers": 1470,
+      "followersAsOf": "2026-08-13",
       "followersNote": "Total subscribers from Supermetrics ChannelTotals snapshot; daily gained/lost subscribers from ChannelTotals.",
       "hasNewFollowers": true,
       "adTrafficNote": "YouTube ad traffic is tracked from Supermetrics Traffic source type = ADVERTISING.",
       "postSupplementNote": "YouTube post counts are verified against the public channel feed when LatestVideos lags.",
-      "performanceAsOf": "2026-08-09",
-      "dataAvailabilityNote": "YouTube daily performance is backfilled through Aug 9; Aug 10-Aug 12 are marked pending when daily ChannelTotals has no rows.",
+      "performanceAsOf": "2026-08-11",
+      "dataAvailabilityNote": "YouTube daily performance is backfilled through Aug 11; Aug 12-Aug 13 are pending. Public channel verification confirms one Short and one Community post on each pending day.",
       "sourceAccount": {
         "dsId": "YT2",
         "accountId": "UC9rUabwMqe2C98J2l1NDz2g",
@@ -8970,7 +9164,7 @@ window.REAL_DATA = {
       "hasWatchTime": false,
       "hasReach": true,
       "hasTopContent": true,
-      "asOf": "2026-08-12",
+      "asOf": "2026-08-13",
       "daily": [
         {
           "date": "2026-05-08",
@@ -10057,24 +10251,35 @@ window.REAL_DATA = {
         {
           "date": "2026-08-11",
           "posts": 5,
-          "views": 0,
+          "views": 8274,
           "reach": 0,
           "watchTime": 0,
-          "newFollowers": 52,
+          "newFollowers": 36,
           "profileViews": 0,
-          "totalFollowers": 3450,
+          "totalFollowers": 3434,
           "sourceUsername": "betterdogsupplements",
-          "performancePending": true
+          "performancePending": false
         },
         {
           "date": "2026-08-12",
           "posts": 5,
+          "views": 8846,
+          "reach": 0,
+          "watchTime": 0,
+          "newFollowers": 29,
+          "profileViews": 0,
+          "totalFollowers": 3463,
+          "sourceUsername": "betterdogsupplements",
+          "performancePending": false
+        },
+        {
+          "date": "2026-08-13",
+          "posts": 5,
           "views": 0,
           "reach": 0,
           "watchTime": 0,
-          "newFollowers": 18,
-          "profileViews": 0,
-          "totalFollowers": 3468,
+          "newFollowers": 0,
+          "totalFollowers": 3484,
           "sourceUsername": "betterdogsupplements",
           "performancePending": true
         }
@@ -10082,10 +10287,10 @@ window.REAL_DATA = {
       "reachLabel": "Reached audience",
       "postProvider": "supermetrics-tiktok-organic-video-ids",
       "hasFollowers": true,
-      "totalFollowers": 3468,
-      "followersAsOf": "2026-08-12",
-      "followersNote": "Total followers from Supermetrics TikTok Organic current followers; daily growth normalized from follower snapshots.",
-      "historyStart": "2026-06-03",
+      "totalFollowers": 3484,
+      "followersAsOf": "2026-08-13",
+      "followersNote": "Total followers from Supermetrics TikTok Organic current-followers snapshot; daily growth normalized from profile new-followers snapshot deltas, with delayed zero rows ignored.",
+      "historyStart": "2026-06-15",
       "hasNewFollowers": true,
       "postDefinition": "Published TikTok Organic videos for @betterdogsupplements.",
       "postCountNote": "Post counts come from filtered TikTok Organic video IDs for @betterdogsupplements.",
@@ -10883,18 +11088,6 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-05-28",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7645127973598760205",
-      "title": "The skin is one of the first places the body shows that something is off. Skin Magic supports healthy skin from the inside.",
-      "type": "Short Form Clip",
-      "views": 325530,
-      "reach": 180000,
-      "eng": 0,
-      "sourceId": "7645127973598760205",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-05-28",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7645123612956970253",
       "title": "Some environments put real stress on a dog body. Allergy Balance supports a healthy immune response.",
       "type": "Short Form Clip",
@@ -10902,6 +11095,18 @@ window.REAL_DATA = {
       "reach": 1410,
       "eng": 0,
       "sourceId": "7645123612956970253",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-05-28",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7645127973598760205",
+      "title": "The skin is one of the first places the body shows that something is off. Skin Magic supports healthy skin from the inside.",
+      "type": "Short Form Clip",
+      "views": 325530,
+      "reach": 180000,
+      "eng": 0,
+      "sourceId": "7645127973598760205",
       "sourceUsername": "betterdogsupplements"
     },
     {
@@ -11558,13 +11763,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-06-18",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7652630734280150302",
-      "title": "Your dog is paying attention to what you practice every day. Calm energy and clear direction help your dog settle.",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7649427050683452703",
+      "title": "A puppy immune system gets stronger as they explore the world. Puppy Defense supports immune function and gut balance.",
       "type": "Short Form Clip",
-      "views": 9633,
-      "reach": 8728,
+      "views": 3305,
+      "reach": 3015,
       "eng": 0,
-      "sourceId": "7652630734280150302",
+      "sourceId": "7649427050683452703",
       "sourceUsername": "betterdogsupplements"
     },
     {
@@ -11582,13 +11787,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-06-18",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7649427050683452703",
-      "title": "A puppy immune system gets stronger as they explore the world. Puppy Defense supports immune function and gut balance.",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7652630734280150302",
+      "title": "Your dog is paying attention to what you practice every day. Calm energy and clear direction help your dog settle.",
       "type": "Short Form Clip",
-      "views": 3305,
-      "reach": 3015,
+      "views": 9633,
+      "reach": 8728,
       "eng": 0,
-      "sourceId": "7649427050683452703",
+      "sourceId": "7652630734280150302",
       "sourceUsername": "betterdogsupplements"
     },
     {
@@ -11958,42 +12163,6 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-07-01",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657257539117108510",
-      "title": "Mealtime with a high-energy dog like Zeus takes a specific approach. Here is how Cesar manages it.",
-      "type": "Short Form Clip",
-      "views": 1043,
-      "reach": 64,
-      "eng": 0,
-      "sourceId": "7657257539117108510",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-01",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256658036378911",
-      "title": "Zeus has a lot of energy, especially at mealtime. Cesar shows how he handles it.",
-      "type": "Short Form Clip",
-      "views": 510,
-      "reach": 249,
-      "eng": 0,
-      "sourceId": "7657256658036378911",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-01",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657257701499604255",
-      "title": "Feeding a high-energy dog the right way takes more than just putting food down.",
-      "type": "Short Form Clip",
-      "views": 431,
-      "reach": 36,
-      "eng": 0,
-      "sourceId": "7657257701499604255",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-01",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256317395930398",
       "title": "Cesar walks through a few Better Dog Supplements he relies on at the ranch.",
       "type": "Short Form Clip",
@@ -12016,6 +12185,42 @@ window.REAL_DATA = {
       "sourceUsername": "betterdogsupplements"
     },
     {
+      "platform": "tiktok",
+      "date": "2026-07-01",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657256658036378911",
+      "title": "Zeus has a lot of energy, especially at mealtime. Cesar shows how he handles it.",
+      "type": "Short Form Clip",
+      "views": 510,
+      "reach": 249,
+      "eng": 0,
+      "sourceId": "7657256658036378911",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-01",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657257539117108510",
+      "title": "Mealtime with a high-energy dog like Zeus takes a specific approach. Here is how Cesar manages it.",
+      "type": "Short Form Clip",
+      "views": 1043,
+      "reach": 64,
+      "eng": 0,
+      "sourceId": "7657257539117108510",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-01",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7657257701499604255",
+      "title": "Feeding a high-energy dog the right way takes more than just putting food down.",
+      "type": "Short Form Clip",
+      "views": 431,
+      "reach": 36,
+      "eng": 0,
+      "sourceId": "7657257701499604255",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
       "platform": "facebook",
       "date": "2026-07-02",
       "url": "https://www.facebook.com/674626722402999_122180272652906904",
@@ -12034,42 +12239,6 @@ window.REAL_DATA = {
       "views": 1144,
       "reach": 1043,
       "eng": 84
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-02",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658041583962541343",
-      "title": "The skin can reflect what is going on inside the body. Skin Magic supports healthy skin.",
-      "type": "Short Form Clip",
-      "views": 1389,
-      "reach": 1005,
-      "eng": 14,
-      "sourceId": "7658041583962541343",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-02",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658040941864930590",
-      "title": "Dogs reflect the energy we bring. Calm Confidence supports relaxation, clarity, and emotional balance.",
-      "type": "Short Form Clip",
-      "views": 1229,
-      "reach": 1023,
-      "eng": 95,
-      "sourceId": "7658040941864930590",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-02",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658041215278992671",
-      "title": "When a dog belly is not right, their whole body feels it. Happy Go-Lucky Belly supports digestive balance.",
-      "type": "Short Form Clip",
-      "views": 1074,
-      "reach": 946,
-      "eng": 35,
-      "sourceId": "7658041215278992671",
-      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -12108,6 +12277,42 @@ window.REAL_DATA = {
       "sourceUsername": "betterdogsupplements"
     },
     {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658040941864930590",
+      "title": "Dogs reflect the energy we bring. Calm Confidence supports relaxation, clarity, and emotional balance.",
+      "type": "Short Form Clip",
+      "views": 1229,
+      "reach": 1023,
+      "eng": 95,
+      "sourceId": "7658040941864930590",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658041215278992671",
+      "title": "When a dog belly is not right, their whole body feels it. Happy Go-Lucky Belly supports digestive balance.",
+      "type": "Short Form Clip",
+      "views": 1074,
+      "reach": 946,
+      "eng": 35,
+      "sourceId": "7658041215278992671",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658041583962541343",
+      "title": "The skin can reflect what is going on inside the body. Skin Magic supports healthy skin.",
+      "type": "Short Form Clip",
+      "views": 1389,
+      "reach": 1005,
+      "eng": 14,
+      "sourceId": "7658041583962541343",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
       "platform": "youtube",
       "date": "2026-07-02",
       "url": "https://www.youtube.com/watch?v=u_xMBbUWhCk",
@@ -12143,27 +12348,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-07-03",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658042641904389407",
-      "title": "Calm confidence is the energy of a good leader.",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656917552441953567",
+      "title": "A dog's confidence grows when they know their needs are met.",
       "type": "Short Form Clip",
-      "views": 1027,
-      "reach": 490,
-      "eng": 44,
-      "sourceId": "7658042641904389407",
-      "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-03",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658042907810696478",
-      "title": "Some energy creates motion.",
-      "type": "Short Form Clip",
-      "views": 681,
-      "reach": 461,
-      "eng": 55,
-      "sourceId": "7658042907810696478",
+      "views": 272,
+      "reach": 228,
+      "eng": 21,
+      "sourceId": "7656917552441953567",
       "source": "Supermetrics TikTok Organic videos",
       "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
       "sourceUsername": "betterdogsupplements"
@@ -12178,20 +12369,6 @@ window.REAL_DATA = {
       "reach": 359,
       "eng": 25,
       "sourceId": "7658041831288081694",
-      "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-03",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7656917552441953567",
-      "title": "A dog's confidence grows when they know their needs are met.",
-      "type": "Short Form Clip",
-      "views": 272,
-      "reach": 228,
-      "eng": 21,
-      "sourceId": "7656917552441953567",
       "source": "Supermetrics TikTok Organic videos",
       "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
       "sourceUsername": "betterdogsupplements"
@@ -12220,6 +12397,34 @@ window.REAL_DATA = {
       "reach": 107,
       "eng": 10,
       "sourceId": "7658042321140862238",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-03",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658042641904389407",
+      "title": "Calm confidence is the energy of a good leader.",
+      "type": "Short Form Clip",
+      "views": 1027,
+      "reach": 490,
+      "eng": 44,
+      "sourceId": "7658042641904389407",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-03",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7658042907810696478",
+      "title": "Some energy creates motion.",
+      "type": "Short Form Clip",
+      "views": 681,
+      "reach": 461,
+      "eng": 55,
+      "sourceId": "7658042907810696478",
       "source": "Supermetrics TikTok Organic videos",
       "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
       "sourceUsername": "betterdogsupplements"
@@ -12337,13 +12542,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-07-06",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7659544801691389214",
-      "title": "Your dog's skin health affects more than comfort.",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7659543961916280095",
+      "title": "A calm, confident dog is a balanced dog.",
       "type": "Short Form Clip",
-      "views": 2413,
-      "reach": 25,
-      "eng": 31,
-      "sourceId": "7659544801691389214",
+      "views": 25,
+      "reach": 6,
+      "eng": 0,
+      "sourceId": "7659543961916280095",
       "source": "Supermetrics TikTok Organic videos",
       "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
       "sourceUsername": "betterdogsupplements"
@@ -12365,13 +12570,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-07-06",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7659544889910103326",
-      "title": "Cesar shares a few of his favorite Better Dog Supplements.",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7659544801691389214",
+      "title": "Your dog's skin health affects more than comfort.",
       "type": "Short Form Clip",
-      "views": 419,
-      "reach": 0,
-      "eng": 17,
-      "sourceId": "7659544889910103326",
+      "views": 2413,
+      "reach": 25,
+      "eng": 31,
+      "sourceId": "7659544801691389214",
       "source": "Supermetrics TikTok Organic videos",
       "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
       "sourceUsername": "betterdogsupplements"
@@ -12393,13 +12598,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-07-06",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7659543961916280095",
-      "title": "A calm, confident dog is a balanced dog.",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7659544889910103326",
+      "title": "Cesar shares a few of his favorite Better Dog Supplements.",
       "type": "Short Form Clip",
-      "views": 25,
-      "reach": 6,
-      "eng": 0,
-      "sourceId": "7659543961916280095",
+      "views": 419,
+      "reach": 0,
+      "eng": 17,
+      "sourceId": "7659544889910103326",
       "source": "Supermetrics TikTok Organic videos",
       "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 8, 2026.",
       "sourceUsername": "betterdogsupplements"
@@ -12681,34 +12886,6 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-07-15",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7662784965909826847",
-      "title": "Raising a puppy the right way means introducing them to the world with calm, confident guidance.",
-      "type": "Short Form Clip",
-      "views": 439,
-      "reach": 0,
-      "eng": 3,
-      "sourceId": "7662784965909826847",
-      "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 16, 2026.",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-15",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7662785230062832927",
-      "title": "For a puppy, the leash should feel like a natural extension of your guidance.",
-      "type": "Short Form Clip",
-      "views": 279,
-      "reach": 0,
-      "eng": 11,
-      "sourceId": "7662785230062832927",
-      "source": "Supermetrics TikTok Organic videos",
-      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 16, 2026.",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-15",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7662781562248809758",
       "title": "Vet and groomer visits are just part of life, but for a puppy they can feel overwhelming.",
       "type": "Short Form Clip",
@@ -12730,6 +12907,34 @@ window.REAL_DATA = {
       "reach": 0,
       "eng": 4,
       "sourceId": "7662784904924515615",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 16, 2026.",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-15",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7662784965909826847",
+      "title": "Raising a puppy the right way means introducing them to the world with calm, confident guidance.",
+      "type": "Short Form Clip",
+      "views": 439,
+      "reach": 0,
+      "eng": 3,
+      "sourceId": "7662784965909826847",
+      "source": "Supermetrics TikTok Organic videos",
+      "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 16, 2026.",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-15",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7662785230062832927",
+      "title": "For a puppy, the leash should feel like a natural extension of your guidance.",
+      "type": "Short Form Clip",
+      "views": 279,
+      "reach": 0,
+      "eng": 11,
+      "sourceId": "7662785230062832927",
       "source": "Supermetrics TikTok Organic videos",
       "sourceNote": "Verified through Supermetrics TikTok Organic videos on Jul 16, 2026.",
       "sourceUsername": "betterdogsupplements"
@@ -12890,27 +13095,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-07-20",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7663588206755056927",
-      "title": "Stop talking to your dog. Start doing this instead. #silentleadership #cesarmillan #dogtok #dogcommunication #packleader",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7663588016270724382",
+      "title": "One calm dog can reset the whole pack. Watch ☝ #packlife #cesarmillan #dogtok #multidog #calmdog",
       "type": "Short Form Clip",
-      "views": 322,
+      "views": 35,
       "reach": 0,
-      "eng": 6,
-      "sourceId": "7663588206755056927",
-      "sourceUsername": "betterdogsupplements",
-      "source": "Supermetrics TikTok Organic videos report",
-      "sourceNote": "Verified Better Dog post row through Supermetrics on Jul 21, 2026."
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-20",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7663588285687631135",
-      "title": "He understood everything. And I never said a word. #dogcommunication #cesarmillan #dogtok #calmdog #packleader",
-      "type": "Short Form Clip",
-      "views": 54,
-      "reach": 0,
-      "eng": 4,
-      "sourceId": "7663588285687631135",
+      "eng": 2,
+      "sourceId": "7663588016270724382",
       "sourceUsername": "betterdogsupplements",
       "source": "Supermetrics TikTok Organic videos report",
       "sourceNote": "Verified Better Dog post row through Supermetrics on Jul 21, 2026."
@@ -12932,13 +13123,27 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-07-20",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7663588016270724382",
-      "title": "One calm dog can reset the whole pack. Watch ☝ #packlife #cesarmillan #dogtok #multidog #calmdog",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7663588206755056927",
+      "title": "Stop talking to your dog. Start doing this instead. #silentleadership #cesarmillan #dogtok #dogcommunication #packleader",
       "type": "Short Form Clip",
-      "views": 35,
+      "views": 322,
       "reach": 0,
-      "eng": 2,
-      "sourceId": "7663588016270724382",
+      "eng": 6,
+      "sourceId": "7663588206755056927",
+      "sourceUsername": "betterdogsupplements",
+      "source": "Supermetrics TikTok Organic videos report",
+      "sourceNote": "Verified Better Dog post row through Supermetrics on Jul 21, 2026."
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-20",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7663588285687631135",
+      "title": "He understood everything. And I never said a word. #dogcommunication #cesarmillan #dogtok #calmdog #packleader",
+      "type": "Short Form Clip",
+      "views": 54,
+      "reach": 0,
+      "eng": 4,
+      "sourceId": "7663588285687631135",
       "sourceUsername": "betterdogsupplements",
       "source": "Supermetrics TikTok Organic videos report",
       "sourceNote": "Verified Better Dog post row through Supermetrics on Jul 21, 2026."
@@ -12983,13 +13188,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-07-31",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7668769605401316639",
-      "title": "Joy is part of how a dog stays strong.",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7668769197890997535",
+      "title": "A dog's health is a balance.",
       "type": "Short Form Clip",
-      "views": 518,
-      "reach": 26,
-      "eng": 23,
-      "sourceId": "7668769605401316639",
+      "views": 148,
+      "reach": 48,
+      "eng": 10,
+      "sourceId": "7668769197890997535",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -13009,6 +13214,19 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-07-31",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7668769605401316639",
+      "title": "Joy is part of how a dog stays strong.",
+      "type": "Short Form Clip",
+      "views": 518,
+      "reach": 26,
+      "eng": 23,
+      "sourceId": "7668769605401316639",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-07-31",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7668770028233297183",
       "title": "Present. Loyal. Every single day.",
       "type": "Short Form Clip",
@@ -13016,19 +13234,6 @@ window.REAL_DATA = {
       "reach": 0,
       "eng": 6,
       "sourceId": "7668770028233297183",
-      "source": "Supermetrics tiktok content report",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-07-31",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7668769197890997535",
-      "title": "A dog's health is a balance.",
-      "type": "Short Form Clip",
-      "views": 148,
-      "reach": 48,
-      "eng": 10,
-      "sourceId": "7668769197890997535",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -13060,19 +13265,6 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-08-01",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7668779292913978655",
-      "title": "The bond directly affects the dog's health.",
-      "type": "Short Form Clip",
-      "views": 410,
-      "reach": 0,
-      "eng": 13,
-      "sourceId": "7668779292913978655",
-      "source": "Supermetrics tiktok content report",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-08-01",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7668779157903478047",
       "title": "Instinct fades when the body is not right.",
       "type": "Short Form Clip",
@@ -13093,6 +13285,19 @@ window.REAL_DATA = {
       "reach": 0,
       "eng": 12,
       "sourceId": "7668779219211537694",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-01",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7668779292913978655",
+      "title": "The bond directly affects the dog's health.",
+      "type": "Short Form Clip",
+      "views": 410,
+      "reach": 0,
+      "eng": 13,
+      "sourceId": "7668779292913978655",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -13136,19 +13341,6 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-08-02",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7668781367248833823",
-      "title": "Dogs heal without overthinking it. Owners could learn from that",
-      "type": "Short Form Clip",
-      "views": 605,
-      "reach": 0,
-      "eng": 1,
-      "sourceId": "7668781367248833823",
-      "source": "Supermetrics tiktok content report",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-08-02",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7667618654778952990",
       "title": "The slow start when your dog gets up is easy to overlook, but how they move matters at every age.",
       "type": "Short Form Clip",
@@ -13175,13 +13367,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-08-02",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7668781576095911198",
-      "title": "What nature teaches about healing works for dogs too",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7668781367248833823",
+      "title": "Dogs heal without overthinking it. Owners could learn from that",
       "type": "Short Form Clip",
-      "views": 162,
+      "views": 605,
       "reach": 0,
-      "eng": 6,
-      "sourceId": "7668781576095911198",
+      "eng": 1,
+      "sourceId": "7668781367248833823",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -13195,6 +13387,19 @@ window.REAL_DATA = {
       "reach": 0,
       "eng": 2,
       "sourceId": "7668781502594960671",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-02",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7668781576095911198",
+      "title": "What nature teaches about healing works for dogs too",
+      "type": "Short Form Clip",
+      "views": 162,
+      "reach": 0,
+      "eng": 6,
+      "sourceId": "7668781576095911198",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -13240,13 +13445,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-08-03",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7669815088110456094",
-      "title": "White to pink. That's the allergy talking",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7669814941339110687",
+      "title": "Healthy in every way. Except this one thing won't stop",
       "type": "Short Form Clip",
-      "views": 377,
+      "views": 303,
       "reach": 0,
-      "eng": 6,
-      "sourceId": "7669815088110456094",
+      "eng": 13,
+      "sourceId": "7669814941339110687",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -13266,13 +13471,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-08-03",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7669814941339110687",
-      "title": "Healthy in every way. Except this one thing won't stop",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7669815088110456094",
+      "title": "White to pink. That's the allergy talking",
       "type": "Short Form Clip",
-      "views": 303,
+      "views": 377,
       "reach": 0,
-      "eng": 13,
-      "sourceId": "7669814941339110687",
+      "eng": 6,
+      "sourceId": "7669815088110456094",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -13303,19 +13508,6 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-08-04",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670212049489628447",
-      "title": "Ever wonder why some dogs get seasonal allergies while others never seem to?",
-      "type": "Short Form Clip",
-      "views": 552,
-      "reach": 0,
-      "eng": 46,
-      "sourceId": "7670212049489628447",
-      "source": "Supermetrics tiktok content report",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-08-04",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7670202521553521950",
       "title": "Dry skin that never goes away? It's probably missing this",
       "type": "Short Form Clip",
@@ -13323,6 +13515,19 @@ window.REAL_DATA = {
       "reach": 0,
       "eng": 8,
       "sourceId": "7670202521553521950",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-04",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670202675811650847",
+      "title": "Ongoing irritation. One missing nutrient could be the cause",
+      "type": "Short Form Clip",
+      "views": 33,
+      "reach": 0,
+      "eng": 3,
+      "sourceId": "7670202675811650847",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -13342,13 +13547,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-08-04",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670202675811650847",
-      "title": "Ongoing irritation. One missing nutrient could be the cause",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670212049489628447",
+      "title": "Ever wonder why some dogs get seasonal allergies while others never seem to?",
       "type": "Short Form Clip",
-      "views": 33,
+      "views": 552,
       "reach": 0,
-      "eng": 3,
-      "sourceId": "7670202675811650847",
+      "eng": 46,
+      "sourceId": "7670212049489628447",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -13370,18 +13575,6 @@ window.REAL_DATA = {
     {
       "platform": "facebook",
       "date": "2026-08-05",
-      "url": "https://www.facebook.com/674626722402999_122184587084906904",
-      "title": "August is National Dog Month, so the whole site is up to 43% off",
-      "type": "Single Image",
-      "views": 160,
-      "reach": 88,
-      "eng": 10,
-      "sourceId": "674626722402999_122184587084906904",
-      "source": "Supermetrics facebook content report"
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-08-05",
       "url": "https://www.facebook.com/674626722402999_122184578192906904",
       "title": "Dogs once foraged roots and plants like ginger that kept their digestion steady",
       "type": "Single Image",
@@ -13389,6 +13582,18 @@ window.REAL_DATA = {
       "reach": 52,
       "eng": 5,
       "sourceId": "674626722402999_122184578192906904",
+      "source": "Supermetrics facebook content report"
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-08-05",
+      "url": "https://www.facebook.com/674626722402999_122184587084906904",
+      "title": "August is National Dog Month, so the whole site is up to 43% off",
+      "type": "Single Image",
+      "views": 160,
+      "reach": 88,
+      "eng": 10,
+      "sourceId": "674626722402999_122184587084906904",
       "source": "Supermetrics facebook content report"
     },
     {
@@ -13443,18 +13648,6 @@ window.REAL_DATA = {
     {
       "platform": "instagram",
       "date": "2026-08-06",
-      "url": "https://www.instagram.com/reel/Dbs4RVmgahK/",
-      "title": "Ever catch your dog munching on grass and wonder why?",
-      "type": "Short Form Clip",
-      "views": 5969,
-      "reach": 5369,
-      "eng": 294,
-      "sourceId": "18329618920256400",
-      "source": "Supermetrics instagram content report"
-    },
-    {
-      "platform": "instagram",
-      "date": "2026-08-06",
       "url": "https://www.instagram.com/p/Dbtaj7BDQao/",
       "title": "Does your dog's breath ever make you lean back a little?",
       "type": "Carousel",
@@ -13462,6 +13655,18 @@ window.REAL_DATA = {
       "reach": 91,
       "eng": 14,
       "sourceId": "17962958487149082",
+      "source": "Supermetrics instagram content report"
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-08-06",
+      "url": "https://www.instagram.com/reel/Dbs4RVmgahK/",
+      "title": "Ever catch your dog munching on grass and wonder why?",
+      "type": "Short Form Clip",
+      "views": 5969,
+      "reach": 5369,
+      "eng": 294,
+      "sourceId": "18329618920256400",
       "source": "Supermetrics instagram content report"
     },
     {
@@ -13480,19 +13685,6 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-08-06",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670535609785552158",
-      "title": "The dog is always communicating. The question is who's listening",
-      "type": "Short Form Clip",
-      "views": 737,
-      "reach": 0,
-      "eng": 13,
-      "sourceId": "7670535609785552158",
-      "source": "Supermetrics tiktok content report",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-08-06",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7670535439626947871",
       "title": "A dog can't say it hurts. But the body will",
       "type": "Short Form Clip",
@@ -13500,6 +13692,19 @@ window.REAL_DATA = {
       "reach": 0,
       "eng": 6,
       "sourceId": "7670535439626947871",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-06",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670535609785552158",
+      "title": "The dog is always communicating. The question is who's listening",
+      "type": "Short Form Clip",
+      "views": 737,
+      "reach": 0,
+      "eng": 13,
+      "sourceId": "7670535609785552158",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -13544,6 +13749,18 @@ window.REAL_DATA = {
     {
       "platform": "instagram",
       "date": "2026-08-07",
+      "url": "https://www.instagram.com/reel/Dbvj8ffD2mr/",
+      "title": "Were any of these facts surprising to you?",
+      "type": "Short Form Clip",
+      "views": 325,
+      "reach": 277,
+      "eng": 14,
+      "sourceId": "18127749166632113",
+      "source": "Supermetrics instagram content report"
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-08-07",
       "url": "https://www.instagram.com/p/Dbv4eVSDaqn/",
       "title": "Ever met a dog whose coat just looks incredible and wondered what they're doing differently?",
       "type": "Carousel",
@@ -13554,16 +13771,17 @@ window.REAL_DATA = {
       "source": "Supermetrics instagram content report"
     },
     {
-      "platform": "instagram",
+      "platform": "tiktok",
       "date": "2026-08-07",
-      "url": "https://www.instagram.com/reel/Dbvj8ffD2mr/",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670568062462037279",
       "title": "Were any of these facts surprising to you?",
       "type": "Short Form Clip",
-      "views": 325,
-      "reach": 277,
-      "eng": 14,
-      "sourceId": "18127749166632113",
-      "source": "Supermetrics instagram content report"
+      "views": 140,
+      "reach": 119,
+      "eng": 6,
+      "sourceId": "7670568062462037279",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "tiktok",
@@ -13618,19 +13836,6 @@ window.REAL_DATA = {
       "sourceUsername": "betterdogsupplements"
     },
     {
-      "platform": "tiktok",
-      "date": "2026-08-07",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670568062462037279",
-      "title": "Were any of these facts surprising to you?",
-      "type": "Short Form Clip",
-      "views": 140,
-      "reach": 119,
-      "eng": 6,
-      "sourceId": "7670568062462037279",
-      "source": "Supermetrics tiktok content report",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
       "platform": "youtube",
       "date": "2026-08-07",
       "url": "https://www.youtube.com/shorts/lER11Mhyr6A",
@@ -13648,18 +13853,6 @@ window.REAL_DATA = {
     {
       "platform": "facebook",
       "date": "2026-08-08",
-      "url": "https://www.facebook.com/674626722402999_122184980102906904",
-      "title": "That front-door welcome hits the same every single time.",
-      "type": "Single Image",
-      "views": 207,
-      "reach": 139,
-      "eng": 7,
-      "sourceId": "674626722402999_122184980102906904",
-      "source": "Supermetrics facebook content report"
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-08-08",
       "url": "https://www.facebook.com/674626722402999_122184964826906904",
       "title": "Ever notice your dog acting a little off and wonder what's going on inside?",
       "type": "Short Form Clip",
@@ -13670,16 +13863,16 @@ window.REAL_DATA = {
       "source": "Supermetrics facebook content report"
     },
     {
-      "platform": "instagram",
+      "platform": "facebook",
       "date": "2026-08-08",
-      "url": "https://www.instagram.com/reel/DbyIvxXgcz7/",
-      "title": "Ever notice your dog acting a little off and wonder what's going on inside?",
-      "type": "Short Form Clip",
-      "views": 14846,
-      "reach": 13098,
-      "eng": 644,
-      "sourceId": "18161541511478649",
-      "source": "Supermetrics instagram content report"
+      "url": "https://www.facebook.com/674626722402999_122184980102906904",
+      "title": "That front-door welcome hits the same every single time.",
+      "type": "Single Image",
+      "views": 207,
+      "reach": 139,
+      "eng": 7,
+      "sourceId": "674626722402999_122184980102906904",
+      "source": "Supermetrics facebook content report"
     },
     {
       "platform": "instagram",
@@ -13694,17 +13887,16 @@ window.REAL_DATA = {
       "source": "Supermetrics instagram content report"
     },
     {
-      "platform": "tiktok",
+      "platform": "instagram",
       "date": "2026-08-08",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670936815074807070",
-      "title": "Respect for the dog came first. The product followed",
+      "url": "https://www.instagram.com/reel/DbyIvxXgcz7/",
+      "title": "Ever notice your dog acting a little off and wonder what's going on inside?",
       "type": "Short Form Clip",
-      "views": 983,
-      "reach": 833,
-      "eng": 16,
-      "sourceId": "7670936815074807070",
-      "source": "Supermetrics tiktok content report",
-      "sourceUsername": "betterdogsupplements"
+      "views": 14846,
+      "reach": 13098,
+      "eng": 644,
+      "sourceId": "18161541511478649",
+      "source": "Supermetrics instagram content report"
     },
     {
       "platform": "tiktok",
@@ -13716,19 +13908,6 @@ window.REAL_DATA = {
       "reach": 398,
       "eng": 43,
       "sourceId": "7670215063122234655",
-      "source": "Supermetrics tiktok content report",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-08-08",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670933715899469086",
-      "title": "A dog becomes what it eats. Simple as that",
-      "type": "Short Form Clip",
-      "views": 350,
-      "reach": 301,
-      "eng": 15,
-      "sourceId": "7670933715899469086",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -13759,6 +13938,32 @@ window.REAL_DATA = {
       "sourceUsername": "betterdogsupplements"
     },
     {
+      "platform": "tiktok",
+      "date": "2026-08-08",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670933715899469086",
+      "title": "A dog becomes what it eats. Simple as that",
+      "type": "Short Form Clip",
+      "views": 350,
+      "reach": 301,
+      "eng": 15,
+      "sourceId": "7670933715899469086",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-08",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670936815074807070",
+      "title": "Respect for the dog came first. The product followed",
+      "type": "Short Form Clip",
+      "views": 983,
+      "reach": 833,
+      "eng": 16,
+      "sourceId": "7670936815074807070",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
       "platform": "youtube",
       "date": "2026-08-08",
       "url": "https://www.youtube.com/shorts/ag6ZSEggyrI",
@@ -13776,18 +13981,6 @@ window.REAL_DATA = {
     {
       "platform": "facebook",
       "date": "2026-08-09",
-      "url": "https://www.facebook.com/674626722402999_122185118432906904",
-      "title": "A wag, a lean, a nose nudge. Message received.",
-      "type": "Single Image",
-      "views": 216,
-      "reach": 135,
-      "eng": 5,
-      "sourceId": "674626722402999_122185118432906904",
-      "source": "Supermetrics facebook content report"
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-08-09",
       "url": "https://www.facebook.com/674626722402999_122185100636906904",
       "title": "A dog lives in the moment, and a balanced dog meets that moment with real energy.",
       "type": "Short Form Clip",
@@ -13795,6 +13988,18 @@ window.REAL_DATA = {
       "reach": 139,
       "eng": 7,
       "sourceId": "674626722402999_122185100636906904",
+      "source": "Supermetrics facebook content report"
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-08-09",
+      "url": "https://www.facebook.com/674626722402999_122185118432906904",
+      "title": "A wag, a lean, a nose nudge. Message received.",
+      "type": "Single Image",
+      "views": 216,
+      "reach": 135,
+      "eng": 5,
+      "sourceId": "674626722402999_122185118432906904",
       "source": "Supermetrics facebook content report"
     },
     {
@@ -13824,13 +14029,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-08-09",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670936960294325534",
-      "title": "It's not spending. It's investing in the dog's future",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670215579281689887",
+      "title": "A dog lives in the moment, and a balanced dog meets that moment with real energy.",
       "type": "Short Form Clip",
-      "views": 636,
-      "reach": 335,
-      "eng": 22,
-      "sourceId": "7670936960294325534",
+      "views": 519,
+      "reach": 343,
+      "eng": 28,
+      "sourceId": "7670215579281689887",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -13850,26 +14055,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-08-09",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670215579281689887",
-      "title": "A dog lives in the moment, and a balanced dog meets that moment with real energy.",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670936960294325534",
+      "title": "It's not spending. It's investing in the dog's future",
       "type": "Short Form Clip",
-      "views": 519,
-      "reach": 343,
-      "eng": 28,
-      "sourceId": "7670215579281689887",
-      "source": "Supermetrics tiktok content report",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-08-09",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670937145317592351",
-      "title": "Not just any resource. The right one. That's the difference",
-      "type": "Short Form Clip",
-      "views": 512,
-      "reach": 279,
-      "eng": 6,
-      "sourceId": "7670937145317592351",
+      "views": 636,
+      "reach": 335,
+      "eng": 22,
+      "sourceId": "7670936960294325534",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -13883,6 +14075,19 @@ window.REAL_DATA = {
       "reach": 277,
       "eng": 16,
       "sourceId": "7670937046986280223",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-09",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670937145317592351",
+      "title": "Not just any resource. The right one. That's the difference",
+      "type": "Short Form Clip",
+      "views": 512,
+      "reach": 279,
+      "eng": 6,
+      "sourceId": "7670937145317592351",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -13928,19 +14133,6 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-08-10",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670937313156893982",
-      "title": "Short term cost. Long term health. Worth it every time",
-      "type": "Short Form Clip",
-      "views": 313,
-      "reach": 42,
-      "eng": 16,
-      "sourceId": "7670937313156893982",
-      "source": "Supermetrics tiktok content report",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-08-10",
       "url": "https://www.tiktok.com/@betterdogsupplements/video/7670937211927317790",
       "title": "Every ingredient. Every choice. Long term thinking",
       "type": "Short Form Clip",
@@ -13948,6 +14140,19 @@ window.REAL_DATA = {
       "reach": 53,
       "eng": 8,
       "sourceId": "7670937211927317790",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-10",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7670937313156893982",
+      "title": "Short term cost. Long term health. Worth it every time",
+      "type": "Short Form Clip",
+      "views": 313,
+      "reach": 42,
+      "eng": 16,
+      "sourceId": "7670937313156893982",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -14002,26 +14207,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-08-11",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7672472697384733982",
-      "title": "Surface treatments miss the real problem. It starts inside",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7672472404127468831",
+      "title": "This pomeranian's daily life changed because of one allergy",
       "type": "Short Form Clip",
-      "views": 935,
+      "views": 621,
       "reach": 0,
-      "eng": 8,
-      "sourceId": "7672472697384733982",
-      "source": "Supermetrics tiktok content report",
-      "sourceUsername": "betterdogsupplements"
-    },
-    {
-      "platform": "tiktok",
-      "date": "2026-08-11",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7672788579764030751",
-      "title": "Ever notice your dog scratching right after they play?",
-      "type": "Short Form Clip",
-      "views": 728,
-      "reach": 0,
-      "eng": 8,
-      "sourceId": "7672788579764030751",
+      "eng": 9,
+      "sourceId": "7672472404127468831",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -14041,13 +14233,13 @@ window.REAL_DATA = {
     {
       "platform": "tiktok",
       "date": "2026-08-11",
-      "url": "https://www.tiktok.com/@betterdogsupplements/video/7672472404127468831",
-      "title": "This pomeranian's daily life changed because of one allergy",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7672472697384733982",
+      "title": "Surface treatments miss the real problem. It starts inside",
       "type": "Short Form Clip",
-      "views": 621,
+      "views": 935,
       "reach": 0,
-      "eng": 9,
-      "sourceId": "7672472404127468831",
+      "eng": 8,
+      "sourceId": "7672472697384733982",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
     },
@@ -14065,6 +14257,19 @@ window.REAL_DATA = {
       "sourceUsername": "betterdogsupplements"
     },
     {
+      "platform": "tiktok",
+      "date": "2026-08-11",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7672788579764030751",
+      "title": "Ever notice your dog scratching right after they play?",
+      "type": "Short Form Clip",
+      "views": 728,
+      "reach": 0,
+      "eng": 8,
+      "sourceId": "7672788579764030751",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
       "platform": "youtube",
       "date": "2026-08-11",
       "url": "https://www.youtube.com/shorts/uJveMjS4J7I",
@@ -14078,6 +14283,30 @@ window.REAL_DATA = {
       "source": "YouTube public channel feed; Supermetrics performance pending",
       "performancePending": true,
       "metricsPending": true
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-08-12",
+      "url": "https://www.facebook.com/674626722402999_122185489652906904",
+      "title": "Out in nature, dogs would encounter calming botanicals like passion flower that never make it into modern dog food.",
+      "type": "Single Image",
+      "views": 65,
+      "reach": 50,
+      "eng": 1,
+      "sourceId": "674626722402999_122185489652906904",
+      "source": "Supermetrics facebook content report"
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-08-12",
+      "url": "https://www.facebook.com/674626722402999_122185499762906904",
+      "title": "Bringing home a new puppy?",
+      "type": "Short Form Clip",
+      "views": 262,
+      "reach": 233,
+      "eng": 6,
+      "sourceId": "674626722402999_122185499762906904",
+      "source": "Supermetrics facebook content report"
     },
     {
       "platform": "instagram",
@@ -14102,30 +14331,6 @@ window.REAL_DATA = {
       "eng": 15,
       "sourceId": "18103331522230866",
       "source": "Supermetrics instagram content report"
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-08-12",
-      "url": "https://www.facebook.com/674626722402999_122185499762906904",
-      "title": "Bringing home a new puppy?",
-      "type": "Short Form Clip",
-      "views": 262,
-      "reach": 233,
-      "eng": 6,
-      "sourceId": "674626722402999_122185499762906904",
-      "source": "Supermetrics facebook content report"
-    },
-    {
-      "platform": "facebook",
-      "date": "2026-08-12",
-      "url": "https://www.facebook.com/674626722402999_122185489652906904",
-      "title": "Out in nature, dogs would encounter calming botanicals like passion flower that never make it into modern dog food.",
-      "type": "Single Image",
-      "views": 65,
-      "reach": 50,
-      "eng": 1,
-      "sourceId": "674626722402999_122185489652906904",
-      "source": "Supermetrics facebook content report"
     },
     {
       "platform": "tiktok",
@@ -14191,6 +14396,167 @@ window.REAL_DATA = {
       "sourceId": "7673208732372733215",
       "source": "Supermetrics tiktok content report",
       "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-08-12",
+      "url": "https://www.youtube.com/shorts/A6Fb8DE9hvU",
+      "title": "What a New Puppy Needs Most",
+      "type": "Short Form Clip",
+      "views": 0,
+      "reach": null,
+      "watchTime": 0,
+      "eng": 0,
+      "sourceId": "A6Fb8DE9hvU",
+      "source": "YouTube public channel; Supermetrics performance pending",
+      "performancePending": true,
+      "metricsPending": true
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-08-12",
+      "url": "https://www.youtube.com/post/Ugkx7IifTf9PoVhkdZpMhyIi3m1mMh0Gmu-r",
+      "title": "Calm is something your dog can feel from you.",
+      "type": "Community Post",
+      "views": 0,
+      "reach": null,
+      "watchTime": 0,
+      "eng": 10,
+      "sourceId": "Ugkx7IifTf9PoVhkdZpMhyIi3m1mMh0Gmu-r",
+      "source": "YouTube public channel Posts tab; Community post verification",
+      "performancePending": true,
+      "metricsPending": true
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-08-13",
+      "url": "https://www.facebook.com/674626722402999_122185629824906904",
+      "title": "Did your dog suddenly start reacting once the season changed?",
+      "type": "Short Form Clip",
+      "views": 69,
+      "reach": 55,
+      "eng": 2,
+      "sourceId": "674626722402999_122185629824906904",
+      "source": "Supermetrics facebook content report"
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-08-13",
+      "url": "https://www.instagram.com/p/Db_AqdxjvCw/",
+      "title": "Does feeding time get a little crazy sometimes?",
+      "type": "Carousel",
+      "views": 252,
+      "reach": 108,
+      "eng": 23,
+      "sourceId": "17883328533613762",
+      "source": "Supermetrics instagram content report"
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-08-13",
+      "url": "https://www.instagram.com/reel/Db_Ocxzj7p9/",
+      "title": "Did your dog suddenly start reacting once the season changed?",
+      "type": "Short Form Clip",
+      "views": 298,
+      "reach": 249,
+      "eng": 25,
+      "sourceId": "17986699104045672",
+      "source": "Supermetrics instagram content report"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-13",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7672477256840645919",
+      "title": "Pack position determines noise reaction.",
+      "type": "Short Form Clip",
+      "views": 386,
+      "reach": 0,
+      "eng": 23,
+      "sourceId": "7672477256840645919",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-13",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7672477315544206623",
+      "title": "Some dogs are born fearless around noise.",
+      "type": "Short Form Clip",
+      "views": 238,
+      "reach": 0,
+      "eng": 6,
+      "sourceId": "7672477315544206623",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-13",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7672477415968394527",
+      "title": "Nothing phases this dog. And it's not training. It's wiring",
+      "type": "Short Form Clip",
+      "views": 321,
+      "reach": 0,
+      "eng": 9,
+      "sourceId": "7672477415968394527",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-13",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7672477572839525662",
+      "title": "Same breed. Completely different reaction to noise.",
+      "type": "Short Form Clip",
+      "views": 209,
+      "reach": 0,
+      "eng": 14,
+      "sourceId": "7672477572839525662",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-13",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7673244355389377823",
+      "title": "Did your dog suddenly start reacting once the season changed?",
+      "type": "Short Form Clip",
+      "views": 162,
+      "reach": 0,
+      "eng": 15,
+      "sourceId": "7673244355389377823",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-08-13",
+      "url": "https://www.youtube.com/post/UgkxSf0jnJ8SFMf-_vXplYayyYM_h7pG1-Vz",
+      "title": "Out in nature, dogs would encounter calming botanicals like passion flower.",
+      "type": "Community Post",
+      "views": 0,
+      "reach": null,
+      "watchTime": 0,
+      "eng": 4,
+      "sourceId": "UgkxSf0jnJ8SFMf-_vXplYayyYM_h7pG1-Vz",
+      "source": "YouTube public channel Posts tab; Community post verification",
+      "performancePending": true,
+      "metricsPending": true
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-08-13",
+      "url": "https://www.youtube.com/shorts/wQ5eJ3uPVy4",
+      "title": "New season, new pollen. Why dogs get allergies",
+      "type": "Short Form Clip",
+      "views": 0,
+      "reach": null,
+      "watchTime": 0,
+      "eng": 0,
+      "sourceId": "wQ5eJ3uPVy4",
+      "source": "YouTube public channel; Supermetrics performance pending",
+      "performancePending": true,
+      "metricsPending": true
     }
   ],
   "followersDataNote": "Follower growth uses daily Supermetrics fields where available. Total followers use verified Supermetrics profile/channel snapshots, with delayed daily rows marked pending.",
@@ -14203,13 +14569,6 @@ window.REAL_DATA = {
       "note": "Verified one Better Dog Community post published Aug 5; completed-week YouTube Posts total is 5 including videos, Shorts, and Community posts."
     },
     {
-      "key": "youtube-post-verification-2026-08-07-2026-08-11",
-      "platform": "youtube",
-      "source": "Supermetrics YouTube ChannelTotals, TrafficSources, LatestVideos; public channel feed only verifies upload existence",
-      "posts": 4,
-      "note": "Public channel feed confirms Aug 7, Aug 8, Aug 9, and Aug 11 uploads. Supermetrics daily performance is backfilled through Aug 9; Aug 10-Aug 11 remain pending."
-    },
-    {
       "key": "tiktok-profile-delay-2026-08-11",
       "platform": "tiktok",
       "source": "Supermetrics TikTok Organic profile and filtered video reports",
@@ -14217,18 +14576,25 @@ window.REAL_DATA = {
       "note": "Filtered TikTok video rows confirm five Aug 11 Better Dog videos; the TikTok profile performance row is delayed and marked pending."
     },
     {
-      "key": "youtube-post-verification-2026-08-07-2026-08-12",
-      "platform": "youtube",
-      "source": "Supermetrics YouTube ChannelTotals, TrafficSources, and LatestVideos",
-      "posts": 4,
-      "note": "Supermetrics LatestVideos returned no Aug 12 uploads. Aug 7, Aug 8, Aug 9, and Aug 11 uploads remain in the current-week content set; daily performance is pending for Aug 10-Aug 12."
-    },
-    {
       "key": "tiktok-profile-delay-2026-08-12",
       "platform": "tiktok",
       "source": "Supermetrics TikTok Organic profile and filtered video reports",
       "posts": 5,
       "note": "Filtered TikTok video rows confirm five Aug 12 Better Dog videos. The TikTok profile daily performance row is delayed and marked pending; follower growth uses the current-follower snapshot movement."
+    },
+    {
+      "key": "youtube-post-verification-2026-08-07-2026-08-13",
+      "platform": "youtube",
+      "source": "YouTube public channel Shorts and Posts tabs supplementing Supermetrics LatestVideos",
+      "posts": 8,
+      "note": "Current week contains six verified Shorts/videos plus two Community posts; Aug 12-Aug 13 each include one Short and one Community post."
+    },
+    {
+      "key": "tiktok-profile-delay-2026-08-13",
+      "platform": "tiktok",
+      "source": "Supermetrics TikTok Organic profile and filtered video reports",
+      "posts": 5,
+      "note": "Five filtered Better Dog videos were returned for Aug 13. The profile performance row is a delayed zero and remains pending; follower growth uses snapshot deltas through Aug 12."
     }
   ]
 };

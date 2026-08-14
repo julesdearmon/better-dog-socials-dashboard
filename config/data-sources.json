@@ -13,7 +13,7 @@
     "defaultStart": "2026-01-01",
     "notes": [
       "Instagram, Facebook, and YouTube are pulled from 2026-01-01 forward.",
-      "TikTok Organic profile metrics are currently available from 2026-06-08 in the Supermetrics connector."
+      "TikTok Organic profile metrics are currently available from 2026-06-15 in the Supermetrics connector."
     ]
   },
   "platforms": {
@@ -65,7 +65,7 @@
       "provider": "supermetrics",
       "connector": "TikTok Organic",
       "status": "live",
-      "historyStart": "2026-06-08",
+      "historyStart": "2026-06-15",
       "accountGuard": {
         "dsId": "TIKBA",
         "freeTextAccount": "betterdogsupplements",
@@ -79,7 +79,7 @@
         "posts"
       ],
       "reachMetric": "Reached audience",
-      "queryNote": "Profile metrics currently start on 2026-06-08; video-level top content can timeout, so keep profile totals live and use filtered/smaller post queries."
+      "queryNote": "Profile metrics currently start on 2026-06-15; video-level top content can timeout, so keep profile totals live and use filtered/smaller post queries."
     },
     "youtube": {
       "provider": "supermetrics",
