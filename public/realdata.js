@@ -2640,8 +2640,8 @@ window.REAL_DATA = {
       "values": {
         "views": 0,
         "reach": 0,
-        "newFollowers": 0,
-        "totalFollowers": 3484
+        "newFollowers": 14,
+        "totalFollowers": 3493
       }
     },
     {
@@ -2687,13 +2687,13 @@ window.REAL_DATA = {
       "platform": "tiktok",
       "start": "2026-08-07",
       "end": "2026-08-13",
-      "source": "Supermetrics guarded TikTok Organic profile range; Aug 13 performance delayed/pending; follower gain uses snapshot delta through Aug 12",
+      "source": "Supermetrics guarded TikTok Organic profile range; Aug 13 performance metrics delayed/pending; follower gain uses snapshot delta through Aug 13",
       "sourceUsername": "betterdogsupplements",
       "values": {
         "views": 58292,
         "reach": 0,
-        "newFollowers": 150,
-        "totalFollowers": 3484
+        "newFollowers": 164,
+        "totalFollowers": 3493
       }
     },
     {
@@ -2745,7 +2745,7 @@ window.REAL_DATA = {
       "values": {
         "views": 885734,
         "reach": 772681,
-        "totalFollowers": 3484
+        "totalFollowers": 3493
       }
     },
     {
@@ -10278,8 +10278,8 @@ window.REAL_DATA = {
           "views": 0,
           "reach": 0,
           "watchTime": 0,
-          "newFollowers": 0,
-          "totalFollowers": 3484,
+          "newFollowers": 14,
+          "totalFollowers": 3477,
           "sourceUsername": "betterdogsupplements",
           "performancePending": true
         }
@@ -10287,7 +10287,7 @@ window.REAL_DATA = {
       "reachLabel": "Reached audience",
       "postProvider": "supermetrics-tiktok-organic-video-ids",
       "hasFollowers": true,
-      "totalFollowers": 3484,
+      "totalFollowers": 3493,
       "followersAsOf": "2026-08-13",
       "followersNote": "Total followers from Supermetrics TikTok Organic current-followers snapshot; daily growth normalized from profile new-followers snapshot deltas, with delayed zero rows ignored.",
       "historyStart": "2026-06-15",
@@ -14594,7 +14594,7 @@ window.REAL_DATA = {
       "platform": "tiktok",
       "source": "Supermetrics TikTok Organic profile and filtered video reports",
       "posts": 5,
-      "note": "Five filtered Better Dog videos were returned for Aug 13. The profile performance row is a delayed zero and remains pending; follower growth uses snapshot deltas through Aug 12."
+      "note": "Five filtered Better Dog videos were returned for Aug 13. Profile performance remains delayed, but the guarded follower snapshot backfilled; follower growth uses snapshot deltas through Aug 13."
     }
   ]
 };

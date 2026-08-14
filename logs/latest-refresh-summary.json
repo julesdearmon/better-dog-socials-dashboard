@@ -19,7 +19,7 @@
     "tiktok": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Profile snapshots refreshed through Aug 13 and five guarded Aug 13 videos verified; Aug 13 profile performance is delayed/pending.",
+      "note": "Follower snapshots refreshed through Aug 13 and five guarded Aug 13 videos verified; Aug 13 profile performance metrics remain delayed/pending.",
       "historyStart": "2026-06-15"
     },
     "youtube": {
@@ -65,7 +65,7 @@
       "platform": "tiktok",
       "source": "Supermetrics TikTok Organic profile and filtered video reports",
       "posts": 5,
-      "note": "Five filtered Better Dog videos were returned for Aug 13. The profile performance row is a delayed zero and remains pending; follower growth uses snapshot deltas through Aug 12."
+      "note": "Five filtered Better Dog videos were returned for Aug 13. Profile performance remains delayed, but the guarded follower snapshot backfilled; follower growth uses snapshot deltas through Aug 13."
     }
   ],
   "skippedItems": []
