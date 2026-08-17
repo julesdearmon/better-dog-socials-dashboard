@@ -1,36 +1,36 @@
 {
-  "refreshedAt": "Aug 14, 2026, 9:45 AM",
-  "dataThrough": "2026-08-13",
+  "refreshedAt": "Aug 17, 2026, 11:30 AM",
+  "dataThrough": "2026-08-16",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube) through Aug 13, 2026; TikTok Aug 13 and YouTube Aug 12-Aug 13 daily performance pending; YouTube uploads and Community posts verified on the public channel.",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube) through Aug 16, 2026; TikTok Aug 16 and YouTube Aug 15-Aug 16 daily performance pending; YouTube Shorts and Community posts verified on the public channel.",
   "platforms": {
     "instagram": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Profile, follower, and content metrics refreshed through Aug 13.",
+      "note": "Profile, follower, and content metrics refreshed through Aug 16.",
       "historyStart": "2026-01-01"
     },
     "facebook": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Organic page-media, follower, and post metrics refreshed through Aug 13; paid media views were 0 for Aug 7-Aug 13.",
+      "note": "Organic page-media, follower, and post metrics refreshed through Aug 16; paid media views were 0 for Aug 14-Aug 16.",
       "historyStart": "2026-01-01"
     },
     "tiktok": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Follower snapshots refreshed through Aug 13 and five guarded Aug 13 videos verified; Aug 13 profile performance metrics remain delayed/pending.",
-      "historyStart": "2026-06-15"
+      "note": "Profile performance and follower snapshots refreshed through Aug 15; four guarded Aug 16 videos verified and the delayed Aug 16 profile row remains pending.",
+      "historyStart": "2026-06-18"
     },
     "youtube": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Exact totals refreshed through Aug 13; daily performance backfilled through Aug 11 and pending Aug 12-Aug 13. Public Shorts and Posts tabs verified both pending days.",
+      "note": "Exact totals refreshed through Aug 16; daily performance backfilled through Aug 14 and pending Aug 15-Aug 16. Public Shorts and Posts tabs verified publishing activity.",
       "historyStart": "2026-01-01"
     }
   },
   "errors": [],
-  "published": true,
+  "published": false,
   "supplementalSources": [
     {
       "key": "youtube-community-post-verification-2026-07-31-2026-08-06",
@@ -66,6 +66,20 @@
       "source": "Supermetrics TikTok Organic profile and filtered video reports",
       "posts": 5,
       "note": "Five filtered Better Dog videos were returned for Aug 13. Profile performance remains delayed, but the guarded follower snapshot backfilled; follower growth uses snapshot deltas through Aug 13."
+    },
+    {
+      "key": "youtube-post-verification-2026-08-14-2026-08-16",
+      "platform": "youtube",
+      "source": "YouTube public Shorts and Posts tabs supplementing Supermetrics LatestVideos",
+      "posts": 4,
+      "note": "Verified one Community post on Aug 14, one Short plus one Community post on Aug 15, and one Community post on Aug 16."
+    },
+    {
+      "key": "tiktok-profile-delay-2026-08-16",
+      "platform": "tiktok",
+      "source": "Supermetrics TikTok Organic profile and filtered video reports",
+      "posts": 4,
+      "note": "Four Better Dog videos were returned for Aug 16. The profile row is a delayed zero; follower growth uses snapshot deltas through Aug 15."
     }
   ],
   "skippedItems": []
