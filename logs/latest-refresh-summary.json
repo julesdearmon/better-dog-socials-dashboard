@@ -1,8 +1,8 @@
 {
-  "refreshedAt": "Aug 17, 2026, 11:30 AM",
+  "refreshedAt": "Aug 17, 2026, 5:02 PM",
   "dataThrough": "2026-08-16",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube) through Aug 16, 2026; TikTok Aug 16 and YouTube Aug 15-Aug 16 daily performance pending; YouTube Shorts and Community posts verified on the public channel.",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube) through Aug 16, 2026; YouTube Aug 15-Aug 16 daily performance pending; YouTube Shorts and Community posts verified on the public channel.",
   "platforms": {
     "instagram": {
       "status": "live",
@@ -19,7 +19,7 @@
     "tiktok": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Profile performance and follower snapshots refreshed through Aug 15; four guarded Aug 16 videos verified and the delayed Aug 16 profile row remains pending.",
+      "note": "Profile performance and follower snapshots refreshed through Aug 16; four guarded Aug 16 videos verified.",
       "historyStart": "2026-06-18"
     },
     "youtube": {
@@ -75,11 +75,11 @@
       "note": "Verified one Community post on Aug 14, one Short plus one Community post on Aug 15, and one Community post on Aug 16."
     },
     {
-      "key": "tiktok-profile-delay-2026-08-16",
+      "key": "tiktok-profile-backfill-2026-08-16",
       "platform": "tiktok",
       "source": "Supermetrics TikTok Organic profile and filtered video reports",
       "posts": 4,
-      "note": "Four Better Dog videos were returned for Aug 16. The profile row is a delayed zero; follower growth uses snapshot deltas through Aug 15."
+      "note": "Four Better Dog videos were returned for Aug 16. The profile row backfilled; follower growth uses snapshot deltas through Aug 16."
     }
   ],
   "skippedItems": []

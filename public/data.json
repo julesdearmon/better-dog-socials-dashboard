@@ -5,9 +5,9 @@
     "color": "#88cc33"
   },
   "asOf": "2026-08-16",
-  "updatedAt": "Aug 17, 2026, 11:30 AM",
+  "updatedAt": "Aug 17, 2026, 5:02 PM",
   "source": "live",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube) through Aug 16, 2026; TikTok Aug 16 and YouTube Aug 15-Aug 16 daily performance pending; YouTube Shorts and Community posts verified on the public channel.",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube) through Aug 16, 2026; YouTube Aug 15-Aug 16 daily performance pending; YouTube Shorts and Community posts verified on the public channel.",
   "directApiErrors": [],
   "rangeOverrides": [
     {
@@ -2791,12 +2791,12 @@
       "platform": "tiktok",
       "start": "2026-08-14",
       "end": "2026-08-16",
-      "source": "TikTok Organic profile range; Aug 16 delayed; followers use snapshot delta through Aug 15",
+      "source": "Supermetrics TikTok Organic profile range; followers use snapshot delta through Aug 16",
       "values": {
-        "views": 20537,
+        "views": 29806,
         "reach": 0,
-        "newFollowers": 58,
-        "totalFollowers": 3535
+        "newFollowers": 89,
+        "totalFollowers": 3566
       },
       "sourceUsername": "betterdogsupplements"
     },
@@ -2841,11 +2841,11 @@
       "platform": "tiktok",
       "start": "2026-01-01",
       "end": "2026-08-16",
-      "source": "TikTok Organic exact available history from Jun 18 through Aug 16; delayed Aug 16 snapshot ignored",
+      "source": "Supermetrics TikTok Organic exact available history from Jun 18 through Aug 16",
       "values": {
-        "views": 841585,
+        "views": 850854,
         "reach": 709170,
-        "totalFollowers": 3535
+        "totalFollowers": 3566
       },
       "sourceUsername": "betterdogsupplements"
     },
@@ -10565,22 +10565,22 @@
         {
           "date": "2026-08-16",
           "posts": 4,
-          "views": 0,
+          "views": 9269,
           "reach": 0,
           "watchTime": 0,
-          "newFollowers": 0,
-          "profileViews": 0,
-          "totalFollowers": 3535,
+          "newFollowers": 31,
+          "profileViews": 47,
+          "totalFollowers": 3566,
           "sourceUsername": "betterdogsupplements",
-          "performancePending": true
+          "performancePending": false
         }
       ],
       "reachLabel": "Reached audience",
       "postProvider": "supermetrics-tiktok-organic-video-ids",
       "hasFollowers": true,
-      "totalFollowers": 3535,
-      "followersAsOf": "2026-08-15",
-      "followersNote": "TikTok profile__new_followers behaves as a follower snapshot. Daily and range growth use snapshot deltas; the delayed Aug 16 zero is ignored.",
+      "totalFollowers": 3566,
+      "followersAsOf": "2026-08-16",
+      "followersNote": "TikTok profile__new_followers behaves as a follower snapshot. Daily and range growth use snapshot deltas.",
       "historyStart": "2026-06-15",
       "hasNewFollowers": true,
       "postDefinition": "Published TikTok Organic videos for @betterdogsupplements.",
@@ -10591,8 +10591,8 @@
         "displayName": "Better Dog Supplements",
         "freeTextAccount": "betterdogsupplements"
       },
-      "performanceAsOf": "2026-08-15",
-      "dataAvailabilityNote": "TikTok Organic profile performance is refreshed through Aug 15; Aug 16 is a delayed zero row and remains pending. Four filtered Better Dog videos were verified for Aug 16."
+      "performanceAsOf": "2026-08-16",
+      "dataAvailabilityNote": "TikTok Organic profile performance and follower snapshots are refreshed through Aug 16. Four filtered Better Dog videos were verified for Aug 16."
     }
   },
   "content": [
@@ -15309,11 +15309,11 @@
       "note": "Verified one Community post on Aug 14, one Short plus one Community post on Aug 15, and one Community post on Aug 16."
     },
     {
-      "key": "tiktok-profile-delay-2026-08-16",
+      "key": "tiktok-profile-backfill-2026-08-16",
       "platform": "tiktok",
       "source": "Supermetrics TikTok Organic profile and filtered video reports",
       "posts": 4,
-      "note": "Four Better Dog videos were returned for Aug 16. The profile row is a delayed zero; follower growth uses snapshot deltas through Aug 15."
+      "note": "Four Better Dog videos were returned for Aug 16. The profile row backfilled; follower growth uses snapshot deltas through Aug 16."
     }
   ]
 }
