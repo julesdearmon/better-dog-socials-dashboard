@@ -4,10 +4,10 @@
     "name": "Better Dog Supplements",
     "color": "#88cc33"
   },
-  "asOf": "2026-08-16",
-  "updatedAt": "Aug 17, 2026, 5:02 PM",
+  "asOf": "2026-08-18",
+  "updatedAt": "Aug 19, 2026, 10:30 AM",
   "source": "live",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube) through Aug 16, 2026; YouTube Aug 15-Aug 16 daily performance pending; YouTube Shorts and Community posts verified on the public channel.",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube) through Aug 18, 2026; TikTok Aug 18 and YouTube Aug 17-Aug 18 profile/daily performance pending; YouTube Shorts and Community posts verified in YouTube Studio.",
   "directApiErrors": [],
   "rangeOverrides": [
     {
@@ -1738,14 +1738,12 @@
       "platform": "facebook",
       "start": "2026-07-31",
       "end": "2026-08-06",
-      "source": "Supermetrics exact organic prior completed-week total; reach uses guarded daily unique rows",
+      "source": "Supermetrics exact organic prior completed-week total",
       "values": {
-        "views": 2386,
-        "reach": 939,
-        "paidViews": 0,
-        "newFollowers": 50,
-        "totalFollowers": 1013
-      }
+        "views": 2655,
+        "paidViews": 0
+      },
+      "seriesDistribute": false
     },
     {
       "platform": "instagram",
@@ -1754,10 +1752,9 @@
       "source": "Supermetrics exact prior completed-week total",
       "values": {
         "views": 160245,
-        "reach": 23810,
-        "newFollowers": 121,
-        "totalFollowers": 3286
-      }
+        "reach": 23810
+      },
+      "seriesDistribute": false
     },
     {
       "platform": "tiktok",
@@ -1770,6 +1767,7 @@
         "newFollowers": 331,
         "totalFollowers": 3313
       },
+      "seriesDistribute": false,
       "sourceUsername": "betterdogsupplements"
     },
     {
@@ -1781,10 +1779,9 @@
         "views": 1757,
         "watchTime": 1175,
         "adViews": 68,
-        "adWatchTime": 50,
-        "newFollowers": 56,
-        "totalFollowers": 1434
-      }
+        "adWatchTime": 50
+      },
+      "seriesDistribute": false
     },
     {
       "platform": "facebook",
@@ -2663,37 +2660,38 @@
       "end": "2026-08-13",
       "source": "Supermetrics exact guarded completed-week total",
       "values": {
-        "views": 173133,
+        "views": 173135,
         "reach": 35159,
-        "newFollowers": 121,
         "totalFollowers": 3381
-      }
+      },
+      "seriesDistribute": false
     },
     {
       "platform": "facebook",
       "start": "2026-08-07",
       "end": "2026-08-13",
-      "source": "Supermetrics exact organic completed-week total; reach uses guarded daily unique rows",
+      "source": "Supermetrics exact organic completed-week total",
       "values": {
         "views": 2921,
-        "reach": 1103,
         "paidViews": 0,
-        "newFollowers": 76,
-        "totalFollowers": 1089
-      }
+        "totalFollowers": 1089,
+        "reach": 1103
+      },
+      "seriesDistribute": false
     },
     {
       "platform": "tiktok",
       "start": "2026-08-07",
       "end": "2026-08-13",
       "source": "TikTok Organic completed-week total; followers use snapshot delta",
-      "sourceUsername": "betterdogsupplements",
       "values": {
         "views": 58292,
         "reach": 0,
         "newFollowers": 164,
         "totalFollowers": 3477
-      }
+      },
+      "seriesDistribute": false,
+      "sourceUsername": "betterdogsupplements"
     },
     {
       "platform": "youtube",
@@ -2701,13 +2699,12 @@
       "end": "2026-08-13",
       "source": "Supermetrics exact completed-week ChannelTotals and TrafficSources",
       "values": {
-        "views": 2947,
+        "views": 2942,
         "watchTime": 1456,
         "adViews": 112,
-        "adWatchTime": 119,
-        "newFollowers": 53,
-        "totalFollowers": 1470
-      }
+        "adWatchTime": 119
+      },
+      "seriesDistribute": false
     },
     {
       "platform": "instagram",
@@ -2914,6 +2911,165 @@
         "totalFollowers": 1470
       },
       "source": "Supermetrics exact comparison-range ChannelTotals and TrafficSources"
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-08-14",
+      "end": "2026-08-18",
+      "source": "Supermetrics exact guarded current-range total",
+      "values": {
+        "views": 103580,
+        "reach": 11603,
+        "newFollowers": 50,
+        "totalFollowers": 3439
+      },
+      "seriesDistribute": false
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-08-14",
+      "end": "2026-08-18",
+      "source": "Supermetrics exact organic current range; reach uses guarded daily unique rows",
+      "values": {
+        "views": 2542,
+        "reach": 1085,
+        "paidViews": 0,
+        "newFollowers": 36,
+        "totalFollowers": 1125
+      },
+      "seriesDistribute": false
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-08-14",
+      "end": "2026-08-18",
+      "source": "TikTok Organic current range; followers use snapshot delta through Aug 17 and Aug 18 is pending",
+      "values": {
+        "views": 39710,
+        "reach": 0,
+        "newFollowers": 118,
+        "totalFollowers": 3595
+      },
+      "seriesDistribute": false,
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-08-14",
+      "end": "2026-08-18",
+      "source": "Exact ChannelTotals/TrafficSources; daily rows pending Aug 17-Aug 18",
+      "values": {
+        "views": 1295,
+        "watchTime": 750,
+        "adViews": 21,
+        "adWatchTime": 25,
+        "newFollowers": 18,
+        "totalFollowers": 1498
+      },
+      "seriesDistribute": false
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-08-09",
+      "end": "2026-08-13",
+      "source": "Supermetrics exact guarded comparison-range total",
+      "values": {
+        "views": 141305,
+        "reach": 11839,
+        "totalFollowers": 3381
+      },
+      "seriesDistribute": false
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-08-09",
+      "end": "2026-08-13",
+      "source": "Supermetrics exact organic comparison-range total",
+      "values": {
+        "views": 2275,
+        "paidViews": 0,
+        "totalFollowers": 1089,
+        "reach": 850
+      },
+      "seriesDistribute": false
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-08-09",
+      "end": "2026-08-13",
+      "source": "TikTok Organic comparison range; followers use snapshot delta",
+      "values": {
+        "views": 39202,
+        "reach": 0,
+        "newFollowers": 118,
+        "totalFollowers": 3477
+      },
+      "seriesDistribute": false,
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-08-09",
+      "end": "2026-08-13",
+      "source": "Supermetrics exact comparison-range ChannelTotals and TrafficSources",
+      "values": {
+        "views": 2318,
+        "watchTime": 1168,
+        "adViews": 100,
+        "adWatchTime": 110
+      },
+      "seriesDistribute": false
+    },
+    {
+      "platform": "instagram",
+      "start": "2026-01-01",
+      "end": "2026-08-18",
+      "source": "Supermetrics exact YTD total",
+      "values": {
+        "views": 3346602,
+        "reach": 46293,
+        "totalFollowers": 3439
+      },
+      "seriesDistribute": false
+    },
+    {
+      "platform": "facebook",
+      "start": "2026-01-01",
+      "end": "2026-08-18",
+      "source": "Supermetrics exact YTD organic/paid totals; reach remains daily-row sum",
+      "values": {
+        "views": 53214,
+        "paidViews": 173047,
+        "totalFollowers": 1125
+      },
+      "seriesDistribute": false
+    },
+    {
+      "platform": "tiktok",
+      "start": "2026-01-01",
+      "end": "2026-08-18",
+      "source": "Supermetrics TikTok Organic exact available history from Jun 20 through Aug 18",
+      "values": {
+        "views": 810890,
+        "reach": 660683,
+        "totalFollowers": 3595
+      },
+      "seriesDistribute": false,
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "start": "2026-01-01",
+      "end": "2026-08-18",
+      "source": "Supermetrics exact YTD ChannelTotals and TrafficSources",
+      "values": {
+        "views": 176020,
+        "watchTime": 87533,
+        "adViews": 88530,
+        "adWatchTime": 58227,
+        "totalFollowers": 1498
+      },
+      "seriesDistribute": false
     }
   ],
   "metrics": {
@@ -2924,7 +3080,7 @@
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "asOf": "2026-08-16",
+      "asOf": "2026-08-18",
       "daily": [
         {
           "date": "2026-01-01",
@@ -4757,11 +4913,29 @@
           "watchTime": 0,
           "newFollowers": 0,
           "totalFollowers": 3427
+        },
+        {
+          "date": "2026-08-17",
+          "posts": 1,
+          "views": 20334,
+          "reach": 12060,
+          "watchTime": 0,
+          "newFollowers": 12,
+          "totalFollowers": 3439
+        },
+        {
+          "date": "2026-08-18",
+          "posts": 2,
+          "views": 16942,
+          "reach": 11603,
+          "watchTime": 0,
+          "newFollowers": 0,
+          "totalFollowers": 3439
         }
       ],
       "hasFollowers": true,
-      "totalFollowers": 3427,
-      "followersAsOf": "2026-08-16",
+      "totalFollowers": 3439,
+      "followersAsOf": "2026-08-18",
       "followersNote": "Total followers from Supermetrics profile followers snapshot; new followers from daily Instagram Insights rows.",
       "hasNewFollowers": true,
       "sourceAccount": {
@@ -4770,8 +4944,8 @@
         "accountName": "Better Dog Supplements by Cesar Millan"
       },
       "postCountNote": "Post counts come from filtered Supermetrics Instagram media rows.",
-      "performanceAsOf": "2026-08-16",
-      "dataAvailabilityNote": "Instagram profile and media rows are refreshed through Aug 16."
+      "performanceAsOf": "2026-08-18",
+      "dataAvailabilityNote": "Supermetrics profile and content rows are current through Aug 18."
     },
     "facebook": {
       "platform": "facebook",
@@ -4780,7 +4954,7 @@
       "provider": "supermetrics",
       "hasWatchTime": false,
       "hasReach": true,
-      "asOf": "2026-08-16",
+      "asOf": "2026-08-18",
       "daily": [
         {
           "date": "2026-01-01",
@@ -6998,13 +7172,33 @@
           "paidViews": 0,
           "newFollowers": 7,
           "totalFollowers": 1109
+        },
+        {
+          "date": "2026-08-17",
+          "posts": 1,
+          "views": 425,
+          "reach": 127,
+          "watchTime": 0,
+          "paidViews": 0,
+          "newFollowers": 9,
+          "totalFollowers": 1118
+        },
+        {
+          "date": "2026-08-18",
+          "posts": 1,
+          "views": 447,
+          "reach": 210,
+          "watchTime": 0,
+          "paidViews": 0,
+          "newFollowers": 7,
+          "totalFollowers": 1125
         }
       ],
       "reachLabel": "Page media views unique",
       "reachNote": "Facebook reach uses daily unique page media views from Supermetrics.",
       "hasFollowers": true,
-      "totalFollowers": 1109,
-      "followersAsOf": "2026-08-16",
+      "totalFollowers": 1125,
+      "followersAsOf": "2026-08-18",
       "followersNote": "Total followers and daily follower growth from Supermetrics Facebook Insights.",
       "viewsLabel": "Organic views",
       "viewsNote": "Facebook views are organic page media views only and do not include paid views.",
@@ -7015,8 +7209,8 @@
         "accountName": "Better Dog Supplements by Cesar Millan"
       },
       "postCountNote": "Post counts come from filtered Supermetrics Facebook post rows.",
-      "performanceAsOf": "2026-08-16",
-      "dataAvailabilityNote": "Facebook organic page-media and post rows are refreshed through Aug 16; paid media views were 0 for Aug 14-Aug 16."
+      "performanceAsOf": "2026-08-18",
+      "dataAvailabilityNote": "Supermetrics organic page-media, follower, and filtered post rows are current through Aug 18; paid media views are 0 for the current range."
     },
     "youtube": {
       "platform": "youtube",
@@ -7025,7 +7219,7 @@
       "provider": "supermetrics",
       "hasWatchTime": true,
       "hasReach": false,
-      "asOf": "2026-08-16",
+      "asOf": "2026-08-18",
       "daily": [
         {
           "date": "2026-01-01",
@@ -9343,7 +9537,7 @@
         {
           "date": "2026-08-13",
           "posts": 2,
-          "views": 195,
+          "views": 190,
           "reach": 0,
           "watchTime": 153,
           "newFollowers": 7,
@@ -9391,18 +9585,44 @@
           "adWatchTime": 0,
           "performancePending": true,
           "postMetricsPending": true
+        },
+        {
+          "date": "2026-08-17",
+          "posts": 1,
+          "views": 0,
+          "reach": 0,
+          "watchTime": 0,
+          "newFollowers": 0,
+          "totalFollowers": 1498,
+          "adViews": 0,
+          "adWatchTime": 0,
+          "performancePending": true,
+          "postMetricsPending": true
+        },
+        {
+          "date": "2026-08-18",
+          "posts": 1,
+          "views": 0,
+          "reach": 0,
+          "watchTime": 0,
+          "newFollowers": 0,
+          "totalFollowers": 1498,
+          "adViews": 0,
+          "adWatchTime": 0,
+          "performancePending": true,
+          "postMetricsPending": true
         }
       ],
       "reachUnavailableReason": "YouTube reach/unique viewers is not available in the current Supermetrics connector.",
       "hasFollowers": true,
-      "totalFollowers": 1480,
-      "followersAsOf": "2026-08-16",
+      "totalFollowers": 1498,
+      "followersAsOf": "2026-08-18",
       "followersNote": "Total subscribers from Supermetrics ChannelTotals snapshot; daily gained/lost subscribers from ChannelTotals.",
       "hasNewFollowers": true,
-      "adTrafficNote": "YouTube ad traffic is tracked from Supermetrics Traffic source type = ADVERTISING.",
-      "postSupplementNote": "YouTube post counts are verified against the public channel feed when LatestVideos lags.",
-      "performanceAsOf": "2026-08-14",
-      "dataAvailabilityNote": "YouTube daily performance is backfilled through Aug 14; Aug 15-Aug 16 are pending. Public channel verification found one Community post on each day and one Short on Aug 15.",
+      "adTrafficNote": "Current exact range includes 21 advertising views and 25 advertising watch minutes.",
+      "postSupplementNote": "YouTube Posts include videos, Shorts, and Community posts verified in YouTube Studio.",
+      "performanceAsOf": "2026-08-16",
+      "dataAvailabilityNote": "Exact range totals are current through Aug 18; daily ChannelTotals are backfilled through Aug 16, with Aug 17-Aug 18 pending.",
       "sourceAccount": {
         "dsId": "YT2",
         "accountId": "UC9rUabwMqe2C98J2l1NDz2g",
@@ -9418,7 +9638,7 @@
       "hasWatchTime": false,
       "hasReach": true,
       "hasTopContent": true,
-      "asOf": "2026-08-16",
+      "asOf": "2026-08-18",
       "daily": [
         {
           "date": "2026-05-08",
@@ -10573,15 +10793,39 @@
           "totalFollowers": 3566,
           "sourceUsername": "betterdogsupplements",
           "performancePending": false
+        },
+        {
+          "date": "2026-08-17",
+          "posts": 0,
+          "views": 9904,
+          "reach": 0,
+          "watchTime": 0,
+          "newFollowers": 29,
+          "profileViews": 36,
+          "totalFollowers": 3595,
+          "sourceUsername": "betterdogsupplements",
+          "performancePending": false
+        },
+        {
+          "date": "2026-08-18",
+          "posts": 3,
+          "views": 0,
+          "reach": 0,
+          "watchTime": 0,
+          "newFollowers": 0,
+          "profileViews": 0,
+          "totalFollowers": 3595,
+          "sourceUsername": "betterdogsupplements",
+          "performancePending": true
         }
       ],
       "reachLabel": "Reached audience",
       "postProvider": "supermetrics-tiktok-organic-video-ids",
       "hasFollowers": true,
-      "totalFollowers": 3566,
-      "followersAsOf": "2026-08-16",
+      "totalFollowers": 3595,
+      "followersAsOf": "2026-08-17",
       "followersNote": "TikTok profile__new_followers behaves as a follower snapshot. Daily and range growth use snapshot deltas.",
-      "historyStart": "2026-06-15",
+      "historyStart": "2026-06-20",
       "hasNewFollowers": true,
       "postDefinition": "Published TikTok Organic videos for @betterdogsupplements.",
       "postCountNote": "Post counts come from filtered TikTok Organic video IDs for @betterdogsupplements.",
@@ -10591,8 +10835,8 @@
         "displayName": "Better Dog Supplements",
         "freeTextAccount": "betterdogsupplements"
       },
-      "performanceAsOf": "2026-08-16",
-      "dataAvailabilityNote": "TikTok Organic profile performance and follower snapshots are refreshed through Aug 16. Four filtered Better Dog videos were verified for Aug 16."
+      "performanceAsOf": "2026-08-17",
+      "dataAvailabilityNote": "Aug 18 profile performance and follower snapshot are delayed; three filtered Better Dog videos are verified and post-level metrics remain available."
     }
   },
   "content": [
@@ -15262,6 +15506,143 @@
       "source": "YouTube public channel verification; Supermetrics performance pending",
       "performancePending": true,
       "metricsPending": true
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-08-17",
+      "url": "https://www.facebook.com/674626722402999_122186161784906904",
+      "title": "When your dog's body can clear out what it doesn't need, everyday life feels easier.",
+      "type": "Single Image",
+      "views": 119,
+      "reach": 80,
+      "watchTime": null,
+      "eng": 2,
+      "sourceId": "674626722402999_122186161784906904",
+      "source": "Supermetrics facebook content report"
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-08-17",
+      "url": "https://www.instagram.com/p/DcJobLWkTih/",
+      "title": "When your dog's body can clear out what it doesn't need, everyday life feels easier.",
+      "type": "Single Image",
+      "views": 129,
+      "reach": 74,
+      "watchTime": null,
+      "eng": 9,
+      "sourceId": "18082940174273890",
+      "source": "Supermetrics instagram content report"
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-08-17",
+      "url": "https://www.youtube.com/post/Ugkx2y67DvjpL5sLmVVRPf2yKkNnBnwdoV5J",
+      "title": "When your dog's body can clear out what it doesn't need, everyday life feels easier.",
+      "type": "Community Post",
+      "views": 0,
+      "reach": null,
+      "watchTime": 0,
+      "eng": 4,
+      "sourceId": "Ugkx2y67DvjpL5sLmVVRPf2yKkNnBnwdoV5J",
+      "source": "YouTube Studio Posts verification; performance pending",
+      "performancePending": true,
+      "metricsPending": true
+    },
+    {
+      "platform": "facebook",
+      "date": "2026-08-18",
+      "url": "https://www.facebook.com/674626722402999_122186282552906904",
+      "title": "Lorenzo used to be a supplement?!",
+      "type": "Short Form Clip",
+      "views": 177,
+      "reach": 164,
+      "watchTime": null,
+      "eng": 5,
+      "sourceId": "674626722402999_122186282552906904",
+      "source": "Supermetrics facebook content report"
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-08-18",
+      "url": "https://www.instagram.com/reel/DcMNSVrHCsZ/",
+      "title": "Lorenzo used to be a supplement?!",
+      "type": "Short Form Clip",
+      "views": 11527,
+      "reach": 10694,
+      "watchTime": null,
+      "eng": 218,
+      "sourceId": "17951731494213355",
+      "source": "Supermetrics instagram content report"
+    },
+    {
+      "platform": "instagram",
+      "date": "2026-08-18",
+      "url": "https://www.instagram.com/p/DcMALounMp1/",
+      "title": "Does your dog get extra hyper at night?",
+      "type": "Carousel",
+      "views": 374,
+      "reach": 166,
+      "watchTime": null,
+      "eng": 18,
+      "sourceId": "17942228550318315",
+      "source": "Supermetrics instagram content report"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-18",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7675404301698649374",
+      "title": "Lorenzo used to be a supplement?!",
+      "type": "Short Form Clip",
+      "views": 216,
+      "reach": 0,
+      "watchTime": null,
+      "eng": 19,
+      "sourceId": "7675404301698649374",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-18",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7675499906546634015",
+      "title": "Breed plays a bigger role in seasonal allergies than most owners realize.",
+      "type": "Short Form Clip",
+      "views": 215,
+      "reach": 0,
+      "watchTime": null,
+      "eng": 5,
+      "sourceId": "7675499906546634015",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "tiktok",
+      "date": "2026-08-18",
+      "url": "https://www.tiktok.com/@betterdogsupplements/video/7675499617756171551",
+      "title": "Seasonal allergies are a natural response to a changing environment.",
+      "type": "Short Form Clip",
+      "views": 76,
+      "reach": 0,
+      "watchTime": null,
+      "eng": 5,
+      "sourceId": "7675499617756171551",
+      "source": "Supermetrics tiktok content report",
+      "sourceUsername": "betterdogsupplements"
+    },
+    {
+      "platform": "youtube",
+      "date": "2026-08-18",
+      "url": "https://www.youtube.com/shorts/etcZ5Bz9dDk",
+      "title": "Wait, Lorenzo was the supplement?!",
+      "type": "Short Form Clip",
+      "views": 0,
+      "reach": null,
+      "watchTime": 0,
+      "eng": 0,
+      "sourceId": "etcZ5Bz9dDk",
+      "source": "YouTube Studio Shorts verification; Supermetrics post-level performance pending",
+      "performancePending": true,
+      "metricsPending": true
     }
   ],
   "followersDataNote": "Follower growth uses daily Supermetrics fields where available. Total followers use verified Supermetrics profile/channel snapshots, with delayed daily rows marked pending.",
@@ -15314,6 +15695,20 @@
       "source": "Supermetrics TikTok Organic profile and filtered video reports",
       "posts": 4,
       "note": "Four Better Dog videos were returned for Aug 16. The profile row backfilled; follower growth uses snapshot deltas through Aug 16."
+    },
+    {
+      "key": "youtube-post-verification-2026-08-17-2026-08-18",
+      "platform": "youtube",
+      "source": "YouTube Studio Shorts and Posts tabs",
+      "posts": 2,
+      "note": "Verified one Community post on Aug 17 and one Short on Aug 18."
+    },
+    {
+      "key": "tiktok-profile-delay-2026-08-18",
+      "platform": "tiktok",
+      "source": "Supermetrics TikTok Organic profile and filtered video reports",
+      "posts": 3,
+      "note": "Three Better Dog videos verified on Aug 18; delayed zero profile row ignored and follower movement uses snapshots through Aug 17."
     }
   ]
 }
