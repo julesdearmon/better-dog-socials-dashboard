@@ -1,36 +1,36 @@
 {
-  "refreshedAt": "Aug 19, 2026, 10:30 AM",
-  "dataThrough": "2026-08-18",
+  "refreshedAt": "Aug 20, 2026, 10:45 AM",
+  "dataThrough": "2026-08-19",
   "sourceOfTruth": "supermetrics-chatgpt-codex-connector",
-  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube) through Aug 18, 2026; TikTok Aug 18 and YouTube Aug 17-Aug 18 profile/daily performance pending; YouTube Shorts and Community posts verified in YouTube Studio.",
+  "generatedFrom": "Supermetrics connector (Instagram, Facebook, TikTok Organic, YouTube) through Aug 19, 2026; TikTok Aug 19 and YouTube Aug 18-Aug 19 profile/daily performance pending; YouTube Shorts and Community posts verified on the public Better Dog channel.",
   "platforms": {
     "instagram": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Profile, follower, and content metrics refreshed through Aug 18.",
+      "note": "Profile, follower, and content metrics refreshed through Aug 19.",
       "historyStart": "2026-01-01"
     },
     "facebook": {
       "status": "live",
       "provider": "supermetrics",
-      "note": "Organic page-media, follower, and post metrics refreshed through Aug 18; paid media views were 0 for Aug 14-Aug 18.",
+      "note": "Organic page-media, follower, and post metrics refreshed through Aug 19; paid media views were 0 for Aug 14-Aug 19.",
       "historyStart": "2026-01-01"
     },
     "tiktok": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Profile history re-queried through Aug 18; Aug 18 is a delayed zero, while three guarded videos are verified.",
-      "historyStart": "2026-06-20"
+      "note": "Profile history re-queried through Aug 19; Aug 19 is a delayed zero, while five guarded videos are verified.",
+      "historyStart": "2026-06-21"
     },
     "youtube": {
       "status": "partial",
       "provider": "supermetrics",
-      "note": "Exact totals refreshed through Aug 18; daily performance backfilled through Aug 16 and publishing verified in YouTube Studio.",
+      "note": "Exact totals refreshed through Aug 19; daily performance backfilled through Aug 17 and publishing verified on the public Better Dog channel.",
       "historyStart": "2026-01-01"
     }
   },
   "errors": [],
-  "published": true,
+  "published": false,
   "supplementalSources": [
     {
       "key": "youtube-community-post-verification-2026-07-31-2026-08-06",
@@ -94,6 +94,20 @@
       "source": "Supermetrics TikTok Organic profile and filtered video reports",
       "posts": 3,
       "note": "Three Better Dog videos verified on Aug 18; delayed zero profile row ignored and follower movement uses snapshots through Aug 17."
+    },
+    {
+      "key": "youtube-post-verification-2026-08-19",
+      "platform": "youtube",
+      "source": "YouTube public Better Dog Shorts and Posts tabs",
+      "posts": 2,
+      "note": "Verified one Short and one Community post published Aug 19; the prior Short remains dated Aug 18."
+    },
+    {
+      "key": "tiktok-profile-delay-2026-08-19",
+      "platform": "tiktok",
+      "source": "Supermetrics TikTok Organic profile and filtered video reports",
+      "posts": 5,
+      "note": "Five Better Dog videos verified on Aug 19; delayed zero profile row ignored and follower movement uses snapshots through Aug 18."
     }
   ],
   "skippedItems": []
